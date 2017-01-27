@@ -17,3 +17,8 @@ nav ,a:hover,a:active{
 	text-decoration:none;
 }
 
+.pravila {
+	padding:30%;
+	text-align:justify;
+	font-size:20px;
+}
