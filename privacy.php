@@ -28,7 +28,8 @@
 <li>Dont insult others and behave yourself good on this site. If you break the rule, you will get some negative points. 
 If you collect more than 50 negative points, you will be banned for 1 day. </li>
 <li>For every other 50 points, you will be banned for 2 days, other 4 days, etc.</li>
-<li>Your data will have a daily backup. If you want some backuped files to have on your computer, just give us some feedback. Use <a href="#" target="_blank">feedback</a> form, to get us request, you will get your data through email.</li>
+<li>Your data will have a daily backup. If you want some backuped files to have on your computer, just give us some feedback. Use <a href="feedback.php" target="_blank">feedback</a> form, to get us request, you will get your data through email.</li>
+<li>You can in your feedback also, sent us some suggestions to improve our page like design, to add some additional content, etc..</li>
 </ol>
 </section>
 </div>
