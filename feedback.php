@@ -25,7 +25,10 @@
 <input type="text" name="fname"/><br/>
 <label>Your last name:</label><br/>
 <input type="text" name="lname"/><br/>
-
+<label>Suggestions of improvment:</label><br/>
+<textarea name="suggestions"></textarea>
+<br/>
+<input type="submit" value="Send suggestion"/>
 </form>
 </section>
 </div>
