@@ -2,7 +2,11 @@
 /* CSS Document */
 body{background-color:orange;}
 nav a:link,a:visited{
-	background-color:#f44336;
+	border: 2px solid red;
+    border-radius: 30px;
+	margin-left:5%;
+	margin-right:-5%;
+	background-color:red;
 	color:#FFF;
 	padding:14px 25px;
 	text-align:center;
@@ -10,15 +14,34 @@ nav a:link,a:visited{
 	display:inline-block;
 }
 nav ,a:hover,a:active{
+	border: 2px solid red;
+    border-radius: 30px;
 	background-color:red;
 	
 }
-#privatnost{
-	text-decoration:none;
-}
+
 
 .pravila {
 	padding:30%;
 	text-align:justify;
 	font-size:20px;
+}
+nav{
+	border: 2px solid red;
+    border-radius: 30px;
+	border-color:orange;
+	
+	
+}
+
+#privatnost{
+	color: #2A0000;
+	text-decoration: none;
+	text-align: justify;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	background-color: orange;
+	
 }
