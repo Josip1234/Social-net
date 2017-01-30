@@ -1,10 +1,8 @@
 <!doctype html>
 <html>
 <head>
-<?php
-include("dbconn.php");
-?>
-<meta charset="utf-8">
+
+<meta charset="UTF-8" />
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
@@ -31,8 +29,18 @@ include("dbconn.php");
 <label>Suggestions of improvment:</label><br/>
 <textarea name="suggestions"></textarea>
 <br/>
+
 <input type="submit" value="Send suggestion"/>
 </form>
+<?php
+include("dbconn.php");
+$fname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
+$lname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
+$suggestions=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['suggestions'])));
+$query="INSERT INTO kvaliteta (firstname,lastname,suggestion) VALUES ('$fname','$lname','$suggestions')";
+mysqli_query($dbc,$query);
+mysqli_close($dbc);
+?>
 </section>
 </div>
 
