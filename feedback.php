@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
 <head>
+<?php
+include("dbconn.php");
+?>
 <meta charset="utf-8">
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
