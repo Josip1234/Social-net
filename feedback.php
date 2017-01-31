@@ -47,10 +47,12 @@ $suggestions=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['suggestions'
 if($suggestions!=''){
 $query="INSERT INTO kvaliteta (firstname,lastname,suggestion) VALUES ('$fname','$lname','$suggestions')";
 mysqli_query($dbc,$query);
+
 mysqli_close($dbc);
 include("functions.php");
 if($query){
-	die("Thanks for adding some suggestions");
+	header('Location:index.html');
+	
 }else{
 	die("Error! Information not inserted!");
 }
