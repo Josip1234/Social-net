@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2017 at 11:43 PM
+-- Generation Time: Feb 05, 2017 at 12:02 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -44,6 +44,17 @@ INSERT INTO `kvaliteta` (`id`, `firstname`, `lastname`, `suggestion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `obavljeno`
+--
+
+CREATE TABLE `obavljeno` (
+  `id` int(11) NOT NULL,
+  `obavljeno` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `registration`
 --
 
@@ -68,6 +79,12 @@ CREATE TABLE `registration` (
 --
 ALTER TABLE `kvaliteta`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `registration`
