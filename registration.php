@@ -40,6 +40,8 @@
 <label>Profile picture:</label><br/>
 <input type="file" name="slika" required><br/> 
 <br/>
+<label>Email:</label><br/>
+<input type="email" name="email" required maxlength="50" size="17" autocomplete="off"/><br/>
 <input type="submit" value="Register"/>
 
 </form>
@@ -61,7 +63,9 @@ if($firstname!=''){
 						if($pass!=''){
 							$slika=$_POST['slika'];
 							if($slika!=''){
-								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,profilepicture) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$slika')";
+								$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
+								if($email!=''){
+								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,profilepicture,email) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$slika','$email')";
 mysqli_query($dbc,$query);
 mysqli_close($dbc);
 if($query){
@@ -69,6 +73,7 @@ if($query){
 }else{
 	die('Error! Connot add informations!');
 }
+								}
 							}
 						}
 					}
