@@ -38,8 +38,7 @@
 <input type="text" name="country_of_birth" maxlength="50" size="17" autocomplete="off" required /><br/>
 <label>Pass:</label><br/>
 <input type="password" name="pass" maxlength="50" size="17" required autocomplete="off" /><br/>
-<label>Profile picture:</label><br/>
-<input type="file" name="slika" required><br/> 
+
 <br/>
 <label>Email:</label><br/>
 <input type="email" name="email" required maxlength="50" size="17" autocomplete="off"/><br/>
@@ -62,19 +61,18 @@ if($firstname!=''){
 					if($country!=''){
 						$pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
 						if($pass!=''){
-							$slika=$_POST['slika'];
-							if($slika!=''){
+							
 								$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
 								if($email!=''){
 								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,profilepicture,email) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$slika','$email')";
 mysqli_query($dbc,$query);
 mysqli_close($dbc);
 if($query){
-	header('Location:index.html');
+	header('Location:profilna.php');
 }else{
 	die('Error! Connot add informations!');
 }
-								}
+								
 							}
 						}
 					}
