@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="index.html" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131306302978377486" remote="131306302970000000" Dst="1" />
-<file name="privacy.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131306304737154380" remote="131306304730000000" Dst="1" />
+<file name="index.html" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131308953462495612" remote="131308953460000000" Dst="1" />
+<file name="privacy.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131308957037176050" remote="131308957030000000" Dst="1" />
 <file name="feedback.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131303739424177135" remote="131303739420000000" Dst="1" />
-<file name="dbconn.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131304260485535637" remote="131304260480000000" Dst="1" />
+<file name="dbconn.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131308974883902873" remote="131308974880000000" Dst="1" />
 <file name="functions.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131303571489533374" remote="131303571480000000" Dst="1" />
 <file name="trenutnifeedback.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131306312790792170" remote="131306312790000000" Dst="1" />
-<file name="registration.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131307849787143897" remote="131307849780000000" Dst="1" />
+<file name="registration.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131308997013632446" remote="131308997010000000" Dst="1" />
+<file name="login.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131308957917010152" remote="131308957910000000" Dst="1" />
 </dwsync>
