@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2017 at 01:44 PM
+-- Generation Time: Feb 10, 2017 at 06:15 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -49,7 +49,8 @@ INSERT INTO `kvaliteta` (`id`, `firstname`, `lastname`, `suggestion`) VALUES
 
 CREATE TABLE `obavljeno` (
   `id` int(11) NOT NULL,
-  `obavljeno` tinyint(1) NOT NULL
+  `obavljeno` tinyint(1) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
 
 -- --------------------------------------------------------
@@ -96,6 +97,18 @@ CREATE TABLE `registration` (
 INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`) VALUES
 (1, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'Wintherthur', 'Švicarska', 'gegegeggegegqgq', 'jbosnjak@unipu.hr');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uloge`
+--
+
+CREATE TABLE `uloge` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `uloga` enum('Administrator','Korisnik','Banovani korisnik','') COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -126,6 +139,12 @@ ALTER TABLE `registration`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `uloge`
+--
+ALTER TABLE `uloge`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -144,6 +163,11 @@ ALTER TABLE `profilna`
 --
 ALTER TABLE `registration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `uloge`
+--
+ALTER TABLE `uloge`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
