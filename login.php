@@ -32,11 +32,19 @@
 </form>
 <?php
 include('dbconn.php');
-include('functions.php');
+
 $username=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['username'])));
 if($username!=''){
 	$pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
-	provjeri_dali_postoji_u_bazi($username,$pass);
+	$res="SELECT email FROM registration WHERE email='$username'";
+	mysqli_query($dbc,$res);
+	if($res){
+		$res2="SELECT if FROM registration WHERE email='$username'";
+		mysqli_query($dbc,$res2);
+		if($res2){
+			
+		}
+	}
 }
 
 ?>
