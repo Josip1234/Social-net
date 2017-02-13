@@ -36,17 +36,26 @@ include('dbconn.php');
 $username=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['username'])));
 if($username!=''){
 	$pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
+	if($pass!=''){
 	$res="SELECT email FROM registration WHERE email='$username'";
 	mysqli_query($dbc,$res);
 	if($res){
-		$res2="SELECT if FROM registration WHERE email='$username'";
+		$res2="SELECT id FROM registration WHERE email='$username'";
 		mysqli_query($dbc,$res2);
 		if($res2){
-			
+			$res3="SELECT pass FROM registration WHERE email='$username'";
+			mysqli_query($dbc,$res2);
+			if($res3){
+				session_start();
+				$_SESSION['email']=$_POST['username'];
+				$_SESSION['pass']=$_POST['pass'];
+				$_SESSION['islogged']=time();
+				header('Location:trenutnifeedback.php');
+			}
 		}
 	}
 }
-
+}
 ?>
 </section>
 </div>
