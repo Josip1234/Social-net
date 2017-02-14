@@ -46,6 +46,7 @@ if($username!=''){
 			$res3="SELECT pass FROM registration WHERE email='$username'";
 			mysqli_query($dbc,$res2);
 			if($res3){
+				
 				session_start();
 				$_SESSION['email']=$_POST['username'];
 				$_SESSION['pass']=$_POST['pass'];
