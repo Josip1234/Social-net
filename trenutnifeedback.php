@@ -29,12 +29,24 @@ include('dbconn.php');
 $query="SELECT * FROM kvaliteta";
 $q=mysqli_query($dbc,$query);
 while($row=mysqli_fetch_array($q)){
-	echo"<tr>";
-	echo"<td>".$row[id]."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/> <input type='checkbox' name='obavljeno' value='Obavljeno?'/><label>Obavljeno?</label></td>";
-	echo "</tr>";
-};
-mysqli_close($dbc);
 	
+	echo"<tr>";
+	
+	echo"<td>".$row[id]."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/> <input type='checkbox' name='obavljeno' value='obavljeno'/><label>Obavljeno?</label><form action='trenutnifeedback.php' method='post'><input type='submit' value='Posalji'></form></td>";
+	
+	echo "</tr>";
+$obavljeno=$_POST['obavljeno'];
+
+  
+    
+
+	
+	
+	
+
+
+mysqli_close($dbc);
+}
 ?>
 </table>
 </section>
