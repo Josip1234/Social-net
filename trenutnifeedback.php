@@ -32,25 +32,32 @@ while($row=mysqli_fetch_array($q)){
 	
 	echo"<tr>";
 	
-	echo"<td>".$row[id]."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/> <input type='checkbox' name='obavljeno' value='obavljeno'/><label>Obavljeno?</label><form action='trenutnifeedback.php' method='post'><input type='submit' value='Posalji'></form></td>";
-	
-	echo "</tr>";
-$obavljeno=$_POST['obavljeno'];
+	echo"<td>".$row[id]."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/>
+	<form action='test.php' method='post'>
+Obavljeno?
+<input type='checkbox' name='formWheelchair' value='Yes' />
+<input type='submit' name='formSubmit' value='Submit' />
 
-  
+
+</form>
+"."</td>";
+
     
-
+ 
 	
 	
 	
 
 
 mysqli_close($dbc);
+
+
 }
 ?>
 </table>
 </section>
 </div>
+
 
 
 
