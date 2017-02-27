@@ -9,17 +9,24 @@
 </head>
 
 <body>
-
+<div class="pravila">
 <?php
+include("dbconn.php");
 if(isset($_POST['formWheelchair']) && 
 $_POST['formWheelchair'] == 'Yes') 
 {
-echo "Need wheelchair access.";
+$obavljeno=1;
+$user_id=1;
+$sql="INSERT INTO obavljeno (obavljeno,user_id) VALUES ($obavljeno,$user_id)";
+mysqli_query($dbc,$sql);
+echo "Sucessfull updated table";
+mysqli_close($dbc);
 }
 else
 {
 echo "Do not Need wheelchair access.";
 }    
 ?>
+</div>
 </body>
 </html>
