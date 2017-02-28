@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2017 at 12:30 AM
+-- Generation Time: Feb 28, 2017 at 11:07 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -119,7 +119,7 @@ INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityo
 
 CREATE TABLE `uloge` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
   `uloga` enum('Administrator','Korisnik','Banovani korisnik','') COLLATE utf8_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
 

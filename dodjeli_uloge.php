@@ -49,15 +49,20 @@ mysqli_close($dbc);
 
 <div id="dodjela_uloga">
 <section>
-<h2>Dodjeli ulogu:</h2>
+<h2>Set the role of one user:</h2>
 <form action="dodjeli_uloge.php" method="post">
-<label>Email korisnika za kojeg želiš dodjeliti ulogu:</label><input type="email" autocomplete="off" name="email">
+<label>Email of the user which you want so set his role:</label><input type="email" autocomplete="off" name="email">
 <select name="selektiraj">
-<option>Administrator</option>
-<option>Korisnik</option>
-<option>Banovani korisnik</option>
+<option value="Administrator">Administrator</option>
+<option value="Korisnik">Korisnik</option>
+<option value="Banovani korisnik">Banovani korisnik</option>
 </select>
 <input type="submit" value="Set_role"/>
+<?php
+$email=$_POST['email'];
+$selektiraj=$_POST['selektiraj'];
+echo $selektiraj;
+?>
 </form>
 </section>
 </div>
