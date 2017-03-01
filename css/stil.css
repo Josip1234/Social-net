@@ -44,9 +44,12 @@ nav{
 	border-right-style: none;
 	border-bottom-style: none;
 	border-left-style: none;
-	background-color: orange;
+	
 	
 }
 section{
 	background-image:url(../slike/mountain_tree_nature_winter_snow_sky_snowy_mountains-7836.jpg);
+}
+section form input {
+	border-radius:30px;
 }
