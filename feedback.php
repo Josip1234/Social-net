@@ -32,6 +32,7 @@
 
 <input type="submit" value="Send suggestion"/>
 </form>
+<label>
 <?php
 include("dbconn.php");
 
@@ -62,6 +63,7 @@ if($query){
 	die("Can 't add empty informations");
 }
 ?>
+</label>
 </section>
 </div>
 

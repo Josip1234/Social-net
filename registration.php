@@ -26,9 +26,11 @@
 <input type="text" name="fname" autocomplete="off" maxlength="50" size="17" required/><br/>
 <label>Last name:</label><br/>
 <input type="text" name="lname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Sex:</label><br/>
-<input type="radio" name="spol" value="muski" required>M 
-<input type="radio" name="spol" value="zenski" required>Z 
+<label id="r">Sex:</label><br/>
+
+<input type="radio"  id="radb" name="spol" value="muski" required>M 
+<input type="radio"   id="radb" name="spol" value="zenski" required>Z 
+
 <br/>
 <label>Date of birth:</label><br/>
 <input type="date" name="datum_rodjenja" required/><br/>
