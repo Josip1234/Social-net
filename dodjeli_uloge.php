@@ -22,8 +22,6 @@
 <?php
 //napomena: bolje je rješenje izlistati jedan po jedan račun. 
 include("dbconn.php");
-
-
 $sql="SELECT id,fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email FROM registration";
 $result=mysqli_query($dbc,$sql);
 while($res=mysqli_fetch_array($result)){
@@ -59,9 +57,23 @@ mysqli_close($dbc);
 </select>
 <input type="submit" value="Set_role"/>
 <?php
-$email=$_POST['email'];
-$selektiraj=$_POST['selektiraj'];
-echo $selektiraj;
+include("dbconn.php");
+$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
+if($email!=''){
+	
+		$selektiraj=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['selektiraj'])));
+		$qv="INSERT INTO uloge (email,uloga) VALUES ('$email','$selektiraj')";
+		if($qv){
+			echo "Succesfully entered";
+		}else{
+			echo "fail";
+		}
+		mysqli_query($dbc,$qv);
+		mysqli_close($dbc);
+		
+	}
+
+
 ?>
 </form>
 </section>
