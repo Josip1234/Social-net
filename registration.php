@@ -49,7 +49,7 @@
 </form>
 <?php
 include('dbconn.php');
-include ('functions.php');
+
 $firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
 if($firstname!=''){
 	$lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
@@ -72,7 +72,7 @@ mysqli_query($dbc,$query);
 mysqli_close($dbc);
 if($query){
 	
-	header('Location:profilna.php');
+	header('Location:login.php');
 }else{
 	die('Error! Connot add informations!');
 }
