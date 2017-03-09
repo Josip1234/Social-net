@@ -1,4 +1,12 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+	header('Location: login.php');
+}else{
+	$_SESSION['login']=time();
+}
 
+?>
 <!doctype html>
 <html>
 <head>
@@ -16,7 +24,7 @@
 
 <a href="index.html" target="_blank">Back to main page</a>
 <a href="privacy.php" target="_blank">Terms of privacy</a>
-
+<a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
 </nav>
 </div>
 <div class="pravila">
