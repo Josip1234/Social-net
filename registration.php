@@ -16,6 +16,7 @@
 <a href="index.html" target="_blank">Back to main page</a>
 <a href="#" target="_blank">Login</a>
 <a href="privacy.php" target="_blank">Terms of privacy</a>
+<a href="profile.php" target="_blank">Profile of user</a>
 
 </nav>
 </div>
