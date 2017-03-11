@@ -32,6 +32,7 @@
 
 </form>
 <?php
+include("dbconn.php");
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	if((!empty($_POST['username'])) && (!empty($_POST['pass']))){
 		if((strtolower($_POST['username'])=='jbosnjak3@gmail.com') && ($_POST['pass']=='admin')){
@@ -41,7 +42,23 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			header('Location:trenutnifeedback.php');
 			exit();
 		}else{
-			die("Username and pass do not match!");
+			
+			$logirankorisnik=mysqli_query($dbc,"SELECT id,pass,email FROM registration WHERE email ='$username' AND pass = '$pass'"            );
+			 if(mysqli_num_rows($logirankorisnik == 1))
+    {
+    	$row = mysqli_fetch_array($logirankorisnik);
+        
+        $_SESSION['username'] = $username;
+		$_SESSION['pass']=$pass;
+        $_SESSION['login'] = time();
+		header("Location:index.html");
+		echo "Succesfull login";
+	}else{
+		echo "Another user is online";
+	}
+	
+			
+			
 		}
 	}else{
 		die("You forgot username or pass");
@@ -50,7 +67,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 }else{
 	print("<a href='index.html'>Homepage</a>");
 }
-
+mysqli_close($dbc);
 ?>
 </section>
 </div>
