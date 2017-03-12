@@ -22,7 +22,7 @@
 </div>
 <div class="pravila">
 <section><h2>Login here</h2>
-<form action="login.php" method="post">
+<form action="" method="post">
 <label>Username as email:</label><br/>
 <input type="email" name="username"  maxlength="50" size="15" required autocomplete="off"/>
 <br/>
@@ -33,29 +33,24 @@
 
 </form>
 <?php
-
-
-if($_SERVER['REQUEST_METHOD']=='POST'){
-	if((!empty($_POST['username'])) && (!empty($_POST['pass']))){
-		if((strtolower($_POST['username'])=='jbosnjak3@gmail.com') && ($_POST['pass']=='admin')){
-			session_start();
-			$_SESSION['username']=$_POST['username'];
-			$_SESSION['pass']=$_POST['pass'];
-			$_SESSION['login']=time();
-			header('Location:trenutnifeedback.php');
-			exit();
-		}
-				
-			
-		
-	
-			
-	
-}else{   
-
-	print("<a href='index.html'>Homepage</a>");
+include("dbconn.php");
+$username=$_POST['username'];
+if($username!=''){
+$pass=$_POST['pass'];
+if($pass!=''){
+$upit="SELECT * FROM registration WHERE email='$username' AND pass='$pass'";
+$r=mysqli_query($dbc,$upit);
+while($res=mysqli_fetch_array($r)){
+	if(mysqli_num_rows($res)<2){
+		echo "One user exists";
+		echo $res['email'];
+	}else{
+		echo "Multiple users exists";
+	}
 }
 }
+}
+mysqli_close($dbc);
 ?>
 </section>
 </div>
