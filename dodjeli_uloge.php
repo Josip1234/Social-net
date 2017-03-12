@@ -24,6 +24,7 @@ if(!isset($_SESSION['username'])){
 <a href="#" target="_blank">Login</a>
 <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
 <a href="profile.php" target="_blank">Profile of user</a>
+<a href="logout.php" target="_blank">Logout</a>
 </nav>
 </div>
 <div class="pravila">

@@ -23,7 +23,7 @@ if(!isset($_SESSION['username'])){
 
 <a href="#" target="_blank">Registation</a>
 <a href="#" target="_blank">Login</a>
-
+<a href="logout.php" target="_blank">Logout</a>
 </nav>
 </div>
 <div class="pravila">

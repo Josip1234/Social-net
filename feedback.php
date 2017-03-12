@@ -17,6 +17,7 @@
 <a href="#" target="_blank">Registation</a>
 <a href="#" target="_blank">Login</a>
 <a href="profile.php" target="_blank">Profile of user</a>
+<a href="logout.php" target="_blank">Logout</a>
 </nav>
 </div>
 <div class="pravila">
