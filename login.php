@@ -38,18 +38,23 @@ $username=$_POST['username'];
 if($username!=''){
 $pass=$_POST['pass'];
 if($pass!=''){
-$upit="SELECT * FROM registration WHERE email='$username' AND pass='$pass'";
+$upit="SELECT id,email,pass FROM registration WHERE email='$username' AND pass='$pass'";
 $r=mysqli_query($dbc,$upit);
 while($res=mysqli_fetch_array($r)){
 	if(mysqli_num_rows($res)<2){
-		echo "One user exists";
-		echo $res['email'];
-	}else{
+		 session_start();
+		 $_SESSION['username']=$res['email'];
+		 $_SESSION['pass']=$res['pass'];
+		 $_SESSION['login']=time();
+		 header('Location:profilna.php');
+	}
+	else{
 		echo "Multiple users exists";
 	}
 }
 }
 }
+
 mysqli_close($dbc);
 ?>
 </section>
