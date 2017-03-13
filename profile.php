@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION['username'])){
 	header('Location: login.php');
 }else{
+	$username=$_SESSION['username'];
 	$_SESSION['login']=time();
 }
 
@@ -28,8 +29,23 @@ if(!isset($_SESSION['username'])){
 </div>
 <div class="pravila">
 <section><h2>Your profile</h2>
-<img src="<?php ?>" alt="profile_picture"><br/>
-<?php //samo ispisujemo podatke ovdje trebamo stvoriti gumb za update, podaci se ispisuju prema id-u korisnika koji je trenutno ulogiran ?>
+<?php
+include("dbconn.php");
+$sql="SELECT imageId,imageType,imageData FROM profilna WHERE email = '$username'";
+$res=mysqli_query($dbc,$sql);
+while($ro=mysqli_fetch_array($res)){
+	
+	echo '<img src="data:'.$ro['imageType'].';base64,'.base64_encode( $ro['imageData'] ).'"width="100" height="100"/> ';
+
+	
+	
+	
+	
+}
+mysqli_close($dbc);
+?>
+
+
 
 
 
