@@ -2,9 +2,17 @@
 session_start();
 if(!isset($_SESSION['username'])){
 	header('Location: login.php');
-}else{
-	$_SESSION['login']=time();
-}
+}else{    
+         if($_SESSION['role']!="Administrator"){
+			 header('Location:profile.php');
+		 }else{
+			$_SESSION['login']=time();
+			
+		 }
+		}
+	
+	
+
 ?>
 <!doctype html>
 <html>
@@ -20,11 +28,11 @@ if(!isset($_SESSION['username'])){
 <div class="con">
 <nav>
 
-<a href="#" target="_blank">Registation</a>
-<a href="#" target="_blank">Login</a>
-<a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
-<a href="profile.php" target="_blank">Profile of user</a>
-<a href="logout.php" target="_blank">Logout</a>
+<a href="#" target="_self">Registation</a>
+<a href="#" target="_self">Login</a>
+<a href="trenutnifeedback.php" target="_self">Feedbacks-only for admins</a>
+<a href="profile.php" target="_self">Profile of user</a>
+<a href="logout.php" target="_self">Logout</a>
 </nav>
 </div>
 <div class="pravila">

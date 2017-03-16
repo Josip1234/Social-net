@@ -1,6 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
-body{background-color:orange;}
+
+body{background-color:orange;
+border:groove;
+border-radius:30px;
+
+}
 nav a:link,a:visited{
 	border: 2px solid red;
     border-radius: 30px;
@@ -50,7 +55,7 @@ nav{
 }
 section{
 	background-image:url(../slike/mountain_tree_nature_winter_snow_sky_snowy_mountains-7836.jpg);
-	
+
 }
 section form input {
 	border-radius:7px;
