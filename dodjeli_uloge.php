@@ -35,65 +35,36 @@ if(!isset($_SESSION['username'])){
 <a href="logout.php" target="_self">Logout</a>
 </nav>
 </div>
-<div class="pravila">
-<section>
-<?php
-//napomena: bolje je rješenje izlistati jedan po jedan račun. 
-include("dbconn.php");
-$sql="SELECT id,fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email FROM registration";
-$result=mysqli_query($dbc,$sql);
-while($res=mysqli_fetch_array($result)){
-	echo $res[id]."<br/>";
-	
-	echo $res['fname']."<br/>";
-	echo $res['lname']."<br/>";
-	echo $res['sex']."<br/>";
-	echo $res['dateofbirth']."<br/>";
-	echo $res['cityofbirth']."<br/>";
-	echo $res['countryofbirth']."<br/>";
-	echo $res['pass']."<br/>";
-	echo $res['email']."<br/>";
-	
-	
-	echo "<br/>";
-	
-}
-mysqli_close($dbc);
-?>
-</section>
-</div>
 
-<div id="dodjela_uloga">
+
+<div class="pravila">
 <section>
 <h2>Set the role of one user:</h2>
 <form action="dodjeli_uloge.php" method="post">
-<label>Email of the user which you want so set his role:</label><input type="email" autocomplete="off" name="email">
-<select name="selektiraj">
-<option value="Administrator">Administrator</option>
-<option value="Korisnik">Korisnik</option>
-<option value="Banovani korisnik">Banovani korisnik</option>
-</select>
+<label>Email of the user which you want so set his role:</label><input type="email"  name="user"autocomplete="off" required /><br/>
+<label>User role:</label><input type="text" name="s" value="Administrator,korisnik ili banovani korisnik" required/>
 <input type="submit" value="Set_role"/>
+
+</form>
 <?php
 include("dbconn.php");
-$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
+$email=$_POST['user'];
+$s=$_POST['s'];
 if($email!=''){
-	
-		$selektiraj=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['selektiraj'])));
-		$qv="INSERT INTO uloge (email,uloga) VALUES ('$email','$selektiraj')";
-		if($qv){
-			echo "Succesfully entered";
-		}else{
-			echo "fail";
-		}
-		mysqli_query($dbc,$qv);
-		mysqli_close($dbc);
-		
+	if($s!=''){
+		if($s=="Administrator"){}else
+		if($s=="Korisnik"){}else 
+		if($s=="Banovani korisnik"){}else{die("Invalid role");};
+	}else{
+		die("Missing role");
 	}
+}else{
+	die("Email missing");
+}
+	
 
 
 ?>
-</form>
 </section>
 </div>
 

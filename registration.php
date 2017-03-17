@@ -71,6 +71,8 @@ if($firstname!=''){
 								if($email!=''){
 								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email')";
 mysqli_query($dbc,$query);
+$default_role="Korisnik";
+
 mysqli_close($dbc);
 if($query){
 	
