@@ -51,7 +51,7 @@
 </form>
 <?php
 include('dbconn.php');
-
+$default_role="Korisnik";
 $firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
 if($firstname!=''){
 	$lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
@@ -69,9 +69,9 @@ if($firstname!=''){
 							
 								$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
 								if($email!=''){
-								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email')";
+								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email,uloga) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email','$default_role')";
 mysqli_query($dbc,$query);
-$default_role="Korisnik";
+
 
 mysqli_close($dbc);
 if($query){

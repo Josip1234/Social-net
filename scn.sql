@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2017 at 03:45 PM
+-- Generation Time: Mar 18, 2017 at 02:00 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -102,39 +102,22 @@ CREATE TABLE `registration` (
   `cityofbirth` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
   `countryofbirth` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
   `pass` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `uloga` enum('Administrator','Korisnik','Banovani korisnik') COLLATE utf8_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
 
 --
 -- Dumping data for table `registration`
 --
 
-INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`) VALUES
-(1, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'Wintherthur', 'Švicarska', 'gegegeggegegqgq', 'jbosnjak@unipu.hr'),
-(2, 'm', 'm', 'm', '5555-05-05', 'm', 'm', 'm', 'm@m.m'),
-(3, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '12', 'jbosnjak3@gmail.com'),
-(5, 'grg', 'ge', 'm', '1992-11-05', 'gege', 'fegfq', 'gegqegfe', 'grgrg@geg.ge'),
-(6, 'Marek', 'Hamšik', 'm', '1988-12-15', 'Zilina', 'Slovakia', '4545fee', 'mhamsik@gmail.com'),
-(7, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `uloge`
---
-
-CREATE TABLE `uloge` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
-  `uloga` enum('Administrator','Korisnik','Banovani korisnik','') COLLATE utf8_croatian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
-
---
--- Dumping data for table `uloge`
---
-
-INSERT INTO `uloge` (`id`, `email`, `uloga`) VALUES
-(1, 'grgrg@geg.ge', 'Administrator');
+INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`, `uloga`) VALUES
+(1, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'Wintherthur', 'Švicarska', 'gegegeggegegqgq', 'jbosnjak@unipu.hr', 'Administrator'),
+(2, 'm', 'm', 'm', '5555-05-05', 'm', 'm', 'm', 'm@m.m', 'Administrator'),
+(3, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '12', 'jbosnjak3@gmail.com', 'Korisnik'),
+(5, 'grg', 'ge', 'm', '1992-11-05', 'gege', 'fegfq', 'gegqegfe', 'grgrg@geg.ge', 'Korisnik'),
+(6, 'Marek', 'Hamšik', 'm', '1988-12-15', 'Zilina', 'Slovakia', '4545fee', 'mhamsik@gmail.com', 'Korisnik'),
+(7, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com', 'Korisnik'),
+(8, 'dvbbd', 'bddb', 'z', '1996-01-01', 'bdbd', 'bdbd', 'bdb', 'bdb@gmail.com', 'Korisnik');
 
 --
 -- Indexes for dumped tables
@@ -167,14 +150,6 @@ ALTER TABLE `registration`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `uloge`
---
-ALTER TABLE `uloge`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email_2` (`email`),
-  ADD KEY `email` (`email`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -198,11 +173,6 @@ ALTER TABLE `profilna`
 --
 ALTER TABLE `registration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `uloge`
---
-ALTER TABLE `uloge`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
