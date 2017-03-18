@@ -1,4 +1,5 @@
 <?php
+include("dbconn.php");
 session_start();
 if(!isset($_SESSION['username'])){
 	header('Location: login.php');
@@ -26,13 +27,13 @@ if(!isset($_SESSION['username'])){
 <a href="#" target="_self">Registation</a>
 <a href="#" target="_self">Login</a>
 <a href="logout.php" target="_self">Logout</a>
-<a href="dodjeli_uloge.php" target="_self">User roles</a>
+<a href="trenutnifeedback.php" target="_self">Feedback</a>
 </nav>
 </div>
 <div class="pravila">
 <section><h2>Your profile</h2>
 <?php
-include("dbconn.php");
+
 $sql="SELECT imageId,imageType,imageData FROM profilna WHERE email = '$username'";
 $res=mysqli_query($dbc,$sql);
 while($ro=mysqli_fetch_array($res)){
@@ -44,7 +45,7 @@ while($ro=mysqli_fetch_array($res)){
 	
 	
 }
-$sql2="SELECT fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email FROM registration WHERE id = '$id'";
+$sql2="SELECT fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email,uloga FROM registration WHERE id = '$id'";
 $t=mysqli_query($dbc,$sql2);
 while($o=mysqli_fetch_array($t)){
 	
@@ -95,9 +96,23 @@ echo $o['pass'];
  ?>"/><br/><label>Email:</label><br/>
  <input type="email" name="email" value="<?php 
 echo $o['email'];
+
+
+ ?>"/><br/><label>Role:</label><br/>
+ <input type="text" name="uloga" value="<?php 
+echo $o['uloga'];
+$ul=$_SESSION[$o['uloga']];
+if($ul=="Korisnik"){
+	
+	$_SESSION['username']=$_POST['email'];
+	$_SESSION['uloga']=$_POST[$ul];
+}else if($ul=="Administrator"){
+	$_SESSION['username']=$_POST['email'];
+	$_SESSION['uloga']=$_POST[$ul];
+}
 }
 mysqli_close($dbc);
- ?>"/><br/>
+?>"/><br/>
 <input type="submit" value="Update" />
 </form>
 

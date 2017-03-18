@@ -1,10 +1,17 @@
 <?php
+include "dbconn.php";
 session_start();
+
 if(!isset($_SESSION['username'])){
-	header('Location: login.php');
-}else{
-	$_SESSION['login']=time();
-}
+	header('Location: profile.php');
+}else{    
+         if($_SESSION['role']!="Administrator"){
+			 header('Location:profile.php');
+		 }else{
+			$_SESSION['login']=time();
+			
+		 }
+		}
 
 ?>
 <!doctype html>
@@ -27,14 +34,14 @@ if(!isset($_SESSION['username'])){
 <a href="trenutnifeedback.php" target="_self">Feedbacks-only for admins</a>
 <a href="profile.php" target="_self">Profile of user</a>
 <a href="logout.php" target="_self">Logout</a>
-<a href="dodjeli_uloge.php" target="_self">User roles</a>
+
 </nav>
 </div>
 <div class="pravila">
 <section><h2>Feedbackovi</h2>
 <table>
 <?php
-include('dbconn.php');
+
 $query="SELECT * FROM kvaliteta";
 $q=mysqli_query($dbc,$query);
 while($row=mysqli_fetch_array($q)){
