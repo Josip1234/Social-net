@@ -28,7 +28,7 @@ if(!isset($_SESSION['username'])){
 </nav>
 </div>
 <div class="pravila">
-<section><h2>Update your profile picture here</h2>
+<section><h2>Set your profile picture here</h2>
 <?php
 include('dbconn.php');
 	
