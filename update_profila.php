@@ -26,9 +26,10 @@ if(!isset($_SESSION['username'])){
 <div class="con">
 <nav>
 
-<a href="#" target="_blank">Registation</a>
-<a href="#" target="_blank">Login</a>
-
+<a href="registration.php" target="_self">Registation</a>
+<a href="login.php" target="_self">Login</a>
+<a href="dodjelauloga.php" target="_self">Set user roles</a>
+<a href="feedback.php" target="_self">Add feedback</a>
 </nav>
 </div>
 <div class="pravila">

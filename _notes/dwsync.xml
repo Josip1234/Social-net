@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="index.html" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131343016152785450" remote="131343016150000000" Dst="1" />
-<file name="privacy.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131343017855807342" remote="131343017850000000" Dst="1" />
-<file name="feedback.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131343017668322707" remote="131343017660000000" Dst="1" />
+<file name="index.html" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345737722519171" remote="131345737720000000" Dst="1" />
+<file name="privacy.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345738139194547" remote="131345738130000000" Dst="1" />
+<file name="feedback.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345738858691652" remote="131345738850000000" Dst="1" />
 <file name="dbconn.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131310235718756822" remote="131310235710000000" Dst="1" />
 <file name="functions.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131337164669699386" remote="131337164660000000" Dst="1" />
-<file name="trenutnifeedback.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131343157967952415" remote="131343157960000000" Dst="1" />
-<file name="registration.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131343016584060993" remote="131343016580000000" Dst="1" />
-<file name="login.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131343162108760064" remote="131343162100000000" Dst="1" />
-<file name="profilna.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131343828577721343" remote="131343828570000000" Dst="1" />
+<file name="trenutnifeedback.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345738460692852" remote="131345738460000000" Dst="1" />
+<file name="registration.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345737949642247" remote="131345737940000000" Dst="1" />
+<file name="login.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345738294255352" remote="131345738290000000" Dst="1" />
+<file name="profilna.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345738962992599" remote="131345738960000000" Dst="1" />
 <file name="test.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131342697313221752" remote="131342697310000000" Dst="1" />
-<file name="profile.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345156489368041" remote="131345156480000000" Dst="1" />
+<file name="profile.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345739400518720" remote="131345739400000000" Dst="1" />
 <file name="logout.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131343069222181450" remote="131343069220000000" Dst="1" />
-<file name="update_profila.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131344313608823934" remote="131344313600000000" Dst="1" />
+<file name="update_profila.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345739104680292" remote="131345739100000000" Dst="1" />
+<file name="dodjelauloga.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131345739257830129" remote="131345739250000000" Dst="1" />
 </dwsync>

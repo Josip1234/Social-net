@@ -17,6 +17,7 @@
 <a href="#" target="_self">Login</a>
 <a href="profile.php" target="_self">Profile of user</a>
 <a href="logout.php" target="_self">Logout</a>
+<a href="dodjelauloga.php" target="_self">Set user roles</a>
 
 </nav>
 </div>

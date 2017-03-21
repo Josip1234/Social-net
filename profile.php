@@ -28,6 +28,8 @@ if(!isset($_SESSION['username'])){
 <a href="#" target="_self">Login</a>
 <a href="logout.php" target="_self">Logout</a>
 <a href="trenutnifeedback.php" target="_self">Feedback</a>
+<a href="dodjelauloga.php" target="_self">Set user roles</a>
+<a href="feedback.php" target="_self">Add feedback</a>
 </nav>
 </div>
 <div class="pravila">
