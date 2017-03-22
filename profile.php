@@ -221,6 +221,7 @@ if($email1!=$e){
 	}
 }
 if($uloga1!=$u){
+	
 	echo "Promijenjena je uloga";
 }
 mysqli_close($dbc);
