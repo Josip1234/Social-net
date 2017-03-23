@@ -22,6 +22,9 @@
 <a href="feedback.php" target="_self">Add feedback</a>
 </nav>
 </div>
+<ul>
+<li><a href="terminirajprofil.php" target="_self">Delete profile</a></li>
+</ul>
 <div class="pravila">
 <section><h2>Register here</h2>
 <form action="registration.php" method="post">

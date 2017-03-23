@@ -36,6 +36,9 @@ if(!isset($_SESSION['username'])){
 <a href="profile.php" target="_self">Go back to profile</a>
 </nav>
 </div>
+<ul>
+<li><a href="terminirajprofil.php" target="_self">Delete profile</a></li>
+</ul>
 <div class="pravila">
 <section>
 <?php

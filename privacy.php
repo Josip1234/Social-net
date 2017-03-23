@@ -14,7 +14,6 @@
 
 <a href="registration.php" target="_self">Registration</a>
 <a href="login.php" target="_self">Login</a>
-<a href="privacy.php" target="_self">Terms of privacy</a>
 <a href="trenutnifeedback.php" target="_self">Feedbacks-only for admins</a>
 <a href="index.html" target="_self">Back to main page</a>
 <a href="profile.php" target="_self">Profile of user</a>
@@ -23,6 +22,9 @@
 <a href="feedback.php" target="_self">Add feedback</a>
 </nav>
 </div>
+<ul>
+<li><a href="terminirajprofil.php" target="_self">Delete profile</a></li>
+</ul>
 <div class="pravila">
 <section>
 <h2>Basic rules of use this site</h2>

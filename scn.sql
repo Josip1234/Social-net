@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2017 at 05:42 PM
+-- Generation Time: Mar 23, 2017 at 08:16 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -132,8 +132,7 @@ INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityo
 (3, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '12', 'jbosnjak3@gmail.com', 'Korisnik'),
 (5, 'grg', 'ge', 'm', '1992-11-05', 'gege', 'fegfq', 'gegqegfe', 'grgrg@geg.ge', 'Korisnik'),
 (6, 'Marek', 'Hamšik', 'm', '1988-12-15', 'Zilina', 'Slovakia', '4545fee', 'mhamsik@gmail.com', 'Administrator'),
-(7, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com', 'Korisnik'),
-(8, 'dvbbd', 'bddb', 'z', '1996-01-01', 'bdbd', 'bdbd', 'bdb', 'bdb@gmail.com', 'Korisnik');
+(7, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com', 'Korisnik');
 
 --
 -- Indexes for dumped tables

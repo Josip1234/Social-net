@@ -21,6 +21,9 @@
 
 </nav>
 </div>
+<ul>
+<li><a href="terminirajprofil.php" target="_self">Delete profile</a></li>
+</ul>
 <div class="pravila">
 <section>
 <h2>Your feedback</h2>

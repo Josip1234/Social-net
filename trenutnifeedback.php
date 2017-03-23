@@ -38,6 +38,9 @@ if(!isset($_SESSION['username'])){
 <a href="feedback.php" target="_self">Add feedback</a>
 </nav>
 </div>
+<ul>
+<li><a href="terminirajprofil.php" target="_self">Delete profile</a></li>
+</ul>
 <div class="pravila">
 <section><h2>Feedbackovi</h2>
 <table>
