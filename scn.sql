@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2017 at 09:35 PM
+-- Generation Time: Mar 23, 2017 at 05:42 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -53,7 +53,8 @@ CREATE TABLE `kvaliteta` (
 
 INSERT INTO `kvaliteta` (`id`, `firstname`, `lastname`, `suggestion`) VALUES
 (1, 'Josip', 'Bošnjak', 'Napravljen unos feedbacka za stranicu. Popraviti bug koji dodaje prazno mjesto u tablicu. Napraviti neki captcha za odgodu novog unosa.'),
-(2, 'Josip', 'Bošnjak', 'Sada treba napraviti registracijsku formu. Treba napraviti i stranicu koja omogućuje adminu da  uređuje feedbackove. Feedbackove može vidjeti samo admin.');
+(2, 'Josip', 'Bošnjak', 'Sada treba napraviti registracijsku formu. Treba napraviti i stranicu koja omogućuje adminu da  uređuje feedbackove. Feedbackove može vidjeti samo admin.'),
+(3, 'Nepoznati', 'Počinitelj', 'Stranica je ok trebalo bi malo slika postaviti da ne bude narančasta boja a po mogućnosti i da se slike mijenjaju.');
 
 -- --------------------------------------------------------
 
@@ -73,7 +74,8 @@ CREATE TABLE `obavljeno` (
 
 INSERT INTO `obavljeno` (`id`, `obavljeno`, `user_id`) VALUES
 (1, 1, 1),
-(2, 1, 1);
+(2, 1, 1),
+(3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -126,10 +128,10 @@ CREATE TABLE `registration` (
 
 INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`, `uloga`) VALUES
 (1, 'Josipa', 'Bošnjak', 'm', '1992-11-05', 'Wintherthur', 'Švicarska', 'gegegeggegegqgq', 'jbosnjak@unipu.hr', 'Administrator'),
-(2, 'm', 'marko', 'z', '1992-05-07', 'Milano', 'Italy', 'mit', 'm@m.m', 'Administrator'),
-(3, 'Josipa', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '12', 'jbosnjak3@gmail.com', 'Korisnik'),
+(2, 'm', 'marko', 'z', '1992-05-07', 'Milano', 'Italy', 'm', 'm@m.m', 'Administrator'),
+(3, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '12', 'jbosnjak3@gmail.com', 'Korisnik'),
 (5, 'grg', 'ge', 'm', '1992-11-05', 'gege', 'fegfq', 'gegqegfe', 'grgrg@geg.ge', 'Korisnik'),
-(6, 'Marek', 'Hamšik', 'm', '1988-12-15', 'Zilina', 'Slovakia', '4545fee', 'mhamsik@gmail.com', 'Korisnik'),
+(6, 'Marek', 'Hamšik', 'm', '1988-12-15', 'Zilina', 'Slovakia', '4545fee', 'mhamsik@gmail.com', 'Administrator'),
 (7, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com', 'Korisnik'),
 (8, 'dvbbd', 'bddb', 'z', '1996-01-01', 'bdbd', 'bdbd', 'bdb', 'bdb@gmail.com', 'Korisnik');
 
@@ -182,12 +184,12 @@ ALTER TABLE `imagehistory`
 -- AUTO_INCREMENT for table `kvaliteta`
 --
 ALTER TABLE `kvaliteta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `obavljeno`
 --
 ALTER TABLE `obavljeno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `profilna`
 --
@@ -197,7 +199,7 @@ ALTER TABLE `profilna`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --

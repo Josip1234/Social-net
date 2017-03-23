@@ -7,6 +7,7 @@ if(!isset($_SESSION['username'])){
 	$id=$_SESSION['id'];
 	$username=$_SESSION['username'];
 	$_SESSION['login']=time();
+	
 }
 
 ?>

@@ -38,68 +38,35 @@ if(!isset($_SESSION['username'])){
 <section>
 <h2>Dodjeli uloge</h2>
 <form action="dodjelauloga.php" method="post">
-<select name="selectko">
+<select name="email">
 <?php
-$sqlquery="SELECT email FROM registration";
-$res=mysqli_query($dbc,$sqlquery);
-while($r=mysqli_fetch_array($res)){
+$upit="SELECT email FROM registration";
+$q=mysqli_query($dbc,$upit);
+while($r=mysqli_fetch_array($q)){
+	echo "<option value='".$r['email']."'>".$r['email']."</option>";
+	echo $r['email'];
+	
+}
+
 ?>
-
-
-  <?php
-  
-  echo "<option value='".$r['email']."'>".$r['email']."</option>";
-  
-  $email=$r['email'];
-};
-
-  ?>
 </select>
-<?php
-echo "<input type='submit' value='Select email'>";
-?>
 <br/>
+<input type="submit" value="Select email">
 </form>
 <?php
-$e=$_POST['selectko'];
-echo $e;
-?>
-<?php
-
+$email=$_POST['email'];
 if($_SERVER['REQUEST_METHOD']=='POST'){
-$uloge=$_POST['uloge'];
-$upit2="SELECT id,email,uloga FROM registration  WHERE email='$e'";
-$a=mysqli_query($dbc,$upit2);
-while($re=mysqli_fetch_array($a)){
-	echo $re['id'].$re['email'].$re['uloga'];
-	$id=$re['id'];
-	$a=$re['uloga'];
-	$em=$re['email'];
-}
-echo '
-<form action="dodjelauloga.php" method="post">
-<select name="uloge">
-<option value="Administrator">Administrator</option>
-<option value="Korisnik">Korisnik</option>
-<option value="Banovani korisnik">Banovani korisnik</option>
-</select><br/>
-<input type="submit" value="Set_role">
-
-</form>
-';
-$uloge=$_POST['uloge'];
-if($uloge!=$a){
-	$upit="UPDATE registration SET uloga='$uloge' WHERE id = '$id'";
-	mysqli_query($dbc,$upit);
-}else{
-	echo "User already have this role";
-}
-
-
-
+	$_SESSION['selektiraj']=$email;
+	header('Location:update_uloge.php');
 }
 mysqli_close($dbc);
+
+
 ?>
+
+
+
+
 </section>
 </div>
 
