@@ -31,13 +31,17 @@ if(!isset($_SESSION['username'])){
 
 <a href="registration.php" target="_self">Registation</a>
 <a href="login.php" target="_self">Login</a>
+<a href="privacy.php" target="_self">Terms of privacy</a>
+<a href="trenutnifeedback.php" target="_self">Feedbacks-only for admins</a>
+<a href="profile.php" target="_self">Profile of user</a>
+<a href="logout.php" target="_self">Logout</a>
 <a href="dodjelauloga.php" target="_self">Set user roles</a>
 <a href="feedback.php" target="_self">Add feedback</a>
-<a href="profile.php" target="_self">Go back to profile</a>
 </nav>
 </div>
 <ul>
 <li><a href="terminirajprofil.php" target="_self">Delete profile</a></li>
+<li><a href="profilna.php" target="_self">Add profile picture</a></li>
 </ul>
 <div class="pravila">
 <section>

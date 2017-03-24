@@ -29,7 +29,8 @@ if(!isset($_SESSION['username'])){
 <div class="con">
 <nav>
 
-<a href="index.html" target="_self">Back to main page</a>
+<a href="registration.php" target="_self">Registation</a>
+<a href="login.php" target="_self">Login</a>
 <a href="privacy.php" target="_self">Terms of privacy</a>
 <a href="trenutnifeedback.php" target="_self">Feedbacks-only for admins</a>
 <a href="profile.php" target="_self">Profile of user</a>
@@ -40,6 +41,7 @@ if(!isset($_SESSION['username'])){
 </div>
 <ul>
 <li><a href="terminirajprofil.php" target="_self">Delete profile</a></li>
+<li><a href="profilna.php" target="_self">Add profile picture</a></li>
 </ul>
 <div class="pravila">
 <section><h2>Feedbackovi</h2>
