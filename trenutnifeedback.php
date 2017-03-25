@@ -42,6 +42,7 @@ if(!isset($_SESSION['username'])){
 <ul>
 <li><a href="terminirajprofil.php" target="_self">Delete profile</a></li>
 <li><a href="profilna.php" target="_self">Add profile picture</a></li>
+<li><a href="updateprofilne.php" target="_self">Update profile picture</a></li>
 </ul>
 <div class="pravila">
 <section><h2>Feedbackovi</h2>

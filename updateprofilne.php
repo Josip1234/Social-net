@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION['username'])){
 	header('Location:login.php');
 }else{
+	$username=$_SESSION['username'];
 	$_SESSION['login']=time();
 }
 ?>
@@ -19,7 +20,6 @@ if(!isset($_SESSION['username'])){
 
 <div class="con">
 <nav>
-
 <a href="registration.php" target="_self">Registation</a>
 <a href="login.php" target="_self">Login</a>
 <a href="privacy.php" target="_self">Terms of privacy</a>
@@ -29,6 +29,7 @@ if(!isset($_SESSION['username'])){
 <a href="dodjelauloga.php" target="_self">Set user roles</a>
 <a href="feedback.php" target="_self">Add feedback</a>
 
+
 </nav>
 </div>
 <ul>
@@ -37,15 +38,32 @@ if(!isset($_SESSION['username'])){
 <li><a href="updateprofilne.php" target="_self">Update profile picture</a></li>
 </ul>
 <div class="pravila">
-<section><h2>Set your profile picture here</h2>
 <?php
-include('dbconn.php');
-	
-if(count($_FILES) > 0) {
-if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
+include "dbconn.php";
+$sql="SELECT imageId,imageType,imageData FROM profilna WHERE email = '$username'";
+$res=mysqli_query($dbc,$sql);
+while($ro=mysqli_fetch_array($res)){
+	echo "<label>User image:</label><br/>";
+	echo '<img src="data:'.$ro['imageType'].';base64,'.base64_encode( $ro['imageData'] ).'"/> ';
 
-$imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
-$imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
+	
+	
+	
+	
+}
+?>
+<form name="frmImage1" enctype="multipart/form-data" action="updateprofilne.php" method="post" class="frmImageUpload">
+<label>Upload Image File:</label><br/>
+<input name="userImage2" type="file" class="inputFile" />
+<input type="submit" value="Submit" class="btnSubmit" />
+</form>
+<?php
+
+if(count($_FILES) > 0) {
+if(is_uploaded_file($_FILES['userImage2']['tmp_name'])) {
+
+$imgData =addslashes(file_get_contents($_FILES['userImage2']['tmp_name']));
+$imageProperties = getimageSize($_FILES['userImage2']['tmp_name']);
 $sql = "INSERT INTO profilna(imageType ,imageData)
 VALUES('{$imageProperties['mime']}', '{$imgData}')";
 mysqli_query($dbc,$sql);
@@ -53,11 +71,7 @@ mysqli_close($dbc);
 
 }}
 ?>
-<form name="frmImage" enctype="multipart/form-data" action="profilna.php" method="post" class="frmImageUpload">
-<label>Upload Image File:</label><br/>
-<input name="userImage" type="file" class="inputFile" />
-<input type="submit" value="Submit" class="btnSubmit" />
-</form>
+</section>
 </div>
 
 
