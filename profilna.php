@@ -4,6 +4,7 @@ if(!isset($_SESSION['username'])){
 	header('Location:login.php');
 }else{
 	$_SESSION['login']=time();
+	$username=$_SESSION['username'];
 }
 ?>
 <!doctype html>
@@ -46,8 +47,8 @@ if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 
 $imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
 $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
-$sql = "INSERT INTO profilna(imageType ,imageData)
-VALUES('{$imageProperties['mime']}', '{$imgData}')";
+$sql = "INSERT INTO profilna(imageType ,imageData,email)
+VALUES('{$imageProperties['mime']}', '{$imgData}','$username')";
 mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 

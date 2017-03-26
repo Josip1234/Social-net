@@ -45,9 +45,9 @@ $res=mysqli_query($dbc,$sql);
 while($ro=mysqli_fetch_array($res)){
 	echo "<label>User image:</label><br/>";
 	echo '<img src="data:'.$ro['imageType'].';base64,'.base64_encode( $ro['imageData'] ).'"/> ';
-
-	
-	
+    $id=$ro['imageId'];
+	$uimgtp=$ro['imageType'];
+	$uimgdt=$ro['imageData'];
 	
 	
 }
@@ -61,11 +61,12 @@ while($ro=mysqli_fetch_array($res)){
 
 if(count($_FILES) > 0) {
 if(is_uploaded_file($_FILES['userImage2']['tmp_name'])) {
-
 $imgData =addslashes(file_get_contents($_FILES['userImage2']['tmp_name']));
 $imageProperties = getimageSize($_FILES['userImage2']['tmp_name']);
-$sql = "INSERT INTO profilna(imageType ,imageData)
-VALUES('{$imageProperties['mime']}', '{$imgData}')";
+
+
+$sql = "UPDATE profilna SET email='$username',imageType='{$imageProperties['mime']}',imageData='{$imgData}' WHERE email='$username'";
+
 mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 
