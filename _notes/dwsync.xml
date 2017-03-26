@@ -3,17 +3,18 @@
 <file name="index.html" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349218916224380" remote="131349218910000000" Dst="1" />
 <file name="privacy.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349222685569932" remote="131349222680000000" Dst="1" />
 <file name="feedback.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349221860805755" remote="131349221860000000" Dst="1" />
-<file name="dbconn.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131310235718756822" remote="131310235710000000" Dst="1" />
+<file name="dbconn.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131310235718756822" remote="131310235710000000" Dst="2" />
 <file name="functions.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131337164669699386" remote="131337164660000000" Dst="1" />
 <file name="trenutnifeedback.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349223342427663" remote="131349223340000000" Dst="1" />
 <file name="registration.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349222938933831" remote="131349222930000000" Dst="1" />
 <file name="login.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349223069712117" remote="131349223060000000" Dst="1" />
-<file name="profilna.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349632116723324" remote="131349632110000000" Dst="1" />
+<file name="profilna.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131350063867087430" remote="131350063860000000" Dst="2" />
 <file name="test.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131342697313221752" remote="131342697310000000" Dst="1" />
 <file name="profile.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349222364195447" remote="131349222360000000" Dst="1" />
 <file name="logout.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131343069222181450" remote="131343069220000000" Dst="1" />
 <file name="dodjelauloga.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349222538807491" remote="131349222530000000" Dst="1" />
 <file name="update_uloge.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349222810643369" remote="131349222810000000" Dst="1" />
 <file name="terminirajprofil.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349221726702579" remote="131349221720000000" Dst="1" />
-<file name="updateprofilne.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131349625315073210" remote="131349625310000000" Dst="1" />
+<file name="updateprofilne.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131350082049800522" remote="131350082040000000" Dst="2" />
+<file name="save_history.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131350081900746364" remote="131350081900000000" Dst="2" />
 </dwsync>

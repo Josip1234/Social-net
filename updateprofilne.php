@@ -3,7 +3,8 @@ session_start();
 if(!isset($_SESSION['username'])){
 	header('Location:login.php');
 }else{
-	$username=$_SESSION['username'];
+
+   $username=$_SESSION['username'];
 	$_SESSION['login']=time();
 }
 ?>
@@ -45,9 +46,9 @@ $res=mysqli_query($dbc,$sql);
 while($ro=mysqli_fetch_array($res)){
 	echo "<label>User image:</label><br/>";
 	echo '<img src="data:'.$ro['imageType'].';base64,'.base64_encode( $ro['imageData'] ).'"/> ';
-    $id=$ro['imageId'];
-	$uimgtp=$ro['imageType'];
-	$uimgdt=$ro['imageData'];
+   
+	
+	
 	
 	
 }
@@ -67,7 +68,19 @@ $imageProperties = getimageSize($_FILES['userImage2']['tmp_name']);
 
 $sql = "UPDATE profilna SET email='$username',imageType='{$imageProperties['mime']}',imageData='{$imgData}' WHERE email='$username'";
 
-mysqli_query($dbc,$sql);
+if($t=mysqli_query($dbc,$sql)){
+	echo "Update succesfull";
+	echo "Želite li spremiti svoju prethodnu sliku?";
+	echo "<form action='save_history.php' method='post'> <input name='odgovor' type='checkbox' value='yes'>Da <br/><input name='odgovor'    type='checkbox' value='no'>Ne <br/><input type='submit' value='Odgovor'></form>";
+	$odgovor=$_POST['odgovor'];
+	if($odgovor=="yes"){
+		echo "Save overhere";
+	}else{
+		echo "Do not save";
+	}
+
+}
+
 mysqli_close($dbc);
 
 }}
