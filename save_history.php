@@ -1,3 +1,16 @@
+<?php
+include "dbconn.php";
+session_start();
+if(!isset($_SESSION['username'])){
+	header('Location:login.php');
+}else{
+	$_SESSION['login']=time();
+	$username=$_SESSION['username'];
+	$imageType=$_SESSION['imageType'];
+	$imageData=$_SESSION['imageData'];
+	$imageId=$_SESSION['imageId'];
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -18,8 +31,24 @@
 </nav>
 </div>
 <div class="pravila">
-<section><h2>Privacy rules</h2>
-<p>Your data will be protected. Any unauthorised use of your data from our employees will be prosecuted by the law of our country. Do not use passwords if you are already use in your other emails, or site logins. Always use password not less than 8 bites and use at least 1 number and 1 small and 1 big letter. To accept our rules of privacy, visit <a id="privatnost" href="privacy.php" target="_blank">privacy </a> and check if you are agree. Other information will be here also.</p>
+<section>
+<?php
+echo '<img src="data:'.$imageType.';base64,'.base64_encode( $imageData ).'"/> ';
+?>
+<form action="save_history.php" method="post">
+<input type="submit" value="Insert into history"/>
+</form>
+<?php
+$ima =addslashes(file_get_contents($_FILES[$imageData][$imageType]));
+$imag = getimageSize($_FILES[$imageData][$imageType]);
+$imageD=$_POST[$ima];
+$imagP=$_POST[$imag];
+$sql="INSERT INTO imagehistory(useremail,imageId,imageType,imageData VALUES '$username','$imageId',{$imageP['mime']}', '{$imageD}'";
+mysqli_query($dbc,$sql);
+mysqli_close($dbc);
+?>
+
+
 </section>
 </div>
 

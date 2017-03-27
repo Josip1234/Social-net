@@ -46,8 +46,9 @@ $res=mysqli_query($dbc,$sql);
 while($ro=mysqli_fetch_array($res)){
 	echo "<label>User image:</label><br/>";
 	echo '<img src="data:'.$ro['imageType'].';base64,'.base64_encode( $ro['imageData'] ).'"/> ';
-   
-	
+   $_SESSION['imageType']=$ro['imageType'];
+   $_SESSION['imageData']=$ro['imageData'];
+   $_SESSION['imageId']=$ro['imageId'];
 	
 	
 	
@@ -72,9 +73,12 @@ if($t=mysqli_query($dbc,$sql)){
 	echo "Update succesfull";
 	echo "Želite li spremiti svoju prethodnu sliku?";
 	echo "<form action='save_history.php' method='post'> <input name='odgovor' type='checkbox' value='yes'>Da <br/><input name='odgovor'    type='checkbox' value='no'>Ne <br/><input type='submit' value='Odgovor'></form>";
+	
 	$odgovor=$_POST['odgovor'];
 	if($odgovor=="yes"){
 		echo "Save overhere";
+		header('Location:save_history.php');
+			
 	}else{
 		echo "Do not save";
 	}
