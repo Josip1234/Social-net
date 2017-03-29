@@ -1,14 +1,14 @@
 <?php
-include "dbconn.php";
+
 session_start();
 if(!isset($_SESSION['username'])){
 	header('Location:login.php');
 }else{
 	$_SESSION['login']=time();
-	$username=$_SESSION['username'];
+	$email=$_SESSION['username'];
 	$imageType=$_SESSION['imageType'];
 	$imageData=$_SESSION['imageData'];
-	$imageId=$_SESSION['imageId'];
+	$img=$_SESSION['imageId'];
 }
 ?>
 <!doctype html>
@@ -33,19 +33,26 @@ if(!isset($_SESSION['username'])){
 <div class="pravila">
 <section>
 <?php
+include "dbconn.php";
 echo '<img src="data:'.$imageType.';base64,'.base64_encode( $imageData ).'"/> ';
+echo $img;
 ?>
 <form action="save_history.php" method="post">
+<input type="file" name="userImage">
 <input type="submit" value="Insert into history"/>
 </form>
 <?php
-$ima =addslashes(file_get_contents($_FILES[$imageData][$imageType]));
-$imag = getimageSize($_FILES[$imageData][$imageType]);
-$imageD=$_POST[$ima];
-$imagP=$_POST[$imag];
-$sql="INSERT INTO imagehistory(useremail,imageId,imageType,imageData VALUES '$username','$imageId',{$imageP['mime']}', '{$imageD}'";
+if(count($_FILES) > 0) {
+if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
+$imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
+$imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
+
+
+$sql="INSERT INTO imagehistory(imageId,imageType,imageData,email VALUES ,'$id',{$imageProperties['mime']}', '{$imageData}','$email'";
 mysqli_query($dbc,$sql);
+
 mysqli_close($dbc);
+}}
 ?>
 
 

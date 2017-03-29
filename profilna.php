@@ -52,6 +52,9 @@ $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
 $sql = "INSERT INTO profilna(imageType ,imageData,email)
 VALUES('{$imageProperties['mime']}', '{$imgData}','$username')";
 mysqli_query($dbc,$sql);
+$sql2 = "INSERT INTO imagehistory(email,imageType ,imageData,)
+VALUES('$username','{$imageProperties['mime']}', '{$imgData}',)";
+mysqli_query($dbc,$sql2);
 mysqli_close($dbc);
 
 }}
