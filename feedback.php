@@ -6,9 +6,10 @@
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script language="JavaScript" src="js/drustvenijs.js" type="application/javascript"></script>
 </head>
 
-<body>
+<body onMouseOver="prikazi_datum()">
 
 <div class="con">
 <nav>
@@ -42,7 +43,8 @@
 
 <input type="submit" value="Send suggestion"/>
 </form>
-<label>
+
+
 <?php
 include("dbconn.php");
 
@@ -58,26 +60,21 @@ $suggestions=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['suggestions'
 if($suggestions!=''){
 $query="INSERT INTO kvaliteta (firstname,lastname,suggestion) VALUES ('$fname','$lname','$suggestions')";
 mysqli_query($dbc,$query);
-
-mysqli_close($dbc);
-include("functions.php");
 if($query){
 	header('Location:index.html');
+	mysqli_close($dbc);
 	
 }else{
-	die("Error! Information not inserted!");
-}
-}
-}
-}else{
-	die("Can 't add empty informations");
-}
+	die('Error! Information not inserted!');
+	mysqli_close($dbc);
+}}}};
+
+
 ?>
-</label>
-</section>
+
+
+</section></div><footer><p id="datum"></p></footer></body></html>
 </div>
 
 
 
-</body>
-</html>
