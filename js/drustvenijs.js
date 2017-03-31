@@ -5,4 +5,4 @@ function prikazi_datum(){
 	document.getElementById('datum').innerHTML=dat;
   
 	
-}
+};
