@@ -36,6 +36,12 @@ function dohvati_kalendar(){
 	 razmak+=ctablica;
 		
     document.getElementById('calendar').innerHTML=razmak;
+	document.getElementById('calendar').style.backgroundColor='black';
+	document.getElementById('calendar').style.width="16%";
+	document.getElementById('calendar').style.height="50%";
+	document.getElementById('calendar').style.overflow="auto";
+	
+	
 	
 	
 	

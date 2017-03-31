@@ -17,6 +17,7 @@ nav a:link,a:visited{
 	text-align:center;
 	text-decoration:none;
 	display:inline-block;
+	
 }
 nav ,a:hover,a:active{
 	border: 2px solid red;
