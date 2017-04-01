@@ -23,9 +23,10 @@ if(!isset($_SESSION['username'])){
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
 <script language="JavaScript" src="js/drustvenijs.js" type="application/javascript"></script>
+<script language="JavaScript" src="js/calendar.js" type="application/javascript"></script>
 </head>
 
-<body onMouseOver="prikazi_datum()">
+<body onMouseOver="prikazi_datum(),dohvati_kalendar()">
 
 <div class="con">
 <nav>
@@ -45,6 +46,11 @@ if(!isset($_SESSION['username'])){
 <li><a href="profilna.php" target="_self">Add profile picture</a></li>
 <li><a href="updateprofilne.php" target="_self">Update profile picture</a></li>
 </ul>
+<section id="cal">
+<h2>Calendar for March 2017</h2>
+<p id="calendar"></p>
+
+</section>
 <div class="pravila">
 <section>
 <?php
