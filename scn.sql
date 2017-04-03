@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2017 at 05:48 PM
+-- Generation Time: Apr 03, 2017 at 12:56 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -73,18 +73,19 @@ INSERT INTO `kvaliteta` (`id`, `firstname`, `lastname`, `suggestion`) VALUES
 
 CREATE TABLE `obavljeno` (
   `id` int(11) NOT NULL,
+  `id_feedbacka` int(11) NOT NULL,
   `obavljeno` tinyint(1) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
 
 --
 -- Dumping data for table `obavljeno`
 --
 
-INSERT INTO `obavljeno` (`id`, `obavljeno`, `user_id`) VALUES
-(1, 1, 1),
-(2, 1, 1),
-(3, 1, 1);
+INSERT INTO `obavljeno` (`id`, `id_feedbacka`, `obavljeno`, `email`) VALUES
+(4, 1, 1, 'grgrg@geg.ge'),
+(5, 2, 0, 'grgrg@geg.ge'),
+(6, 3, 1, 'jbosnjak@unipu.hr');
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,9 @@ ALTER TABLE `kvaliteta`
 -- Indexes for table `obavljeno`
 --
 ALTER TABLE `obavljeno`
-  ADD UNIQUE KEY `id` (`id`);
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `id_feedbacka` (`id_feedbacka`),
+  ADD KEY `user_email` (`email`);
 
 --
 -- Indexes for table `profilna`
@@ -227,7 +230,7 @@ ALTER TABLE `kvaliteta`
 -- AUTO_INCREMENT for table `obavljeno`
 --
 ALTER TABLE `obavljeno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `profilna`
 --
@@ -253,6 +256,12 @@ ALTER TABLE `teme`
 ALTER TABLE `komentari`
   ADD CONSTRAINT `brojteme` FOREIGN KEY (`broj_teme`) REFERENCES `teme` (`broj_teme`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `email` FOREIGN KEY (`email`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  ADD CONSTRAINT `idfeed` FOREIGN KEY (`id_feedbacka`) REFERENCES `kvaliteta` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `profilna`
