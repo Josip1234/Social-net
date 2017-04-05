@@ -1,3 +1,19 @@
+<?php
+include "dbconn.php";
+session_start();
+
+if(!isset($_SESSION['username'])){
+	header('Location: profile.php');
+}else{    
+         if($_SESSION['role']!="Administrator"){
+			 header('Location:profile.php');
+		 }else{
+			$_SESSION['login']=time();
+			
+		 }
+		}
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -15,11 +31,11 @@ include("dbconn.php");
 if(isset($_POST['formWheelchair']) && 
 $_POST['formWheelchair'] == 'Yes') 
 {
-$obavljeno=1;
-$user_id=1;
-$sql="INSERT INTO obavljeno (obavljeno,user_id) VALUES ($obavljeno,$user_id)";
+
+$sql="INSERT INTO obavljeno (id_feedbacka,obavljeno,email) VALUES ()";
 mysqli_query($dbc,$sql);
 echo "Sucessfull updated table";
+echo $id;
 mysqli_close($dbc);
 }
 else

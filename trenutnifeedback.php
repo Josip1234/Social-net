@@ -53,38 +53,20 @@ if(!isset($_SESSION['username'])){
 </section>
 <div class="pravila">
 <section><h2>Feedbackovi</h2>
-<table>
+
+<form action="trenutnifeedback.php" method="post">
+<label>Select comment:</label><br/>
+<select name="select">
 <?php
-
-$query="SELECT * FROM kvaliteta";
-$q=mysqli_query($dbc,$query);
-while($row=mysqli_fetch_array($q)){
-	
-	echo"<tr>";
-	
-	echo"<td>".$row[id]."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/>
-	<form action='test.php' method='post'>
-Obavljeno?
-<input type='checkbox' name='formWheelchair' value='Yes' />
-<input type='submit' name='formSubmit' value='Submit' />
-
-
-</form>
-"."</td>";
-
-    
- 
-	
-	
-	
-
-
-mysqli_close($dbc);
-
-
+$query="SELECT id,suggestion FROM kvaliteta";
+$a=mysqli_query($dbc,$query);
+while($res=mysqli_fetch_array($a)){
+	echo "<option value='".$res[id]."'>".$res['suggestion']."</option>";
 }
 ?>
-</table>
+</select>
+<input type="submit" name="Insert">
+</form>
 </section>
 </div>
 
