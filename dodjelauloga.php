@@ -23,9 +23,11 @@ if(!isset($_SESSION['username'])){
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
 <script language="JavaScript" src="js/drustvenijs.js" type="application/javascript"></script>
 <script language="JavaScript" src="js/calendar.js" type="application/javascript"></script>
+<script src="js/dropdownmenu.js" type="application/javascript"></script>
+<script src="js/randomslike.js" type="application/javascript"></script>
 </head>
 
-<body onMouseOver="prikazi_datum(),dohvati_kalendar()">
+<body onMouseOver="prikazi_datum(),dohvati_kalendar()", onLoad="slike()">
 
 <div class="con">
 <nav>
@@ -41,14 +43,24 @@ if(!isset($_SESSION['username'])){
 
 </nav>
 </div>
-<ul>
-<li><a href="terminirajprofil.php" target="_self">Delete profile</a></li>
-<li><a href="profilna.php" target="_self">Add profile picture</a></li>
-<li><a href="updateprofilne.php" target="_self">Update profile picture</a></li>
+<ul id="f1">
+<li><a href="#" onMouseOver="openmenu('m1')" onMouseOut="menuclosetime()">Opcije profila</a>
+<div id="m1" onMouseOver="menucanceltime()" onMouseOut="menuclosetime()">
+<a href="terminirajprofil.php" target="_self">Delete profile</a>
+<a href="profilna.php" target="_self">Add profile picture</a>
+<a href="updateprofilne.php" target="_self">Update profile picture</a>
+</div>
+</li>
 </ul>
+<div style="clear:both"></div>
 <section id="cal">
 <h2>Calendar for March 2017</h2>
 <p id="calendar"></p>
+
+</section>
+<section id="randslike">
+<h2>Random slike</h2>
+<p id="s"></p>
 
 </section>
 <div class="pravila">
