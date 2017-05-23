@@ -60,7 +60,11 @@ if(!isset($_SESSION['username'])){
 <section><h2>Set your profile picture here</h2>
 <?php
 include('dbconn.php');
-	
+$upit="SELECT imageId,imageType,imageData, email FROM profilna WHERE email='$username'";
+$a=mysqli_query($dbc,$upit);
+if(mysqli_num_rows($a)>0){
+	echo "You cant add new profile picture you already have one. Go to update profile to change it!";
+}else{
 if(count($_FILES) > 0) {
 if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 
@@ -75,6 +79,7 @@ mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 
 }}
+}
 ?>
 <form name="frmImage" enctype="multipart/form-data" action="profilna.php" method="post" class="frmImageUpload">
 <label>Upload Image File:</label><br/>
