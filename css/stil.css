@@ -17,6 +17,7 @@ nav a:link,a:visited{
 	text-align:center;
 	text-decoration:none;
 	display:inline-block;
+	font-size: 12px;
 	
 }
 nav ,a:hover,a:active{
@@ -31,6 +32,7 @@ nav ,a:hover,a:active{
 	padding:30%;
 	text-align:justify;
 	font-size:20px;
+	margin-top: -60%;
 	
 	
 	

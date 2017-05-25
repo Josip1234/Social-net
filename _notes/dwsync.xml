@@ -17,7 +17,7 @@
 <file name="terminirajprofil.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131354757678375011" remote="131354757670000000" Dst="2" />
 <file name="updateprofilne.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131355233019222132" remote="131355233010000000" Dst="2" />
 <file name="save_history.php" server="D:/xamppphp7/htdocs/socialnet/Social-net/" local="131355232406527639" remote="131355232400000000" Dst="2" />
-<file name="index.html" server="D:/xamppnovi/htdocs/mreza/" local="131401726405616720" remote="131401726400000000" Dst="2" />
+<file name="index.html" server="D:/xamppnovi/htdocs/mreza/" local="131402070388151283" remote="131402070380000000" Dst="2" />
 <file name="dbconn.php" server="D:/xamppnovi/htdocs/mreza/" local="131368536828366815" remote="131368536820000000" Dst="2" />
 <file name="debug.log" server="D:/xamppnovi/htdocs/mreza/" local="131400019426063171" remote="131400019420000000" Dst="2" />
 <file name="dodjelauloga.php" server="D:/xamppnovi/htdocs/mreza/" local="131396063849192836" remote="131396063840000000" Dst="2" />
@@ -40,4 +40,5 @@
 <file name="updateprofilne.php" server="D:/xamppnovi/htdocs/mreza/" local="131396063848241996" remote="131396063840000000" Dst="2" />
 <file name="update_uloge.php" server="D:/xamppnovi/htdocs/mreza/" local="131396063805313265" remote="131396063800000000" Dst="2" />
 <file name="WIN_20170103_10_27_47_Pro.jpg" server="D:/xamppnovi/htdocs/mreza/" local="131368536828296752" remote="131368536820000000" Dst="2" />
+<file name="forum.php" server="D:/xamppnovi/htdocs/mreza/" local="131402069824449853" remote="131402069820000000" Dst="2" />
 </dwsync>

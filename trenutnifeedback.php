@@ -41,6 +41,7 @@ if(!isset($_SESSION['username'])){
 <a href="logout.php" target="_self">Logout</a>
 <a href="dodjelauloga.php" target="_self">Set user roles</a>
 <a href="feedback.php" target="_self">Add feedback</a>
+<a href="forum.php" target="_self">Forum</a>
 </nav>
 </div>
 <ul id="f1">
