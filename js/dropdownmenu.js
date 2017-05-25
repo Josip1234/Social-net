@@ -1,3 +1,4 @@
+
 // JavaScript Document
 var ftime=100;
 var ctime=0;
