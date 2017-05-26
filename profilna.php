@@ -18,6 +18,7 @@ if(!isset($_SESSION['username'])){
 <script language="JavaScript" src="js/calendar.js" type="application/javascript"></script>
 <script src="js/dropdownmenu.js" type="application/javascript"></script>
 <script src="js/randomslike.js" type="application/javascript"></script>
+
 </head>
 
 <body onMouseOver="prikazi_datum(),dohvati_kalendar()", onLoad="slike()">

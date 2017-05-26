@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+	header('Location:login.php');
+}else{
+	$_SESSION['login']=time();
+	$username=$_SESSION['username'];
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -10,6 +19,7 @@
 <script language="JavaScript" src="js/calendar.js" type="application/javascript"></script>
 <script src="js/dropdownmenu.js" type="application/javascript"></script>
 <script src="js/randomslike.js" type="application/javascript"></script>
+<script src="/mreza/Social-net/js/ajax.js" type="application/javascript"></script>
 </head>
 
 <body  onMouseOver="prikazi_datum(),dohvati_kalendar()" onLoad="slike()">
@@ -53,7 +63,7 @@
 <section>
 <h2>Ovdje počinje forum</h2>
 <div id="tema">
-	<h2>Ovdje idu teme</h2>
+	<p id="demo" onMouseOver="pokaziteme()"></p>
 </div>
 <div id="podtema">
 <h2>Forum</h2>
