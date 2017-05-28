@@ -60,10 +60,11 @@ if(!isset($_SESSION['username'])){
 </section>
 
 <div class="pravila">
-<section>
+<section >
 <h2>Ovdje počinje forum</h2>
+
 <div id="tema">
-	<p id="demo" onMouseOver="pokaziteme()"></p>
+<?php  include("ispis_tema.php") ?>
 </div>
 <div id="podtema">
 <h2>Forum</h2>
