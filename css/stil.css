@@ -66,6 +66,15 @@ section{
 	
   
 }
+.pravila section #slika {
+	padding-top: 42px;
+	padding-right: 42px;
+	padding-bottom: 42px;
+	padding-left: 42px;
+}
+
+
+
 section form input {
 	border-radius:7px;
 	
