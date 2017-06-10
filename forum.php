@@ -19,7 +19,7 @@ if(!isset($_SESSION['username'])){
 <script language="JavaScript" src="js/calendar.js" type="application/javascript"></script>
 <script src="js/dropdownmenu.js" type="application/javascript"></script>
 <script src="js/randomslike.js" type="application/javascript"></script>
-<script src="/mreza/Social-net/js/ajax.js" type="application/javascript"></script>
+
 </head>
 
 <body  onMouseOver="prikazi_datum(),dohvati_kalendar()" onLoad="slike()">
@@ -71,7 +71,7 @@ if(!isset($_SESSION['username'])){
 <div id="profil">
     <h3>Lijevo treba biti slika profila i ime</h3>
 	<div id="odgovori">
-		<h4>Desno treba biti odgovor</h4>
+		
 	</div>
 </div>
 </div>

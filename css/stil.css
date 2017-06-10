@@ -57,7 +57,7 @@ nav{
 	
 }
 section{
-	background-image:url(../slike/6909249-black-hd-background.jpg);
+	background-image:url("../slike/ba.jpg");
 	color:#FFFFFF;
 	font:bold;
 	
@@ -66,12 +66,7 @@ section{
 	
   
 }
-.pravila section #slika {
-	padding-top: 42px;
-	padding-right: 42px;
-	padding-bottom: 42px;
-	padding-left: 42px;
-}
+
 
 
 

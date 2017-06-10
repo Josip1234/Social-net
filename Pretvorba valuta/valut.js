@@ -1,0 +1,35 @@
+// JavaScript Document
+var izabrana="";
+function selected(izabrana){
+	
+	if(izabrana=="EUR"){
+		document.getElementById("txt").innerHTML="<label>Unesi broj eura:</label><input type='number' id='eur'>";
+		document.getElementById("tecaj").innerHTML="<label>Odaberite kupovnu, prodajnu ili srednju vrijednost:</label><select id='vrijednost' onChange='odabrane(this.value)'><option value=''></option><option value='kupovna'>Kupovni</option><option value='srednji'>Srednji</option><option value='prodajni'>Prodajni</option> </select>";
+	
+	}else if(izabrana=="CHF"){
+		document.getElementById("txt").innerHTML="<label>Unesi broj švicarskog franka:</label><input type='number' id='chf'>";
+		document.getElementById("tecaj").innerHTML="<label>Odaberite kupovnu, prodajnu ili srednju vrijednost:</label><select id='vrijednost' onChange='odabrane(this.value)'><option value=''></option><option value='kupovna'>Kupovni</option><option value='srednji'>Srednji</option><option value='prodajni'>Prodajni</option> </select>";
+		
+	}else if(izabrana=="USD"){
+		document.getElementById("txt").innerHTML="<label>Unesi broj američkih dolara:</label><input type='number' id='usd'>";
+		document.getElementById("tecaj").innerHTML="<label>Odaberite kupovnu, prodajnu ili srednju vrijednost:</label><select id='vrijednost' onChange='odabrane(this.value)'><option value=''></option><option value='kupovna'>Kupovni</option><option value='srednji'>Srednji</option><option value='prodajni'>Prodajni</option> </select>";
+		
+	}else{
+		document.getElementById("txt").innerHTML="Currency does not exist";
+		
+	}
+}
+var odabir="";
+function odabrane(odabir){
+	     
+		if(odabir=="kupovna"){
+			document.getElementById("res").innerHTML="Odabran je kupovni tecaj";
+		}else if(odabir=="srednji"){
+			document.getElementById("res").innerHTML="Odabran je srednji tecaj";
+		}else if(odabir=="prodajni"){
+			document.getElementById("res").innerHTML="Odabran je prodajni tecaj";
+		}else{
+			document.getElementById("res").innerHTML="Nije odabrano";
+		}
+	
+}

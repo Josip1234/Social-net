@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Ispis_tema</title>
+<script src="/mreza/Social-net/js/ajax.js" type="application/javascript"></script>
 </head>
 
 <body>
@@ -13,7 +14,7 @@
     echo "
 	<table>
 	<tr>
-<th><b>Broj teme</b></th>
+
 <th>Naziv teme</th>	
 </tr>
 	
@@ -23,12 +24,14 @@
 	$query=mysqli_query($dbc,$sql);
 	while($a=mysqli_fetch_array($query)){
 		echo "<tr>";
-		echo "<td>".$a[id]."</td><td>".$a['naziv_teme']."</td>";
+		echo "<td>".$a['naziv_teme']."</td>";
 		echo "</tr>";
 	}
 	echo "</table>";
 	
 	
 	?>
+	
+	<div id="txt"></p>
 </body>
 </html>
