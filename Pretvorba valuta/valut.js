@@ -1,35 +1,56 @@
 // JavaScript Document
+var eur=[7.156,7.258,7.356];
+var chf=[5.642,5.861,6.061];
+var usd=[4.326,4.586,4.698];
+	
 var izabrana="";
+
 function selected(izabrana){
 	
 	if(izabrana=="EUR"){
-		document.getElementById("txt").innerHTML="<label>Unesi broj eura:</label><input type='number' id='eur'>";
-		document.getElementById("tecaj").innerHTML="<label>Odaberite kupovnu, prodajnu ili srednju vrijednost:</label><select id='vrijednost' onChange='odabrane(this.value)'><option value=''></option><option value='kupovna'>Kupovni</option><option value='srednji'>Srednji</option><option value='prodajni'>Prodajni</option> </select>";
+		document.getElementById("txt").innerHTML="<select id='sel' onChange='euro(this.value)'><option id=''></option><option id='Kupovni'>Kupovni</option><option id='Srednji'>Srednji</option><option id='Prodajni'>Prodajni</option></select>";
+		
 	
 	}else if(izabrana=="CHF"){
-		document.getElementById("txt").innerHTML="<label>Unesi broj švicarskog franka:</label><input type='number' id='chf'>";
-		document.getElementById("tecaj").innerHTML="<label>Odaberite kupovnu, prodajnu ili srednju vrijednost:</label><select id='vrijednost' onChange='odabrane(this.value)'><option value=''></option><option value='kupovna'>Kupovni</option><option value='srednji'>Srednji</option><option value='prodajni'>Prodajni</option> </select>";
+		
 		
 	}else if(izabrana=="USD"){
-		document.getElementById("txt").innerHTML="<label>Unesi broj američkih dolara:</label><input type='number' id='usd'>";
-		document.getElementById("tecaj").innerHTML="<label>Odaberite kupovnu, prodajnu ili srednju vrijednost:</label><select id='vrijednost' onChange='odabrane(this.value)'><option value=''></option><option value='kupovna'>Kupovni</option><option value='srednji'>Srednji</option><option value='prodajni'>Prodajni</option> </select>";
+		
 		
 	}else{
 		document.getElementById("txt").innerHTML="Currency does not exist";
 		
 	}
-}
-var odabir="";
-function odabrane(odabir){
-	     
-		if(odabir=="kupovna"){
-			document.getElementById("res").innerHTML="Odabran je kupovni tecaj";
-		}else if(odabir=="srednji"){
-			document.getElementById("res").innerHTML="Odabran je srednji tecaj";
-		}else if(odabir=="prodajni"){
-			document.getElementById("res").innerHTML="Odabran je prodajni tecaj";
-		}else{
-			document.getElementById("res").innerHTML="Nije odabrano";
-		}
 	
+}
+var eu="";
+function euro(eu){
+			if(eu==="Kupovni"){
+				
+				
+				document.getElementById("txt").innerHTML="<label>Unesi broj eura:</label><input type='number' id='num' onChange='kupovnieur(this.value)'>";
+				
+			}else if(eu==="Srednji"){
+				
+				document.getElementById("txt").innerHTML="<label>Unesi broj eura:</label><input type='number' id='num' onChange='srednjieur(this.value)'>";				
+				
+			}else if(eu==="Prodajni"){
+				
+				document.getElementById("txt").innerHTML="<label>Unesi broj eura:</label><input type='number' id='num' onChange='prodajnieur(this.value)'>";
+			    
+			}else{
+				document.getElementById("txt").innerHTML="Invalid";
+			}
+		}
+
+function kupovnieur(br){
+	document.getElementById("txt").innerHTML=br*eur[0];
+	
+}
+
+function srednjieur(br){
+	document.getElementById("txt").innerHTML=br*eur[1];
+}
+function prodajnieur(br){
+	document.getElementById("txt").innerHTML=br*eur[2];
 }
