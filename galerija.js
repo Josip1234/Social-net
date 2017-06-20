@@ -1,4 +1,4 @@
-// JavaScript Document
+"<section><h2>Beautifull female models</h2>"// JavaScript Document
 
 function getSLike(){var linkovi=["slike/ba.JPG","slike/chuckolino.jpg","slike/mountain_tree_nature_winter_snow_sky_snowy_mountains-7836.jpg","slike/WIN_20170426_13_22_29_Pro.jpg","slike/WIN_20170426_13_24_27_Pro.jpg","slike/WIN_20170426_13_39_20_Pro.jpg"];
 

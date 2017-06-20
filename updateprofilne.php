@@ -43,6 +43,7 @@ if(!isset($_SESSION['username'])){
 <a href="terminirajprofil.php" target="_self">Delete profile</a>
 <a href="profilna.php" target="_self">Add profile picture</a>
 <a href="updateprofilne.php" target="_self">Update profile picture</a>
+<a href="Galerija.html" target="_self">Picture gallery</a>
 </div>
 </li>
 </ul>
@@ -57,6 +58,10 @@ if(!isset($_SESSION['username'])){
 <p id="s"></p>
 
 </section>
+<section id="valut">
+	<iframe src="Pretvorba valuta/valuta.html" seamless></iframe>
+</section>	
+
 <div class="pravila">
 <?php
 include "dbconn.php";

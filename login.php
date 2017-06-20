@@ -33,6 +33,7 @@
 <a href="terminirajprofil.php" target="_self">Delete profile</a>
 <a href="profilna.php" target="_self">Add profile picture</a>
 <a href="updateprofilne.php" target="_self">Update profile picture</a>
+<a href="Galerija.html" target="_self">Picture gallery</a>
 </div>
 </li>
 </ul>
@@ -47,6 +48,10 @@
 <p id="s"></p>
 
 </section>
+<section id="valut">
+	<iframe src="Pretvorba valuta/valuta.html" seamless></iframe>
+</section>	
+
 <div class="pravila">
 <section><h2>Login here</h2>
 <form action="" method="post">
