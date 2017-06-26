@@ -69,20 +69,21 @@ if(!isset($_SESSION['username'])){
 	<iframe src="Pretvorba valuta/valuta.html" seamless></iframe>
 </section>	
 <div class="pravila">
-<section><h2>Feedbackovi</h2>
+<section id="sec"><h2>Feedbackovi</h2>
 
 <form action="trenutnifeedback.php" method="post">
 <label>Select comment:</label><br/>
-<select name="select">
+<select id="sel" name="select">
 <?php
 $query="SELECT id,suggestion FROM kvaliteta";
 $a=mysqli_query($dbc,$query);
 while($res=mysqli_fetch_array($a)){
 	echo "<option value='".$res[id]."'>".$res['suggestion']."</option>";
 }
+$sel=$_POST['sel'];
 ?>
 </select>
-<input type="submit" name="Insert">
+<input type="submit" value="Select" onClick="selected("<?php $sel ?>")">
 </form>
 </section>
 </div>

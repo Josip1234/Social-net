@@ -6,3 +6,9 @@ function prikazi_datum(){
   
 	
 };
+
+function selected("<?php $sel ?>"){
+	var selected=document.getElementById("sel");
+	var val=selected;
+	document.getElementById("sec").innerHTML=val;
+}
