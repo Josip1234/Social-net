@@ -73,18 +73,23 @@ if(!isset($_SESSION['username'])){
 
 <form action="trenutnifeedback.php" method="post">
 <label>Select comment:</label><br/>
-<select id="sel" name="select">
+<select id="sel" name="select" onChange="selected(this.value)">
+<option id="op" value='val'></option>
 <?php
 $query="SELECT id,suggestion FROM kvaliteta";
 $a=mysqli_query($dbc,$query);
 while($res=mysqli_fetch_array($a)){
 	echo "<option value='".$res[id]."'>".$res['suggestion']."</option>";
 }
-$sel=$_POST['sel'];
+
 ?>
 </select>
-<input type="submit" value="Select" onClick="selected("<?php $sel ?>")">
+
 </form>
+
+<section id="sv">
+	
+</section>
 </section>
 </div>
 
