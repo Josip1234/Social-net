@@ -6,7 +6,9 @@ iframe[seamless]{border: none}
 body{background-color:orange;
 border:groove;
 border-radius:30px;
-
+background-repeat: repeat-x,repeat-y;
+	
+	
 }
 nav a:link,a:visited{
 	border: 2px solid red;
@@ -88,42 +90,51 @@ footer {
 #cal {
 	
 	background-image: none;
-	
+	padding-top: 5%;
 }
+
 #f1{
 	margin:0;
 	padding:0;
 	z-index:30;
+	
 }
+
 #f1 li{
+	border-radius: 7px;
 	margin:0;
 	padding:0;
 	list-style:none;
 	float:left;
 	font:bold 11px arial;
-	
+  
 	}
 #f1 li a{
+	border-radius: 7px;
 	display:block;
 	margin: 0 1px 0 0;
 	padding: 4px 10px;
-	width:60px;
+	width:200%;
 	background:#5970B2;
 	color:#FFF;
 	text-align:center;
 	text-decoration:none;
+	
 }
 #f1 li a:hover{
+	border-radius: 7px;
 	background:#49A3FF;
 	
 }
 #f1 div{
+	border-radius: 7px;
 	position:absolute;
 	visibility:hidden;
 	margin:0;
 	padding:0;
 	background:#EAEBD8;
 	border:1px solid #5970B2;
+	width: 15.6%;
 }
 #f1 div a{
 	position:relative;

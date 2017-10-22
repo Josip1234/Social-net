@@ -38,7 +38,7 @@ if(!isset($_SESSION['username'])){
 		echo "<br>";
 		echo $user;
 		echo "<br>";
-		$obavljeno=1;
+		$obavljeno=$_POST['check'];
 		echo $_POST['check'];
 		$query="INSERT INTO `obavljeno` (`id_feedbacka`, `obavljeno`, `email`) VALUES ('$id', '$obavljeno', '$user')";
 		$a=mysqli_query($dbc,$query);
@@ -71,13 +71,21 @@ if(!isset($_SESSION['username'])){
 		echo "<td>".$row['firstname']."</td>";
 		echo "<td>".$row['lastname']."</td>";
 		echo "<td>".$row['suggestion']."</td>";
-		echo "<td><form action='socijalnamreza.php?id=$row[id]' method='post'><input type='checkbox' name='check' value='check'>Done <br> <input type='submit' value='send'></form></td>";
+		echo "<td><form action='socijalnamreza.php?id=$row[id]' method='post'><input type='checkbox' name='check' value='1'>Done <br> <input type='submit' value='send'></form></td>";
 		
 		echo "</tr>";
 	}
 	echo "</table>";
+		
    $ch=$_POST['check'];
-	
+	if($ch==1){
+		$checked=1;
+	}else{
+		$checked=0;
+	}
+	$check=$_POST[$cheked];	
+		
+		
 		$user=$_POST[$_SESSION['username']];
 		$id=$_POST[$row[id]];
 		

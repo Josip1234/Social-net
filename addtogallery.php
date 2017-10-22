@@ -1,23 +1,16 @@
 <?php
-include "dbconn.php";
 session_start();
-
 if(!isset($_SESSION['username'])){
-	header('Location: profile.php');
-}else{    
-         if($_SESSION['role']!="Administrator"){
-			 header('Location:profile.php');
-		 }else{
-			$_SESSION['login']=time();
-			
-		 }
-		}
+	header('Location:login.php');
+}else{
+	$_SESSION['login']=time();
+	$username=$_SESSION['username'];
+}
 
 ?>
 <!doctype html>
 <html>
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
@@ -26,6 +19,7 @@ if(!isset($_SESSION['username'])){
 <script language="JavaScript" src="js/calendar.js" type="application/javascript"></script>
 <script src="js/dropdownmenu.js" type="application/javascript"></script>
 <script src="js/randomslike.js" type="application/javascript"></script>
+
 </head>
 
 <body onMouseOver="prikazi_datum(),dohvati_kalendar()", onLoad="slike()">
@@ -42,6 +36,7 @@ if(!isset($_SESSION['username'])){
 <a href="dodjelauloga.php" target="_self">Set user roles</a>
 <a href="feedback.php" target="_self">Add feedback</a>
 <a href="forum.php" target="_self">Forum</a>
+
 </nav>
 </div>
 <ul id="f1">
@@ -51,6 +46,7 @@ if(!isset($_SESSION['username'])){
 <a href="profilna.php" target="_self">Add profile picture</a>
 <a href="updateprofilne.php" target="_self">Update profile picture</a>
 <a href="Galerija.html" target="_self">Picture gallery</a>
+<a href="addtogallery.php" target="_self">Add to gallery</a>
 </div>
 </li>
 </ul>
@@ -67,33 +63,64 @@ if(!isset($_SESSION['username'])){
 </section>
 <section id="valut">
 	<iframe src="Pretvorba valuta/valuta.html" seamless></iframe>
-</section>	
+</section>
 <div class="pravila">
-<section id="sec"><h2>Feedbackovi</h2>
+<section><h2>Add into gallery</h2>
 
-<form action="trenutnifeedback.php" method="post">
-<label>Select comment:</label><br/>
-<select id="sel" name="select"  onChange="selected(this.value)">
-<option id="op" value='0'></option>
 <?php
-$query="SELECT id,suggestion FROM kvaliteta";
-$a=mysqli_query($dbc,$query);
-while($res=mysqli_fetch_array($a)){
-	echo "<option value='".$res[id]."'>".$res['suggestion']."</option>";
+	$date=getdate();
+	$day=$date['mday'];
 	
-}
+	$month=$date['mon'];
+
+	$year=$date['year'];
+	$currentdate=$day.".".$month.".".$year;
+	
+	
+	$user=$_SESSION['username'];
+	
+	$type=$_POST['type'];
+		
+include('dbconn.php');
+$user=$_SESSION['username'];
+$date=date();
+	echo $date;
+if(count($_FILES) > 0) {
+if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
+
+$imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
+$imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
+
+	
+$sql="INSERT INTO `galerija` (`korisnik`, `datum_uploada`, `type_of_gallery`, imageType ,imageData) VALUES ('$user', '$currentdate', '$type', '{$imageProperties['mime']}', '{$imgData}')";
+
+
+mysqli_query($dbc,$sql);
+
+mysqli_close($dbc);
+
+}}
 
 ?>
-</select>
-
-</form>
-
-<section id="sv">
+<form name="frmImage" enctype="multipart/form-data" action="addtogallery.php" method="post" class="frmImageUpload">
+<label>Upload Image File:</label><br/>
+<select name="type">
+	<option value="rest">Rest</option>
+	<option value="animal">Animal</option>
+	<option value="femalemodels">Female Models</option>
+	<option value="femaleactress">Female Actress</option>
+	<option value="femalesingers">Female Singers</option>
+	<option value="animatedpeople">Animated People</option>
+	<option value="femaledancers">Female Dancers</option>
+	<option value="photoshopped">Photoshopped stuff</option>
+	<option value="supercars">Supercars</option>
+	<option value="sportcars">Sportcars</option>
 	
-</section>
-</section>
+</select>
+<input name="userImage" type="file" class="inputFile" />
+<input type="submit" value="Submit" class="btnSubmit" />
+</form>
 </div>
-
 
 
 <footer>
