@@ -35,6 +35,8 @@
 <a href="profilna.php" target="_self">Add profile picture</a>
 <a href="updateprofilne.php" target="_self">Update profile picture</a>
 <a href="Galerija.html" target="_self">Picture gallery</a>
+<a href="addtogallery.php" target="_self">Add to gallery</a>
+
 </div>
 </li>
 </ul>

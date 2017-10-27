@@ -3,7 +3,7 @@ include "dbconn.php";
 session_start();
 
 if(!isset($_SESSION['username'])){
-	header('Location: profile.php');
+	header('Location: login.php');
 }else{    
          if($_SESSION['role']!="Administrator"){
 			 header('Location:profile.php');
@@ -50,7 +50,8 @@ if(!isset($_SESSION['username'])){
 <a href="terminirajprofil.php" target="_self">Delete profile</a>
 <a href="profilna.php" target="_self">Add profile picture</a>
 <a href="updateprofilne.php" target="_self">Update profile picture</a>
-<a href="Galerija.html" target="_self">Picture gallery</a>
+<a href="Galerija.html" target="_self">Picture gallery</a><a href="addtogallery.php" target="_self">Add to gallery</a>
+
 </div>
 </li>
 </ul>

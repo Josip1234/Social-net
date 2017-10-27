@@ -1,6 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
+#but1{display:none}
+#but2{
+	display: none;
+}
 
+#but3{
+	display: none;
+}
 iframe[seamless]{border: none}
 
 body{background-color:orange;
@@ -168,4 +175,7 @@ footer {
 	width:  16%;
 	
 	overflow: hidden;
+}
+#categslik{
+	display: none;
 }
