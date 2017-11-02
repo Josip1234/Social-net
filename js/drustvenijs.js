@@ -1,5 +1,8 @@
 // JavaScript Document
-
+function showRand(){
+	document.getElementById('secrand').style.display="inline";
+	document.getElementById('butt').style.display="none";
+}
 function prikazi_datum(){
 
 	var dat = new Date();
@@ -36,13 +39,28 @@ function selected(val){
 	
 }
 
-function displaycategories(limit,category,first,second){
-	
 
+/*
+function displaycategories(){
+	pokusaj=pokusaj+1;
+	var pokusaj=0;
+	if(pokusaj==0){
+ limit=6;
+ category='rest';
+ first=4;
+ last=9;
+	
+	}else{
+		 limit=6;
+ category='rest';
+ first=first+6;
+ last=last+6;
+	}
 	document.getElementById("slika").style.display="none";
 	 if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
+		
         } else {
             // code for IE6, IE5
             xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
@@ -53,15 +71,18 @@ function displaycategories(limit,category,first,second){
 				
             }
         };
-        xmlhttp.open("GET","printingpicturegalley.php?limit="+limit+"&category="+category+"+&first="+first+"+&second="+second,true);
+	
+        xmlhttp.open("GET","printingpicturegalley.php?limit="+limit+"&category="+category+"+&first="+first+"+&second="+last,true);
+	    
         xmlhttp.send();
 	document.getElementById("categslik").style.display="block";
-	document.getElementById("but").style.display="none";
 	
-	document.getElementById("val").innerHTML=num1+" "+num2;
+	
+	
 	
 	
 }
+*/
 
 function setColorGreen(){
 	document.getElementById("sel").style.backgroundColor="green";
@@ -71,3 +92,4 @@ function setColorWhite(){
 	document.getElementById("sel").style.backgroundColor="white";
 	document.getElementById("op").style.color="white";
 }
+

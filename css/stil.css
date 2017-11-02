@@ -1,5 +1,17 @@
 @charset "utf-8";
 /* CSS Document */
+#secrand{
+	display: none;
+}
+#sel{
+	max-width: 100%;
+}
+#op{
+	
+	font-size: 60%;
+	
+	
+}
 #but1{display:none}
 #but2{
 	display: none;

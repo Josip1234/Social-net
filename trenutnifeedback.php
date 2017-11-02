@@ -44,6 +44,7 @@ if(!isset($_SESSION['username'])){
 <a href="forum.php" target="_self">Forum</a>
 </nav>
 </div>
+<div id="container"></div>
 <ul id="f1">
 <li><a href="#" onMouseOver="openmenu('m1')" onMouseOut="menuclosetime()">Opcije profila</a>
 <div id="m1" onMouseOver="menucanceltime()" onMouseOut="menuclosetime()">
@@ -74,13 +75,13 @@ if(!isset($_SESSION['username'])){
 
 <form action="trenutnifeedback.php" method="post">
 <label>Select comment:</label><br/>
-<select id="sel" name="select"  onChange="selected(this.value)">
-<option id="op" value='0'></option>
+<select id="sel" name="select" onChange="selected(this.value)">
+<option id="op" value='0' ></option>
 <?php
 $query="SELECT id,suggestion FROM kvaliteta";
 $a=mysqli_query($dbc,$query);
 while($res=mysqli_fetch_array($a)){
-	echo "<option value='".$res[id]."'>".$res['suggestion']."</option>";
+	echo "<option id='op' value='".$res[id]."'  >".$res['suggestion']."</option>";
 	
 }
 
@@ -92,7 +93,36 @@ while($res=mysqli_fetch_array($a)){
 <section id="sv">
 	
 </section>
+<input type="button" id="butt" value="Show random assignment" onClick="showRand()">
 </section>
+<section id="secrand">
+<?php
+srand(time(null));
+	$a=rand()%32;
+	
+	include("dbconn.php");
+	//$sql="SELECT id,suggestion FROM kvaliteta WHERE id=$a";
+	$sql  = "SELECT DISTINCT kvaliteta.id,`suggestion` FROM `kvaliteta`,obavljeno WHERE kvaliteta.id=$a AND kvaliteta.id NOT IN(SELECT obavljeno.id_feedbacka FROM obavljeno)";
+
+
+	$b=mysqli_query($dbc,$sql);
+	$nrows=mysqli_num_rows($b);
+	if($nrows==0){
+		echo $a;
+		echo "Error!!!!There is no data for this row!!!";
+	}else{
+		echo $a."<br>";
+	while($row=mysqli_fetch_array($b)){
+		
+	echo $row['suggestion'];
+	
+	}
+	}
+	
+	
+	mysqli_close($dbc);
+		?>
+	</section>
 </div>
 
 

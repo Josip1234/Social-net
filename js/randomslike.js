@@ -4,7 +4,7 @@ function slike(){var slik=["slike/slike/memes/san andreas memes/18119221_6811265
 
 var b=Math.floor(Math.random()*slik.length);
 document.getElementById('s').innerHTML="<img src='"+slik[b]+"'>";
-document.getElementsByTagName('<body>').style.backgroundImage="url(slik[b])";				
+			
 				
 				}
 	
