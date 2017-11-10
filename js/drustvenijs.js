@@ -1,4 +1,12 @@
 // JavaScript Document
+function hd(){
+	document.getElementById("valut").style.display="none";
+}
+function sho(){
+	document.getElementById('sh').style.display="inline";
+
+}
+
 function showRand(){
 	document.getElementById('secrand').style.display="inline";
 	document.getElementById('butt').style.display="none";

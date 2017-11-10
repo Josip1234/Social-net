@@ -65,7 +65,7 @@
 <textarea name="suggestions" required></textarea>
 <br/>
 
-<input type="submit" value="Send suggestion"/>
+<input type="submit" value="Send suggestion"  />
 </form>
 
 

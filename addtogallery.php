@@ -79,7 +79,8 @@ if(!isset($_SESSION['username'])){
 	
 	$user=$_SESSION['username'];
 	
-	$type=$_POST['type'];
+	
+	
 		
 include('dbconn.php');
 $user=$_SESSION['username'];
@@ -90,7 +91,7 @@ if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 
 $imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
 $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
-
+$type=$_POST['type'];
 	
 $sql="INSERT INTO `galerija` (`korisnik`, `datum_uploada`, `type_of_gallery`, imageType ,imageData) VALUES ('$user', '$currentdate', '$type', '{$imageProperties['mime']}', '{$imgData}')";
 
@@ -102,7 +103,7 @@ mysqli_close($dbc);
 }}
 
 ?>
-<form name="frmImage" enctype="multipart/form-data" action="addtogallery.php" method="post" class="frmImageUpload">
+<form  name="frmImage" enctype="multipart/form-data" action="addtogallery.php" method="post" class="frmImageUpload">
 <label>Upload Image File:</label><br/>
 <select name="type">
 	<option value="rest">Rest</option>
@@ -120,6 +121,22 @@ mysqli_close($dbc);
 <input name="userImage" type="file" class="inputFile" />
 <input type="submit" value="Submit" class="btnSubmit" />
 </form>
+<input type="button" value="Add new category" onClick="sho()"/>
+<form id="sh" action="addtogallery.php" method="POST"><input type="text" name="type_of_gallery" required/><input type="submit" value="send"/></form>
+<?php
+	include("dbconn.php");
+	
+	$type_of_gallery=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['type_of_gallery'])));
+	if($type_of_gallery!=''){
+	$sql2="INSERT INTO `kategorije` (`type_of_gallery`) VALUES ('$type_of_gallery')";
+    $a=mysqli_query($dbc,$sql2);
+	echo $type_of_gallery;
+	if(!$a){
+		echo "Error";
+	}
+	mysqli_close($dbc);
+	}
+	?>
 </div>
 
 

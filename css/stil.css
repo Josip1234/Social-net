@@ -1,5 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
+#forma{
+	display: none;
+}
+#sh{
+	display: none;
+}
 #secrand{
 	display: none;
 }
