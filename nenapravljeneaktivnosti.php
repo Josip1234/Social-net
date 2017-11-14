@@ -1,5 +1,6 @@
 <?php
 include "dbconn.php";
+
 session_start();
 
 if(!isset($_SESSION['username'])){
@@ -71,61 +72,13 @@ if(!isset($_SESSION['username'])){
 	<iframe src="Pretvorba valuta/valuta.html" seamless></iframe>
 </section>	
 <div class="pravila">
-<section id="sec"><h2>Feedbackovi</h2>
-
-<form action="trenutnifeedback.php" method="post">
-<label>Select comment:</label><br/>
-<select id="sel" name="select" onChange="selected(this.value)">
-<option id="op" value='0' ></option>
-<?php
-	include("dbconn.php");
-$query="SELECT DISTINCT kvaliteta.id,`suggestion` FROM `kvaliteta`,obavljeno WHERE  kvaliteta.id NOT IN(SELECT obavljeno.id_feedbacka FROM obavljeno)";
-$a=mysqli_query($dbc,$query);
-while($res=mysqli_fetch_array($a)){
-	echo "<option id='op' value='".$res[id]."'  >".$res['suggestion']."</option>";
-	
-}
-
-	mysqli_close($dbc);
-?>
-</select>
-
-</form>
-
-<section id="sv">
-	
-</section>
-<input type="button" id="butt" value="Show random assignment" onClick="showRand()">
-<a href="nenapravljeneaktivnosti.php">Lista nenapravljenih aktivnosti</a>
-</section>
-<section id="secrand">
-<?php
-srand(time(null));
-	$a=rand()%32;
-	
-	include("dbconn.php");
-	//$sql="SELECT id,suggestion FROM kvaliteta WHERE id=$a";
-	$sql  = "SELECT DISTINCT kvaliteta.id,`suggestion` FROM `kvaliteta`,obavljeno WHERE kvaliteta.id=$a AND kvaliteta.id NOT IN(SELECT obavljeno.id_feedbacka FROM obavljeno)";
+<section id="sec"><h2>Lista nenapravljenih aktivnosti</h2>
+<p><?php 
+	include("listactivities.php");
+	echo ispisAktivnostiIzBaze();
+	?></p>
 
 
-	$b=mysqli_query($dbc,$sql);
-	$nrows=mysqli_num_rows($b);
-	if($nrows==0){
-		echo $a;
-		echo "Error!!!!There is no data for this row!!!";
-	}else{
-		echo $a."<br>";
-	while($row=mysqli_fetch_array($b)){
-		
-	echo $row['suggestion'];
-	
-	}
-	}
-	
-	
-	mysqli_close($dbc);
-		?>
-	</section>
 </div>
 
 

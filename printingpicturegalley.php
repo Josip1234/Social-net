@@ -73,8 +73,8 @@ if(!isset($_SESSION['username'])){
 <div class="pravila">
 <section><h2>Picture Gallery</h2>
 
-   <div id="forma">
-   <form id="forma" method="post" action="printingpicturegalley.php">
+   
+   <form  method="post" action="printingpicturegalley.php">
     <label>Number of pictures you want to print:</label><br>
     <input type="number" name="limit"><br>
     <label>Width of image in %:</label><br>
@@ -85,7 +85,7 @@ if(!isset($_SESSION['username'])){
     <input type="text" name="category"><br>
 	<input type="submit" value="choose">
 </form>
-	</div>
+	
 
 
 </section>
