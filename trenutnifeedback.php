@@ -96,7 +96,7 @@ while($res=mysqli_fetch_array($a)){
 	
 </section>
 <input type="button" id="butt" value="Show random assignment" onClick="showRand()">
-<a href="nenapravljeneaktivnosti.php">Lista nenapravljenih aktivnosti</a>
+<a href="nenapravljeneaktivnosti.php">Lista nenapravljenih aktivnosti</a><a href="napravljeneaktivnosti.php">Napravljene aktivnosti</a>
 </section>
 <section id="secrand">
 <?php

@@ -64,6 +64,7 @@ if(!isset($_SESSION['username'])){
 </section>	
 
 <div class="pravila">
+<section>
 <?php
 include "dbconn.php";
 $sql="SELECT imageId,imageType,imageData FROM profilna WHERE email = '$username'";

@@ -106,16 +106,16 @@ mysqli_close($dbc);
 <form  name="frmImage" enctype="multipart/form-data" action="addtogallery.php" method="post" class="frmImageUpload">
 <label>Upload Image File:</label><br/>
 <select name="type">
-	<option value="rest">Rest</option>
-	<option value="animal">Animal</option>
-	<option value="femalemodels">Female Models</option>
-	<option value="femaleactress">Female Actress</option>
-	<option value="femalesingers">Female Singers</option>
-	<option value="animatedpeople">Animated People</option>
-	<option value="femaledancers">Female Dancers</option>
-	<option value="photoshopped">Photoshopped stuff</option>
-	<option value="supercars">Supercars</option>
-	<option value="sportcars">Sportcars</option>
+	<?php
+	include "dbconn.php";
+	$query="SELECT kategorije.type_of_gallery FROM kategorije";
+	$a=mysqli_query($dbc,$query);
+	while($b=mysqli_fetch_array($a)){
+		echo "<option value='".$b['type_of_gallery']."'>".$b['type_of_gallery']."</option>";
+	}
+	?>
+	
+	
 	
 </select>
 <input name="userImage" type="file" class="inputFile" />

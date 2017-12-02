@@ -72,8 +72,8 @@ if(!isset($_SESSION['username'])){
 
 <div class="pravila">
 <section><h2>Picture Gallery</h2>
-
-   
+ 
+   <p><b>Sum of pictures in galleries:</b><?php include("functions.php"); $a=getNumberOfItemsInDatabase(); echo $a; ?></p>
    <form  method="post" action="printingpicturegalley.php">
     <label>Number of pictures you want to print:</label><br>
     <input type="number" name="limit"><br>
@@ -83,6 +83,8 @@ if(!isset($_SESSION['username'])){
     <input type="number" name="height" required><br>
     <label>Print pictures by categories:</label><br>
     <input type="text" name="category"><br>
+    <label>Print all pictures?</label>
+    <input type="checkbox" name="printall">
 	<input type="submit" value="choose">
 </form>
 	
@@ -95,7 +97,7 @@ if(!isset($_SESSION['username'])){
 <?php
 	if($_SERVER['REQUEST_METHOD']=="POST"){
 	include("dbconn.php");
-	include("functions.php");
+	
 		$pokusaj=0;
 		$limit=$_GET['limit'];
 	$category=$_GET['category'];
@@ -111,6 +113,10 @@ if(!isset($_SESSION['username'])){
 	$height=40;
 	$category=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['category'])));
 	
+	$printall=$_POST['printall'];
+	if($printall!=''){
+		$query=queryWithoutLimit();
+	}else{
 	
     if($limit!="" && $category==""){
 	$query=query($limit);
@@ -120,6 +126,7 @@ if(!isset($_SESSION['username'])){
 		$query=queryCategory($limit,$category);
 	}else{
 		$query=queryCategoryWithNoLimit($category);
+	}
 	}
 		
 	//	$query=selectRange($limit,$category,$first,$second);

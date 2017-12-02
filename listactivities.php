@@ -47,7 +47,18 @@ function ispisAktivnostiIzBaze(){
 
 }
 
-
+function ispisNapravljenih(){
+	include "dbconn.php";
+	$listaNapravljenihAktivnosti=new UndoneActivityLinkedList();
+	$sql  = "SELECT DISTINCT kvaliteta.id,suggestion FROM `kvaliteta`,obavljeno WHERE kvaliteta.id = obavljeno.id_feedbacka AND obavljeno.obavljeno=1";
+	$a=mysqli_query($dbc,$sql);
+	while($ro=mysqli_fetch_array($a)){
+		$listaNapravljenihAktivnosti->insert($ro['suggestion']);
+		
+	}
+	mysqli_close($dbc);
+	return $listaNapravljenihAktivnosti->printList();
+}
 
 
 ?>

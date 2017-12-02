@@ -1,4 +1,7 @@
 <?php
+
+
+
 function query($limit){
 	return "SELECT type_of_gallery,imageType,imageData FROM galerija LIMIT $limit";
 }
