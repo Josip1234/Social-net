@@ -1,5 +1,5 @@
 <?php
-
+include("dbconn.php");
 class Tema
 {
     private $id;
@@ -47,5 +47,6 @@ class Podtema extends Tema{
 $tema=new Tema(0,"Josip", "MojaTema");
 $podtema=new Podtema("Blabla");
 echo $tema->ispis().$podtema->ispis();
+
 ?>
 
