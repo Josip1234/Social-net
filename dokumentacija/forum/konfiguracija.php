@@ -1,51 +1,72 @@
 <?php
 
-class Tema
-{
+class Forum {
+    private $korisnik;
+    
+    public  function setKorisnik($korisnik){
+        $this->korisnik=$korisnik;
+    }
+    public function getKorisnik(){
+        return $this->korisnik;
+    }
+    
+}
+class Tema extends Forum{
     private $id;
-    private $nazivKorisnika;
     private $brojteme;
     private $nazivTeme;
+
     
-    
-    
-    
-    public function __construct(int $brojteme=0,string $nazivKorisnika,string $nazivTeme){
+    public function __construct(string $nazivTeme){
         $this->id=rand();
-        $this->nazivKorisnika=$nazivKorisnika;
         $this->brojteme=rand();
         $this->nazivTeme=$nazivTeme;
+        
     }
-   public function ispis(){
-       echo $this->id."\n";
-       echo $this->nazivKorisnika."\n";
-       echo $this->brojteme."\n";
-       echo $this->nazivTeme."\n";
-   }
-
+    
+    public function ispisiTrenutneTeme(){
+        echo "Korisnik: ".$this->getKorisnik()." Naziv teme: ".$this->nazivTeme.".";
+    }
+    public function setTema($nazivTeme){
+        $this->nazivTeme=$nazivTeme;
+    }
+    
+    public function getId(){
+        return $this->id;
+    }
+    public function getbrojTeme(){
+        return $this->brojteme;
+    }
+    public function getNazivTeme(){
+        return $this->nazivTeme;
+    }
+  
   
 }
+
 class Podtema extends Tema{
     private $id;
     private $brojPodteme;
     private $nazivPodteme;
-    private $brojteme;
+    
     public function __construct(string $nazivPodteme){
         
         $this->id=rand();
         $this->brojPodteme=rand();
         $this->nazivPodteme=$nazivPodteme;
+        
        
     }
     public function ispis(){
-        
-        echo $this->id."\n";
-        echo $this->brojPodteme."\n";
-        echo $this->nazivPodteme."\n";
+        echo "Korisnik ".$this->getKorisnik(). " Naziv teme:".$this->getNazivTeme()." Naziv podteme:"
+            .$this->nazivPodteme.".";
     }
 }
-$tema=new Tema(0,"Josip", "MojaTema");
-$podtema=new Podtema("Blabla");
-echo $tema->ispis().$podtema->ispis();
+
+$podtema=new Podtema("Nogomet-vijesti");
+$podtema->setKorisnik("Josip Bošnjak");
+$podtema->setTema("Sport");
+$podtema->ispis();
+
 ?>
 
