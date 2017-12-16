@@ -62,11 +62,12 @@ class Podtema extends Tema{
             .$this->nazivPodteme.".";
     }
 }
-
+include("dbconn.php");
+/*
 $podtema=new Podtema("Nogomet-vijesti");
 $podtema->setKorisnik("Josip Bošnjak");
 $podtema->setTema("Sport");
 $podtema->ispis();
-
+*/
 ?>
 

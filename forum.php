@@ -1,4 +1,5 @@
 <?php
+include("konfiguracija.php");
 session_start();
 if(!isset($_SESSION['username'])){
 	header('Location:login.php');
@@ -19,10 +20,10 @@ if(!isset($_SESSION['username'])){
 <script language="JavaScript" src="js/calendar.js" type="application/javascript"></script>
 <script src="js/dropdownmenu.js" type="application/javascript"></script>
 <script src="js/randomslike.js" type="application/javascript"></script>
-
+<script src="forforum.js" type="application/javascript"></script>
 </head>
 
-<body  onMouseOver="prikazi_datum(),dohvati_kalendar()" onLoad="slike()">
+<body   onMouseOver="prikazi_datum(),dohvati_kalendar()" onLoad="slike(),hideDivs()">
 <div class="con">
 <nav>
 
@@ -65,21 +66,44 @@ if(!isset($_SESSION['username'])){
 </section>	
 
 
-<div class="pravila">
+<div class="pravila" >
 <section>
 <h2>Ovdje počinje forum</h2>
-
-<div id="tema">
-<?php  include("ispis_tema.php") ?>
-</div>
-<div id="podtema">
-<h2>Forum</h2>
-<div id="profil">
-    <h3>Lijevo treba biti slika profila i ime</h3>
-	<div id="odgovori">
-		
+<input type="button"  value="New Topic" onClick="displayNew()">
+<input type="button"  value="List exist topics" onClick="displayExist()">
+	<div id="Kreiraj">
+		<form action="konfiguracija.php" method="post">
+			<label>User:</label><br>
+			<input type="text" name="Korisnik" value="<?php echo $_SESSION['username'] ?>"/>
+			<br>
+			<label>Topic:</label><br>
+			<input type="text" name="Tema"></br>
+			<input type="submit" name="Add new Theme"/>
+			<input type="button"  value="Hide form" onClick="hideNew()">
+		</form>
 	</div>
-</div>
+<div id="teme">
+    <h3>List of exist Topics</h3>
+    <ul>
+    	<li><a href="#" onClick="displaySubtopics()">Topic 1</a></li>
+    	<li><a href="#" onClick="displaySubtopics()">Topic 2</a></li>
+    	<li><a href="#" onClick="displaySubtopics()">Topic3</a></li>
+    </ul>
+    <input type="button" value="Hide topics" onClick="hideTopics()">
+	<input type="button" value="Display subtopics" onClick="displaySubtopics()">
+	</div>
+
+    <div id="podteme">
+		<h2>SubTopic: Topic number</h2>
+		<ul>
+	    <li><a href="#">Subtopic 1</a></li>
+    	<li><a href="#">SubTopic 2</a></li>
+    	<li><a href="#">SubTopic3</a></li>
+			
+		</ul>
+		<input type="button" value="Hide subtopics" onClick="hideSubtopics()">
+	</div>
+
 </div>
 </section>
 </div>
