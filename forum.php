@@ -85,9 +85,24 @@ if(!isset($_SESSION['username'])){
 <div id="teme">
     <h3>List of exist Topics</h3>
     <ul>
+    <?php
+	    include "dbconn.php";
+	
+	$sql  = "SELECT email,broj_teme,naziv_teme FROM teme";
+	$a=mysqli_query($dbc,$sql);
+	while($ro=mysqli_fetch_array($a)){
+		$tema=new Tema($ro["naziv_teme"]);
+		$tema->setKorisnik($ro["email"]);
+		$tema->setBroj($ro["broj_teme"]);
+		$tema->ispisiTrenutneTeme();
+	}
+	mysqli_close($dbc);
+	/*
     	<li><a href="#" onClick="displaySubtopics()">Topic 1</a></li>
     	<li><a href="#" onClick="displaySubtopics()">Topic 2</a></li>
     	<li><a href="#" onClick="displaySubtopics()">Topic3</a></li>
+	*/
+	?>
     </ul>
     <input type="button" value="Hide topics" onClick="hideTopics()">
 	<input type="button" value="Display subtopics" onClick="displaySubtopics()">

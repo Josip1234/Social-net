@@ -14,10 +14,17 @@ function displayExist(){
 	document.getElementById('teme').style.display="inline";
 }
 function hideTopics(){
-	document.getElementById('teme').style.display="none";
+	
+	if(displaySubtopics()){
+	  document.getElementById('podteme').style.display="none";
+			document.getElementById('teme').style.display="none";
+	}else if(!displaySubtopics()){
+		document.getElementById('teme').style.display="none";
+	}
 }
 function displaySubtopics(){
 	document.getElementById('podteme').style.display="inline";
+	return true;
 }
 function hideSubtopics(){
 	document.getElementById('podteme').style.display="none";

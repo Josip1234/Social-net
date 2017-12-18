@@ -1,5 +1,5 @@
 <?php
-
+include("dbconn.php");
 class Forum {
     private $korisnik;
     
@@ -25,7 +25,11 @@ class Tema extends Forum{
     }
     
     public function ispisiTrenutneTeme(){
-        echo "Korisnik: ".$this->getKorisnik()." Naziv teme: ".$this->nazivTeme.".";
+		
+		 
+        echo "<li><a href='#' onClick='displaySubtopics()'> ".$this->getKorisnik()." Naziv teme: ".$this->nazivTeme."</a></li>";
+    
+       
     }
     public function setTema($nazivTeme){
         $this->nazivTeme=$nazivTeme;
@@ -39,6 +43,9 @@ class Tema extends Forum{
     }
     public function getNazivTeme(){
         return $this->nazivTeme;
+    }
+	public function setBroj($broj){
+       $this->brojteme=$broj;
     }
   
   
@@ -62,12 +69,14 @@ class Podtema extends Tema{
             .$this->nazivPodteme.".";
     }
 }
-include("dbconn.php");
+
+
 /*
 $podtema=new Podtema("Nogomet-vijesti");
 $podtema->setKorisnik("Josip Bošnjak");
 $podtema->setTema("Sport");
 $podtema->ispis();
 */
+
 ?>
 
