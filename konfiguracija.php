@@ -70,6 +70,11 @@ class Podtema extends Tema{
         echo "Korisnik ".$this->getKorisnik(). " Naziv teme:".$this->getNazivTeme()." Naziv podteme:"
             .$this->nazivPodteme.".";
     }
+	public function destroy(){
+		$this->id=NULL;
+		$this->brojPodteme=NULL;
+		$this->nazivPodteme=NULL;
+	}
 }
 
 
