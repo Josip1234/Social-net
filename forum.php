@@ -105,11 +105,27 @@ if(!isset($_SESSION['username'])){
 	?>
     </ul>
     <input type="button" value="Hide topics" onClick="hideTopics()">
-	<input type="button" value="Display subtopics" onClick="displaySubtopics()">
+	
 	</div>
 
     <div id="podteme">
 		<h2>SubTopic: Topic number</h2>
+		<?php 
+		
+		include "dbconn.php";
+	$naziv=$tema->getNazivTeme();
+	$sql  = "SELECT korisnik,brojpodteme,nazivpodteme,nazivteme FROM podteme WHERE nazivteme='$naziv'";
+	$a=mysqli_query($dbc,$sql);
+	while($ro=mysqli_fetch_array($a)){
+		$podtema=new Podtema($ro["nazivpodteme"]);
+		$podtema->setKorisnik($ro["korisnik"]);
+		$podtema->setTema($ro["nazivteme"]);
+		$podtema->ispis();
+	}
+	mysqli_close($dbc);
+		
+		
+		?>
 		<ul>
 	    <li><a href="#">Subtopic 1</a></li>
     	<li><a href="#">SubTopic 2</a></li>

@@ -1,5 +1,4 @@
 <?php
-include("dbconn.php");
 class Forum {
     private $korisnik;
     
@@ -27,7 +26,9 @@ class Tema extends Forum{
     public function ispisiTrenutneTeme(){
 		
 		 
-        echo "<li><a href='#' onClick='displaySubtopics()'> ".$this->getKorisnik()." Naziv teme: ".$this->nazivTeme."</a></li>";
+        echo "<li><a href='#podteme' onClick='displaySubtopics()'> "."Broj teme:".$this->getbrojTeme()."Korisnik:".$this->getKorisnik()." Naziv teme: ".$this->nazivTeme."</a></li>";
+		
+		
     
        
     }
@@ -64,6 +65,7 @@ class Podtema extends Tema{
         
        
     }
+	
     public function ispis(){
         echo "Korisnik ".$this->getKorisnik(). " Naziv teme:".$this->getNazivTeme()." Naziv podteme:"
             .$this->nazivPodteme.".";

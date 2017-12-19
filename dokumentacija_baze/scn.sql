@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2017 at 05:07 PM
+-- Generation Time: Dec 19, 2017 at 09:18 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -145,6 +145,28 @@ INSERT INTO `obavljeno` (`id`, `id_feedbacka`, `obavljeno`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `podteme`
+--
+
+CREATE TABLE `podteme` (
+  `id` int(11) NOT NULL,
+  `korisnik` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `brojpodteme` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `nazivpodteme` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `nazivteme` varchar(255) COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `podteme`
+--
+
+INSERT INTO `podteme` (`id`, `korisnik`, `brojpodteme`, `nazivpodteme`, `nazivteme`) VALUES
+(1, 'jbosnjak3@gmail.com', '0.16923862711455545', 'Nogomet', 'Sport'),
+(2, 'mmarkovic@gmail.com', '0.3592953480401033', 'E-učenje', 'Obrazovanje');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `profilna`
 --
 
@@ -212,7 +234,8 @@ CREATE TABLE `teme` (
 --
 
 INSERT INTO `teme` (`id`, `email`, `broj_teme`, `naziv_teme`) VALUES
-(1, 'jbosnjak3@gmail.com', '1', 'Sport');
+(1, 'jbosnjak3@gmail.com', '1', 'Sport'),
+(2, 'mmarkovic@gmail.com', '0.14297193395250657', 'Obrazovanje');
 
 --
 -- Indexes for dumped tables
@@ -245,6 +268,15 @@ ALTER TABLE `kvaliteta`
 ALTER TABLE `obavljeno`
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `user_email` (`email`);
+
+--
+-- Indexes for table `podteme`
+--
+ALTER TABLE `podteme`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nazivpodteme` (`nazivpodteme`),
+  ADD KEY `nazivteme` (`nazivteme`),
+  ADD KEY `korisnik` (`korisnik`);
 
 --
 -- Indexes for table `profilna`
@@ -294,6 +326,11 @@ ALTER TABLE `kvaliteta`
 ALTER TABLE `obavljeno`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
+-- AUTO_INCREMENT for table `podteme`
+--
+ALTER TABLE `podteme`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `profilna`
 --
 ALTER TABLE `profilna`
@@ -307,7 +344,7 @@ ALTER TABLE `registration`
 -- AUTO_INCREMENT for table `teme`
 --
 ALTER TABLE `teme`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
@@ -317,6 +354,13 @@ ALTER TABLE `teme`
 --
 ALTER TABLE `galerija`
   ADD CONSTRAINT `typeofgal` FOREIGN KEY (`type_of_gallery`) REFERENCES `kategorije` (`type_of_gallery`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `podteme`
+--
+ALTER TABLE `podteme`
+  ADD CONSTRAINT `korisnik` FOREIGN KEY (`korisnik`) REFERENCES `teme` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nazivteme` FOREIGN KEY (`nazivteme`) REFERENCES `teme` (`naziv_teme`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `profilna`
