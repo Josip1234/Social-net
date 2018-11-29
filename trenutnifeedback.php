@@ -81,6 +81,7 @@ if(!isset($_SESSION['username'])){
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <select id="sel" name="select" onChange="selected(this.value)">
 <option id="op" value='0' ></option>
 =======
@@ -89,6 +90,9 @@ if(!isset($_SESSION['username'])){
 =======
 <select id="sel" name="select">
 >>>>>>> parent of 91a52f5... napravljen feedback
+=======
+<select name="select">
+>>>>>>> parent of e0e0777... napravljene galerije
 =======
 <select name="select">
 >>>>>>> parent of e0e0777... napravljene galerije
@@ -115,6 +119,7 @@ while($res=mysqli_fetch_array($a)){
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mysqli_close($dbc);
 =======
@@ -123,6 +128,8 @@ $sel=$_POST['sel'];
 =======
 $sel=$_POST['sel'];
 >>>>>>> parent of 91a52f5... napravljen feedback
+=======
+>>>>>>> parent of e0e0777... napravljene galerije
 =======
 >>>>>>> parent of e0e0777... napravljene galerije
 =======
