@@ -108,6 +108,7 @@ function setColorWhite(){
 >>>>>>> parent of 91a52f5... napravljen feedback
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 function selected("<?php $sel ?>"){
 	var selected=document.getElementById("sel");
@@ -119,5 +120,7 @@ function selected("<?php $sel ?>"){
 =======
 }
 >>>>>>> parent of 91a52f5... napravljen feedback
+=======
+>>>>>>> parent of e0e0777... napravljene galerije
 =======
 >>>>>>> parent of e0e0777... napravljene galerije
