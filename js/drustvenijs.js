@@ -17,6 +17,7 @@ function prikazi_datum(){
 	document.getElementById('datum').innerHTML=dat;
   
 	
+<<<<<<< HEAD
 }
 function selected(val){
 	
@@ -101,3 +102,12 @@ function setColorWhite(){
 	document.getElementById("op").style.color="white";
 }
 
+=======
+};
+
+function selected("<?php $sel ?>"){
+	var selected=document.getElementById("sel");
+	var val=selected;
+	document.getElementById("sec").innerHTML=val;
+}
+>>>>>>> parent of 91a52f5... napravljen feedback
