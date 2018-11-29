@@ -71,10 +71,11 @@ if(!isset($_SESSION['username'])){
 	<iframe src="Pretvorba valuta/valuta.html" seamless></iframe>
 </section>	
 <div class="pravila">
-<section id="sec"><h2>Feedbackovi</h2>
+<section><h2>Feedbackovi</h2>
 
 <form action="trenutnifeedback.php" method="post">
 <label>Select comment:</label><br/>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <select id="sel" name="select" onChange="selected(this.value)">
@@ -85,6 +86,9 @@ if(!isset($_SESSION['username'])){
 =======
 <select id="sel" name="select">
 >>>>>>> parent of 91a52f5... napravljen feedback
+=======
+<select name="select">
+>>>>>>> parent of e0e0777... napravljene galerije
 <?php
 	include("dbconn.php");
 $query="SELECT DISTINCT kvaliteta.id,`suggestion` FROM `kvaliteta`,obavljeno WHERE  kvaliteta.id NOT IN(SELECT obavljeno.id_feedbacka FROM obavljeno)";
@@ -95,6 +99,7 @@ while($res=mysqli_fetch_array($a)){
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mysqli_close($dbc);
 =======
@@ -103,9 +108,11 @@ $sel=$_POST['sel'];
 =======
 $sel=$_POST['sel'];
 >>>>>>> parent of 91a52f5... napravljen feedback
+=======
+>>>>>>> parent of e0e0777... napravljene galerije
 ?>
 </select>
-<input type="submit" value="Select" onClick="selected("<?php $sel ?>")">
+<input type="submit" name="Insert">
 </form>
 <<<<<<< HEAD
 <<<<<<< HEAD
