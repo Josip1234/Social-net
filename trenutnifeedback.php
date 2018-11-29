@@ -76,8 +76,12 @@ if(!isset($_SESSION['username'])){
 <form action="trenutnifeedback.php" method="post">
 <label>Select comment:</label><br/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <select id="sel" name="select" onChange="selected(this.value)">
 <option id="op" value='0' ></option>
+=======
+<select id="sel" name="select">
+>>>>>>> parent of 91a52f5... napravljen feedback
 =======
 <select id="sel" name="select">
 >>>>>>> parent of 91a52f5... napravljen feedback
@@ -90,8 +94,12 @@ while($res=mysqli_fetch_array($a)){
 	
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mysqli_close($dbc);
+=======
+$sel=$_POST['sel'];
+>>>>>>> parent of 91a52f5... napravljen feedback
 =======
 $sel=$_POST['sel'];
 >>>>>>> parent of 91a52f5... napravljen feedback
@@ -100,12 +108,15 @@ $sel=$_POST['sel'];
 <input type="submit" value="Select" onClick="selected("<?php $sel ?>")">
 </form>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <section id="sv">
 	
 </section>
 <input type="button" id="butt" value="Show random assignment" onClick="showRand()">
 <a href="nenapravljeneaktivnosti.php">Lista nenapravljenih aktivnosti</a><a href="napravljeneaktivnosti.php">Napravljene aktivnosti</a>
+=======
+>>>>>>> parent of 91a52f5... napravljen feedback
 =======
 >>>>>>> parent of 91a52f5... napravljen feedback
 </section>
