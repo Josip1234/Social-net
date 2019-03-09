@@ -75,8 +75,21 @@ if(!isset($_SESSION['username'])){
 
 <form action="trenutnifeedback.php" method="post">
 <label>Select comment:</label><br/>
+<<<<<<< HEAD
 <select id="sel" name="select" onChange="selected(this.value)">
 <option id="op" value='0' ></option>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<select id="sel" name="select" onChange="selected(this.value)">
+<option id="op" value='0' ></option>
+=======
+<select id="sel" name="select">
+>>>>>>> parent of 91a52f5... napravljen feedback
+=======
+<select id="sel" name="select">
+>>>>>>> parent of 91a52f5... napravljen feedback
+>>>>>>> parent of 9960ec0... wgrge
 <?php
 	include("dbconn.php");
 $query="SELECT DISTINCT kvaliteta.id,`suggestion` FROM `kvaliteta`,obavljeno WHERE  kvaliteta.id NOT IN(SELECT obavljeno.id_feedbacka FROM obavljeno)";
@@ -85,11 +98,27 @@ while($res=mysqli_fetch_array($a)){
 	echo "<option id='op' value='".$res[id]."'  >".$res['suggestion']."</option>";
 	
 }
+<<<<<<< HEAD
 
 	mysqli_close($dbc);
 ?>
 </select>
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+	mysqli_close($dbc);
+=======
+$sel=$_POST['sel'];
+>>>>>>> parent of 91a52f5... napravljen feedback
+=======
+$sel=$_POST['sel'];
+>>>>>>> parent of 91a52f5... napravljen feedback
+?>
+</select>
+<input type="submit" value="Select" onClick="selected("<?php $sel ?>")">
+>>>>>>> parent of 9960ec0... wgrge
 </form>
 
 <section id="sv">

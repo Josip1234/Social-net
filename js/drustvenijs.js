@@ -104,4 +104,18 @@ function setColorWhite(){
 
 =======
 };
+<<<<<<< HEAD
 >>>>>>> parent of ad58c11... napravljene galerije
+=======
+
+function selected("<?php $sel ?>"){
+	var selected=document.getElementById("sel");
+	var val=selected;
+	document.getElementById("sec").innerHTML=val;
+<<<<<<< HEAD
+}
+>>>>>>> parent of 91a52f5... napravljen feedback
+=======
+}
+>>>>>>> parent of 91a52f5... napravljen feedback
+>>>>>>> parent of 9960ec0... wgrge
