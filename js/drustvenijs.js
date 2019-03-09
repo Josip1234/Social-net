@@ -17,7 +17,6 @@ function prikazi_datum(){
 	document.getElementById('datum').innerHTML=dat;
   
 	
-<<<<<<< HEAD
 }
 function selected(val){
 	
@@ -102,6 +101,7 @@ function setColorWhite(){
 	document.getElementById("op").style.color="white";
 }
 
+<<<<<<< HEAD
 =======
 };
 <<<<<<< HEAD
@@ -119,3 +119,5 @@ function selected("<?php $sel ?>"){
 }
 >>>>>>> parent of 91a52f5... napravljen feedback
 >>>>>>> parent of 9960ec0... wgrge
+=======
+>>>>>>> parent of 94fc92c... ergweeg
