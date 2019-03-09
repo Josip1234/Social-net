@@ -17,6 +17,7 @@ function prikazi_datum(){
 	document.getElementById('datum').innerHTML=dat;
   
 	
+<<<<<<< HEAD
 }
 function selected(val){
 	
@@ -101,3 +102,6 @@ function setColorWhite(){
 	document.getElementById("op").style.color="white";
 }
 
+=======
+};
+>>>>>>> parent of ad58c11... napravljene galerije

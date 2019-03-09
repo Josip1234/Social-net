@@ -23,11 +23,14 @@
 	display: none;
 }
 
+<<<<<<< HEAD
 #but3{
 	display: none;
 }
 iframe[seamless]{border: none}
 
+=======
+>>>>>>> parent of ad58c11... napravljene galerije
 body{background-color:orange;
 border:groove;
 border-radius:30px;
@@ -187,6 +190,7 @@ footer {
 	width:200px;
 	height:200px;
 }
+<<<<<<< HEAD
 #valut{
 	margin-top: 2%;
 	height:  16%;
@@ -197,3 +201,5 @@ footer {
 #categslik{
 	display: none;
 }
+=======
+>>>>>>> parent of ad58c11... napravljene galerije

@@ -2,21 +2,8 @@
 /* CSS Document */
 #table tr,td,th{
 	border-style: double;
-	
-	font-size: 10px;
 }
 #input{
 	margin-top: 2%;
-	font-size: 10px;
-}
-body{
-	background-color: #6393F5;
-	max-width: 16%;
-	max-height: 16%;
-	font-size: 10px;
-}
-
-#kontenjer {
 	
-	font-size: 10px;
 }
