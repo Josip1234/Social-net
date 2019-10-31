@@ -17,6 +17,7 @@ function prikazi_datum(){
 	document.getElementById('datum').innerHTML=dat;
   
 	
+<<<<<<< HEAD
 }
 function selected(val){
 	
@@ -130,3 +131,6 @@ function selected("<?php $sel ?>"){
 >>>>>>> parent of e0e0777... napravljene galerije
 =======
 >>>>>>> parent of 9960ec0... wgrge
+=======
+};
+>>>>>>> parent of ad58c11... napravljene galerije

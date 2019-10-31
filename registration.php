@@ -35,9 +35,12 @@
 <a href="profilna.php" target="_self">Add profile picture</a>
 <a href="updateprofilne.php" target="_self">Update profile picture</a>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <a href="Galerija.html" target="_self">Picture gallery</a>
 <a href="addtogallery.php" target="_self">Add to gallery</a>
 
+=======
+>>>>>>> parent of ad58c11... napravljene galerije
 =======
 >>>>>>> parent of ad58c11... napravljene galerije
 </div>
