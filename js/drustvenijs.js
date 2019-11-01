@@ -108,6 +108,7 @@ function setColorWhite(){
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of ad58c11... napravljene galerije
 =======
 =======
@@ -155,3 +156,5 @@ function selected("<?php $sel ?>"){
 =======
 }
 >>>>>>> parent of 91a52f5... napravljen feedback
+=======
+>>>>>>> parent of e0e0777... napravljene galerije

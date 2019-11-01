@@ -74,10 +74,11 @@ if(!isset($_SESSION['username'])){
 
 </section>
 <div class="pravila">
-<section id="sec"><h2>Feedbackovi</h2>
+<section><h2>Feedbackovi</h2>
 
 <form action="trenutnifeedback.php" method="post">
 <label>Select comment:</label><br/>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <select id="sel" name="select" onChange="selected(this.value)">
@@ -107,6 +108,9 @@ if(!isset($_SESSION['username'])){
 =======
 <select id="sel" name="select">
 >>>>>>> parent of 91a52f5... napravljen feedback
+=======
+<select name="select">
+>>>>>>> parent of e0e0777... napravljene galerije
 <?php
 	include("dbconn.php");
 $query="SELECT DISTINCT kvaliteta.id,`suggestion` FROM `kvaliteta`,obavljeno WHERE  kvaliteta.id NOT IN(SELECT obavljeno.id_feedbacka FROM obavljeno)";
@@ -115,6 +119,7 @@ while($res=mysqli_fetch_array($a)){
 	echo "<option id='op' value='".$res[id]."'  >".$res['suggestion']."</option>";
 	
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -155,6 +160,11 @@ $sel=$_POST['sel'];
 >>>>>>> parent of 9960ec0... wgrge
 =======
 >>>>>>> parent of 06b3989... jzj
+=======
+?>
+</select>
+<input type="submit" name="Insert">
+>>>>>>> parent of e0e0777... napravljene galerije
 </form>
 
 <section id="sv">
