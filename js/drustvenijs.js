@@ -19,6 +19,7 @@ function prikazi_datum(){
 	
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 function selected(val){
 	
@@ -158,3 +159,6 @@ function selected("<?php $sel ?>"){
 >>>>>>> parent of 91a52f5... napravljen feedback
 =======
 >>>>>>> parent of e0e0777... napravljene galerije
+=======
+};
+>>>>>>> parent of ad58c11... napravljene galerije
