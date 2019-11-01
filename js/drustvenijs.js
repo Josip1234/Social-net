@@ -106,8 +106,11 @@ function setColorWhite(){
 };
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> parent of ad58c11... napravljene galerije
 =======
+=======
+>>>>>>> parent of 9960ec0... wgrge
 
 function selected("<?php $sel ?>"){
 	var selected=document.getElementById("sel");
@@ -119,11 +122,13 @@ function selected("<?php $sel ?>"){
 =======
 }
 >>>>>>> parent of 91a52f5... napravljen feedback
+<<<<<<< HEAD
 >>>>>>> parent of 9960ec0... wgrge
 =======
 >>>>>>> parent of 94fc92c... ergweeg
 =======
 >>>>>>> parent of e0e0777... napravljene galerije
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -135,3 +140,7 @@ function selected("<?php $sel ?>"){
 >>>>>>> parent of b795644... bh
 =======
 >>>>>>> parent of 6467b6d... blak
+=======
+=======
+>>>>>>> parent of 9960ec0... wgrge
+>>>>>>> parent of 77391b4... Revert "ttt"
