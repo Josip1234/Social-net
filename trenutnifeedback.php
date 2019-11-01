@@ -79,6 +79,7 @@ if(!isset($_SESSION['username'])){
 <form action="trenutnifeedback.php" method="post">
 <label>Select comment:</label><br/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <select id="sel" name="select" onChange="selected(this.value)">
 <option id="op" value='0' ></option>
 =======
@@ -103,6 +104,9 @@ if(!isset($_SESSION['username'])){
 >>>>>>> parent of 9960ec0... wgrge
 =======
 >>>>>>> parent of 06b3989... jzj
+=======
+<select id="sel" name="select">
+>>>>>>> parent of 91a52f5... napravljen feedback
 <?php
 	include("dbconn.php");
 $query="SELECT DISTINCT kvaliteta.id,`suggestion` FROM `kvaliteta`,obavljeno WHERE  kvaliteta.id NOT IN(SELECT obavljeno.id_feedbacka FROM obavljeno)";
@@ -111,6 +115,7 @@ while($res=mysqli_fetch_array($a)){
 	echo "<option id='op' value='".$res[id]."'  >".$res['suggestion']."</option>";
 	
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	mysqli_close($dbc);
@@ -157,6 +162,13 @@ $sel=$_POST['sel'];
 </section>
 <input type="button" id="butt" value="Show random assignment" onClick="showRand()">
 <a href="nenapravljeneaktivnosti.php">Lista nenapravljenih aktivnosti</a><a href="napravljeneaktivnosti.php">Napravljene aktivnosti</a>
+=======
+$sel=$_POST['sel'];
+?>
+</select>
+<input type="submit" value="Select" onClick="selected("<?php $sel ?>")">
+</form>
+>>>>>>> parent of 91a52f5... napravljen feedback
 </section>
 <section id="secrand">
 <?php

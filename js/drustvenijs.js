@@ -18,6 +18,7 @@ function prikazi_datum(){
   
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 function selected(val){
 	
@@ -111,11 +112,15 @@ function setColorWhite(){
 =======
 =======
 >>>>>>> parent of 9960ec0... wgrge
+=======
+};
+>>>>>>> parent of 91a52f5... napravljen feedback
 
 function selected("<?php $sel ?>"){
 	var selected=document.getElementById("sel");
 	var val=selected;
 	document.getElementById("sec").innerHTML=val;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 >>>>>>> parent of 91a52f5... napravljen feedback
@@ -147,3 +152,6 @@ function selected("<?php $sel ?>"){
 >>>>>>> parent of 77391b4... Revert "ttt"
 =======
 >>>>>>> parent of 06b3989... jzj
+=======
+}
+>>>>>>> parent of 91a52f5... napravljen feedback
