@@ -1,9 +1,0 @@
-@charset "utf-8";
-/* CSS Document */
-#table tr,td,th{
-	border-style: double;
-}
-#input{
-	margin-top: 2%;
-	
-}
