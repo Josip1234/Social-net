@@ -19,3 +19,9 @@ a:active {
     background-color: red;
     text-decoration: none;
 }
+
+.rules {
+    padding: 30%;
+    text-align: justify;
+    font-size: 20px;
+}

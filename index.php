@@ -11,9 +11,9 @@
        <ul>
           <li><a href="#" target="_blank">Registration</a></li>
           <li><a href="#" target="_blank">Login</a></li>
+          <li><a href="#" target="_blank">Privacy, Terms, Conditions</a></li>
        </ul>
 
-       Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam saepe accusamus iusto facilis at animi sequi eaque velit cupiditate necessitatibus ea atque odit voluptate vero doloremque nisi similique, quos tempore!
     </div>
     </body>
 </html>
