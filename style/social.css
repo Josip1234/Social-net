@@ -14,6 +14,8 @@
             color: #FFF;
             padding: 14px 25px;
             text-align: center;
+            text-decoration: none;
+            display: inline-block;
         }
         
         nav,
@@ -22,6 +24,12 @@
             border: 2px solid red;
             border-radius: 30px;
             background-color: red;
+        }
+        
+        .pravila {
+            padding: 30%;
+            text-align: justify;
+            font-size: 20px;
         }
         
         .pravila {
@@ -44,5 +52,17 @@
             border-right-style: none;
             border-bottom-style: none;
             border-left-style: none;
-            background-color: orange;
+        }
+        
+        section {
+            /*background-image: url('');*/
+            background-color: aliceblue;
+        }
+        
+        section form input {
+            border-radius: 7px;
+        }
+        
+        textarea {
+            border-radius: 7px;
         }

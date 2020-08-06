@@ -22,9 +22,11 @@
 <input type="text" name="fname" autocomplete="off" maxlength="50" size="17" required/><br/>
 <label>Last name:</label><br/>
 <input type="text" name="lname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Sex:</label><br/>
-<input type="radio" name="spol" value="muski" required>M 
-<input type="radio" name="spol" value="zenski" required>Z 
+<label id="r">Sex:</label><br/>
+
+<input type="radio"  id="radb" name="spol" value="male" required>M 
+<input type="radio"   id="radb" name="spol" value="female" required>F
+
 <br/>
 <label>Date of birth:</label><br/>
 <input type="date" name="datum_rodjenja" required/><br/>
@@ -40,6 +42,7 @@
 </form>
 <?php
 include('../database/social_database_connection.php');
+
 $firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
 if($firstname!=''){
 	$lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
@@ -62,7 +65,7 @@ if($firstname!=''){
 mysqli_query($dbc,$query);
 mysqli_close($dbc);
 if($query){
-	header('Location:../profile.php');
+	header('Location:login.php');
 }else{
 	die('Error! Connot add informations!');
 }

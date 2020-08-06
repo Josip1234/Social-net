@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+	header('Location:login_system/login.php');
+}else{
+	$_SESSION['login']=time();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
