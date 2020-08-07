@@ -13,6 +13,7 @@
 <a href="registration.php" target="_blank">Registation</a>
 <a href="../home.html" target="_blank">Back to main page</a>
 <a href="../profile.php">Profile</a>
+<a href="../login_system/logout.php" target="_blank">Logout</a>
 
 </nav>
 </div>
@@ -35,23 +36,23 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		if((strtolower($_POST['username'])=='jbosnjak3@gmail.com') && ($_POST['pass']=='admin')){
 			session_start();
 			$_SESSION['username']=$_POST['username'];
+			$_SESSION['pass']=$_POST['pass'];
 			$_SESSION['login']=time();
 			header('Location:../profile.php');
 			exit();
 		}else{
 			die("Username and pass do not match!");
+					
 		}
-	}else{
-		die("You forgot username or pass");
-	}
+	
 	
 }else{
 	print("<a href='../home.html'>Homepage</a>");
+}
 }
 
 ?>
 </section>
 </div>
-
 </body>
 </html>

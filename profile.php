@@ -23,6 +23,7 @@ if(!isset($_SESSION['username'])){
 <a href="login_system/registration.php" target="_blank">Registation</a>
 <a href="login_system/login.php" target="_blank">Login</a>
 <a href="home.html">Back to main page</a>
+<a href="login_system/logout.php" target="_blank">Logout</a>
 
 </nav>
 </div>
@@ -47,6 +48,18 @@ mysqli_close($dbc);
 <input name="userImage" type="file" class="inputFile" />
 <input type="submit" value="Submit" class="btnSubmit" />
 </form>
+
+<div class="pravila">
+<section><h2>Your profile</h2>
+<img src="<?php ?>" alt="profile_picture"><br/>
+<?php  ?>
+
+
+
+</section>
+</div>
+
+
 </div>
 
 </body>

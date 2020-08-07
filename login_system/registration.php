@@ -12,6 +12,7 @@
 <a href="../home.html" target="_blank">Back to main page</a>
 <a href="login.php" target="_blank">Login</a>
 <a href="../profile.php">Profile</a>
+<a href="../login_system/logout.php" target="_blank">Logout</a>
 
 </nav>
 </div>

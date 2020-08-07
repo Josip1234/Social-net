@@ -16,6 +16,8 @@ if($res=mysqli_fetch_array($q)){
 	die('you dont exist in database. register please.');
 
 }
-
+function add_session($username){
+	
+}
 }
 ?>
