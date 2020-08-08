@@ -54,7 +54,7 @@ mysqli_query($dbc,$sql);
 
 <?php
 
-$sql="SELECT imageId,imageType,imageData FROM profile WHERE email = '$username'";
+$sql="SELECT `imageId`, `imageType`, `imageData` FROM `profile` WHERE `date_of_addition` = (SELECT MAX(`date_of_addition`) FROM profile WHERE email = '$username')";
 $res=mysqli_query($dbc,$sql);
 while($ro=mysqli_fetch_array($res)){
 	
