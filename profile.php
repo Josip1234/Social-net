@@ -30,7 +30,7 @@ if(!isset($_SESSION['username'])){
 </nav>
 </div>
 <div class="pravila">
-<section><h2>Update your profile picture here</h2>
+<section><h2>Set your profile picture here</h2>
 <?php
 include('database/social_database_connection.php');
 if(count($_FILES) > 0) {
@@ -79,11 +79,11 @@ while($o=mysqli_fetch_array($t)){
 
 <form action="profile.php" method="post">
 <label>First name:</label><br/>
-<input type="text" name="firstname" value="<?php 
+<input type="text" name="firstname1" value="<?php 
 echo $o['fname'];
 
 ?>"/><br/><label>Last name:</label><br/>
-<input type="text" name="lastname" value="
+<input type="text" name="lname1" value="
 <?php
 echo $o['lname'];
 
@@ -93,37 +93,53 @@ echo $o['lname'];
 " 
 
 /><br/><label>Sex:</label><br/>
-<input type="text" name="sex" value="<?php
+<input type="text" name="sex1" value="<?php
 echo $o['sex'];
 
 ?>"/><br/><label>Date of birth:</label><br/>
-<input type="date" name="datum" value="<?php 
+<input type="date" name="datum1" value="<?php 
 echo $o['dateofbirth'];
 
  ?>"/><br/><label>City of birth:</label><br/>
  
- <input type="text" name="cityofbirth" value="<?php 
+ <input type="text" name="cityofbirth1" value="<?php 
 echo $o['cityofbirth'];
 
  ?>"/><br/><label>Country of birth:</label><br/>
  
- <input type="text" name="countryofbirth" value="<?php 
+ <input type="text" name="countryofbirth1" value="<?php 
 echo $o['countryofbirth'];
 
  ?>"/>
   <br/><label>Pass:</label><br/>
- <input type="text" name="pass" value="<?php 
+ <input type="text" name="pass1" value="<?php 
 echo $o['pass'];
 
  ?>"/><br/><label>Email:</label><br/>
- <input type="email" name="email" value="<?php 
+ <input type="email" name="email1" value="<?php 
 echo $o['email'];
 }
-mysqli_close($dbc);
+
  ?>"/><br/>
 <input type="submit" value="Update" />
 </form>
+<?php 
 
+include ("database/social_database_connection.php");
+$id1=$_SESSION['id'];
+$firstname1=$_POST['firstname1'];
+$lname1=$_POST['lname1'];
+$sex1=$_POST['sex1'];
+$datum1=$_POST['datum1'];
+$cityofbirth1=$_POST['cityofbirth1'];
+$countryofbirth1=$_POST['countryofbirth1'];
+$pass1=$_POST['pass1'];
+$email1=$_POST['email1'];
+echo $id1;
+echo $firstname1;
+mysqli_close($dbc);
+
+?>
 
 
 
