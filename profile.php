@@ -81,11 +81,13 @@ while($o=mysqli_fetch_array($t)){
 <label>First name:</label><br/>
 <input type="text" name="firstname1" value="<?php 
 echo $o['fname'];
+$fn=$o['fname'];
 
 ?>"/><br/><label>Last name:</label><br/>
 <input type="text" name="lname1" value="
 <?php
 echo $o['lname'];
+$ln=$o['lname'];
 
 ?>
 
@@ -95,29 +97,35 @@ echo $o['lname'];
 /><br/><label>Sex:</label><br/>
 <input type="text" name="sex1" value="<?php
 echo $o['sex'];
+$s=$o['sex'];
 
 ?>"/><br/><label>Date of birth:</label><br/>
 <input type="date" name="datum1" value="<?php 
 echo $o['dateofbirth'];
+$d=$o['dateofbirth'];
 
  ?>"/><br/><label>City of birth:</label><br/>
  
  <input type="text" name="cityofbirth1" value="<?php 
 echo $o['cityofbirth'];
+$c=$o['cityofbirth'];
 
  ?>"/><br/><label>Country of birth:</label><br/>
  
  <input type="text" name="countryofbirth1" value="<?php 
 echo $o['countryofbirth'];
+$co=$o['countryofbirth'];
 
  ?>"/>
   <br/><label>Pass:</label><br/>
  <input type="text" name="pass1" value="<?php 
 echo $o['pass'];
+$p=$o['pass'];
 
  ?>"/><br/><label>Email:</label><br/>
  <input type="email" name="email1" value="<?php 
 echo $o['email'];
+$e=$o['email'];
 }
 
  ?>"/><br/>
@@ -137,7 +145,87 @@ $pass1=$_POST['pass1'];
 $email1=$_POST['email1'];
 echo $id1;
 echo $firstname1;
-mysqli_close($dbc);
+echo $lname1;
+echo $sex1;
+echo $datum1;
+echo $cityofbirth1;
+echo $countryofbirth1;
+echo $pass1;
+echo $email1;
+
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    $query="UPDATE registration SET fname='$firstname1' WHERE id='$id'";
+	$r=mysqli_query($dbc,$query);
+	if($r){
+	echo "Promijenjeno je prvo ime";
+	}else{
+		echo "Error updating table";
+	}
+};
+if($lname1!=$ln){
+	$query="UPDATE registration SET lname='$lname1' WHERE id='$id'";
+	$r=mysqli_query($dbc,$query);
+	if($r){
+	echo "Promijenjeno je prezime";
+	}else{
+		echo "Update failed";
+	}
+};
+if($sex1!=$s){
+	$query="UPDATE registration SET sex='$sex1' WHERE id='$id'";
+	$r=mysqli_query($dbc,$query);
+	if($r){
+	echo "Promijenjen je spol";
+	}else{
+		echo "Update failed";
+	}
+};
+if($datum1!=$d){
+	$query="UPDATE registration SET dateofbirth='$datum1' WHERE id='$id'";
+	$r=mysqli_query($dbc,$query);
+	if($r){
+	echo "Promijenjen je datum";
+	}else{
+		echo "Update failed";
+	};
+}
+if($cityofbirth1!=$c){
+	$query="UPDATE registration SET cityofbirth='$cityofbirth1' WHERE id='$id'";
+	$r=mysqli_query($dbc,$query);
+	if($r){
+	echo "Promijenjen je grad";
+	}else{
+		echo "Update failed";
+	}
+}
+if($countryofbirth1!=$co){
+	$query="UPDATE registration SET countryofbirth='$countryofbirth1' WHERE id='$id'";
+	$r=mysqli_query($dbc,$query);
+	if($r){
+	echo "Promijenjena je država";
+	}else{
+		echo "Update failed";
+	}
+}
+if($pass1!=$p){
+	$query="UPDATE registration SET pass='$pass1' WHERE id='$id'";
+	$r=mysqli_query($dbc,$query);
+	if($r){
+	echo "Promijenjena je šifra";
+	}else{
+		echo "Update failed";
+	};
+}
+if($email1!=$e){ 
+    $query="UPDATE registration SET email='$email1' WHERE id='$id'";
+	$r=mysqli_query($dbc,$query);
+	if($r){
+	echo "Promijenjen je email";
+	}else{
+		echo "Update failed";
+	}
+}
+    mysqli_close($dbc);
 
 ?>
 
