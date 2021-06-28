@@ -41,9 +41,11 @@ include("dbconn.php");
        mysqli_close($dbc);
        include("functions.php");
        if($query){
-           die("Thanks for adding some suggestions");
+           //die("Thanks for adding some suggestions");
+           header('Location:index.html');
        }else{
-           die("Can't add empty informations");
+           //die("Can't add empty informations");
+           die("Error! Information not inserted!");
        }
             }
         }
