@@ -9,8 +9,8 @@
 <body>
     <div class="con">
     <nav>
-    <a href="#" target="_blank">Registration</a>
-    <a href="#" target="_blank">Login</a>
+    <a href="index.html" target="_blank">Back to main page</a>
+    <a href="privacy.php" target="_blank">Term of privacy</a>
     </nav>
     </div>
     <div class="pravila">
@@ -21,15 +21,17 @@
         <table>
         <?php
           include('dbconn.php');
-          $query="SELECT firstname,lastname,suggestion FROM kvaliteta";
+          $query="SELECT * FROM kvaliteta";
           $q=mysqli_query($dbc,$query);
           while($row=mysqli_fetch_array($q)){
               echo "<tr>";
-              echo "<td>".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."</td>";
+              echo "<td>".$row['id']."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br>  <input type='checkbox' name='obavljeno' value='Obavljeno?'><label>Obavljeno?</label></td>";
+              
               echo"</tr>";
           }
           mysqli_close($dbc);
           ?>
+         
         </table>
         </section>
     </div>
