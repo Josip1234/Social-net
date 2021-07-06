@@ -55,15 +55,16 @@ if($firstname!=''){
                     if($country!=''){
                         $pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
                         if($pass!=''){
-                            $slika=$_POST['slika'];
-                            if($slika!=''){
-                                $query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,profilepicture) VALUES '$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$slika')";
-                                mysqli_query($dbc,$query);
-                                mysqli_close($dbc);
-                                if($query){
-                                    header('Location:index.html');
-                                }else{
-                                    die('Error! Cannot add informations!');
+                                $email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
+                                if($email!=''){
+                                    $query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email) VALUES '$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email')";
+                                    mysqli_query($dbc,$query);
+                                    mysqli_close($dbc);
+                                    if($query){
+                                        header('Location:profilna.php');
+                                    }else{
+                                        die('Error! Cannot add informations!');
+                                    }
                                 }
                           
                             
