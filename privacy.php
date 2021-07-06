@@ -12,7 +12,7 @@
            
         <a href="registration.php" target="_blank">Registration</a>
 
-<a href="#" target="_blank">Login</a>
+<a href="login.php" target="_blank">Login</a>
 <a href="privacy.php" target="_blank">Term of privacy</a>
 <a href="trenutnifeedback.php" target="_blank">Feedbacks - only for admin</a>
 <a href="index.html" target="_blank">Back to main page</a>

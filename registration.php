@@ -35,9 +35,8 @@
 <input type="text" name="country_of_birth" maxlength="50" size="17" autocomplete="off" required /><br/>
 <label>Pass:</label><br/>
 <input type="password" name="pass" maxlength="50" size="17" required autocomplete="off" /><br/>
-<label>Profile picture:</label><br/>
-<input type="file" name="slika" required><br/> 
-<br/>
+<label>Email:</label><br>
+<input type="email" name="email" required maxlength="50" size="17" autocomplete="off"> <br>
 <input type="submit" value="Register"/>
             </form>
             <?php 
@@ -66,7 +65,8 @@ if($firstname!=''){
                                 }else{
                                     die('Error! Cannot add informations!');
                                 }
-                            }
+                          
+                            
                         }
                     }
                 }
