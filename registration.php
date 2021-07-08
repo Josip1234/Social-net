@@ -41,6 +41,7 @@
             </form>
             <?php 
 include("dbconn.php");
+include("functions.php");
 $firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
 if($firstname!=''){
     $lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
@@ -57,7 +58,7 @@ if($firstname!=''){
                         if($pass!=''){
                                 $email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
                                 if($email!=''){
-                                    $query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email) VALUES '$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email')";
+                                    $query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email')";
                                     mysqli_query($dbc,$query);
                                     mysqli_close($dbc);
                                     if($query){

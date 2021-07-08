@@ -19,18 +19,15 @@
                 Update your profile picture here
             </h2>
             <?php 
-
+include("dbconn.php");
 if(count($_FILES)>0){
     if(is_uploaded_file($_FILES['userImage']['tmp_name'])){
-        include("dbconn.php");
+        
         $imgData=addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
         $imageProperties= getimagesize($_FILES['userImage']['tmp_name']);
         $sql="INSERT INTO profilna(imageType,imageData) VALUES ('{$imageProperties['mime']}','{$imgData}')";
         mysqli_query($dbc, $sql);
         mysqli_close($dbc);
-        if($sql){
-            header('Location:index.html');
-        }
     }
 }
             ?>

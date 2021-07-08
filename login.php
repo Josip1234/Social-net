@@ -19,14 +19,39 @@
          <section>
              <h2>Login here</h2>
              <form action="login.php" method="post">
+
                  <label>Username:</label><br>
-                 <input type="text" name="username" maxlength="50" size="15" required autocomplete="off">
+                 <input type="email" name="username" maxlength="50" size="15" required autocomplete="off">
                  <br>
                  <label>Password:</label><br>
                  <input type="password" name="pass" required size="15" autocomplete="off">
                  <br>
                  <input type="submit" value="Login">
              </form>
+             <?php 
+include("dbconn.php");
+$username=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['username'])));
+if($username!=''){
+    $pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
+    $res="SELECT email FROM registration WHERE email='$username'";
+    mysqli_query($dbc,$res);
+    if($res){
+        $res2="SELECT id FROM registration WHERE email='$username'";
+        mysqli_query($dbc,$res2);
+        if($res2){
+            $res3="SELECT pass FROM registration WHERE email='$username'";
+            mysqli_query($dbc,$res3);
+            if($res3){
+                session_start();
+                $_SESSION['email']=$_POST['username'];
+                $_SESSION['pass']=$_POST['pass'];
+                $_SESSION['isLogged']=time();
+                header('Location: trenutnifeedback.php');
+            }
+        }
+    }
+}
+             ?>
          </section>
     </div>
 </body>
