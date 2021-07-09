@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2021 at 12:45 PM
+-- Generation Time: Jul 09, 2021 at 11:29 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -51,6 +51,39 @@ INSERT INTO `kvaliteta` (`id`, `firstname`, `lastname`, `suggestion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `obavljeno`
+--
+
+CREATE TABLE `obavljeno` (
+  `id` int(11) NOT NULL,
+  `obavljeno` tinyint(1) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `obavljeno`
+--
+
+INSERT INTO `obavljeno` (`id`, `obavljeno`, `user_id`) VALUES
+(1, 1, 4),
+(3, 1, 4),
+(5, 1, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profilna`
+--
+
+CREATE TABLE `profilna` (
+  `imageId` tinyint(4) NOT NULL,
+  `imageType` varchar(25) COLLATE utf8_croatian_ci NOT NULL,
+  `imageData` longblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `registration`
 --
 
@@ -63,7 +96,28 @@ CREATE TABLE `registration` (
   `cityofbirth` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
   `countryofbirth` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
   `pass` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
-  `profilepicture` longblob DEFAULT NULL
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`) VALUES
+(4, 'hrgiho', 'hgoirhgo', 'm', '0005-02-05', 'grgrg', 'rggere', 'gfeeg', 'jbosnjak34@gmail.com'),
+(5, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '4854848484fege', 'jbosnjak3@gmail.com'),
+(6, 'Marko', 'Marković', 'm', '1988-07-08', 'Požega', 'Hrvatska', 'volimhrvatsku', 'mmarkovic@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uloge`
+--
+
+CREATE TABLE `uloge` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `uloga` enum('Administrator','Korisnik','Banovani korisnik') COLLATE utf8_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
 
 --
@@ -80,12 +134,32 @@ ALTER TABLE `kvaliteta`
   ADD KEY `suggestion` (`suggestion`);
 
 --
+-- Indexes for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `profilna`
+--
+ALTER TABLE `profilna`
+  ADD PRIMARY KEY (`imageId`);
+
+--
 -- Indexes for table `registration`
 --
 ALTER TABLE `registration`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `fname` (`fname`),
   ADD KEY `lname` (`lname`);
+
+--
+-- Indexes for table `uloge`
+--
+ALTER TABLE `uloge`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -98,10 +172,38 @@ ALTER TABLE `kvaliteta`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `profilna`
+--
+ALTER TABLE `profilna`
+  MODIFY `imageId` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `uloge`
+--
+ALTER TABLE `uloge`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  ADD CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `registration` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
