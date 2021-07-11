@@ -44,8 +44,8 @@ include("dbconn.php");
            //die("Thanks for adding some suggestions");
            header('Location:index.html');
        }else{
-           //die("Can't add empty informations");
-           die("Error! Information not inserted!");
+           die("Can't add empty informations");
+           
        }
             }
         }

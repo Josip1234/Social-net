@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2021 at 11:29 AM
+-- Generation Time: Jul 11, 2021 at 09:02 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -106,7 +106,9 @@ CREATE TABLE `registration` (
 INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`) VALUES
 (4, 'hrgiho', 'hgoirhgo', 'm', '0005-02-05', 'grgrg', 'rggere', 'gfeeg', 'jbosnjak34@gmail.com'),
 (5, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '4854848484fege', 'jbosnjak3@gmail.com'),
-(6, 'Marko', 'Marković', 'm', '1988-07-08', 'Požega', 'Hrvatska', 'volimhrvatsku', 'mmarkovic@gmail.com');
+(6, 'Marko', 'Marković', 'm', '1988-07-08', 'Požega', 'Hrvatska', 'volimhrvatsku', 'mmarkovic@gmail.com'),
+(7, 'Marek', 'Hamšik', 'm', '1988-12-15', 'Zilina', 'Slovakia', '4545fee', 'mhamsik@gmail.com'),
+(8, 'Mason', 'Mount', 'm', '1995-01-15', 'London', 'England', '154116916re', 'mmount@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -116,9 +118,16 @@ INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityo
 
 CREATE TABLE `uloge` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
   `uloga` enum('Administrator','Korisnik','Banovani korisnik') COLLATE utf8_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `uloge`
+--
+
+INSERT INTO `uloge` (`id`, `email`, `uloga`) VALUES
+(1, 'jbosnjak34@gmail.com', 'Administrator');
 
 --
 -- Indexes for dumped tables
@@ -159,7 +168,8 @@ ALTER TABLE `registration`
 -- Indexes for table `uloge`
 --
 ALTER TABLE `uloge`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -187,13 +197,13 @@ ALTER TABLE `profilna`
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `uloge`
 --
 ALTER TABLE `uloge`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -204,6 +214,12 @@ ALTER TABLE `uloge`
 --
 ALTER TABLE `obavljeno`
   ADD CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `registration` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `uloge`
+--
+ALTER TABLE `uloge`
+  ADD CONSTRAINT `email_fk` FOREIGN KEY (`email`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

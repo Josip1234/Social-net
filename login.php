@@ -29,27 +29,23 @@
                  <input type="submit" value="Login">
              </form>
              <?php 
-include("dbconn.php");
-$username=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['username'])));
-if($username!=''){
-    $pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
-    $res="SELECT email FROM registration WHERE email='$username'";
-    mysqli_query($dbc,$res);
-    if($res){
-        $res2="SELECT id FROM registration WHERE email='$username'";
-        mysqli_query($dbc,$res2);
-        if($res2){
-            $res3="SELECT pass FROM registration WHERE email='$username'";
-            mysqli_query($dbc,$res3);
-            if($res3){
-                session_start();
-                $_SESSION['email']=$_POST['username'];
-                $_SESSION['pass']=$_POST['pass'];
-                $_SESSION['isLogged']=time();
-                header('Location: trenutnifeedback.php');
-            }
-        }
-    }
+if($_SERVER['REQUEST_METHOD']=='POST'){
+	if((!empty($_POST['username'])) && (!empty($_POST['pass']))){
+		if((strtolower($_POST['username'])=='jbosnjak3@gmail.com') && ($_POST['pass']=='admin')){
+			session_start();
+			$_SESSION['username']=$_POST['username'];
+			$_SESSION['login']=time();
+			header('Location:trenutnifeedback.php');
+			exit();
+		}else{
+			die("Username and pass do not match!");
+		}
+	}else{
+		die("You forgot username or pass");
+	}
+	
+}else{
+	print("<a href='index.html'>Homepage</a>");
 }
              ?>
          </section>
