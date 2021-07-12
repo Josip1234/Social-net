@@ -29,4 +29,8 @@ function provjeri_dali_postoji_u_bazi($username,$pass){
     }
 }
 
+function dodjeli_sesiju($username){
+    
+}
+
 ?>

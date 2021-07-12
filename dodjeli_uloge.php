@@ -20,6 +20,7 @@ if(!isset($_SESSION['username'])){
     <a href="registration.php" target="_blank">Registration</a>
     <a href="login.php" target="_blank">Login</a>
     <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
+    <a href="profile.php" target="_blank">Profile of user</a>
 </nav>        
     </div>
 <div class="pravila">

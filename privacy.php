@@ -16,7 +16,7 @@
 <a href="privacy.php" target="_blank">Term of privacy</a>
 <a href="trenutnifeedback.php" target="_blank">Feedbacks - only for admin</a>
 <a href="index.html" target="_blank">Back to main page</a>
-           
+<a href="profile.php" target="_blank">Profile of user</a>
         </nav>
     </div>
     <div class="pravila">
