@@ -14,6 +14,7 @@
         <a href="#" target="_blank">Login</a>
         <a href="privacy.php" target="_blank">Term of privacy</a>
         <a href="profile.php" target="_blank">Profile of user</a>
+        <a href="logout.php" target="_blank">Logout</a>
         </nav>
     </div>
     <div class="pravila">

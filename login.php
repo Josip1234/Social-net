@@ -14,6 +14,7 @@
             <a href="privacy.php" target="_blank" >Terms of privacy</a>
             <a href="trenutnifeedback.php" target="_blank" >Feedbacks - only for admins</a>
             <a href="profile.php" target="_blank">Profile of user</a>
+            <a href="logout.php" target="_blank">Logout</a>
         </nav>
     </div>
     <div class="pravila">
@@ -30,36 +31,21 @@
                  <input type="submit" value="Login">
              </form>
              <?php 
-             include("dbconn.php");
 if($_SERVER['REQUEST_METHOD']=='POST'){
 	if((!empty($_POST['username'])) && (!empty($_POST['pass']))){
 		if((strtolower($_POST['username'])=='jbosnjak3@gmail.com') && ($_POST['pass']=='admin')){
 			session_start();
 			$_SESSION['username']=$_POST['username'];
+            $_SESSION['pass']=$_POST['pass'];
 			$_SESSION['login']=time();
 			header('Location:trenutnifeedback.php');
 			exit();
-		}else{
-            $logiranikorisnik= mysqli_query($dbc,"SELECT id, pass, email FROM registration WHERE email='$username' AND pass='$pass'");
-            if(mysqli_num_rows($logiranikorisnik==1)){
-                $row=mysqli_fetch_array($logiranikorisnik);
-                $_SESSION['username']=$username;
-                $_SESSION['pass']=$pass;
-                $_SESSION['login']=time();
-                header("Location: index.html");
-                echo "Successfull login";
-            }else{
-                echo "Another user is online";
-            }
 		}
-	}else{
-		die("You forgot username or pass");
 	}
 	
 }else{
 	print("<a href='index.html'>Homepage</a>");
 }
-mysqli_close($dbc);
              ?>
          </section>
     </div>
