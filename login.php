@@ -46,8 +46,10 @@
                             $_SESSION['username']=$res['email'];
                             $_SESSION['pass']=$res['pass'];
                             $_SESSION['login']=time();
-                            header('Location: profilna.php');
+                            header('Location: profile.php');
                     
+                         }else{
+                             echo "Multiple users exists";
                          }
                      }
                  }
