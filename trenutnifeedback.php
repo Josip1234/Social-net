@@ -18,11 +18,12 @@ if(!isset($_SESSION['username'])){
 <body>
     <div class="con">
     <nav>
-    <a href="index.html" target="_blank">Back to main page</a>
-    <a href="privacy.php" target="_blank">Term of privacy</a>
-    <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
-    <a href="profile.php" target="_blank">Profile of user</a>
-    <a href="logout.php" target="_blank">Logout</a>
+    <a href="index.html" target="_self">Back to main page</a>
+    <a href="privacy.php" target="_self">Term of privacy</a>
+    <a href="trenutnifeedback.php" target="_self">Feedbacks-only for admins</a>
+    <a href="profile.php" target="_self">Profile of user</a>
+    <a href="logout.php" target="_self">Logout</a>
+    <a href="dodjeli_uloge.php" target="_self">User roles</a>
     </nav>
     </div>
     <div class="pravila">

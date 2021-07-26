@@ -19,6 +19,12 @@ if(!isset($_SESSION['username'])){
 </head>
 <body>
     <div class="con">
+        <nav>
+        <a href="#" target="_self">Registation</a>
+<a href="#" target="_self">Login</a>
+<a href="logout.php" target="_self">Logout</a>
+<a href="dodjeli_uloge.php" target="_self">User roles</a>
+        </nav>
         <section>
             <h2>Your profile</h2>
             <?php 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2021 at 09:33 PM
+-- Generation Time: Jul 26, 2021 at 07:00 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -140,7 +140,8 @@ CREATE TABLE `uloge` (
 --
 
 INSERT INTO `uloge` (`id`, `email`, `uloga`) VALUES
-(1, 'jbosnjak34@gmail.com', 'Administrator');
+(1, 'jbosnjak34@gmail.com', 'Administrator'),
+(2, 'jbosnjak3@gmail.com', 'Administrator');
 
 --
 -- Indexes for dumped tables
@@ -217,7 +218,7 @@ ALTER TABLE `registration`
 -- AUTO_INCREMENT for table `uloge`
 --
 ALTER TABLE `uloge`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

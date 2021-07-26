@@ -9,12 +9,13 @@
 <body>
     <div class="con">
         <nav>
-            <a href="registration.php" target="_blank">Registration</a>
-            <a href="index.html" target="_blank" >Back to main page</a>
-            <a href="privacy.php" target="_blank" >Terms of privacy</a>
-            <a href="trenutnifeedback.php" target="_blank" >Feedbacks - only for admins</a>
-            <a href="profile.php" target="_blank">Profile of user</a>
-            <a href="logout.php" target="_blank">Logout</a>
+            <a href="registration.php" target="_self">Registration</a>
+            <a href="index.html" target="_self" >Back to main page</a>
+            <a href="privacy.php" target="_self" >Terms of privacy</a>
+            <a href="trenutnifeedback.php" target="_self" >Feedbacks - only for admins</a>
+            <a href="profile.php" target="_self">Profile of user</a>
+            <a href="logout.php" target="_self">Logout</a>
+            <a href="dodjeli_uloge.php" target="_self">User roles</a>
         </nav>
     </div>
     <div class="pravila">
@@ -41,11 +42,23 @@
                      $r=mysqli_query($dbc,$upit);
                      while($res=mysqli_fetch_array($r)){
                          if(mysqli_num_rows($r)<2){
+                             $upit2="SELECT id,email, uloga FROM uloge WHERE email='$username'";
+                             $z=mysqli_query($dbc,$upit2);
+                             while($rs=mysqli_fetch_array($z)){
+                                 if(mysqli_num_rows($rs<2)){
+                                     $role="Administrator";
+                                     $uloga=$_POST['role'];
+                                     if($uloga=="Administrator"){
+                                         $role=$_SESSION[$uloga];
+                                     }
+                                 }
+                             }
                             session_start();
                             $_SESSION['id']=$res['id'];
                             $_SESSION['username']=$res['email'];
                             $_SESSION['pass']=$res['pass'];
                             $_SESSION['login']=time();
+                            $_SESSION['role']=$role;
                             header('Location: profile.php');
                     
                          }else{
