@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2021 at 07:00 PM
+-- Generation Time: Aug 05, 2021 at 11:54 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -46,7 +46,8 @@ INSERT INTO `kvaliteta` (`id`, `firstname`, `lastname`, `suggestion`) VALUES
 (5, 'Mario', 'Mandžukić', 'Treba mi napadačka vrba.'),
 (6, 'Ivan', 'Perišić', 'Imam coronu. Ne mogu igrati.'),
 (7, 'Josip', 'Bošnjak', 'Napravljen unos feedbacka za stranicu. Popraviti bug koji dodaje prazno mjesto u tablicu. Napraviti neki captcha za odgodu novog unosa.'),
-(8, 'Josip', 'Bošnjak', 'Sada treba napraviti registracijsku formu. Treba napraviti i stranicu koja omogućuje adminu da  uređuje feedbackove. Feedbackove može vidjeti samo admin.');
+(8, 'Josip', 'Bošnjak', 'Sada treba napraviti registracijsku formu. Treba napraviti i stranicu koja omogućuje adminu da  uređuje feedbackove. Feedbackove može vidjeti samo admin.'),
+(9, 'gewgedg', 'gwege', 'rgegegg');
 
 -- --------------------------------------------------------
 
@@ -106,22 +107,23 @@ CREATE TABLE `registration` (
   `cityofbirth` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
   `countryofbirth` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
   `pass` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `uloga` enum('Korisnik','Administrator','Banovani korisnik','') COLLATE utf8_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
 
 --
 -- Dumping data for table `registration`
 --
 
-INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`) VALUES
-(4, 'hrgiho', 'hgoirhgo', 'm', '0005-02-05', 'grgrg', 'rggere', 'gfeeg', 'jbosnjak34@gmail.com'),
-(5, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '4854848484fege', 'jbosnjak3@gmail.com'),
-(6, 'Marko', 'Marković', 'm', '1988-07-08', 'Požega', 'Hrvatska', 'volimhrvatsku', 'mmarkovic@gmail.com'),
-(7, 'Marek', 'Hamšik', 'm', '1988-12-15', 'Zilina', 'Slovakia', '4545fee', 'mhamsik@gmail.com'),
-(8, 'Mason', 'Mount', 'm', '1995-01-15', 'London', 'England', '154116916re', 'mmount@gmail.com'),
-(9, 'Gabriela', 'Spanic', 'z', '1973-06-12', 'Mexico city', 'Mexico', 'test123456789', 'gspanic@gmail.com'),
-(10, 'Predrag', 'Samardžija', 'm', '1968-07-14', 'Hrtkovci', 'Srbija', 'lubenice', 'psamardz@gmail.com'),
-(12, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com');
+INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`, `uloga`) VALUES
+(4, 'hrgiho', 'hgoirhgo', 'm', '0005-02-05', 'grgrg', 'rggere', 'gfeeg', 'jbosnjak34@gmail.com', 'Korisnik'),
+(5, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '4854848484fege', 'jbosnjak3@gmail.com', 'Administrator'),
+(6, 'Marko', 'Marković', 'm', '1988-07-08', 'Požega', 'Hrvatska', 'volimhrvatsku', 'mmarkovic@gmail.com', 'Korisnik'),
+(7, 'Marek', 'Hamšik', 'm', '1988-12-15', 'Zilina', 'Slovakia', '4545fee', 'mhamsik@gmail.com', 'Korisnik'),
+(8, 'Mason', 'Mount', 'm', '1995-01-15', 'London', 'England', '154116916re', 'mmount@gmail.com', 'Korisnik'),
+(9, 'Gabriela', 'Spanic', 'z', '1973-06-12', 'Mexico city', 'Mexico', 'test123456789', 'gspanic@gmail.com', 'Korisnik'),
+(10, 'Predrag', 'Samardžija', 'm', '1968-07-14', 'Hrtkovci', 'Srbija', 'lubenice', 'psamardz@gmail.com', 'Korisnik'),
+(12, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com', 'Korisnik');
 
 -- --------------------------------------------------------
 
@@ -194,7 +196,7 @@ ALTER TABLE `uloge`
 -- AUTO_INCREMENT for table `kvaliteta`
 --
 ALTER TABLE `kvaliteta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `obavljeno`

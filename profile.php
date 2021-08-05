@@ -23,7 +23,8 @@ if(!isset($_SESSION['username'])){
         <a href="#" target="_self">Registation</a>
 <a href="#" target="_self">Login</a>
 <a href="logout.php" target="_self">Logout</a>
-<a href="dodjeli_uloge.php" target="_self">User roles</a>
+<!--<a href="dodjeli_uloge.php" target="_self">User roles</a>-->
+<a href="trenutnifeedback.php">Feedback</a>
         </nav>
         <section>
             <h2>Your profile</h2>
@@ -35,7 +36,7 @@ if(!isset($_SESSION['username'])){
                    echo "<label>User image:</label><br>";
                    echo '<img src="data:'.$row['imageType'].';base64,'.base64_encode($row['imageData']).'" width="100" height="100"/>';
             }
-            $sql2="SELECT fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email FROM registration WHERE id='$id'";
+            $sql2="SELECT fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email,uloga FROM registration WHERE id='$id'";
             $t=mysqli_query($dbc,$sql2);
             while($o=mysqli_fetch_array($t)){
                 ?>
@@ -56,8 +57,20 @@ if(!isset($_SESSION['username'])){
                     <input type="text" name="pass" value="<?php echo $o['pass']; ?>"> <br>
                     <label>Email:</label> <br>
                     <input type="email" name="email" value="<?php echo $o['email']; ?>"> <br>
+                    <label>Role:</label> <br>
+                    <input type="text" name="uloga" value="<?php echo $o['uloga']; ?>"> <br>
                   <?php 
+                  $ul=$_SESSION[$o['uloga']];
+                  if($ul=="Korisnik"){
+                      
+                      $_SESSION['username']=$_POST['email'];
+                      $_SESSION['uloga']=$_POST[$ul];
+                  }else if($ul=="Administrator"){
+                      $_SESSION['username']=$_POST['email'];
+                      $_SESSION['uloga']=$_POST[$ul];
+                  }
                    }
+                   
                    mysqli_close($dbc);
                   ?>
                   <input type="submit" value="Update">

@@ -1,9 +1,14 @@
 <?php
+include("dbconn.php");
 session_start();
 if(!isset($_SESSION['username'])){
-	header('Location: login.php');
+	header('Location: profile.php');
 }else{
-	$_SESSION['login']=time();
+	if($_SESSION['role']!="Administrator"){
+        header('Location:profile.php');
+    }else{
+        $_SESSION['login']=time();
+    }
 }
 
 ?>
@@ -33,7 +38,7 @@ if(!isset($_SESSION['username'])){
         </h2>
         <table>
         <?php
-          include('dbconn.php');
+          
           $query="SELECT * FROM kvaliteta";
           $q=mysqli_query($dbc,$query);
           while($row=mysqli_fetch_array($q)){
