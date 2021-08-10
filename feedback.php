@@ -16,6 +16,7 @@ include("dbconn.php");
     <a href="#" target="_self">Login</a>
     <a href="profile.php" target="_self">Profile of user</a>
     <a href="logout.php" target="_self">Logout</a>
+    <a href="dodjeli_uloge.php">Set user roles</a>
 </nav>
     </div>
     <div class="pravila">

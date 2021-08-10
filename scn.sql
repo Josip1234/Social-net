@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2021 at 03:14 PM
+-- Generation Time: Aug 10, 2021 at 04:33 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -137,7 +137,9 @@ INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityo
 (8, 'Mason', 'Mount', 'm', '1995-01-15', 'London', 'England', '154116916re', 'mmount@gmail.com', 'Korisnik'),
 (9, 'Gabriela', 'Spanic', 'z', '1973-06-12', 'Mexico city', 'Mexico', 'test123456789', 'gspanic@gmail.com', 'Korisnik'),
 (10, 'Predrag', 'Samardžija', 'm', '1968-07-14', 'Hrtkovci', 'Srbija', 'lubenice', 'psamardz@gmail.com', 'Korisnik'),
-(12, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com', 'Korisnik');
+(12, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com', 'Korisnik'),
+(13, 'Marko', 'Lešković', 'm', '1965-08-24', 'Slovenija', 'Slovenija', 'slovenija', 'mlesk@gmail.com', 'Administrator'),
+(14, 'Naravno', 'Da nam je stalo do nje', 'z', '1966-06-06', 'Tunguzija', 'Ponkovci', 'guza', 'ndn@gmail.com', 'Korisnik');
 
 -- --------------------------------------------------------
 
@@ -235,13 +237,13 @@ ALTER TABLE `obavljeno`
 -- AUTO_INCREMENT for table `profilna`
 --
 ALTER TABLE `profilna`
-  MODIFY `imageId` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `imageId` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `uloge`

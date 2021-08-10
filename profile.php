@@ -23,8 +23,9 @@ if(!isset($_SESSION['username'])){
         <a href="#" target="_self">Registation</a>
 <a href="#" target="_self">Login</a>
 <a href="logout.php" target="_self">Logout</a>
-<!--<a href="dodjeli_uloge.php" target="_self">User roles</a>-->
-<a href="trenutnifeedback.php">Feedback</a>
+<a href="dodjeli_uloge.php" target="_self">Set user roles</a>
+                <a href="feedback.php" target="_self">Add feedback</a>
+
         </nav>
         <section>
             <h2>Your profile</h2>
