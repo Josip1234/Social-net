@@ -1,0 +1,272 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 03, 2017 at 12:56 PM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `scn`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `komentari`
+--
+
+CREATE TABLE `komentari` (
+  `id` int(11) NOT NULL,
+  `broj_teme` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `datum_i_vrijeme_kometara` datetime NOT NULL,
+  `komentar` varchar(255) COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `komentari`
+--
+
+INSERT INTO `komentari` (`id`, `broj_teme`, `email`, `datum_i_vrijeme_kometara`, `komentar`) VALUES
+(6, '0.1666745097997361', 'grgrg@geg.ge', '2017-04-02 17:44:46', 'bok'),
+(7, '0.1666745097997361', 'jbosnjak@unipu.hr', '2017-04-02 17:44:46', 'bok');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kvaliteta`
+--
+
+CREATE TABLE `kvaliteta` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `lastname` varchar(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `suggestion` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `kvaliteta`
+--
+
+INSERT INTO `kvaliteta` (`id`, `firstname`, `lastname`, `suggestion`) VALUES
+(1, 'Josip', 'Bošnjak', 'Napravljen unos feedbacka za stranicu. Popraviti bug koji dodaje prazno mjesto u tablicu. Napraviti neki captcha za odgodu novog unosa.'),
+(2, 'Josip', 'Bošnjak', 'Sada treba napraviti registracijsku formu. Treba napraviti i stranicu koja omogućuje adminu da  uređuje feedbackove. Feedbackove može vidjeti samo admin.'),
+(3, 'Nepoznati', 'Počinitelj', 'Stranica je ok trebalo bi malo slika postaviti da ne bude narančasta boja a po mogućnosti i da se slike mijenjaju.'),
+(4, 'bbrb', 'bbttb', 'bebrrbe');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `obavljeno`
+--
+
+CREATE TABLE `obavljeno` (
+  `id` int(11) NOT NULL,
+  `id_feedbacka` int(11) NOT NULL,
+  `obavljeno` tinyint(1) NOT NULL,
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `obavljeno`
+--
+
+INSERT INTO `obavljeno` (`id`, `id_feedbacka`, `obavljeno`, `email`) VALUES
+(4, 1, 1, 'grgrg@geg.ge'),
+(5, 2, 0, 'grgrg@geg.ge'),
+(6, 3, 1, 'jbosnjak@unipu.hr');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profilna`
+--
+
+CREATE TABLE `profilna` (
+  `imageId` tinyint(4) NOT NULL,
+  `imageType` varchar(25) COLLATE utf8_croatian_ci NOT NULL,
+  `imageData` longblob NOT NULL,
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `profilna`
+--
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registration`
+--
+
+CREATE TABLE `registration` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
+  `lname` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
+  `sex` varchar(1) COLLATE utf8_croatian_ci NOT NULL,
+  `dateofbirth` date NOT NULL,
+  `cityofbirth` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
+  `countryofbirth` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
+  `pass` varchar(50) COLLATE utf8_croatian_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `uloga` enum('Administrator','Korisnik','Banovani korisnik') COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`, `uloga`) VALUES
+(1, 'Josipa', 'Bošnjak', 'm', '1992-11-05', 'Wintherthur', 'Švicarska', 'gegegeggegegqgq', 'jbosnjak@unipu.hr', 'Administrator'),
+(2, 'm', 'marko', 'z', '1992-05-07', 'Milano', 'Italy', 'm', 'm@m.m', 'Administrator'),
+(3, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '12', 'jbosnjak3@gmail.com', 'Korisnik'),
+(5, 'grg', 'ge', 'm', '1992-11-05', 'gege', 'fegfq', 'gegqegfe', 'grgrg@geg.ge', 'Korisnik'),
+(6, 'Marek', 'Hamšik', 'm', '1988-12-15', 'Zilina', 'Slovakia', '4545fee', 'mhamsik@gmail.com', 'Administrator'),
+(7, 'Marko', 'Marković', 'm', '1992-11-05', 'Požega', 'Hrvatska', '54648e4fe84fe84', 'mmarkovic54@gmail.com', 'Korisnik'),
+(8, 'Martin', 'Martinović', 'm', '1982-08-19', 'Biškupci', 'Hrvatska', 'pass', 'mmartinovic@gmail.com', 'Administrator'),
+(9, 'Zoe', 'Zaskin', 'z', '1985-04-11', 'Krakov', 'Poljska', '1', 'zpol@gmail.com', 'Korisnik');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teme`
+--
+
+CREATE TABLE `teme` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `broj_teme` varchar(255) COLLATE utf8_croatian_ci NOT NULL,
+  `naziv_teme` varchar(255) COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `teme`
+--
+
+INSERT INTO `teme` (`id`, `email`, `broj_teme`, `naziv_teme`) VALUES
+(1, 'm@m.m', '0.1666745097997361', 'Običan razgovor');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `komentari`
+--
+ALTER TABLE `komentari`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `email` (`email`),
+  ADD KEY `broj_teme` (`broj_teme`);
+
+--
+-- Indexes for table `kvaliteta`
+--
+ALTER TABLE `kvaliteta`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `id_feedbacka` (`id_feedbacka`),
+  ADD KEY `user_email` (`email`);
+
+--
+-- Indexes for table `profilna`
+--
+ALTER TABLE `profilna`
+  ADD PRIMARY KEY (`imageId`),
+  ADD KEY `email` (`email`);
+
+--
+-- Indexes for table `registration`
+--
+ALTER TABLE `registration`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `teme`
+--
+ALTER TABLE `teme`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `broj_teme` (`broj_teme`),
+  ADD KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `komentari`
+--
+ALTER TABLE `komentari`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `kvaliteta`
+--
+ALTER TABLE `kvaliteta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `profilna`
+--
+ALTER TABLE `profilna`
+  MODIFY `imageId` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `registration`
+--
+ALTER TABLE `registration`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `teme`
+--
+ALTER TABLE `teme`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `komentari`
+--
+ALTER TABLE `komentari`
+  ADD CONSTRAINT `brojteme` FOREIGN KEY (`broj_teme`) REFERENCES `teme` (`broj_teme`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `email` FOREIGN KEY (`email`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  ADD CONSTRAINT `idfeed` FOREIGN KEY (`id_feedbacka`) REFERENCES `kvaliteta` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `profilna`
+--
+ALTER TABLE `profilna`
+  ADD CONSTRAINT `em` FOREIGN KEY (`email`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `teme`
+--
+ALTER TABLE `teme`
+  ADD CONSTRAINT `teme_ibfk_1` FOREIGN KEY (`email`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
