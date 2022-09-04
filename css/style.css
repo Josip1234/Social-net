@@ -20,7 +20,10 @@ nav ,a:hover,a:active{
 }
 
 .pravila {
-	
 	text-align:justify;
 	font-size:20%;
+}
+iframe{
+    overflow-x:hidden;
+    overflow-Y:hidden;
 }
