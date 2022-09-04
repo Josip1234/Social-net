@@ -1,0 +1,26 @@
+/* CSS Document */
+@charset "utf-8";
+body{
+    background-color: aliceblue;
+}
+nav a:link,a:visited{
+	background-color:white;
+	color: black;
+	padding:14px 25px;
+	text-align:center;
+	text-decoration:none;
+	display:inline-block;
+}
+nav ,a:hover,a:active{
+	background-color:white;
+	
+}
+#privatnost{
+	text-decoration:none;
+}
+
+.pravila {
+	
+	text-align:justify;
+	font-size:20%;
+}
