@@ -20,7 +20,7 @@
                 <h2>Privacy rules</h2>
                 <p>
                     We guarantee the protection of your data. If there is any violation of data integrity or if your data is stolen, we are responsible for it if it happens on the server. If the user is at fault, we disclaim responsibility and shift the responsibility to the user. For more detailed information, visit this link:
-                    <a id="privacy" href="#" target="_blank" rel="noopener noreferrer">Privacy</a>
+                    <a id="privacy" href="privacy.php" target="_blank" rel="noopener noreferrer">Privacy</a>
                 </p>
             </section>
 
