@@ -40,6 +40,9 @@
                                 <li>
                                     I hope you understand the current rules and will stick to them.
                                 </li>
+                                <li>
+                                    Your data is backed up. They are done on a daily basis. You can be sure of the integrity of your data.
+                                </li>
                 </ol>
             </section>
 
