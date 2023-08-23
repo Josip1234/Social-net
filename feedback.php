@@ -1,3 +1,7 @@
+<?php 
+
+include("dbconn.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +11,7 @@
     <link rel="stylesheet" href="css/stil.css">
 </head>
 <body>
+
     <div class="con">
         <nav>
             <ul>
@@ -23,7 +28,9 @@
 <input type="text" name="fname"> <br>
 <label>Your last name</label> <br>
 <input type="text" name="lname"> <br>
-<input type="submit" value="Enter your feedback">
+<label>Suggestions of improvement</label> <br>
+<textarea name="suggestion" id="suggestion" cols="30" rows="10"></textarea>
+<input type="submit" value="Send suggestion">
     </form>
 </section>
         </div>
