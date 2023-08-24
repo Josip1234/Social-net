@@ -1,6 +1,9 @@
-<?php 
 
-include("dbconn.php");
+<?php 
+$fname="";
+$lname="";
+$suggestion="";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +35,19 @@ include("dbconn.php");
 <textarea name="suggestion" id="suggestion" cols="30" rows="10"></textarea>
 <input type="submit" value="Send suggestion">
     </form>
+    <?php 
+
+include("dbconn.php");
+$fname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
+$lname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
+$suggestion=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['suggestion'])));
+$query="INSERT INTO qaqc(fname,lname,suggestions) VALUES ('$fname','$lname','$suggestion')";
+mysqli_query($dbc,$query);
+mysqli_close($dbc);
+$fname="";
+$lname="";
+$suggestion="";
+?>
 </section>
         </div>
     </div>
