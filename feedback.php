@@ -57,7 +57,6 @@ if($fname==''){
     $fnamePass==true;
 }
 
-
 if($lname==''){
     $lnamePass=false;
 }else{
@@ -71,19 +70,37 @@ if($suggestion==''){
     $suggestionPassed=true;
 }
 
-//check main validation
-if($fnamePass==1 && $lnamePass==1 && $suggestionPassed==1){
+//only if all three conditions are true validation will be true
+if($fnamePass==1){
+        if($lnamePass==1){
+            if($suggestionPassed==1){
+                $validation_passes==true;
+            }else{
+                $validation_passes==false;
+            }
+        }else{
+            $validation_passes==false;
+        }
+}else{
+    $validation_passes==false;
+}
+//then insert data into database
+if($validation_passes==true){
+    //we need another query here. To check for duplicates. We need unique key for suggestions to prevent duplicate suggestions. 
+    //also we need to return to user error suggestion already exists.
     $query="INSERT INTO qaqc(fname,lname,suggestions) VALUES ('$fname','$lname','$suggestion')";
     mysqli_query($dbc,$query);
     mysqli_close($dbc);
     $fname="";
 $lname="";
 $suggestion="";
+ 
 }else{
-    die("Error!!! Information not inserted. Cannot add empty informations.");
-};
-
-
+    die("Information has not be inserted into our database.");
+    $fname="";
+    $lname="";
+    $suggestion="";
+}
 
 ?>
 </section>
