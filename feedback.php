@@ -78,7 +78,7 @@ if($suggestion==""){
     $suggestionPassed=true;
     $validation_passes=true;
 }
-echo $validation_passes;
+
 //works everything until here
 
 
