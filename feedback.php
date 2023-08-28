@@ -51,44 +51,43 @@ $suggestion=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['suggestion'])
 
 
 //check for each field if there is value if there is no value validation is not passed all three fields are required.
-if($fname==''){
+if($fname==""){
     $fnamePass=false;
+    $validation_passes=false;
+    
 }else{
     $fnamePass==true;
-}
+    $validation_passes=true;
 
-if($lname==''){
+}
+$validation_passes=false;
+
+if($lname==""){
     $lnamePass=false;
+    $validation_passes=false;
 }else{
     $lnamePass=true;
+    $validation_passes=true;
+  
 }
-
-
-if($suggestion==''){
+$validation_passes=false;
+if($suggestion==""){
     $suggestionPassed=false;
+    $validation_passes=false;
 }else{
     $suggestionPassed=true;
+    $validation_passes=true;
 }
+echo $validation_passes;
+//works everything until here
 
-//only if all three conditions are true validation will be true
-if($fnamePass==1){
-        if($lnamePass==1){
-            if($suggestionPassed==1){
-                $validation_passes==true;
-            }else{
-                $validation_passes==false;
-            }
-        }else{
-            $validation_passes==false;
-        }
-}else{
-    $validation_passes==false;
-}
+
 //then insert data into database
 if($validation_passes==true){
     //we need another query here. To check for duplicates. We need unique key for suggestions to prevent duplicate suggestions. 
     //also we need to return to user error suggestion already exists.
-    $query="INSERT INTO qaqc(fname,lname,suggestions) VALUES ('$fname','$lname','$suggestion')";
+    echo($fname);
+    $query="INSERT INTO `qaqc` (`fname`, `lname`, `suggestions`) VALUES ( '".$fname."', '".$lname."', '".$suggestion."')";
     mysqli_query($dbc,$query);
     mysqli_close($dbc);
     $fname="";
