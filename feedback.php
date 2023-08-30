@@ -86,13 +86,22 @@ if($suggestion==""){
 if($validation_passes==true){
     //we need another query here. To check for duplicates. We need unique key for suggestions to prevent duplicate suggestions. 
     //also we need to return to user error suggestion already exists.
-    echo($fname);
+    //echo($fname);
     $query="INSERT INTO `qaqc` (`fname`, `lname`, `suggestions`) VALUES ( '".$fname."', '".$lname."', '".$suggestion."')";
     mysqli_query($dbc,$query);
     mysqli_close($dbc);
-    $fname="";
-$lname="";
-$suggestion="";
+    if($query){
+        header('Location:index.php');
+        $fname="";
+        $lname="";
+        $suggestion="";
+    }else{
+        die("Information has not been added. There is a problem with connection.");
+        $fname="";
+        $lname="";
+        $suggestion="";
+    }
+
  
 }else{
     die("Information has not be inserted into our database.");
