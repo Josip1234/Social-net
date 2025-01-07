@@ -12,8 +12,9 @@
 <div class="con">
 <nav>
 
-<a href="#" target="_blank">Registation</a>
+<a href="index.html" target="_blank">Back to main page</a>
 <a href="#" target="_blank">Login</a>
+<a href="privacy.php" target="_blank">Terms of privacy</a>
 
 </nav>
 </div>
