@@ -13,7 +13,8 @@
 <nav>
 
 <a href="registration.php" target="_blank">Registration</a>
-<a href="#" target="_blank">Login</a>
+<!--<a href="#" target="_blank">Login</a>-->
+<a href="login.php" target="_blank">Login</a>
 <a href="privacy.php" target="_blank">Terms of privacy</a>
 <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
 <a href="index.html" target="_blank">Back to main page</a>
