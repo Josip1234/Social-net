@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2025 at 08:24 PM
+-- Generation Time: Feb 07, 2025 at 08:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -107,6 +107,18 @@ INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityo
 (4, 'Marko', 'Markić', 'm', '1985-05-06', 'Požega', 'Hrvatska', 'volimhrvatsku', '', 'mmarkic15@gmail.com'),
 (5, 'Kojaideja', 'Majketi', 'z', '1998-08-08', 'Sarajevo', 'Bosna i Hercegovina', 'štatibi', '', 'kojaideja@gmail.com');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uloge`
+--
+
+CREATE TABLE `uloge` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `uloga` enum('Administrator','Korisnik','Banovani korisnik','') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -137,6 +149,13 @@ ALTER TABLE `registration`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `uloge`
+--
+ALTER TABLE `uloge`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -163,6 +182,22 @@ ALTER TABLE `profilna`
 --
 ALTER TABLE `registration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `uloge`
+--
+ALTER TABLE `uloge`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `uloge`
+--
+ALTER TABLE `uloge`
+  ADD CONSTRAINT `uid` FOREIGN KEY (`user_id`) REFERENCES `registration` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
