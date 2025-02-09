@@ -15,7 +15,7 @@
 <a href="index.html" target="_blank">Back to main page</a>
 <a href="#" target="_blank">Login</a>
 <a href="privacy.php" target="_blank">Terms of privacy</a>
-
+<a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 </nav>
 </div>
 <div class="pravila">
@@ -46,7 +46,7 @@
 </form>
 <?php
 include('dbconn.php');
-include('functions.php');
+//include('functions.php');
 $firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
 if($firstname!=''){
 	$lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
@@ -68,7 +68,7 @@ if($firstname!=''){
 mysqli_query($dbc,$query);
 mysqli_close($dbc);
 if($query){
-	header('Location:profilna.php');
+	header('Location:login.php');
 }else{
 	die('Error! Connot add informations!');
 }

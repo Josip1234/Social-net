@@ -17,6 +17,7 @@
 <a href="index.html" target="_blank">Back to main page</a>
 <a href="privacy.php" target="_blank">Terms of privacy</a>
 <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
+<a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 </nav>
 </div>
 <div class="pravila">
@@ -32,9 +33,9 @@
 
 </form>
 <?php 
-include('dbconn.php');
+ //include('dbconn.php');
 //include('functions.php');
-$username=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['username'])));
+/**$username=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['username'])));
 if($username!=''){
     $pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
     //provjeri_dali_postoji_u_bazi($username,$pass);
@@ -56,9 +57,25 @@ if($username!=''){
     }
             }
         }
+    } 
+}*/
+
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    if((!empty($_POST['username'])) && (!empty($_POST['pass']))){
+        if((strtolower($_POST['username'])=='jbosnjak3@gmail.com') && ($_POST['pass']=='admin')){
+            session_start();
+            $_SESSION['username']=$_POST['username'];
+            $_SESSION['login']=time();
+            header('Location:trenutnifeedback.php');
+            exit();
+        }else{
+            die('Korisničko ime i lozinka nisu točni.');
+        }
+    }else{
+        die('Zaboravio/la si korisničko ime i lozinku');
     }
-    
- 
+}else{
+    print("<a href='index.html'>Homepage</a>");
 }
 
 

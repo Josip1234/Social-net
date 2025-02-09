@@ -17,7 +17,7 @@ include("dbconn.php");
 
 <a href="#" target="_blank">Registation</a>
 <a href="#" target="_blank">Login</a>
-
+<a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 </nav>
 </div>
 <div class="pravila">
