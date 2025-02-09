@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2025 at 08:45 PM
+-- Generation Time: Feb 09, 2025 at 11:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,8 +54,16 @@ INSERT INTO `kvaliteta` (`id`, `firstname`, `lastname`, `suggestion`) VALUES
 
 CREATE TABLE `obavljeno` (
   `id` int(11) NOT NULL,
-  `obavljeno` tinyint(1) NOT NULL
+  `obavljeno` tinyint(1) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `obavljeno`
+--
+
+INSERT INTO `obavljeno` (`id`, `obavljeno`, `user_id`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +141,8 @@ ALTER TABLE `kvaliteta`
 -- Indexes for table `obavljeno`
 --
 ALTER TABLE `obavljeno`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `profilna`
@@ -169,7 +178,7 @@ ALTER TABLE `kvaliteta`
 -- AUTO_INCREMENT for table `obavljeno`
 --
 ALTER TABLE `obavljeno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `profilna`
@@ -192,6 +201,12 @@ ALTER TABLE `uloge`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  ADD CONSTRAINT `user_id_done` FOREIGN KEY (`user_id`) REFERENCES `registration` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `uloge`
