@@ -23,6 +23,7 @@ if(!isset($_SESSION['username'])){
     <a href="#" target="_blank" rel="noopener noreferrer">Login</a>
     <a href="trenutnifeedback.php" target="_blank" rel="noopener noreferrer">Feedbacks-only for admins</a>
     <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
+    <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
 </nav>
     </div>
     <div class="pravila">

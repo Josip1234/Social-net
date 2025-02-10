@@ -18,6 +18,7 @@
 <a href="privacy.php" target="_blank">Terms of privacy</a>
 <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
+<a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
 </nav>
 </div>
 <div class="pravila">
@@ -33,43 +34,30 @@
 
 </form>
 <?php 
- //include('dbconn.php');
-//include('functions.php');
-/**$username=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['username'])));
-if($username!=''){
-    $pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
-    //provjeri_dali_postoji_u_bazi($username,$pass);
-    if($pass!=''){
-        $res="SELECT email FROM registration WHERE email='$username'";
-        mysqli_query($dbc,$res);
-        if($res){
-            $res2="SELECT id FROM registration WHERE email='$username'";
-            mysqli_query($dbc,$res2);
-            if($res2){
-    $res3="SELECT pass FROM registration WHERE email='$username'";
-    mysqli_query($dbc,$res2);
-    if($res3){
-        session_start();
-        $_SESSION['email']= $_POST['username'];
-        $_SESSION['pass']=$_POST['pass'];
-        $_SESSION['islogged']=time();
-        header('Location:trenutnifeedback.php');
-    }
-            }
-        }
-    } 
-}*/
+ include('dbconn.php');
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     if((!empty($_POST['username'])) && (!empty($_POST['pass']))){
         if((strtolower($_POST['username'])=='jbosnjak3@gmail.com') && ($_POST['pass']=='admin')){
             session_start();
             $_SESSION['username']=$_POST['username'];
+            $_SESSION['pass']=$_POST['pass'];
             $_SESSION['login']=time();
             header('Location:trenutnifeedback.php');
             exit();
         }else{
-            die('Korisničko ime i lozinka nisu točni.');
+            //die('Korisničko ime i lozinka nisu točni.');
+                $logirankorisnik=mysqli_query($dbc,"SELECT id,pass,email FROM registration WHERE email='$username' AND pass='$pass'");
+                if(mysqli_num_rows($logirankorisnik==1)){
+                    $row=mysqli_fetch_array($logirankorisnik);
+                    $_SESSION['username']=$username;
+                    $_SESSION['pass']=$pass;
+                    $_SESSION['login']=time();
+                    header('Location:index.html');
+                    echo "Uspješna prijava";
+                }else{
+                    echo "Drugi korisnik je trenutno aktivan na ovom računalu.";
+                }
         }
     }else{
         die('Zaboravio/la si korisničko ime i lozinku');
@@ -77,7 +65,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 }else{
     print("<a href='index.html'>Homepage</a>");
 }
-
+mysqli_close($dbc);
 
 ?>
 </section>

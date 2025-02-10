@@ -19,6 +19,7 @@ if(!isset($_SESSION['username'])){
 <nav>
     <a href="#" target="_blank" rel="noopener noreferrer">Registration</a>
     <a href="#" target="_blank" rel="noopener noreferrer">Login</a>
+    <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
 </nav>
     </div>
     <div class="pravila">
