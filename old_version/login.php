@@ -34,38 +34,31 @@
 
 </form>
 <?php 
- include('dbconn.php');
 
-if($_SERVER['REQUEST_METHOD']=='POST'){
-    if((!empty($_POST['username'])) && (!empty($_POST['pass']))){
-        if((strtolower($_POST['username'])=='jbosnjak3@gmail.com') && ($_POST['pass']=='admin')){
-            session_start();
-            $_SESSION['username']=$_POST['username'];
-            $_SESSION['pass']=$_POST['pass'];
-            $_SESSION['login']=time();
-            header('Location:trenutnifeedback.php');
-            exit();
-        }else{
-            //die('Korisničko ime i lozinka nisu točni.');
-                $logirankorisnik=mysqli_query($dbc,"SELECT id,pass,email FROM registration WHERE email='$username' AND pass='$pass'");
-                if(mysqli_num_rows($logirankorisnik==1)){
-                    $row=mysqli_fetch_array($logirankorisnik);
-                    $_SESSION['username']=$username;
-                    $_SESSION['pass']=$pass;
-                    $_SESSION['login']=time();
-                    header('Location:index.html');
-                    echo "Uspješna prijava";
-                }else{
-                    echo "Drugi korisnik je trenutno aktivan na ovom računalu.";
-                }
-        }
-    }else{
-        die('Zaboravio/la si korisničko ime i lozinku');
-    }
-}else{
-    print("<a href='index.html'>Homepage</a>");
+include("dbconn.php");
+$username=$_POST['username'];
+
+if($username!=''){
+$pass=$_POST['pass'];
+
+if($pass!=''){
+$upit="SELECT id,email,pass FROM registration WHERE email='$username' AND pass='$pass'";
+$r=mysqli_query($dbc,$upit);
+while($res=mysqli_fetch_array($r)){
+	//if(mysqli_num_rows($res)<2){
+        session_start();
+        $_SESSION['username']=$res['email'];
+        $_SESSION['pass']=$res['pass'];
+        $_SESSION['login']=time();
+        header('Location:profilna.php');
+	//}else{
+	//	echo "Multiple users exists";
+	//}
+}
+}
 }
 mysqli_close($dbc);
+//mysqli_close($dbc);
 
 ?>
 </section>
