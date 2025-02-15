@@ -47,10 +47,11 @@ $r=mysqli_query($dbc,$upit);
 while($res=mysqli_fetch_array($r)){
 	//if(mysqli_num_rows($res)<2){
         session_start();
+        $_SESSION['id']=$res['id'];
         $_SESSION['username']=$res['email'];
         $_SESSION['pass']=$res['pass'];
         $_SESSION['login']=time();
-        header('Location:profilna.php');
+        header('Location:profile.php');
 	//}else{
 	//	echo "Multiple users exists";
 	//}
