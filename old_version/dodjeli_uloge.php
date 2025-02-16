@@ -1,9 +1,14 @@
 <?php 
+$role="Administrator";
 session_start();
 if(!isset($_SESSION['username'])){
     header('Location: login.php');
 }else{
-    $_SESSION['login']=time();
+    if($_SESSION['role']!=$role){
+        header('Location:profile.php');
+    }else{
+        $_SESSION['login']=time();
+    }
 }
 
 
@@ -19,8 +24,8 @@ if(!isset($_SESSION['username'])){
 <body>
     <div class="con">
 <nav>
-    <a href="#" target="_blank" rel="noopener noreferrer">Registration</a>
-    <a href="#" target="_blank" rel="noopener noreferrer">Login</a>
+    <a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
+    <a href="login.php" target="_blank" rel="noopener noreferrer">Login</a>
     <a href="trenutnifeedback.php" target="_blank" rel="noopener noreferrer">Feedbacks-only for admins</a>
     <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
     <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
@@ -29,8 +34,6 @@ if(!isset($_SESSION['username'])){
     <div class="pravila">
 <section>
     <?php 
-//$sql="SELECT 'registration'.'id','registration'.'email','uloge'.'id','uloge'.'user_id','uloge'.'uloga' FROM 'registration' LEFT JOIN 'uloge' ON 'registration'.'id' = 'uloge'.'id'";
-//bolje je izlistati jedan po jedan račun.
 include("dbconn.php");
 $sql="SELECT id,fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email FROM registration";
 $result=mysqli_query($dbc,$sql);

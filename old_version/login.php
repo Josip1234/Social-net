@@ -19,6 +19,7 @@
 <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
+<a href="dodjeli_uloge.php" target="_blank" rel="noopener noreferrer">User roles</a>
 </nav>
 </div>
 <div class="pravila">
@@ -45,21 +46,27 @@ if($pass!=''){
 $upit="SELECT id,email,pass FROM registration WHERE email='$username' AND pass='$pass'";
 $r=mysqli_query($dbc,$upit);
 while($res=mysqli_fetch_array($r)){
-	//if(mysqli_num_rows($res)<2){
+        $upit2="SELECT id,email,uloga FROM uloge WHERE email='$username'";
+        $z=mysqli_query($dbc,$upit2);
+        while($rs=mysqli_fetch_array($z)){
+                $role="Administrator";
+                $uloga=$_POST['role'];
+                if($uloga==$role){
+                        $role=$_SESSION[$uloga];
+                }
+        }
         session_start();
         $_SESSION['id']=$res['id'];
         $_SESSION['username']=$res['email'];
         $_SESSION['pass']=$res['pass'];
         $_SESSION['login']=time();
+        $_SESSION['role']=$role;
         header('Location:profile.php');
-	//}else{
-	//	echo "Multiple users exists";
-	//}
+	
 }
 }
 }
 mysqli_close($dbc);
-//mysqli_close($dbc);
 
 ?>
 </section>

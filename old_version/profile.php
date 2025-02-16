@@ -19,9 +19,10 @@ if(!isset($_SESSION['username'])){
 <body>
     <div class="con">
 <nav>
-    <a href="#" target="_blank" rel="noopener noreferrer">Registration</a>
-    <a href="#" target="_blank" rel="noopener noreferrer">Login</a>
+    <a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
+    <a href="login.php" target="_blank" rel="noopener noreferrer">Login</a>
     <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
+    <a href="dodjeli_uloge.php" target="_blank" rel="noopener noreferrer">User roles</a>
 </nav>
     </div>
     <div class="pravila">

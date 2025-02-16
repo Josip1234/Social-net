@@ -15,10 +15,11 @@ include("dbconn.php");
 <div class="con">
 <nav>
 
-<a href="#" target="_blank">Registation</a>
-<a href="#" target="_blank">Login</a>
+<a href="registration.php" target="_blank">Registation</a>
+<a href="login.php" target="_blank">Login</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
+<a href="dodjeli_uloge.php" target="_blank" rel="noopener noreferrer">User roles</a>
 </nav>
 </div>
 <div class="pravila">
@@ -49,7 +50,6 @@ mysqli_query($dbc,$query);
 mysqli_close($dbc);
 include("functions.php");
 if($query){
-	//die("Thanks for adding some suggestions");
 	header('Location:index.html');
 }else{
 	die("Error! Information not inserted!");
