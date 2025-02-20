@@ -49,23 +49,45 @@ while($res=mysqli_fetch_array($result)){
     echo $res['email']."<br/>";
     echo "<br/>";
 }
-mysqli_close($dbc);
+
     ?>
 </section>
     </div>
+
     <div id="dodjela_uloga">
         <section>
             <h2>Dodjeli ulogu:</h2>
             <form action="dodjeli_uloge.php" method="post">
-                <label for="email">Email korisnika za kojeg želiš dodjeliti ulogu:</label>
-                <input type="email" name="email" id="email" autocomplete="off">
+                <label for="email">Email korisnika za kojeg želiš dodjeliti ulogu:</label> <br>
+                <input type="email" name="user" id="email" autocomplete="off" required> <br>
+                <label for="select">Dostupne uloge:</label><br>
                 <select name="selektiraj" id="selektiraj">
                     <option value="Administrator">Administrator</option>
                     <option value="Korisnik">Korisnik</option>
                     <option value="Banovani korisnik">Banovani korisnik</option>
-                </select>
+                </select> <br>
+               <label for="user_role">Uloga korisnika:</label>
+               <input type="text" name="s" id="s" value="Administrator, korisnik ili banovani korisnik" required>
                 <input type="submit" value="Dodjeli ulogu">
             </form>
+            <?php 
+             $email=$_POST['user'];
+             $s=$_POST['s'];
+             if($email!=''){
+                if($s!=''){
+                    if($s=="Administrator"){}
+                    else if($s=="Korisnik"){}
+                    else if($s=="Banovani korisnik"){}
+                    else{
+                        die('Invalid role');
+                    };
+                }
+             }else{
+                die("Email missing");
+             }
+
+
+?>
         </section>
 
     </div>
