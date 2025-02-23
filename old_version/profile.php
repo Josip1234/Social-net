@@ -74,28 +74,74 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User
     ?>
     <form action="profile.php" method="post">
         <label for="fname">First name:</label><br>
-        <input type="text" name="fname" id="fname" value="<?php echo $fname;  ?>"> <br>
+        <input type="text" name="fname1" id="fname" value="<?php echo $fname;  ?>"> <br>
         <label for="lname">Last name:</label> <br>
-        <input type="text" name="lname" id="lname" value="<?php echo $lname;  ?>"> <br>
+        <input type="text" name="lname1" id="lname" value="<?php echo $lname;  ?>"> <br>
         <label for="sex">Sex:</label><br>
-        <input type="text" name="sex" id="sex" value="<?php echo $sex; ?>"> <br>
+        <input type="text" name="sex1" id="sex" value="<?php echo $sex; ?>"> <br>
         <label for="dateofbirth">Date of birth:</label> <br>
-        <input type="date" name="dateofbirth" id="dateofbirth" value="<?php echo $dtb; ?>"> <br>
+        <input type="date" name="dateofbirth1" id="dateofbirth" value="<?php echo $dtb; ?>"> <br>
         <label for="cityofbirth">City of birth:</label> <br>
-        <input type="text" name="cityofbirth" id="cityofbirth" value="<?php echo $ctb; ?>"> <br>
+        <input type="text" name="cityofbirth1" id="cityofbirth" value="<?php echo $ctb; ?>"> <br>
         <label for="countryofbirth">Country of birth:</label><br>
-        <input type="text" name="countryofbirth" id="countryofbirth" value="<?php echo $coub; ?>"> <br>
+        <input type="text" name="countryofbirth1" id="countryofbirth" value="<?php echo $coub; ?>"> <br>
         <label for="pass">Pass:</label> <br>
-        <input type="text" name="pass" id="pass" value="<?php echo $sif; ?>"> <br>
+        <input type="text" name="pass1" id="pass" value="<?php echo $sif; ?>"> <br>
         <label for="email">Email:</label><br>
-        <input type="email" name="email" id="email" value="<?php echo $e; ?>"> <br>
+        <input type="email" name="email1" id="email" value="<?php echo $e; ?>"> <br>
         <label for="role">Role</label> <br>
-        <input type="text" name="uloga" id="uloga" value="<?php
+        <input type="text" name="uloga1" id="uloga" value="<?php
         echo $u;
         ?>"><br>
         <input type="submit" value="Update">
     </form>
     <?php
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        $id1=$_SESSION['id'];
+        $firstname1=$_POST['firstname1'];
+        $lname1=$_POST['lname1'];
+        $sex1=$_POST['sex1'];
+        $datum1=$_POST['datum1'];
+        $cityofbirth1=$_POST['cityofbirth1'];
+        $countryofbirth1=$_POST['countryofbirth1'];
+        $pass1=$_POST['pass1'];
+        $email1=$_POST['email1'];
+        $uloga1=$_POST['uloga1'];
+
+        if($firstname1!=$fname){
+            echo "Promijenjeno je ime.";
+        }
+        if($lname1!=$lname){
+            echo "Promijenjeno je prezime.";
+        }
+        if($sex1!=$sex){
+            echo "Promjenjen je spol.";
+        }
+        //provjera datuma je bug 
+        //možda treba i izbaciti s obzirom da je datum rođenja.
+        if($dateofbirth1!=$dtb){
+            echo "Promijenjen je datum.";
+        }
+        if($cityofbirth1!=$ctb){
+            echo "Promijenjen je grad.";
+        }
+        if($countryofbirth1!=$coub){
+            echo "Promijenjena je država.";
+        }
+        //kod promijene pifre i emaila potrebno se je odjaviti
+        if($pass1!=$sif){
+            echo "Promijenjena je šifra.";
+        }
+        if($email1!=$e){
+            echo "Promijenjen je email.";
+        }
+        if($uloga1!=$u){
+            echo "Promijenjena je uloga.";
+        }
+
+
+    }
+ 
     mysqli_close($dbc);
     ?>
     

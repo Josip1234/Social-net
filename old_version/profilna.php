@@ -41,7 +41,7 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User
 </nav>
 </div>
 <div class="pravila">
-<section><h2>Update your profile picture here</h2>
+<section><h2>Set your profile picture here</h2>
 <?php
 
 if(count($_FILES) > 0) {
