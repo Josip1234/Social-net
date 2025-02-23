@@ -1,3 +1,19 @@
+<?php 
+include "dbconn.php";
+session_start();
+if(!isset($_SESSION['username'])){
+	
+}else{
+	if($_SESSION['role']!="Administrator"){
+		header('Location: profile.php');
+	}else{
+		$_SESSION['login']=time();
+	}
+	
+}
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -17,7 +33,12 @@
 <a href="privacy.php" target="_blank">Terms of privacy</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
-<a href="dodjeli_uloge.php" target="_blank" rel="noopener noreferrer">User roles</a>
+<?php 
+
+if($_SESSION['role']=="Administrator"){
+echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
+}
+?>
 </nav>
 </div>
 <div class="pravila">
@@ -40,7 +61,6 @@
 <label>Pass:</label><br/>
 <input type="password" name="pass" maxlength="50" size="17" required autocomplete="off" /><br/>
 
-<br/>
 <label>Email:</label><br/>
 <input type="email" name="email" required maxlength="50" size="17" autocomplete="off"/><br/>
 <input type="submit" value="Register"/>
@@ -48,7 +68,7 @@
 </form>
 <?php
 include('dbconn.php');
-//include('functions.php');
+$default_role="Korisnik";
 $firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
 if($firstname!=''){
 	$lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
@@ -68,203 +88,24 @@ if($firstname!=''){
 								if($email!=''){
 								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email')";
 mysqli_query($dbc,$query);
-$default_role="Korisnik";
-mysqli_close($dbc);
-if($query){
-	header('Location:login.php');
-}else{
-	die('Error! Connot add informations!');
-}
-								
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-?>
-</section>
-</div>
-
-
-
-</body>
-</html>
-<!--
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width-device-width,initial-scale=1">
-<title>Socialnet</title>
-<link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
-</head>
-
-<body>
-
-<div class="con">
-<nav>
-
-<a href="index.html" target="_blank">Back to main page</a>
-<a href="#" target="_blank">Login</a>
-<a href="privacy.php" target="_blank">Terms of privacy</a>
-
-</nav>
-</div>
-<div class="pravila">
-<section><h2>Register here</h2>
-<form action="registration.php" method="post">
-<label>First name:</label><br/>
-<input type="text" name="fname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Last name:</label><br/>
-<input type="text" name="lname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Sex:</label><br/>
-<input type="radio" name="spol" value="muski" required>M 
-<input type="radio" name="spol" value="zenski" required>Z 
-<br/>
-<label>Date of birth:</label><br/>
-<input type="date" name="datum_rodjenja" required/><br/>
-<label>City of birth:</label><br/>
-<input type="text" name="city_of_birth" maxlength="50" size="17" autocomplete="off" required/><br/>
-<label>Country of birth:</label><br/>
-<input type="text" name="country_of_birth" maxlength="50" size="17" autocomplete="off" required /><br/>
-<label>Pass:</label><br/>
-<input type="password" name="pass" maxlength="50" size="17" required autocomplete="off" /><br/>
-
-
-<br/>
-<label>Email:</label><br/>
-<input type="email" name="email" required maxlength="50" size="17" autocomplete="off"/><br/>
-<input type="submit" value="Register"/>
-
-</form>
-<?php /*
-include('dbconn.php');
-$firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
-if($firstname!=''){
-	$lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
-	if($lastname!=''){
-		$sex=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['spol'])));
-		if($sex!=''){
-			$datum_rodjenja=$_POST['datum_rodjenja'];
-			if($datum_rodjenja!=''){
-				$city=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['city_of_birth'])));
-				if($city!=''){
-					$country=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['country_of_birth'])));
-					if($country!=''){
-						$pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
-						if($pass!=''){
-							
-
-								$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
-								if($email!=''){
-								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,profilepicture,email) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$slika','$email')";
-mysqli_query($dbc,$query);
-mysqli_close($dbc);
-if($query){
-	header('Location:profilna.php');
-}else{
-	die('Error! Connot add informations!');
-}
-								
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}*/
-?>
-</section>
-</div>
-
-
-
-</body>
-</html>
-
--->
-
-<!--
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width-device-width,initial-scale=1">
-<title>Socialnet</title>
-<link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
-</head>
-
-<body>
-
-<div class="con">
-<nav>
-
-<a href="index.html" target="_blank">Back to main page</a>
-<a href="#" target="_blank">Login</a>
-<a href="privacy.php" target="_blank">Terms of privacy</a>
-
-</nav>
-</div>
-<div class="pravila">
-<section><h2>Register here</h2>
-<form action="registration.php" method="post">
-<label>First name:</label><br/>
-<input type="text" name="fname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Last name:</label><br/>
-<input type="text" name="lname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Sex:</label><br/>
-<input type="radio" name="spol" value="muski" required>M 
-<input type="radio" name="spol" value="zenski" required>Z 
-<br/>
-<label>Date of birth:</label><br/>
-<input type="date" name="datum_rodjenja" required/><br/>
-<label>City of birth:</label><br/>
-<input type="text" name="city_of_birth" maxlength="50" size="17" autocomplete="off" required/><br/>
-<label>Country of birth:</label><br/>
-<input type="text" name="country_of_birth" maxlength="50" size="17" autocomplete="off" required /><br/>
-<label>Pass:</label><br/>
-<input type="password" name="pass" maxlength="50" size="17" required autocomplete="off" /><br/>
-<label>Profile picture:</label><br/>
-<input type="file" name="slika" required><br/> 
-<br/>
-<label>Email:</label><br/>
-<input type="email" name="email" required maxlength="50" size="17" autocomplete="off"/><br/>
-<input type="submit" value="Register"/>
-
-</form>
-<?php /*
-include('dbconn.php');
-$firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
-if($firstname!=''){
-	$lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
-	if($lastname!=''){
-		$sex=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['spol'])));
-		if($sex!=''){
-			$datum_rodjenja=$_POST['datum_rodjenja'];
-			if($datum_rodjenja!=''){
-				$city=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['city_of_birth'])));
-				if($city!=''){
-					$country=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['country_of_birth'])));
-					if($country!=''){
-						$pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
-						if($pass!=''){
-							$slika=$_POST['slika'];
-							if($slika!=''){
-								$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
-								if($email!=''){
-								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,profilepicture,email) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$slika','$email')";
-mysqli_query($dbc,$query);
-mysqli_close($dbc);
-if($query){
-	header('Location:index.html');
-}else{
-	die('Error! Connot add informations!');
-}
+//provjeri dali je korisnik unesen u bazu, zatim unesi u tablicu dodjeli uloge defaultnu ulogu korisnika kao korisnik definiran u varijabli $korisnik
+          
+									
+									
+									if($query){
+										$insert_into_dodjela_uloga="INSERT INTO uloge(email,uloga) VALUES ('$email','$default_role')";
+									mysqli_query($dbc,$insert_into_dodjela_uloga);
+									mysqli_close($dbc);
+										header('Location:login.php');
+										
+									}else{
+										die('Error! Connot add informations!');
+										mysqli_close($dbc);
+									}
 								}
+
+
+								
 							}
 						}
 					}
@@ -272,96 +113,6 @@ if($query){
 			}
 		}
 	}
-}*/
-?>
-</section>
-</div>
-
-</body>
-</html>
--->
-
-
-<!--
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width-device-width,initial-scale=1">
-<title>Socialnet</title>
-<link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
-</head>
-
-<body>
-
-<div class="con">
-<nav>
-
-<a href="index.html" target="_blank">Back to main page</a>
-<a href="#" target="_blank">Login</a>
-<a href="privacy.php" target="_blank">Terms of privacy</a>
-
-</nav>
-</div>
-<div class="pravila">
-<section><h2>Register here</h2>
-<form action="registration.php" method="post">
-<label>First name:</label><br/>
-<input type="text" name="fname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Last name:</label><br/>
-<input type="text" name="lname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Sex:</label><br/>
-<input type="radio" name="spol" value="muski" required>M 
-<input type="radio" name="spol" value="zenski" required>Z 
-<br/>
-<label>Date of birth:</label><br/>
-<input type="date" name="datum_rodjenja" required/><br/>
-<label>City of birth:</label><br/>
-<input type="text" name="city_of_birth" maxlength="50" size="17" autocomplete="off" required/><br/>
-<label>Country of birth:</label><br/>
-<input type="text" name="country_of_birth" maxlength="50" size="17" autocomplete="off" required /><br/>
-<label>Pass:</label><br/>
-<input type="password" name="pass" maxlength="50" size="17" required autocomplete="off" /><br/>
-<label>Profile picture:</label><br/>
-<input type="file" name="slika" required><br/> 
-<br/>
-<input type="submit" value="Register"/>
-
-</form>
-<?php /*
-include('dbconn.php');
-$firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
-if($firstname!=''){
-	$lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
-	if($lastname!=''){
-		$sex=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['spol'])));
-		if($sex!=''){
-			$datum_rodjenja=$_POST['datum_rodjenja'];
-			if($datum_rodjenja!=''){
-				$city=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['city_of_birth'])));
-				if($city!=''){
-					$country=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['country_of_birth'])));
-					if($country!=''){
-						$pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
-						if($pass!=''){
-							$slika=$_POST['slika'];
-							if($slika!=''){
-								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,profilepicture) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$slika')";
-mysqli_query($dbc,$query);
-mysqli_close($dbc);
-if($query){
-	header('Location:index.html');
-}else{
-	die('Error! Connot add informations!');
-}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}*/
 ?>
 </section>
 </div>
@@ -370,57 +121,3 @@ if($query){
 
 </body>
 </html>
--->
-
-<!-- old version <!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width-device-width,initial-scale=1">
-<title>Socialnet</title>
-<link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
-</head>
-
-<body>
-
-<div class="con">
-<nav>
-
-<a href="index.html" target="_blank">Back to main page</a>
-<a href="#" target="_blank">Login</a>
-<a href="privacy.php" target="_blank">Terms of privacy</a>
-
-</nav>
-</div>
-<div class="pravila">
-<section><h2>Register here</h2>
-<form action="registration.php" method="post">
-<label>First name:</label><br/>
-<input type="text" name="fname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Last name:</label><br/>
-<input type="text" name="lname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Sex:</label><br/>
-<input type="radio" name="spol" value="muski" required>M 
-<input type="radio" name="spol" value="zenski" required>Z 
-<br/>
-<label>Date of birth:</label><br/>
-<input type="date" name="datum_rodjenja" required/><br/>
-<label>City of birth:</label><br/>
-<input type="text" name="city_of_birth" maxlength="50" size="17" autocomplete="off"/><br/>
-<label>Country of birth:</label><br/>
-<input type="text" name="country_of_birth" maxlength="50" size="17" autocomplete="off" /><br/>
-<label>Pass:</label><br/>
-<input type="password" name="pass" maxlength="50" size="17" required autocomplete="off" /><br/>
-<label>Profile picture:</label><br/>
-<input type="file" name="slika"><br/> 
-<br/>
-<input type="submit" value="Register"/>
-</form>
-</section>
-</div>
-
-
-
-</body>
-</html>
--->

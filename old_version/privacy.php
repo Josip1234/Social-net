@@ -1,3 +1,18 @@
+<?php 
+include "dbconn.php";
+session_start();
+if(!isset($_SESSION['username'])){
+	header('Location: registration.php');
+}else{
+	if($_SESSION['role']!="Administrator"){
+		header('Location: profile.php');
+	}else{
+		$_SESSION['login']=time();
+	}
+	
+}
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -19,7 +34,12 @@
 <a href="index.html" target="_blank">Back to main page</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
-<a href="dodjeli_uloge.php" target="_blank" rel="noopener noreferrer">User roles</a>
+<?php 
+
+if($_SESSION['role']=="Administrator"){
+echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
+}
+?>
 </nav>
 </div>
 <div class="pravila">

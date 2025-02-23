@@ -1,4 +1,7 @@
+<?php 
+include "dbconn.php";
 
+?>
 <!doctype html>
 <html>
 <head>
@@ -19,7 +22,12 @@
 <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
-<a href="dodjeli_uloge.php" target="_blank" rel="noopener noreferrer">User roles</a>
+<?php 
+
+if($_SESSION['role']=="Administrator"){
+echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
+}
+?>
 </nav>
 </div>
 <div class="pravila">
@@ -45,23 +53,28 @@ $pass=$_POST['pass'];
 if($pass!=''){
 $upit="SELECT id,email,pass FROM registration WHERE email='$username' AND pass='$pass'";
 $r=mysqli_query($dbc,$upit);
+
+$upit2="SELECT uloga FROM uloge WHERE email='$username'";
+$re=mysqli_query($dbc,$upit2);
+
+while($rezultat=mysqli_fetch_array($re)){
+        $role=$rezultat['uloga'];
+}
+
 while($res=mysqli_fetch_array($r)){
-        $upit2="SELECT id,email,uloga FROM uloge WHERE email='$username'";
-        $z=mysqli_query($dbc,$upit2);
-        while($rs=mysqli_fetch_array($z)){
-                $role="Administrator";
-                $uloga=$_POST['role'];
-                if($uloga==$role){
-                        $role=$_SESSION[$uloga];
+              if($username==$res['email']){
+                if($pass==$res['pass']){
+                        session_start();
+                        $_SESSION['id']=$res['id'];
+                        $_SESSION['username']=$res['email'];
+                        $_SESSION['pass']=$res['pass'];
+                        $_SESSION['role']=$role;
+                        $_SESSION['login']=time();
+                        header('Location:profile.php');
                 }
-        }
-        session_start();
-        $_SESSION['id']=$res['id'];
-        $_SESSION['username']=$res['email'];
-        $_SESSION['pass']=$res['pass'];
-        $_SESSION['login']=time();
-        $_SESSION['role']=$role;
-        header('Location:profile.php');
+              }
+        
+      
 	
 }
 }

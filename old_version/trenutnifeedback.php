@@ -1,23 +1,21 @@
 <?php 
+include "dbconn.php";
 session_start();
 if(!isset($_SESSION['username'])){
-	header('Location: login.php');
+	header('Location: registration.php');
 }else{
-	$_SESSION['login']=time();
+	if($_SESSION['role']!="Administrator"){
+		header('Location: profile.php');
+	}else{
+		$_SESSION['login']=time();
+	}
+	
 }
 
 ?>
 <!doctype html>
 <html>
 <head>
-	<?php
-//session_start();
-/*
-if(isset()){
-
-}
-*/
-?>
 <meta charset="utf-8">
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
@@ -38,24 +36,19 @@ if(isset()){
 <a href="trenutnifeedback.php" target="_blank" rel="noopener noreferrer">Feedbacks - only for admins</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
-<a href="dodjeli_uloge.php" target="_blank" rel="noopener noreferrer">User roles</a>
+<?php 
+
+if($_SESSION['role']=="Administrator"){
+echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
+}
+?>
 </nav>
 </div>
 <div class="pravila">
 <section><h2>Feedbackovi</h2>
 <table>
 <?php
-include('dbconn.php');
-/* stara verzija
-$query="SELECT firstname,lastname,suggestion FROM kvaliteta";
-$q=mysqli_query($dbc,$query);
-while($row=mysqli_fetch_array($q)){
-	echo"<tr>";
-	echo"<td>".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."</td>";
-	echo "</tr>";
-};
-mysqli_close($dbc);
-*/
+
 $query="SELECT * FROM kvaliteta";
 $q=mysqli_query($dbc,$query);
 while($row=mysqli_fetch_array($q)){
