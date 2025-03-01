@@ -78,13 +78,13 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User
         <label for="lname">Last name:</label> <br>
         <input type="text" name="lname1" id="lname" value="<?php echo $lname;  ?>"> <br>
         <label for="sex">Sex:</label><br>
-        <input type="text" name="sex1" id="sex" value="<?php echo $sex; ?>"> <br>
+        <input type="text" name="sex1" id="sex" value="<?php echo $sex; ?>" readonly> <br>
         <label for="dateofbirth">Date of birth:</label> <br>
-        <input type="date" name="dateofbirth1" id="dateofbirth" value="<?php echo $dtb; ?>"> <br>
+        <input type="date" name="dateofbirth1" id="dateofbirth" value="<?php echo $dtb; ?>" readonly> <br>
         <label for="cityofbirth">City of birth:</label> <br>
-        <input type="text" name="cityofbirth1" id="cityofbirth" value="<?php echo $ctb; ?>"> <br>
+        <input type="text" name="cityofbirth1" id="cityofbirth" value="<?php echo $ctb; ?>" readonly> <br>
         <label for="countryofbirth">Country of birth:</label><br>
-        <input type="text" name="countryofbirth1" id="countryofbirth" value="<?php echo $coub; ?>"> <br>
+        <input type="text" name="countryofbirth1" id="countryofbirth" value="<?php echo $coub; ?>" readonly> <br>
         <label for="pass">Pass:</label> <br>
         <input type="text" name="pass1" id="pass" value="<?php echo $sif; ?>"> <br>
         <label for="email">Email:</label><br>
@@ -92,56 +92,112 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User
         <label for="role">Role</label> <br>
         <input type="text" name="uloga1" id="uloga" value="<?php
         echo $u;
-        ?>"><br>
+        ?>" readonly><br>
         <input type="submit" value="Update">
     </form>
     <?php
     if($_SERVER['REQUEST_METHOD']=='POST'){
         $id1=$_SESSION['id'];
-        $firstname1=$_POST['firstname1'];
+        $firstname1=$_POST['fname1'];
         $lname1=$_POST['lname1'];
-        $sex1=$_POST['sex1'];
-        $datum1=$_POST['datum1'];
-        $cityofbirth1=$_POST['cityofbirth1'];
-        $countryofbirth1=$_POST['countryofbirth1'];
+        //$sex1=$_POST['sex1']; isto kao i za datum poseban mail ili request za promijenu spola
+        //$datum1=$_POST['datum1']; datum rođenja se neće ažurirati
+        //za ažuriranje datuma bi trebalo poslati email administratoru
+        //ili poseban dokument request ticket
+        //$cityofbirth1=$_POST['cityofbirth1'];
+        //$countryofbirth1=$_POST['countryofbirth1']; grad i zemlju isto nećemo ažurirati
         $pass1=$_POST['pass1'];
         $email1=$_POST['email1'];
-        $uloga1=$_POST['uloga1'];
+        //$uloga1=$_POST['uloga1']; za promijenu uloge isto slati zahtjev, čak i kao administrator
 
         if($firstname1!=$fname){
-            echo "Promijenjeno je ime.";
+            $q1="UPDATE registration SET fname='$firstname1' WHERE email='$e'";
+            $e1=mysqli_query($dbc,$q1);
+            if(!$e1){
+                echo "Greška pri ažuriranja imena.";
+             
+            } else{
+                echo "Promijenjeno je ime";
+                //za refresh podataka na stranici
+                header('Location: profile.php');
+            }
         }
         if($lname1!=$lname){
-            echo "Promijenjeno je prezime.";
+            $q2="UPDATE registration SET lname='$lname1' WHERE email='$e'";
+            $e2=mysqli_query($dbc,$q2);
+            if(!$e2){
+                echo "Greška pri ažuriranju prezimena.";
+             
+            } else{
+                echo "Promijenjeno je prezime.";
+                //za refresh podataka na stranici
+                header('Location: profile.php');
+            }
+            
         }
-        if($sex1!=$sex){
+        /*if($sex1!=$sex){
             echo "Promjenjen je spol.";
-        }
+        }*/ //kao i datum rođenja ne ažurirati
         //provjera datuma je bug 
         //možda treba i izbaciti s obzirom da je datum rođenja.
-        if($dateofbirth1!=$dtb){
+        /*if($dateofbirth1!=$dtb){
             echo "Promijenjen je datum.";
-        }
-        if($cityofbirth1!=$ctb){
-            echo "Promijenjen je grad.";
-        }
-        if($countryofbirth1!=$coub){
+        }*/ 
+        //datum nećemo mijenjati
+       /* if($cityofbirth1!=$ctb){
+            $q3="UPDATE registration SET cityofbirth='$cityofbirth1' WHERE email='$e'";
+            $e3=mysqli_query($dbc,$q3);
+            if(!$e3){
+                echo "Greška pri ažuriranju grada.";
+             
+            } else{
+                echo "Promijenjen je grad.";
+                //za refresh podataka na stranici
+                header('Location: profile.php');
+            }
+            
+        }*/
+        /*if($countryofbirth1!=$coub){
             echo "Promijenjena je država.";
-        }
+        }*/ //država rođenja isto kao i spol i datum i grad rođenja
         //kod promijene pifre i emaila potrebno se je odjaviti
         if($pass1!=$sif){
-            echo "Promijenjena je šifra.";
+            $q3="UPDATE registration SET pass='$pass1' WHERE email='$e'";
+            $e3=mysqli_query($dbc,$q3);
+            if(!$e3){
+                echo "Greška pri ažuriranju šifre.";
+             
+            } else{
+                echo "Promijenjena je šifra.";
+                //za refresh podataka na stranici
+                //kada se šifra promijenila trebamo se odjaviti
+                header('Location: logout.php');
+            }
+           
         }
         if($email1!=$e){
-            echo "Promijenjen je email.";
+            $q4="UPDATE registration SET email='$email1' WHERE email='$e'";
+            $e4=mysqli_query($dbc,$q4);
+            if(!$e4){
+                echo "Greška pri ažuriranju email adrese.";
+             
+            } else{
+                echo "Promijenjena je email adresa.";
+                //za refresh podataka na stranici
+                //kada se šifra promijenila trebamo se odjaviti
+                session_unset();
+                session_destroy();
+                header('Location: logout.php');
+            }
+            
         }
-        if($uloga1!=$u){
+        /*if($uloga1!=$u){
             echo "Promijenjena je uloga.";
-        }
+        }*///slanje requesta kao i kod datum , držae grada rođenja i spola bez obzira na ulogu
 
 
     }
- 
+    
     mysqli_close($dbc);
     ?>
     

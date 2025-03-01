@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2025 at 11:02 AM
+-- Generation Time: Mar 01, 2025 at 03:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `scn`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `imagehistory`
+--
+
+CREATE TABLE `imagehistory` (
+  `id` int(11) NOT NULL,
+  `useremail` varchar(255) NOT NULL,
+  `imageId` tinyint(4) NOT NULL,
+  `imageType` varchar(25) NOT NULL,
+  `imageData` longblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
 
 -- --------------------------------------------------------
 
@@ -148,6 +162,13 @@ INSERT INTO `uloge` (`id`, `email`, `uloga`) VALUES
 --
 
 --
+-- Indexes for table `imagehistory`
+--
+ALTER TABLE `imagehistory`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `uemail_in` (`useremail`);
+
+--
 -- Indexes for table `kvaliteta`
 --
 ALTER TABLE `kvaliteta`
@@ -187,6 +208,12 @@ ALTER TABLE `uloge`
 --
 
 --
+-- AUTO_INCREMENT for table `imagehistory`
+--
+ALTER TABLE `imagehistory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `kvaliteta`
 --
 ALTER TABLE `kvaliteta`
@@ -219,6 +246,12 @@ ALTER TABLE `uloge`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `imagehistory`
+--
+ALTER TABLE `imagehistory`
+  ADD CONSTRAINT `uemail_fk` FOREIGN KEY (`useremail`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `obavljeno`

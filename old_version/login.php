@@ -57,18 +57,36 @@ $r=mysqli_query($dbc,$upit);
 $upit2="SELECT uloga FROM uloge WHERE email='$username'";
 $re=mysqli_query($dbc,$upit2);
 
-while($rezultat=mysqli_fetch_array($re)){
-        $role=$rezultat['uloga'];
+
+//dohvati broj redova iz sql upita iz tablice uloge
+$row_cnt = $re->num_rows;
+
+    //update za user rolu ako ne postoji za trenutnog korisnika ako je broj redova nula trebao bi unjeti korisnikovo ime i ulogu u tablice uloga
+    if($row_cnt==0){
+        $quer="INSERT INTO uloge(email,uloga) VALUES ('$username','Korisnik')";
+        mysqli_query($dbc,$quer);
 }
 
+//traži ulogu korisnika u bazi 
+while($rezultat=mysqli_fetch_array($re)){
+        $role=$rezultat['uloga'];
+        
+}
+
+//ako korisnik postoji dodaj sesiju roles dobivenu iz tablice uloga
 while($res=mysqli_fetch_array($r)){
               if($username==$res['email']){
+
+
                 if($pass==$res['pass']){
+
                         session_start();
                         $_SESSION['id']=$res['id'];
                         $_SESSION['username']=$res['email'];
                         $_SESSION['pass']=$res['pass'];
+                    
                         $_SESSION['role']=$role;
+                     
                         $_SESSION['login']=time();
                         header('Location:profile.php');
                 }
