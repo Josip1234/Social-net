@@ -82,31 +82,28 @@ while($res=mysqli_fetch_array($result)){
             
 </select><br>
                 
-                <label for="selektiraj">Dostupne uloge:</label><br>
+                <label for="selektiraj">Selektiraj ulogu:</label><br>
                 <select name="selektiraj" id="selektiraj">
                     <option value="Administrator">Administrator</option>
                     <option value="Korisnik">Korisnik</option>
                     <option value="Banovani korisnik">Banovani korisnik</option>
                 </select> <br>
-               <label for="s">Uloga korisnika:</label>
-               <input type="text" name="s" id="s" value="Administrator, korisnik ili banovani korisnik" required>
                 <input type="submit" value="Dodjeli ulogu">
             </form>
             <?php 
-             $email=$_POST['user'];
-             $s=$_POST['s'];
-             if($email!=''){
-                if($s!=''){
-                    if($s=="Administrator"){}
-                    else if($s=="Korisnik"){}
-                    else if($s=="Banovani korisnik"){}
-                    else{
-                        die('Invalid role');
-                    };
-                }
-             }else{
-                die("Email missing");
-             }
+       $selected_user=$_POST['selectko'];
+       $selectd_role=$_POST['selektiraj'];
+       echo "Selected user: ".$selected_user." Selected role: ". $selectd_role ."<br>";
+       $insert_query="INSERT INTO uloge(email,uloga) VALUES ('$selected_user','$selectd_role')";
+
+
+       $execute_query=mysqli_query($dbc,$insert_query);
+       if($execute_query){
+        echo "Successfully changed role of user.";
+       } else{
+echo "User already has role.";
+       }
+       
 
 
 ?>
