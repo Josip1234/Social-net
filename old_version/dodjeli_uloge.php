@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use Dom\Mysql;
+
 $role="Administrator";
 session_start();
 if(!isset($_SESSION['username'])){
@@ -26,19 +29,25 @@ if(!isset($_SESSION['username'])){
 <nav>
     <a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
     <a href="login.php" target="_blank" rel="noopener noreferrer">Login</a>
-    <a href="trenutnifeedback.php" target="_blank" rel="noopener noreferrer">Feedbacks-only for admins</a>
+    <?php
+    if($_SESSION['role']=="Administrator"){
+echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Trenutni feedbackovi</a>";
+}
+?>
     <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
     <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
+    <a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
 </nav>
     </div>
     <div class="pravila">
 <section>
+    <h1>Lista korisnika koja nemaju ulogu u bazi podataka a nisu se ulogirali prvi put</h1>
     <?php 
 include("dbconn.php");
-$sql="SELECT id,fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email FROM registration";
+//selektiraj samo korisnike koje nemaju uloge u tablici uloga MOĆI ĆEMO KORISTITI I ZA SELECT U OPTION VALUES
+$sql="SELECT fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email FROM registration WHERE registration.email NOT IN (SELECT DISTINCT uloge.EMAIL FROM uloge)";
 $result=mysqli_query($dbc,$sql);
 while($res=mysqli_fetch_array($result)){
-    echo $res['id']."<br/>";
     echo $res['fname']."<br/>";
     echo $res['lname']."<br/>";
     echo $res['sex']."<br/>";
@@ -56,17 +65,30 @@ while($res=mysqli_fetch_array($result)){
 
     <div id="dodjela_uloga">
         <section>
-            <h2>Dodjeli ulogu:</h2>
+            <h2>Dodjeli uloge:</h2>
             <form action="dodjeli_uloge.php" method="post">
-                <label for="email">Email korisnika za kojeg želiš dodjeliti ulogu:</label> <br>
-                <input type="email" name="user" id="email" autocomplete="off" required> <br>
-                <label for="select">Dostupne uloge:</label><br>
+                <label for="selectko">Selektiraj korisnika za kojeg želiš dodjeliti ulogu:</label> <br>
+                <select name="selectko" id="selectko">
+                       <?php
+                    $exe_query=mysqli_query($dbc,$sql);
+                    while($exe=mysqli_fetch_array($exe_query)){
+                        echo "<option value='".$exe['email']."'>".$exe['email']."</option>";
+                    }
+                    ?>
+                        
+                
+
+
+            
+</select><br>
+                
+                <label for="selektiraj">Dostupne uloge:</label><br>
                 <select name="selektiraj" id="selektiraj">
                     <option value="Administrator">Administrator</option>
                     <option value="Korisnik">Korisnik</option>
                     <option value="Banovani korisnik">Banovani korisnik</option>
                 </select> <br>
-               <label for="user_role">Uloga korisnika:</label>
+               <label for="s">Uloga korisnika:</label>
                <input type="text" name="s" id="s" value="Administrator, korisnik ili banovani korisnik" required>
                 <input type="submit" value="Dodjeli ulogu">
             </form>

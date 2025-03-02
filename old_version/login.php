@@ -26,8 +26,13 @@ include "dbconn.php";
 
 if($_SESSION['role']=="Administrator"){
 echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
+} 
+
+if($_SESSION['role']=="Administrator"){
+echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Trenutni feedbackovi</a>";
 }
 ?>
+<a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
 </nav>
 </div>
 <div class="pravila">

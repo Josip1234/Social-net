@@ -28,8 +28,8 @@ if(!isset($_SESSION['username'])){
 <div class="con">
 <nav>
 
-<a href="#" target="_blank">Registation</a>
-<a href="#" target="_blank">Login</a>
+<a href="registration.php" target="_blank">Registation</a>
+<a href="login.php" target="_blank">Login</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
 <?php 
@@ -38,6 +38,7 @@ if($_SESSION['role']=="Administrator"){
 echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
 }
 ?>
+<a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
 </nav>
 </div>
 <div class="pravila">

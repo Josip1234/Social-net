@@ -1,16 +1,6 @@
 <?php 
 include "dbconn.php";
 session_start();
-if(!isset($_SESSION['username'])){
-	header('Location: registration.php');
-}else{
-	if($_SESSION['role']!="Administrator"){
-		header('Location: profile.php');
-	}else{
-		$_SESSION['login']=time();
-	}
-	
-}
 
 ?>
 <!doctype html>

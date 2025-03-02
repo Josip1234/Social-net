@@ -36,7 +36,13 @@ if($_SESSION['role']=="Administrator"){
 echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
 }
 ?>
-<a href="trenutnifeedback.php" target="_blank" rel="noopener noreferrer">Feedback</a>
+<?php 
+
+if($_SESSION['role']=="Administrator"){
+echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Trenutni feedbackovi</a>";
+}
+?>
+<a href="feedback.php" target="_blank" rel="noopener noreferrer">Feedback</a>
 </nav>
     </div>
     <div class="pravila">

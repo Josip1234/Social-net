@@ -29,11 +29,20 @@ if(!isset($_SESSION['username'])){
 
 <a href="index.html" target="_blank">Back to main page</a>
 <a href="privacy.php" target="_blank">Terms of privacy</a>
-<a href="trenutnifeedback.php" target="_blank" rel="noopener noreferrer">Feedbacks - only for admins</a>
+<?php 
+           if($_SESSION['role']=="Administrator"){
+			echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Feedbacks - only for admins</a>";
+			}
+
+?>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="index.html" target="_blank" rel="noopener noreferrer">Back to main page</a>
 <a href="privacy.php" target="_blank" rel="noopener noreferrer">Terms of privacy</a>
-<a href="trenutnifeedback.php" target="_blank" rel="noopener noreferrer">Feedbacks - only for admins</a>
+<?php 
+            if($_SESSION['role']=="Administrator"){
+echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
+}
+?>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
 <?php 
