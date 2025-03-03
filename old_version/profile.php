@@ -34,6 +34,7 @@ if(!isset($_SESSION['username'])){
 
 if($_SESSION['role']=="Administrator"){
 echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
+echo "<a href='update_roles_for_all.php' target='_blank' rel='noopener noreferrer'>Update all roles</a>";
 }
 ?>
 <?php 

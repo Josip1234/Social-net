@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2025 at 03:34 PM
+-- Generation Time: Mar 03, 2025 at 09:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -128,7 +128,7 @@ CREATE TABLE `registration` (
 --
 
 INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `profilepicture`, `email`) VALUES
-(1, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'WIntherthur', 'Švicarska', 'test1234', 0x732d6c31363030202836292e77656270, 'jbosnjak3@gmail.com'),
+(1, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'WIntherthur', 'Švicarska', 'test12341', 0x732d6c31363030202836292e77656270, 'jbosnjak3@gmail.com'),
 (2, 'Ivan', 'Ivić', 'm', '1984-08-11', 'Bern', 'Švicarska', 'mojdomješvicarska', 0x46425f494d475f313733363230303235313431332e6a7067, 'iivic@gmail.com'),
 (3, 'Petra', 'Martić', 'z', '1965-12-28', 'Zagren', 'Hrvatska', 'volimtenis', 0x57494e5f32303137303130335f31305f32375f34375f50726f2e6a7067, 'pmartic@hotmail.com'),
 (4, 'Marko', 'Markić', 'm', '1985-05-06', 'Požega', 'Hrvatska', 'volimhrvatsku', '', 'mmarkic15@gmail.com'),
@@ -155,7 +155,13 @@ CREATE TABLE `uloge` (
 
 INSERT INTO `uloge` (`id`, `email`, `uloga`) VALUES
 (1, 'jbosnjak3@gmail.com', 'Administrator'),
-(2, 'axrose@gmail.com', 'Korisnik');
+(2, 'axrose@gmail.com', 'Korisnik'),
+(4, 'iivic@gmail.com', 'Korisnik'),
+(5, 'pmartic@hotmail.com', 'Korisnik'),
+(6, 'mmarkic15@gmail.com', 'Korisnik'),
+(7, 'kojaideja@gmail.com', 'Banovani korisnik'),
+(9, 'bjohnson@gmail.com', 'Korisnik'),
+(11, 'bonjovi@gmail.com', 'Korisnik');
 
 --
 -- Indexes for dumped tables
@@ -241,7 +247,7 @@ ALTER TABLE `registration`
 -- AUTO_INCREMENT for table `uloge`
 --
 ALTER TABLE `uloge`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
