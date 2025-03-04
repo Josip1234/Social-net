@@ -22,6 +22,7 @@ include "dbconn.php";
 <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
+<a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
 <?php 
 
 if($_SESSION['role']=="Administrator"){

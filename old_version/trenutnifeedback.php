@@ -45,6 +45,7 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User
 ?>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
+<a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
 <?php 
 
 if($_SESSION['role']=="Administrator"){

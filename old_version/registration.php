@@ -40,6 +40,7 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User
 }
 ?>
 <a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
+<a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
 </nav>
 </div>
 <div class="pravila">

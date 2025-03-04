@@ -44,6 +44,7 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
 }
 ?>
 <a href="feedback.php" target="_blank" rel="noopener noreferrer">Feedback</a>
+<a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
 </nav>
     </div>
     <div class="pravila">
