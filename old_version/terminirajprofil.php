@@ -26,6 +26,17 @@ if(!isset($_SESSION['username'])){
 <nav>
     <a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
     <a href="login.php" target="_blank" rel="noopener noreferrer">Login</a>
+    <a href="privacy.php" target="_blank" rel="noopener noreferrer">Terms of privacy</a>
+    <?php
+    if($_SESSION['role']=="Administrator"){
+echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Trenutni feedbackovi</a>";
+echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>Set user roles</a>";
+}
+?>
+<a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
+<a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
+<a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
+<a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
 </nav>
     </div>
     <div class="pravila">

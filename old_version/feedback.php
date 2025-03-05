@@ -24,13 +24,17 @@ include("dbconn.php");
 <a href="login.php" target="_blank">Login</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
+<a href="privacy.php" target="_blank" rel="noopener noreferrer">Terms of privacy</a>
 <?php 
 
 if($_SESSION['role']=="Administrator"){
 echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
+echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Feedbacks</a>";
 }
 ?>
 <a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer"></a>
+<a href="feedback.php" target="_blank" rel="noopener noreferrer">Feedback</a>
+<a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
 </nav>
 </div>
 <div class="pravila">

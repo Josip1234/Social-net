@@ -37,10 +37,12 @@ if(!isset($_SESSION['username'])){
 
 if($_SESSION['role']=="Administrator"){
 echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
+echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Feedbacks</a>";
 }
 ?>
 <a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
 <a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
+<a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
 </nav>
 </div>
 <div class="pravila">

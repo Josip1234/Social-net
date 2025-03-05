@@ -38,6 +38,9 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
     <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
     <a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
     <a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
+    <a href="privacy.php" target="_blank" rel="noopener noreferrer">Terms of privacy</a>
+    <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
+    <a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
 </nav>
     </div>
     <div class="pravila">

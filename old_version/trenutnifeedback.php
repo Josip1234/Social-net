@@ -26,7 +26,8 @@ if(!isset($_SESSION['username'])){
 
 <div class="con">
 <nav>
-
+<a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
+<a href="login.php" target="_blank" rel="noopener noreferrer">Login</a>
 <a href="index.html" target="_blank">Back to main page</a>
 <a href="privacy.php" target="_blank">Terms of privacy</a>
 <?php 
@@ -46,6 +47,7 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
 <a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
+<a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
 <?php 
 
 if($_SESSION['role']=="Administrator"){

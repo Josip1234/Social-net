@@ -34,6 +34,7 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
 }
 ?>
 <a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
+<a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
 </nav>
 </div>
 <div class="pravila">
