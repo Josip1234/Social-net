@@ -48,6 +48,7 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
 <a href="privacy.php" target="_blank" rel="noopener noreferrer">Terms of privacy</a>
 <a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
 <a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
+<a href="update_profilne.php" target="_blank" rel="noopener noreferrer">Update profile picture</a>
 </nav>
     </div>
     <div class="pravila">

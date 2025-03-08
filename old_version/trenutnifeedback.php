@@ -48,6 +48,7 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
 <a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
 <a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
+<a href="update_profilne.php" target="_blank" rel="noopener noreferrer">Update profile picture</a>
 <?php 
 
 if($_SESSION['role']=="Administrator"){

@@ -37,6 +37,7 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>Set 
 <a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
 <a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
 <a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
+<a href="update_profilne.php" target="_blank" rel="noopener noreferrer">Update profile picture</a>
 </nav>
     </div>
     <div class="pravila">
