@@ -98,6 +98,8 @@ while($res=mysqli_fetch_array($result)){
                 <input type="submit" value="Dodjeli ulogu">
             </form>
             <?php 
+
+if($_SERVER['REQUEST_METHOD']=='POST'){
        $selected_user=$_POST['selectko'];
        $selectd_role=$_POST['selektiraj'];
        //echo "Selected user: ".$selected_user." Selected role: ". $selectd_role ."<br>";
@@ -110,11 +112,12 @@ while($res=mysqli_fetch_array($result)){
        $execute_query=mysqli_query($dbc,$update_query);
        if($execute_query){
         echo "Successfully updated role of user.";
+        echo "<script type='text/javascript'> document.location = 'update_roles_for_all.php'; </script>";
        } else{
 echo "Update failed.";
        }
        
-
+    }
 
 ?>
         </section>
