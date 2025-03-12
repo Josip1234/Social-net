@@ -36,21 +36,20 @@ function dodjeli_sesiju($username){
 function generiraj_random_serijski($veličina_serijskog_broja,$maksimalni_generirani_broj,$koliko_slova_generirati,$format_serijskog){
 $serial="";
 $slova=array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-$seed=sizeof($slova);
+$size=count($slova);
+
+for ($j=0; $j <$veličina_serijskog_broja ; $j++) { 
+	for ($i=0; $i <$size ; $i++) { 
+		//echo $slova[$i]."<br>";
+		echo " ".$slova[rand(0,$size-1)];
+		
+	}
+}
+
+
 
 //sve dok ne dođeš do kraja od veličine serijsog broja generiraj random brojeve i slova i dodaj sve to u varijablu serial i
 //vrati povratnu vrijednost
-
-for($i=0;$i<$veličina_serijskog_broja;$i++){
-	
-	//echo $i." Slovo: ".$slova[rand(0,$seed)]." Broj: ".rand(0,$maksimalni_generirani_broj)."<br>";
-	for($j=0;$j<$koliko_slova_generirati;$j++){
-		$slov=$slova[rand(0,$seed)];
-		
-			echo $i." Slovo: ".$slova[rand(0,$seed)]."<br>"; 
-         
-	}
-}
 
 return $serial;
 }
