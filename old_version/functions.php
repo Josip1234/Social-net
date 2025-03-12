@@ -31,12 +31,38 @@ function provjeri_dali_postoji_u_bazi($username,$password){
 function dodjeli_sesiju($username){
 	
 }
+
+
+function generiraj_random_serijski($veličina_serijskog_broja,$maksimalni_generirani_broj,$koliko_slova_generirati,$format_serijskog){
+$serial="";
+$slova=array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+$seed=sizeof($slova);
+
+//sve dok ne dođeš do kraja od veličine serijsog broja generiraj random brojeve i slova i dodaj sve to u varijablu serial i
+//vrati povratnu vrijednost
+
+for($i=0;$i<$veličina_serijskog_broja;$i++){
+	
+	//echo $i." Slovo: ".$slova[rand(0,$seed)]." Broj: ".rand(0,$maksimalni_generirani_broj)."<br>";
+	for($j=0;$j<$koliko_slova_generirati;$j++){
+		$slov=$slova[rand(0,$seed)];
+		
+			echo $i." Slovo: ".$slova[rand(0,$seed)]."<br>"; 
+         
+	}
+}
+
+return $serial;
+}
+
   //dodana tablica serial number koja će sadržavati random serijske brojeve iz koje će se vaditi podaci za serial image 
    //serial image u tablici table history je vezan za serial_numbers
    //za svaki klik na stranici prvo generiraj random number
    //zatim provjeri dali postoji u bazi 
    //ako ne postoji dodaj u bazu 
    //napiši u funkciju tako
+   //serijski broj mora sadržavati slova i brojeve
 
-
+$serijski=generiraj_random_serijski(2,1500,5,"Slovo broj");
+echo $serijski;
 ?>
