@@ -31,4 +31,12 @@ function provjeri_dali_postoji_u_bazi($username,$password){
 function dodjeli_sesiju($username){
 	
 }
+  //dodana tablica serial number koja će sadržavati random serijske brojeve iz koje će se vaditi podaci za serial image 
+   //serial image u tablici table history je vezan za serial_numbers
+   //za svaki klik na stranici prvo generiraj random number
+   //zatim provjeri dali postoji u bazi 
+   //ako ne postoji dodaj u bazu 
+   //napiši u funkciju tako
+
+
 ?>

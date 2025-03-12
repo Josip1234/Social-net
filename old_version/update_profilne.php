@@ -48,6 +48,14 @@ while($row=mysqli_fetch_array($res)){
     $id=$row['imageId'];
     $uimgtp=$ro['imageType'];
     $uimgdt=$ro['imageData'];
+    //spremi u privremenu bazu podatke o slikama sa nekim random unique id-om, i tablica kao u profilnoj
+   //ako korisnik potvrdi da ne želi spremiti onda izbriši iz baze
+   //dodana tablica serial number koja će sadržavati random serijske brojeve iz koje će se vaditi podaci za serial image 
+   //serial image u tablici table history je vezan za serial_numbers
+   //za svaki klik na stranici prvo generiraj random number
+   //zatim provjeri dali postoji u bazi 
+   //ako ne postoji dodaj u bazu 
+   //napiši u funkciju tako
 }
 
 ?>
@@ -65,13 +73,14 @@ if(count($_FILES)>0){
         $succ=mysqli_query($dbc,$sql);
         if($succ){
             mysqli_close($dbc);
-            //fix za redirection ako ne radi ipak 
-            //ob_start();
-           // header( "refresh:5;url=http://localhost/Social-net/old_version/profile.php" );
-            //echo 'You\'ll be redirected in about 5 secs. If not, click <a href="profile.php">here</a>.';
-           //ob_end_flush();
-           //pravi fix koji radi
-           echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
+        echo "Update successfull.";
+        echo "Do you want to save your previous profile picture?";
+        echo "<form action='save_profile_picture_history.php' method='post'>
+        <input name='odgovor' type='checkbox' value='yes'>Yes <br>
+        <input name='odgovor' type='checkbox' value='no'>No <br>
+        <input type='submit' value='Odgovor'>
+        </form>";
+           //echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
         }else{
             die('Cannot update profile picture.');
             mysqli_close($dbc);
