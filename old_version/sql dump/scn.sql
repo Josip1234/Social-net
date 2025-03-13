@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2025 at 06:50 PM
+-- Generation Time: Mar 13, 2025 at 10:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -163,8 +163,28 @@ INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityo
 
 CREATE TABLE `serial_numbers` (
   `id` int(11) NOT NULL,
-  `serial` varchar(255) NOT NULL
+  `serial` varchar(255) NOT NULL,
+  `used` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `serial_numbers`
+--
+
+INSERT INTO `serial_numbers` (`id`, `serial`, `used`) VALUES
+(5, 'N16Z191', 0),
+(6, 'T22N1O7R13D30L23U1V27R11E31I29O2', 0),
+(7, 'H35P39K97H21N64A1L44Y7F68U38E46R78K53', 0),
+(8, 'R24N32I13N4R2S12L22S20U21G31P31B21O0Z2O32X8P10L11V14R25T0K7D13C8X32W22B6A23', 0),
+(9, 'Y5F11U9', 0),
+(10, 'Y32E4Z8K3J21K3L11E4Y22Q12W8E6U31', 0),
+(11, 'F11E68Y20U67G2Q56I40O11L11W14S58G66O47W64U53G2Y7R45V41C4Q13D37V12E29C42D67', 0),
+(12, 'A0T1C0N0O1K1W1O0Y0N0V0J1O0', 0),
+(13, 'H9B40C57D23W78Z19Q6Z22D64R51M50J22V63K34C83U30', 0),
+(14, 'H48W38Y28H16X94E68W97N90Z58G91R56X44H26T76G3F3M34P16T30J29A1X91D74S5', 0),
+(15, 'U29N77H26D40E6B81B5X56', 0),
+(16, 'F91X116N4F144N61I60Z3E0O45V165K123C114', 0),
+(17, 'M11I9C8E0G17H8R7K12Q10D18O13A18K8F3N14M6E4V10H10D13B7H12S0U5', 0);
 
 -- --------------------------------------------------------
 
@@ -298,7 +318,7 @@ ALTER TABLE `registration`
 -- AUTO_INCREMENT for table `serial_numbers`
 --
 ALTER TABLE `serial_numbers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `uloge`

@@ -1,4 +1,5 @@
 <?php
+
 function provjeri_prethodnog($fname,$lname,$suggestions){
     include("dbconn.php");
 	$sql1="SELECT suggestion FROM kvaliteta WHERE id = id-1";
@@ -32,19 +33,87 @@ function dodjeli_sesiju($username){
 	
 }
 
-
+//za poboljšanje funkcije napraviti će se nova s kojom će se odabirati pozicija brojeva, dali prvo ide slovo ili broj
+//i maksimalno generiranje slov i brojki koje korisnik zadaje za početak je ovo zadovoljavajuće.
+//funkcija koja generira i vraća serijski broj
 function generiraj_random_serijski($veličina_serijskog,$maksimalni_generirani_broj){
 $serial="";
-$slova=array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-$size=count($slova);
+
 
 for ($j=0; $j <$veličina_serijskog; $j++) { 
-	$serial=$serial.$slova[rand(0,$size-1)];
-	$serial=$serial.rand(0,$maksimalni_generirani_broj);
+	$lt=generiraj_random_slovo();
+	$nm=generiraj_random_broj(0,$maksimalni_generirani_broj);
+	$serial=$serial.$lt.$nm;
 }
 
 
 return $serial;
+}
+
+//generiraj random slovo kao seed se koristi veličina engleske abecede
+function generiraj_random_slovo(){
+	$slova=array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+	$size=count($slova);
+	$slovo=$slova[rand(0,$size-1)];
+	return $slovo;
+}
+//funckija za generiranje random broja minimum i maksimum raspon je potrebno definirati
+function generiraj_random_broj($min,$max){
+	$broj=rand($min,$max);
+	return $broj;
+}
+//funkcija sprema serijski broj u bazu vraća true ako je spremljeno false ako nije
+function spremi_serijski_u_bazu($serial_num){
+	
+	$exists=false;
+	$used=0;
+	$saved=false;
+    $exists=provjeri_dali_postoji_serijski_u_bazi($serial_num);
+
+	if($exists==1){
+         echo "Serijski već postoji u bazi.";
+	}else if($exists==0){
+	
+		include("dbconn.php");
+		
+		$sql="INSERT INTO serial_numbers(serial,used) VALUES ('$serial_num','$used')";
+		
+		$query=mysqli_query($dbc,$sql);
+		//ovdje se serijski izgubi
+		echo $serial_num;
+
+		if($query){
+		
+			$saved=true;
+			mysqli_close($dbc);
+		}else{
+			
+			$saved=false;
+			mysqli_close($dbc);
+		}
+		
+	}
+
+	return $saved;
+}
+//funkcija provjerava dali postoji serijski u bazi ako postoji vrati true ako ne vrati false
+function provjeri_dali_postoji_serijski_u_bazi($serial){
+	include("dbconn.php");
+	$exists=0;
+	$sql="SELECT serial FROM serial_numbers WHERE serial='$serial'";
+	$ex_query=mysqli_query($dbc,$sql);
+	$numrows=$ex_query->num_rows;
+	
+	if($numrows==0){
+		mysqli_close($dbc);
+		$exists=0;
+		
+	}else{
+	
+		$exists=1;
+		mysqli_close($dbc);
+	}
+return $exists;
 }
 
   //dodana tablica serial number koja će sadržavati random serijske brojeve iz koje će se vaditi podaci za serial image 
@@ -54,7 +123,9 @@ return $serial;
    //ako ne postoji dodaj u bazu 
    //napiši u funkciju tako
    //serijski broj mora sadržavati slova i brojeve
-
-$serijski=generiraj_random_serijski(2,1500);
+/*
+$serijski=generiraj_random_serijski(rand(0,30),rand(0,255));
+spremi_serijski_u_bazu($serijski);
+*/
 
 ?>
