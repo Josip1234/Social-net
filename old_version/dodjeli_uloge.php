@@ -1,7 +1,5 @@
 <?php
 
-use Dom\Mysql;
-
 $role="Administrator";
 session_start();
 if(!isset($_SESSION['username'])){
@@ -23,8 +21,9 @@ if(!isset($_SESSION['username'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet</title>
     <link rel="stylesheet" href="css/stil.css" type="text/css" media="all">
+    <script src="js/social.js"></script>
 </head>
-<body>
+<body onmouseover="prikazi_datum()">
     <div class="con">
 <nav>
     <a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
@@ -43,6 +42,7 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>Set 
     <a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
     <a href="update_profilne.php" target="_blank" rel="noopener noreferrer">Update profile picture</a>
 </nav>
+
     </div>
     <div class="pravila">
 <section>
@@ -96,9 +96,10 @@ while($res=mysqli_fetch_array($result)){
                 <input type="submit" value="Dodjeli ulogu">
             </form>
             <?php 
+            if($_SERVER['REQUEST_METHOD']=='POST'){
        $selected_user=$_POST['selectko'];
        $selectd_role=$_POST['selektiraj'];
-       echo "Selected user: ".$selected_user." Selected role: ". $selectd_role ."<br>";
+      
        $insert_query="INSERT INTO uloge(email,uloga) VALUES ('$selected_user','$selectd_role')";
 
 
@@ -106,14 +107,17 @@ while($res=mysqli_fetch_array($result)){
        if($execute_query){
         echo "Successfully changed role of user.";
        } else{
-echo "User already has role.";
+            echo "User already has role.";
        }
-       
-
+    
+    }
 
 ?>
         </section>
 
     </div>
+    <footer>
+    <p id="datum"></p>
+    </footer>
 </body>
 </html>

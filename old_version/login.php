@@ -9,9 +9,10 @@ include "dbconn.php";
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/social.js"></script>
 </head>
 
-<body>
+<body onmouseover="prikazi_datum()">
 
 <div class="con">
 <nav>
@@ -112,6 +113,8 @@ mysqli_close($dbc);
 </div>
 
 
-
+<footer>
+        <p id="datum"></p>
+</footer>
 </body>
 </html>

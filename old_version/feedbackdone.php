@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet</title>
     <link rel="stylesheet" href="css/stil.css" type="text/css" media="all">
+    <script src="js/social.js"></script>
 </head>
-<body>
+<body onmouseover="prikazi_datum()">
     <div class="pravila">
     <?php
     include("dbconn.php");
@@ -25,6 +26,8 @@ if(isset($_POST['obavljeno']) && $_POST['obavljeno'] == 'Yes'){
 }
     ?>
     </div>
-
+    <footer>
+	<p id="datum"></p>
+</footer>
 </body>
 </html>

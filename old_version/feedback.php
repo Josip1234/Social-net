@@ -13,10 +13,10 @@ include("dbconn.php");
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/social.js"></script>
 </head>
 
-<body>
-
+<body onmouseover="prikazi_datum()">
 <div class="con">
 <nav>
 
@@ -52,6 +52,7 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>F
 <input type="submit" value="Send suggestion"/>
 </form>
 <?php
+if($_SERVER['REQUEST_METHOD']=='POST'){
 $fname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
 //riješen problem dodavanja praznih redaka za fname, lname i suggestions
 if($fname!=''){
@@ -75,11 +76,15 @@ if($query){
 }else{
 	die("Can 't add empty informations");
 }
+}
 ?>
 </section>
+
 </div>
 
-
+<footer>
+    <p id="datum"></p>
+    </footer>
 
 </body>
 </html>

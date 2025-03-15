@@ -15,8 +15,9 @@ if($odgovor=="yes"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet</title>
     <link rel="stylesheet" href="css/stil.css" type="text/css" media="all">
+    <script src="js/social.js"></script>
 </head>
-<body>
+<body onmouseover="prikazi_datum()">
     <div class="con">
         <?php 
          
@@ -33,6 +34,8 @@ if($odgovor=="yes"){
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut minima, sunt eaque dolor ad nemo aut accusantium repudiandae adipisci fugit quaerat voluptate quisquam repellat distinctio, dolorem corporis ducimus veritatis laboriosam?</p>
 </section>
     </div>
-    
+    <footer>
+	<p id="datum"></p>
+</footer>
 </body>
 </html>

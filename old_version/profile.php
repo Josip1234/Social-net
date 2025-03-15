@@ -23,8 +23,9 @@ if(!isset($_SESSION['username'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet</title>
     <link rel="stylesheet" href="css/stil.css" type="text/css" media="all">
+    <script src="js/social.js"></script>
 </head>
-<body>
+<body onmouseover="prikazi_datum()">
     <div class="con">
 <nav>
     <a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
@@ -215,5 +216,8 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
     
 </section>
     </div>
+    <footer>
+        <div id="datum"></div>
+    </footer>
 </body>
 </html>

@@ -21,9 +21,10 @@ if(!isset($_SESSION['username'])){
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/social.js"></script>
 </head>
 
-<body>
+<body onmouseover="prikazi_datum()">
 
 <div class="con">
 <nav>
@@ -71,7 +72,9 @@ mysqli_close($dbc);
 </form>
 </div>
 
-
+<footer>
+	<div id="datum"></div>
+</footer>
 
 </body>
 </html>

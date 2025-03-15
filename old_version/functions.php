@@ -80,7 +80,7 @@ function spremi_serijski_u_bazu($serial_num){
 		
 		$query=mysqli_query($dbc,$sql);
 		//ovdje se serijski izgubi
-		echo $serial_num;
+		//echo $serial_num;
 
 		if($query){
 		

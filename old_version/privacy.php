@@ -11,9 +11,10 @@ session_start();
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet-privacy</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/social.js"></script>
 </head>
 
-<body>
+<body onmouseover="prikazi_datum()">
 
 <div class="con">
 <nav>
@@ -60,6 +61,8 @@ If you collect more than 50 negative points, you will be banned for 1 day. </li>
 </div>
 
 
-
+<footer>
+    <p id="datum"></p>
+</footer>
 </body>
 </html>

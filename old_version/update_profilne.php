@@ -1,5 +1,9 @@
 <?php 
 include "dbconn.php";
+include "functions.php";
+//generiraj serijski prilikom svakog posjeta ovoj stranici
+$serijski=generiraj_random_serijski(rand(0,30),rand(0,255));
+spremi_serijski_u_bazu($serijski);
 session_start();
 if(!isset($_SESSION['username'])){
 	header('Location: registration.php');
@@ -18,8 +22,9 @@ if(!isset($_SESSION['username'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet</title>
     <link rel="stylesheet" href="css/stil.css" type="text/css" media="all">
+    <script src="js/social.js"></script>
 </head>
-<body>
+<body onmouseover="prikazi_datum()">
     <div class="con">
         <nav>
             <a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
@@ -92,5 +97,8 @@ if(count($_FILES)>0){
 
 ?>
     </div>
+    <footer>
+	<p id="datum"></p>
+</footer>
 </body>
 </html>
