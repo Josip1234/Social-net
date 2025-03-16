@@ -132,7 +132,7 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
             } else{
                 echo "Promijenjeno je ime";
                 //za refresh podataka na stranici
-                header('Location: profile.php');
+                 echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
             }
         }
         if($lname1!=$lname){
@@ -144,7 +144,7 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
             } else{
                 echo "Promijenjeno je prezime.";
                 //za refresh podataka na stranici
-                header('Location: profile.php');
+                 echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
             }
             
         }
@@ -166,7 +166,7 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
             } else{
                 echo "Promijenjen je grad.";
                 //za refresh podataka na stranici
-                header('Location: profile.php');
+                 echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
             }
             
         }*/
@@ -184,7 +184,7 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
                 echo "Promijenjena je šifra.";
                 //za refresh podataka na stranici
                 //kada se šifra promijenila trebamo se odjaviti
-                header('Location: logout.php');
+                 echo "<script type='text/javascript'> document.location = 'logout.php'; </script>";
             }
            
         }
@@ -200,7 +200,7 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>T
                 //kada se šifra promijenila trebamo se odjaviti
                 session_unset();
                 session_destroy();
-                header('Location: logout.php');
+                 echo "<script type='text/javascript'> document.location = 'logout.php'; </script>";
             }
             
         }

@@ -67,7 +67,7 @@ mysqli_query($dbc,$query);
 mysqli_close($dbc);
 include("functions.php");
 if($query){
-	header('Location:index.html');
+	echo "<script type='text/javascript'> document.location = 'index.html'; </script>";
 }else{
 	die("Error! Information not inserted!");
 }

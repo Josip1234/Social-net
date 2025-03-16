@@ -85,6 +85,7 @@ if($numrows>1){
     if($o){
         echo "Profile deleted"."<a href='index.html'>Back to homepage</a>";
         mysqli_close($dbc);
+        echo "<script type='text/javascript'> document.location = 'index.html'; </script>";
     } else{
         echo "Delete failed.";
         mysqli_close($dbc);
