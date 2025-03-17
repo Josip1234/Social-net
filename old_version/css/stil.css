@@ -22,11 +22,11 @@ nav ,a:hover,a:active{
 
 
 .pravila {
-	padding:30%;
-	margin-bottom: 200%;
+
 	text-align:justify;
 	font-size:20px;
 	position: relative;
+
 }
 nav{
 	border: 2px solid red;
@@ -65,5 +65,5 @@ footer{
 	text-align: center;
 }
 #cal{
-	width: 10%;
+width: 25%;
 }
