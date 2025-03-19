@@ -6,8 +6,13 @@
     <title>Socialnet</title>
     <link rel="stylesheet" href="css/stil.css" type="text/css" media="all">
     <script src="js/social.js"></script>
+    <script src="js/calendar.js"></script>
 </head>
-<body onmouseover="prikazi_datum()">
+<body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()">
+<section id="cal" class="cl">
+        <h2>Calendar for March 2025</h2>
+        <p id="calendar"></p>
+    </section>
     <div class="pravila">
     <?php
     include("dbconn.php");

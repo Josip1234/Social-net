@@ -22,9 +22,10 @@ if(!isset($_SESSION['username'])){
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
 <script src="js/social.js"></script>
+<script src="js/calendar.js"></script>
 </head>
 
-<body onmouseover="prikazi_datum()">
+<body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()">
 
 <div class="con">
 <nav>
@@ -47,6 +48,10 @@ echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>F
 <a href="update_profilne.php" target="_blank" rel="noopener noreferrer">Update profile picture</a>
 </nav>
 </div>
+<section id="cal" class="cl">
+        <h2>Calendar for March 2025</h2>
+        <p id="calendar"></p>
+    </section>
 <div class="pravila">
 <section><h2>Register here</h2>
 <form action="registration.php" method="post">

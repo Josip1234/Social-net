@@ -16,8 +16,9 @@ if($odgovor=="yes"){
     <title>Socialnet</title>
     <link rel="stylesheet" href="css/stil.css" type="text/css" media="all">
     <script src="js/social.js"></script>
+    <script src="js/calendar.js"></script>
 </head>
-<body onmouseover="prikazi_datum()">
+<body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()">
     <div class="con">
         <?php 
          
@@ -28,6 +29,10 @@ if($odgovor=="yes"){
     <a href="login.php" target="_blank" rel="noopener noreferrer">Login</a>
 </nav>
     </div>
+    <section id="cal" class="cl">
+        <h2>Calendar for March 2025</h2>
+        <p id="calendar"></p>
+    </section>
     <div class="pravila">
 <section>
     <h2>You can save your profile history here.</h2>
