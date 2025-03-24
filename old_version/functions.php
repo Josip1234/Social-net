@@ -128,4 +128,20 @@ $serijski=generiraj_random_serijski(rand(0,30),rand(0,255));
 spremi_serijski_u_bazu($serijski);
 */
 
+function provjeri_postoji_li_već_slika_profila_u_bazi($email){
+	$postoji=true;
+	include "dbconn.php";
+	$sql="SELECT email FROM profilna WHERE email='$email'";
+	$query=mysqli_query($dbc,$sql);
+	$numrows=$query->num_rows;
+	if($numrows==1){
+		$postoji=true;
+		mysqli_close($dbc);
+	}else if($numrows==0){
+		$postoji=false;
+		mysqli_close($dbc);
+	}
+	return $postoji;
+}
+
 ?>

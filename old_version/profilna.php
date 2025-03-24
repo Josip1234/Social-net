@@ -1,5 +1,6 @@
 <?php 
 include "dbconn.php";
+include "functions.php";
 session_start();
 if(!isset($_SESSION['username'])){
 	header('Location: registration.php');
@@ -12,7 +13,10 @@ if(!isset($_SESSION['username'])){
 	}
 	
 }
-
+$dali_postoji_profilna_već_u_bazi=provjeri_postoji_li_već_slika_profila_u_bazi($_SESSION['username']);
+if($dali_postoji_profilna_već_u_bazi==1){
+    echo "<script type='text/javascript'> document.location = 'update_profilne.php'; </script>";
+}
 ?>
 <!doctype html>
 <html>
@@ -63,7 +67,12 @@ $imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
 $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
 $sql = "INSERT INTO profilna(imageType ,imageData, email)
 VALUES('{$imageProperties['mime']}', '{$imgData}','$username')";
-mysqli_query($dbc,$sql);
+$query=mysqli_query($dbc,$sql);
+if($query){
+	echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
+}else{
+	echo "Failed to insert profile picture into database.";
+}
 mysqli_close($dbc);
 
 
