@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2025 at 08:48 PM
+-- Generation Time: Mar 25, 2025 at 09:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,6 +34,20 @@ CREATE TABLE `imagehistory` (
   `imageType` varchar(25) NOT NULL,
   `imageData` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `komentari`
+--
+
+CREATE TABLE `komentari` (
+  `id` int(11) NOT NULL,
+  `broj_teme` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NOT NULL,
+  `datum_i_vrijeme_komentara` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `komentar` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -209,6 +223,19 @@ INSERT INTO `serial_numbers` (`id`, `serial`, `used`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teme`
+--
+
+CREATE TABLE `teme` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `broj_teme` varchar(255) NOT NULL,
+  `naziv_teme` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `uloge`
 --
 
@@ -246,6 +273,14 @@ INSERT INTO `uloge` (`id`, `email`, `uloga`) VALUES
 ALTER TABLE `imagehistory`
   ADD PRIMARY KEY (`id`),
   ADD KEY `uemail_in` (`useremail`);
+
+--
+-- Indexes for table `komentari`
+--
+ALTER TABLE `komentari`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `br_tem` (`broj_teme`),
+  ADD KEY `email_in` (`email`);
 
 --
 -- Indexes for table `kvaliteta`
@@ -290,6 +325,15 @@ ALTER TABLE `serial_numbers`
   ADD UNIQUE KEY `serial` (`serial`);
 
 --
+-- Indexes for table `teme`
+--
+ALTER TABLE `teme`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `broj_teme` (`broj_teme`),
+  ADD UNIQUE KEY `naziv_teme` (`naziv_teme`),
+  ADD KEY `email_ind` (`email`);
+
+--
 -- Indexes for table `uloge`
 --
 ALTER TABLE `uloge`
@@ -305,6 +349,12 @@ ALTER TABLE `uloge`
 -- AUTO_INCREMENT for table `imagehistory`
 --
 ALTER TABLE `imagehistory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `komentari`
+--
+ALTER TABLE `komentari`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -344,6 +394,12 @@ ALTER TABLE `serial_numbers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
+-- AUTO_INCREMENT for table `teme`
+--
+ALTER TABLE `teme`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `uloge`
 --
 ALTER TABLE `uloge`
@@ -358,6 +414,13 @@ ALTER TABLE `uloge`
 --
 ALTER TABLE `imagehistory`
   ADD CONSTRAINT `uemail_fk` FOREIGN KEY (`useremail`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `komentari`
+--
+ALTER TABLE `komentari`
+  ADD CONSTRAINT `brojteme_fk` FOREIGN KEY (`broj_teme`) REFERENCES `teme` (`broj_teme`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `email_fk` FOREIGN KEY (`email`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `obavljeno`
@@ -377,6 +440,12 @@ ALTER TABLE `profile_image_history`
 --
 ALTER TABLE `profilna`
   ADD CONSTRAINT `username_fk` FOREIGN KEY (`email`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `teme`
+--
+ALTER TABLE `teme`
+  ADD CONSTRAINT `teme_email_fk` FOREIGN KEY (`email`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `uloge`
