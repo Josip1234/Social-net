@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2025 at 09:55 PM
+-- Generation Time: Mar 26, 2025 at 09:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -86,15 +86,10 @@ INSERT INTO `kvaliteta` (`id`, `firstname`, `lastname`, `suggestion`) VALUES
 CREATE TABLE `obavljeno` (
   `id` int(11) NOT NULL,
   `obavljeno` tinyint(1) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `id_feedbacka` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
-
---
--- Dumping data for table `obavljeno`
---
-
-INSERT INTO `obavljeno` (`id`, `obavljeno`, `user_id`) VALUES
-(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -293,7 +288,9 @@ ALTER TABLE `kvaliteta`
 --
 ALTER TABLE `obavljeno`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD UNIQUE KEY `id_feedbacka` (`id_feedbacka`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `email` (`email`);
 
 --
 -- Indexes for table `profile_image_history`
@@ -426,6 +423,8 @@ ALTER TABLE `komentari`
 -- Constraints for table `obavljeno`
 --
 ALTER TABLE `obavljeno`
+  ADD CONSTRAINT `em_fk` FOREIGN KEY (`email`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `feed_id` FOREIGN KEY (`id_feedbacka`) REFERENCES `kvaliteta` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_id_done` FOREIGN KEY (`user_id`) REFERENCES `registration` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
