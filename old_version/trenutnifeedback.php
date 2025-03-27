@@ -65,21 +65,32 @@ echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User
     </section>
 <div class="pravila">
 <section><h2>Feedbackovi</h2>
-<table>
+<!--<table>
 <?php
 
-$query="SELECT * FROM kvaliteta";
-$q=mysqli_query($dbc,$query);
-while($row=mysqli_fetch_array($q)){
-	echo"<tr>";
+//$query="SELECT * FROM kvaliteta";
+//$q=mysqli_query($dbc,$query);
+//while($row=mysqli_fetch_array($q)){
+//	echo"<tr>";
 	/**echo"<td>".$row['id']."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/> <input type='checkbox' name='obavljeno' value='Obavljeno?'/><label>Obavljeno?</label></td>";*/
-	echo"<td>".$row['id']."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/> <form action='feedbackdone.php' method='post'><input type='checkbox' name='obavljeno' value='Yes'/><label>Obavljeno?</label><input type='submit' name='formSubmit' value='Posalji'></form></td>";
-	echo "</tr>";
-};
-$obavljeno=$_POST['obavljeno'];
-mysqli_close($dbc);
+//	echo"<td>".$row['id']."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/> <form action='feedbackdone.php' method='post'><input type='checkbox' name='obavljeno' value='Yes'/><label>Obavljeno?</label><input type='submit' name='formSubmit' value='Posalji'></form></td>";
+//	echo "</tr>";
+//};
+//$obavljeno=$_POST['obavljeno'];
+//mysqli_close($dbc);
 ?>
-</table>
+</table>-->
+<form action="trenutnifeedback.php" method="post"><label for="selectcom">Select comment</label><br>
+<select name="select" id="selectcom">
+	<?php $query="SELECT id, suggestion FROM kvaliteta";
+	$exe_query=mysqli_query($dbc,$query); 
+	while($res=mysqli_fetch_array($exe_query)){
+		echo "<option value='".$res['id']."'>".$res['suggestion']."</option>";
+	}
+	?>
+</select>
+<input type="submit" value="Insert" name="insert">
+</form>
 </section>
 </div>
 
