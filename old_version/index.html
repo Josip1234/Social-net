@@ -5,33 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet</title>
     <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="css/dropdown.css">
     <script src="js/social.js"></script>
     <script src="js/calendar.js"></script>
+    <script src="js/dropdownmenu.js"></script>
 </head>
-<!DOCTYPE html>
 
 <body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()">
     <div class="con">
-        <nav>
-
-            <a href="registration.php" target="_blank">Registation</a>
+        <nav>  
+<div class="dropdown">
+    <button class="dropbtn">Profil</button>
+    <div class="dropdown-content">
+        <a href="registration.php">Registation</a>
+        <a href="profile.php">Profile of user</a>
+        <a href="terminirajprofil.php">Delete profile</a>
+<a href="profilna.php" style="font-size: 10px;">Add profile picture</a>
+<a href="update_profilne.php" style="font-size: 10px;">Update profile picture</a>
 <a href="login.php" target="_blank">Login</a>
-<a href="privacy.php" target="_blank">Terms of privacy</a>
-<a href="feedback.php" target="_blank">Add feedback</a>
-<a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
-<a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
-<a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
-<a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
-<a href="update_profilne.php" target="_blank" rel="noopener noreferrer">Update profile picture</a>
+<a href="logout.php" target="_blank">Logout</a>
+
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">Privacy, feedbacks</button>
+    <div class="dropdown-content">
+        <a href="privacy.php" target="_blank" style="font-size: 12px;">Terms of privacy</a>
+         
+        <a href="feedback.php" target="_blank">Add feedback</a>
+
+    </div>
+  </div>
+
+
+
+
 </nav>
 
     </div>
+
+
 
     <section id="cal" class="cl">
         <h2>Calendar for March 2025</h2>
         <p id="calendar"></p>
     </section>
-    <section id="cal" class="cl"><h2>Privacy rules</h2>
+    <section class="cl"><h2>Privacy rules</h2>
         <p>Your data will be protected. Any unauthorised use of your data from our employees will be prosecuted by the law of our country. Do not use passwords if you are already use in your other emails, or site logins. Always use password not less than 8 bites and use at least 1 number and 1 small and 1 big letter. To accept our rules of privacy, visit <a id="privatnost" href="privacy.php" target="_blank">privacy </a> and check if you are agree. Other information will be here also.</p>
     </section>
 
@@ -45,6 +65,8 @@
  
     
 <footer>
+
+    
     <p id="datum"></p>
 </footer>
 </body>

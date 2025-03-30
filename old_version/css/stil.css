@@ -1,5 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
+
 body{background-color:orange;border: groove; border-radius: 30px;}
 nav a:link,a:visited{
 	border: 2px solid red;
@@ -32,7 +33,6 @@ nav{
 	border: 2px solid red;
     border-radius: 30px;
 	border-color:orange;
-	
 	
 }
 
@@ -67,3 +67,55 @@ footer{
 #cal{
 width: 25%;
 }
+
+#f1{
+	margin: 0;
+	padding: 0;
+	z-index: 30;
+}
+#f1 li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+	font: bold 11px arial;
+}
+#fi li a{
+	display: block;
+	margin: 0 1px 0 0;
+	padding: 4px 10px;
+	width: 60px;
+	background: #5970B2;
+	color: #FFF;
+	text-align: center;
+	text-decoration: none;
+}
+#f1 li a:hover{
+background: #49A3FF;
+}
+#f1 div{
+	position: absolute;
+	visibility: hidden;
+	margin: 0;
+	padding: 0;
+	background: #EAEBD8;
+	border: 1px solid #5970B2;
+}
+#f1 div a{
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 5px 10px;
+	width: auto;
+	white-space: nowrap;
+	text-align: left;
+	text-decoration: none;
+	background: #cccccc;
+	color: #2875DE;
+	font: 11px arial;
+}
+#f1 div a:hover{
+	background: #49A3FF;
+	color: #FFF;
+}
+
