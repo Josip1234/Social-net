@@ -48,3 +48,8 @@ nav{
     height: 16%;
     width: 16%;
 }
+#randslike #s img{
+    padding: 6px;
+    width: 200px;
+    height: 200px;
+}
