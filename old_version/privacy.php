@@ -11,42 +11,66 @@ session_start();
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet-privacy</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="css/dropdown.css">
 <script src="js/social.js"></script>
 <script src="js/calendar.js"></script>
+<script src="js/randomslike.js"></script>
+<script src="js/dropdownmenu.js"></script>
 </head>
 
-<body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()">
+<body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()" onload="slike()">
+
 
 <div class="con">
 <nav>
-
-<a href="registration.php" target="_blank">Registration</a>
+<div class="dropdown">
+    <button class="dropbtn">Profil</button>
+    <div class="dropdown-content">
+        <a href="registration.php">Registation</a>
+        <a href="profile.php">Profile of user</a>
+        <a href="terminirajprofil.php">Delete profile</a>
+<a href="profilna.php" style="font-size: 10px;">Add profile picture</a>
+<a href="update_profilne.php" style="font-size: 10px;">Update profile picture</a>
 <a href="login.php" target="_blank">Login</a>
-<a href="privacy.php" target="_blank">Terms of privacy</a>
-<?php 
+<a href="logout.php" target="_blank">Logout</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Privacy, feedbacks</button>
+    <div class="dropdown-content">
+        <a href="privacy.php" target="_blank" style="font-size: 12px;">Terms of privacy</a>
+         
+        <a href="feedback.php" target="_blank">Add feedback</a>
+        <?php 
+        if($_SESSION['role']=="Administrator"){
+            echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer' style='font-size: 10px;'>Trenutni feedbackovi</a>";
+        };?>
+    </div>
+  </div>
+    <?php
+    if($_SESSION['role']=="Administrator"){
+        echo "<div class='dropdown'>";
+        echo "<button class='dropbtn'>Admin options</button>";
+        echo "<div class='dropdown-content'>";
+        echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>Set user roles</a>";
+            
+        echo "</div>";
+     echo "</div>";
 
-if($_SESSION['role']=="Administrator"){
-echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Trenutni feedbackovi</a>";
 }
 ?>
+
 <a href="index.html" target="_blank">Back to main page</a>
-<a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
-<a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
-<a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
-<a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
-<?php 
 
-if($_SESSION['role']=="Administrator"){
-echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
-}
-?>
-<a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
-<a href="update_profilne.php" target="_blank" rel="noopener noreferrer">Update profile picture</a>
 </nav>
 </div>
 <section id="cal" class="cl">
         <h2>Calendar for March 2025</h2>
         <p id="calendar"></p>
+    </section>
+    <section id="randslike">
+<h2>Random slike</h2>
+<p id="s"></p>
     </section>
 <div class="pravila">
 <section>
