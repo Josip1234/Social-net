@@ -69,7 +69,7 @@ if(!isset($_SESSION['username'])){
 }
 ?>
 <a href="index.html" target="_blank">Back to main page</a>
-
+<a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
 </nav>
 </div>
 <section id="cal" class="cl">

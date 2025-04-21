@@ -67,7 +67,7 @@ if(!isset($_SESSION['username'])){
 
 }
 ?>
-
+<a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
 </nav>
 
     </div>

@@ -1,29 +1,27 @@
 <?php 
 include "dbconn.php";
-include "functions.php";
 session_start();
 if(!isset($_SESSION['username'])){
-	header('Location: registration.php');
+    header('Location: registration.php');
 }else{
-	if($_SESSION['role']!="Administrator"){
-		//header('Location: profile.php');
-		$_SESSION['login']=time();
+    if($_SESSION['role']!="Administrator"){
+        $id=$_SESSION['id'];
+        $username=$_SESSION['username'];
+        $_SESSION['login']=time();
 	}else{
-		$_SESSION['login']=time();
+        $id=$_SESSION['id'];
+        $username=$_SESSION['username'];
+        $_SESSION['login']=time();
 	}
-	
-}
-$dali_postoji_profilna_već_u_bazi=provjeri_postoji_li_već_slika_profila_u_bazi($_SESSION['username']);
-if($dali_postoji_profilna_već_u_bazi==1){
-    echo "<script type='text/javascript'> document.location = 'update_profilne.php'; </script>";
+   
 }
 ?>
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width-device-width,initial-scale=1">
-<title>Socialnet</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socialnet</title>
     <link rel="stylesheet" href="css/stil.css" type="text/css" media="all">
     <link rel="stylesheet" href="css/dropdown.css">
     <script src="js/social.js"></script>
@@ -31,10 +29,8 @@ if($dali_postoji_profilna_već_u_bazi==1){
     <script src="js/randomslike.js"></script>
 <script src="js/dropdownmenu.js"></script>
 </head>
-
 <body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()" onload="slike()">
-
-<div class="con">
+    <div class="con">
 <nav>
 <div class="dropdown">
     <button class="dropbtn">Profil</button>
@@ -72,50 +68,36 @@ if($dali_postoji_profilna_već_u_bazi==1){
 
 }
 ?>
-<a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
+
 </nav>
-</div>
-<section id="cal" class="cl">
+    </div>
+    <section id="cal" class="cl">
         <h2>Calendar for March 2025</h2>
         <p id="calendar"></p>
     </section>
-	<section id="randslike">
+    <section id="randslike">
 <h2>Random slike</h2>
 <p id="s"></p>
     </section>
-<div class="pravila">
-<section><h2>Set your profile picture here</h2>
-<?php
-
-if(count($_FILES) > 0) {
-if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
-$username=$_SESSION['username'];
-$imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
-$imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
-$sql = "INSERT INTO profilna(imageType ,imageData, email)
-VALUES('{$imageProperties['mime']}', '{$imgData}','$username')";
-$query=mysqli_query($dbc,$sql);
-if($query){
-	echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
-}else{
-	echo "Failed to insert profile picture into database.";
-}
-mysqli_close($dbc);
-
-
-
-}}
-?>
-<form name="frmImage" enctype="multipart/form-data" action="profilna.php" method="post" class="frmImageUpload">
-<label>Upload Image File:</label><br/>
-<input name="userImage" type="file" class="inputFile" />
-<input type="submit" value="Submit" class="btnSubmit" />
-</form>
+    <div class="pravila">
+<section>
+    <h2>Ovdje počinje forum</h2>
+    <div id="tema">
+<h2>Ovdje idu teme</h2>
+    </div>
+    <div id="podtema">
+<h2>Podteme</h2>
+<div id="profil">
+<h3>Lijevo treba biti slika profila i ime</h3>
+<div id="odgovori">
+<h4>Desno treba biti odgovor</h4>
 </div>
-
-<footer>
-	<div id="datum"></div>
-</footer>
-
+</div>
+    </div>
+</section>
+    </div>
+    <footer>
+        <div id="datum"></div>
+    </footer>
 </body>
 </html>
