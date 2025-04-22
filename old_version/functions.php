@@ -144,4 +144,63 @@ function provjeri_postoji_li_već_slika_profila_u_bazi($email){
 	return $postoji;
 }
 
+
+//ova funkcija će skenirati direktorije za slike i vratiti listu slika.
+function dohvati_listu_slika_iz_direktorija(){
+	//Get the current working directory:
+	//echo getcwd();
+	$current_directory=getcwd();
+	$direktorij_za_skeniranje="\\slike\\";
+	//sortira se prema rastućem rasporedu
+	//$list=scandir($current_directory.$direktorij_za_skeniranje);
+	//print_r($list);
+	$direktorij=$current_directory.$direktorij_za_skeniranje;
+	$relativni_put="/Social-net/old_version/slike/";
+	$filename="js/random.js";
+	// Open a directory, and read its contents
+	$index=0;
+if (is_dir($direktorij)){
+	if ($dh = opendir($direktorij)){
+	  while (($file = readdir($dh)) !== false){
+		//preskoči točke
+		if($index==0){
+			$index++;
+			continue;
+			
+		}else if($index==1){
+			$index++;
+			continue;
+		}else{
+//echo "filename:" . $file . "<br>";
+echo  "<img src='".$relativni_put.$file . "'></img><br>";
+write_to_js_file($filename,$file);
+		}
+		
+	  }
+	  closedir($dh);
+	}
+  }
+
+}
+
+//zapiši javascript file
+//parametar je direktorij relativni put
+//PHP Append Text
+//You can append data to a file by using the "a" mode. The "a" mode appends text to the end of the file, while the "w" mode overrides (and erases) the old content of the file.
+//In the example below we open our existing file "newfile.txt", and append some text to it:
+function write_to_js_file($filename,$file){
+	$myfile = fopen($filename, "a") or die("Unable to open file!");
+	$txt = "$file\n";
+	fwrite($myfile, $txt);
+	fclose($myfile);
+}
+
+ //Before using the fopen function, one should check with is_dir first if it exists, if not create it using the mkdir function −
+ //$filename = '/path/to /file.txt';
+ //$dirname = dirname($filename);
+//if (!is_dir($dirname)) {
+//   mkdir($dirname, 0755, true);
+//}
+  
+ 
 ?>
