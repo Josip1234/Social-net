@@ -150,6 +150,7 @@ function dohvati_listu_slika_iz_direktorija(){
 	$function_start="function slike(){";
 	$function_end="}";
     $rand_func="var b=Math.floor(Math.random()*slik.length);";
+	$return_func="document.getElementById('s').innerHTML='<img src='+slik[b]+'></img>'";"'";
 	//Get the current working directory:
 	//echo getcwd();
 	$current_directory=getcwd();
@@ -184,6 +185,8 @@ write_to_js_file($filename,'"'.$relativni_put.$file.'",',"a");
 	  }
 	  write_to_js_file($filename,"];","a");
 	  write_to_js_file($filename,$rand_func,"a");
+	  write_to_js_file($filename,$return_func,"a");
+	  write_to_js_file($filename,";","a");
 	  write_to_js_file($filename,$function_end,"a");
 	
 	  closedir($dh);
