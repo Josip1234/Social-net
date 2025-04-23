@@ -147,6 +147,9 @@ function provjeri_postoji_li_već_slika_profila_u_bazi($email){
 
 //ova funkcija će skenirati direktorije za slike i vratiti listu slika.
 function dohvati_listu_slika_iz_direktorija(){
+	$function_start="function slike(){";
+	$function_end="}";
+    $rand_func="var b=Math.floor(Math.random()*slik.length);";
 	//Get the current working directory:
 	//echo getcwd();
 	$current_directory=getcwd();
@@ -159,6 +162,8 @@ function dohvati_listu_slika_iz_direktorija(){
 	$filename="js/random.js";
 	// Open a directory, and read its contents
 	$index=0;
+	write_to_js_file($filename,$function_start,"w");
+	write_to_js_file($filename,"var slik=[","a");
 if (is_dir($direktorij)){
 	if ($dh = opendir($direktorij)){
 	  while (($file = readdir($dh)) !== false){
@@ -173,10 +178,14 @@ if (is_dir($direktorij)){
 		}else{
 //echo "filename:" . $file . "<br>";
 echo  "<img src='".$relativni_put.$file . "'></img><br>";
-write_to_js_file($filename,$file);
+write_to_js_file($filename,'"'.$relativni_put.$file.'",',"a");
 		}
 		
 	  }
+	  write_to_js_file($filename,"];","a");
+	  write_to_js_file($filename,$rand_func,"a");
+	  write_to_js_file($filename,$function_end,"a");
+	
 	  closedir($dh);
 	}
   }
@@ -188,8 +197,8 @@ write_to_js_file($filename,$file);
 //PHP Append Text
 //You can append data to a file by using the "a" mode. The "a" mode appends text to the end of the file, while the "w" mode overrides (and erases) the old content of the file.
 //In the example below we open our existing file "newfile.txt", and append some text to it:
-function write_to_js_file($filename,$file){
-	$myfile = fopen($filename, "a") or die("Unable to open file!");
+function write_to_js_file($filename,$file,$mode){
+	$myfile = fopen($filename, $mode) or die("Unable to open file!");
 	$txt = "$file\n";
 	fwrite($myfile, $txt);
 	fclose($myfile);
