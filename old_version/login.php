@@ -1,5 +1,7 @@
 <?php 
 include "dbconn.php";
+include "functions.php";
+dohvati_listu_slika_iz_direktorija();
 session_start();
 ?>
 <!doctype html>
