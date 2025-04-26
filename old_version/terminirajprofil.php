@@ -23,7 +23,7 @@ if(!isset($_SESSION['username'])){
     <link rel="stylesheet" href="css/dropdown.css">
     <script src="js/social.js"></script>
     <script src="js/calendar.js"></script>
-    <script src="js/randomslike.js"></script>
+    <script src="js/random.js"></script>
 <script src="js/dropdownmenu.js"></script>
 </head>
 <body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()" onload="slike()">
@@ -65,20 +65,18 @@ if(!isset($_SESSION['username'])){
 
 }
 ?>
-    <a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
-    <a href="login.php" target="_blank" rel="noopener noreferrer">Login</a>
-    <a href="privacy.php" target="_blank" rel="noopener noreferrer">Terms of privacy</a>
-    <?php
-    if($_SESSION['role']=="Administrator"){
-echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Trenutni feedbackovi</a>";
-echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>Set user roles</a>";
-}
-?>
-<a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
-<a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
-<a href="feedback.php" target="_blank" rel="noopener noreferrer">Add feedback</a>
-<a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
-<a href="update_profilne.php" target="_blank" rel="noopener noreferrer">Update profile picture</a>
+  
+  <div class="dropdown">
+    <button class="dropbtn">Forumi,chatovi, početna</button>
+    <div class="dropdown-content">
+    <a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
+    <a href="index.html" target="_blank" rel="noopener noreferrer">Back to home page</a>
+    </div>
+  </div>
+
+
+
+
 
 </nav>
     </div>

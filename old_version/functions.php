@@ -159,8 +159,8 @@ function dohvati_listu_slika_iz_direktorija(){
 	//$list=scandir($current_directory.$direktorij_za_skeniranje);
 	//print_r($list);
 	$direktorij=$current_directory.$direktorij_za_skeniranje;
-	$relativni_put="/Social-net/old_version/slike/";
-	$filename="js/random.js";
+	$relativni_put="/Social-net/old_version/slike/"; //sprema se kao dio url-a u slikama
+	$filename="js/random.js"; //mjesto gdje će se epremati txt linkovi prema slikama
 	// Open a directory, and read its contents
 	$index=0;
 	write_to_js_file($filename,$function_start,"w");
@@ -183,7 +183,7 @@ if (is_dir($direktorij)){
 if($file=="newfile.txt"){
 	continue;
 }else{
-	write_to_js_file($filename,'"'.$relativni_put.$file.'",',"a");
+	write_to_js_file($filename,'"'.$relativni_put.$file.'",',"a"); //spoji relativni put i datoteku koja se skenirala pa prosljedi funkciji write to js file
 }
 
 		}

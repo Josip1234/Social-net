@@ -23,7 +23,7 @@ if(!isset($_SESSION['username'])){
     <link rel="stylesheet" href="css/dropdown.css">
     <script src="js/social.js"></script>
     <script src="js/calendar.js"></script>
-    <script src="js/randomslike.js"></script>
+    <script src="js/random.js"></script>
 <script src="js/dropdownmenu.js"></script>
 </head>
 
@@ -67,37 +67,17 @@ if(!isset($_SESSION['username'])){
 
 }
 ?>
+  <div class="dropdown">
+    <button class="dropbtn">Forumi,chatovi, početna</button>
+    <div class="dropdown-content">
+    <a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
+    <a href="index.html" target="_blank" rel="noopener noreferrer">Back to home page</a>
+    </div>
+  </div>
 </nav>
-<a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a>
-<a href="login.php" target="_blank" rel="noopener noreferrer">Login</a>
-<a href="index.html" target="_blank">Back to main page</a>
-<a href="privacy.php" target="_blank">Terms of privacy</a>
-<?php 
-           if($_SESSION['role']=="Administrator"){
-			echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer'>Feedbacks - only for admins</a>";
-			}
 
-?>
-<a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
-<a href="index.html" target="_blank" rel="noopener noreferrer">Back to main page</a>
-<a href="privacy.php" target="_blank" rel="noopener noreferrer">Terms of privacy</a>
-<?php 
-            if($_SESSION['role']=="Administrator"){
-echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
-}
-?>
-<a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
-<a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
-<a href="terminirajprofil.php" target="_blank" rel="noopener noreferrer">Delete profile</a>
-<a href="profilna.php" target="_blank" rel="noopener noreferrer">Add profile picture</a>
-<a href="update_profilne.php" target="_blank" rel="noopener noreferrer">Update profile picture</a>
-<?php 
 
-if($_SESSION['role']=="Administrator"){
-echo "<a href='dodjeli_uloge.php' target='_blank' rel='noopener noreferrer'>User roles</a>";
-}
-?>
-</nav>
+
 </div>
 <section id="cal" class="cl">
         <h2>Calendar for March 2025</h2>

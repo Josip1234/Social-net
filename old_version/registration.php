@@ -24,7 +24,7 @@ if(!isset($_SESSION['username'])){
     <link rel="stylesheet" href="css/dropdown.css">
     <script src="js/social.js"></script>
     <script src="js/calendar.js"></script>
-    <script src="js/randomslike.js"></script>
+    <script src="js/random.js"></script>
 <script src="js/dropdownmenu.js"></script>
 </head>
 
@@ -68,8 +68,13 @@ if(!isset($_SESSION['username'])){
 
 }
 ?>
-<a href="index.html" target="_blank">Back to main page</a>
-<a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
+  <div class="dropdown">
+    <button class="dropbtn">Forumi,chatovi, početna</button>
+    <div class="dropdown-content">
+    <a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
+    <a href="index.html" target="_blank" rel="noopener noreferrer">Back to home page</a>
+    </div>
+  </div>
 </nav>
 </div>
 <section id="cal" class="cl">
