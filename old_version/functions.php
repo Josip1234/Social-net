@@ -179,7 +179,13 @@ if (is_dir($direktorij)){
 		}else{
 //echo "filename:" . $file . "<br>";
 //echo  "<img src='".$relativni_put.$file . "'></img><br>";
-write_to_js_file($filename,'"'.$relativni_put.$file.'",',"a");
+//ako se naleti slučajno na file koji se zove newfile.txt kojeg smo napravili prilikom testiranja neka samo preskoči.
+if($file=="newfile.txt"){
+	continue;
+}else{
+	write_to_js_file($filename,'"'.$relativni_put.$file.'",',"a");
+}
+
 		}
 		
 	  }
