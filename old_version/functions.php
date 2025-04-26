@@ -178,7 +178,7 @@ if (is_dir($direktorij)){
 			continue;
 		}else{
 //echo "filename:" . $file . "<br>";
-echo  "<img src='".$relativni_put.$file . "'></img><br>";
+//echo  "<img src='".$relativni_put.$file . "'></img><br>";
 write_to_js_file($filename,'"'.$relativni_put.$file.'",',"a");
 		}
 		
