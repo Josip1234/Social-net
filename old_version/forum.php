@@ -28,8 +28,9 @@ if(!isset($_SESSION['username'])){
     <script src="js/calendar.js"></script>
     <script src="js/random.js"></script>
 <script src="js/dropdownmenu.js"></script>
+<script src="js/ajax.js"></script>
 </head>
-<body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()" onload="slike()">
+<body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()" onload="slike(),pokaziteme()">
     <div class="con">
 <nav>
 <div class="dropdown">
@@ -90,6 +91,7 @@ if(!isset($_SESSION['username'])){
     <h2>Ovdje počinje forum</h2>
     <div id="tema">
 <h2>Ovdje idu teme</h2>
+<p id="demo"></p>
     </div>
     <div id="podtema">
 <h2>Podteme</h2>
