@@ -220,5 +220,14 @@ function write_to_js_file($filename,$file,$mode){
 //   mkdir($dirname, 0755, true);
 //}
   
- 
+function getSerialNumberFromDatabase(){
+	include("dbconn.php");
+	//QUERY KOJI SELEKTIRA PRVI SERIJSKI KOJI NIJE KORIŠTEN
+	$sql_query="SELECT serial FROM serial_numbers WHERE used = '0' LIMIT 1;";
+	$query=mysqli_query($dbc,$sql_query);
+	$res=$query->fetch_column();
+    return $res;
+} 
+
+
 ?>

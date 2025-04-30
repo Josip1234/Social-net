@@ -15,6 +15,8 @@
     <?php 
       include "functions.php";
       echo dohvati_listu_slika_iz_direktorija();
+    
+  
     ?>
     <h2>CSS Layout Float</h2>
 <p>In this example, we have created a header, two columns/boxes and a footer. On smaller screens, the columns will stack on top of each other.</p>
@@ -51,6 +53,7 @@
     <div class="dropdown-content">
     <a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
     <a href="index.html" target="_blank" rel="noopener noreferrer">Back to home page</a>
+  
     </div>
   </div>
 

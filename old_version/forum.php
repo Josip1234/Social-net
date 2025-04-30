@@ -92,6 +92,7 @@ if(!isset($_SESSION['username'])){
     <div id="tema">
 <h2>Ovdje idu teme</h2>
 <p id="demo"></p>
+<?php include("ispis_tema.php"); ?>
     </div>
     <div id="podtema">
 <h2>Podteme</h2>

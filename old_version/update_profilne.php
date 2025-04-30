@@ -95,8 +95,16 @@ while($row=mysqli_fetch_array($res)){
     echo "<label for='profilna'>User image:</label> <br>";
     echo '<img src="data:'.$row['imageType'].';base64,'.base64_encode($row['imageData']).'"width="100%" height="100%" />';
     $id=$row['imageId'];
+    //privremene varijable i podaci od slika profila iz baze podataka
+    //privremeni podaci koji bi se trebali spremati u bazu podataka
+    //te podatke bi trebalo prosljediti funkciji koja će spremati history data od usera 
+    //funkcija će se aktivirati nakon što se pošalju podaci save profile history php skripti.
+    $email=$username;
+    $uid=$ro['imageId'];
     $uimgtp=$ro['imageType'];
     $uimgdt=$ro['imageData'];
+    $serial=getSerialNumberFromDatabase();
+    echo $serial;
     //spremi u privremenu bazu podatke o slikama sa nekim random unique id-om, i tablica kao u profilnoj
    //ako korisnik potvrdi da ne želi spremiti onda izbriši iz baze
    //dodana tablica serial number koja će sadržavati random serijske brojeve iz koje će se vaditi podaci za serial image 
