@@ -100,11 +100,11 @@ while($row=mysqli_fetch_array($res)){
     //te podatke bi trebalo prosljediti funkciji koja će spremati history data od usera 
     //funkcija će se aktivirati nakon što se pošalju podaci save profile history php skripti.
     $email=$username;
-    $uid=$ro['imageId'];
-    $uimgtp=$ro['imageType'];
-    $uimgdt=$ro['imageData'];
+    $uid=$row['imageId'];
+    $uimgtp=$row['imageType'];
+    $uimgdt=$row['imageData'];
     $serial=getSerialNumberFromDatabase();
-    echo $serial;
+    saveProfileHistory($serial,$uimgtp,$uimgdt,$email);
     //spremi u privremenu bazu podatke o slikama sa nekim random unique id-om, i tablica kao u profilnoj
    //ako korisnik potvrdi da ne želi spremiti onda izbriši iz baze
    //dodana tablica serial number koja će sadržavati random serijske brojeve iz koje će se vaditi podaci za serial image 

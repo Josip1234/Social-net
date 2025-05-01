@@ -229,5 +229,15 @@ function getSerialNumberFromDatabase(){
     return $res;
 } 
 
+//sljedeća funkcija će spremati profile picture history uz korisnikov pristanak
+function saveProfileHistory($imageSerial,$imageType,$imageData,$email){
+	include("dbconn.php");
+	echo $imageData;
+	$saved=false;
+	$sql = "INSERT INTO profile_image_history(image_serial,imageType,imageData,email) VALUES('$imageSerial','$imageType','$imageData','$email')";
+mysqli_query($dbc,$sql);
+mysqli_close($dbc);
+	return $saved;
+}
 
 ?>
