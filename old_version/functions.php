@@ -232,9 +232,11 @@ function getSerialNumberFromDatabase(){
 //sljedeća funkcija će spremati profile picture history uz korisnikov pristanak
 function saveProfileHistory($imageSerial,$imageType,$imageData,$email){
 	include("dbconn.php");
-	echo $imageData;
+	//echo '<img src="data:'.$imageType.';base64,'.base64_encode($imageData).'" />';
+	$imgData=base64_encode($imageData);
+	//echo '<img src="data:'.$imageType.';base64,'.$imgData.'" />';
 	$saved=false;
-	$sql = "INSERT INTO profile_image_history(image_serial,imageType,imageData,email) VALUES('$imageSerial','$imageType','$imageData','$email')";
+	$sql = "INSERT INTO profile_image_history(image_serial,imageType,imageData,email) VALUES('$imageSerial','$imageType','$imgData','$email')";
 mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 	return $saved;
