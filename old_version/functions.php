@@ -234,9 +234,9 @@ function saveProfileHistory($imageSerial,$imageType,$imageData,$email){
 	include("dbconn.php");
 	//echo '<img src="data:'.$imageType.';base64,'.base64_encode($imageData).'" />';
 	$imgData=base64_encode($imageData);
-	//echo '<img src="data:'.$imageType.';base64,'.$imgData.'" />';
+	'<img src="data:'.$imageType.';base64,'.$imgData.'" />';
 	$saved=false;
-	$sql = "INSERT INTO profile_image_history(image_serial,imageType,imageData,email) VALUES('$imageSerial','$imageType','$imgData','$email')";
+	$sql = "INSERT INTO profile_image_history(image_serial,imageId,imageType,imageData,email) VALUES('$imageSerial','0','$imageType','{$imgData}','$email')";
 mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 	return $saved;

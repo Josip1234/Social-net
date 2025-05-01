@@ -100,7 +100,7 @@ while($row=mysqli_fetch_array($res)){
     //te podatke bi trebalo prosljediti funkciji koja će spremati history data od usera 
     //funkcija će se aktivirati nakon što se pošalju podaci save profile history php skripti.
     $email=$username;
-    $uid=$row['imageId'];
+    $uid=$ro['imageId'];
     $uimgtp=$row['imageType'];
     $uimgdt=$row['imageData'];
     $serial=getSerialNumberFromDatabase();
