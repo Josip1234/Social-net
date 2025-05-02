@@ -103,6 +103,8 @@ while($row=mysqli_fetch_array($res)){
     $uid=$ro['imageId'];
     $uimgtp=$row['imageType'];
     $uimgdt=$row['imageData'];
+   //trebalo bi razmisliti da se prvo prilikom dodavanja slike profila spreme i files dodaci
+   //ovo bi trebalo ići tamo gdje je imgdata i properties kod uploada file-a
     $serial=getSerialNumberFromDatabase();
     saveProfileHistory($serial,$uimgtp,$uimgdt,$email);
     //spremi u privremenu bazu podatke o slikama sa nekim random unique id-om, i tablica kao u profilnoj
@@ -118,7 +120,7 @@ while($row=mysqli_fetch_array($res)){
 ?>
 <form action="update_profilne.php" enctype="multipart/form-data" method="post" class="frmImageUpload" name="frmImage1">
     <label for="upload">Upload image file:</label> <br>
-    <input type="file" name="userImage2" class="inputFile">
+    <input type="file" name="userImage2" class="inputFile" value="<?php echo  $row['imageData'] ?>">
     <input type="submit" value="Submit" class="btnSubmit">
 </form>
 <?php 

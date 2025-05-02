@@ -234,23 +234,23 @@ function saveProfileHistory($imageSerial,$imageType,$imageData,$email){
 	include("dbconn.php");
 	//echo '<img src="data:'.$imageType.';base64,'.base64_encode($imageData).'" />';
 	$imgData=base64_encode($imageData);
-	'<img src="data:'.$imageType.';base64,'.$imgData.'" />';
+	echo '<img src="data:'.$imageType.';base64,'.$imgData.'" />';
 	$saved=false;
-	$sql = "INSERT INTO profile_image_history(image_serial,imageId,imageType,imageData,email) VALUES('$imageSerial','0','$imageType','{$imgData}','$email')";
+	$dat=base64_decode($imageData);
+	$sql = "INSERT INTO profile_image_history(image_serial,imageId,imageType,imageData,email) VALUES('$imageSerial','0','$imageType','$dat','$email')";
 mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 	return $saved;
 }
 //funkcija za ispis profile image history-a
-function print_image_profile_history($username){
+function print_image_profile_history($email){
 	include("dbconn.php");
-	$sql="SELECT imageId,imageType,imageData FROM profile_image_history WHERE email='$username'";
+	$sql="SELECT imageId,imageType,imageData FROM profilna WHERE email='$username'";
 $res=mysqli_query($dbc,$sql);
 while($row=mysqli_fetch_array($res)){
     echo "<label for='profilna'>User image:</label> <br>";
     echo '<img src="data:'.$row['imageType'].';base64,'.base64_encode($row['imageData']).'"width="100%" height="100%" />';
 }
 }
-
 
 ?>

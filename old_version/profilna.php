@@ -93,7 +93,7 @@ if($dali_postoji_profilna_već_u_bazi==1){
 <div class="pravila">
 <section><h2>Set your profile picture here</h2>
 <?php
-
+//prilikom uploada ovdje prva slika od profila bi se trebala spremiti u history
 if(count($_FILES) > 0) {
 if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 $username=$_SESSION['username'];
