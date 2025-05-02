@@ -13,9 +13,10 @@
 </head>
 <body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()" onload="slike()">
     <?php 
+    session_start();
       include "functions.php";
       echo dohvati_listu_slika_iz_direktorija();
-    
+      print_image_profile_history($_SESSION['username']);
   
     ?>
     <h2>CSS Layout Float</h2>

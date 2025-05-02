@@ -241,5 +241,16 @@ mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 	return $saved;
 }
+//funkcija za ispis profile image history-a
+function print_image_profile_history($username){
+	include("dbconn.php");
+	$sql="SELECT imageId,imageType,imageData FROM profile_image_history WHERE email='$username'";
+$res=mysqli_query($dbc,$sql);
+while($row=mysqli_fetch_array($res)){
+    echo "<label for='profilna'>User image:</label> <br>";
+    echo '<img src="data:'.$row['imageType'].';base64,'.base64_encode($row['imageData']).'"width="100%" height="100%" />';
+}
+}
+
 
 ?>
