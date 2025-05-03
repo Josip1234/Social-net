@@ -129,6 +129,7 @@ if(count($_FILES)>0){
         $imgData=addslashes(file_get_contents($_FILES['userImage2']['tmp_name']));
         $imageProperties=getimagesize($_FILES['userImage2']['tmp_name']);
         $sql="UPDATE profilna SET imageType='{$imageProperties['mime']}', imageData='{$imgData}' WHERE email='$username'";
+        saveProfileHistory(getSerialNumberFromDatabase(),$imageProperties,$imgData,$username);
         $succ=mysqli_query($dbc,$sql);
         if($succ){
             mysqli_close($dbc);
@@ -139,9 +140,10 @@ if(count($_FILES)>0){
         //<input name='odgovor' type='checkbox' value='no'>No <br>
         //<input type='submit' value='Odgovor'>
         //</form>";
-           //echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
+           echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
            //ovdje treba koristizti fukciju za spremanje history-a
            //u history će se spremiti slika koja se sprema u bazu trenutno.
+           //problem je dobiti podatke iz blob varijabli koja se ispisuje iz baze podataka.
         }else{
             die('Cannot update profile picture.');
             mysqli_close($dbc);

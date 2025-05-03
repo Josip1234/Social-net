@@ -240,6 +240,8 @@ function saveProfileHistory($imageSerial,$imageType,$imageData,$email){
 	$sql = "INSERT INTO profile_image_history(image_serial,imageId,imageType,imageData,email) VALUES('$imageSerial','0','{$imageType['mime']}', '{$imageData}','$email')";
 mysqli_query($dbc,$sql);
 mysqli_close($dbc);
+update_serial($imageSerial);
+$saved=true;
 	return $saved;
 }
 //funkcija za ispis profile image history-a
