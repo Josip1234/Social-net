@@ -99,6 +99,8 @@ if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 $username=$_SESSION['username'];
 $imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
 $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
+//save profile history
+saveProfileHistory(getSerialNumberFromDatabase(),$imageProperties,$imgData,$username);
 $sql = "INSERT INTO profilna(imageType ,imageData, email)
 VALUES('{$imageProperties['mime']}', '{$imgData}','$username')";
 $query=mysqli_query($dbc,$sql);

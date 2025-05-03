@@ -233,11 +233,11 @@ function getSerialNumberFromDatabase(){
 function saveProfileHistory($imageSerial,$imageType,$imageData,$email){
 	include("dbconn.php");
 	//echo '<img src="data:'.$imageType.';base64,'.base64_encode($imageData).'" />';
-	$imgData=base64_encode($imageData);
-	echo '<img src="data:'.$imageType.';base64,'.$imgData.'" />';
+	//$imgData=base64_encode($imageData);
+	//echo '<img src="data:'.$imageType.';base64,'.$imgData.'" />';
 	$saved=false;
-	$dat=base64_decode($imageData);
-	$sql = "INSERT INTO profile_image_history(image_serial,imageId,imageType,imageData,email) VALUES('$imageSerial','0','$imageType','$dat','$email')";
+	//$dat=base64_decode($imageData);
+	$sql = "INSERT INTO profile_image_history(image_serial,imageId,imageType,imageData,email) VALUES('$imageSerial','0','{$imageType['mime']}', '{$imageData}','$email')";
 mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 	return $saved;
@@ -251,6 +251,16 @@ while($row=mysqli_fetch_array($res)){
     echo "<label for='profilna'>User image:</label> <br>";
     echo '<img src="data:'.$row['imageType'].';base64,'.base64_encode($row['imageData']).'"width="100%" height="100%" />';
 }
+}
+
+//ažuriraj serijski broj da je korišten prilikom spremanja povijesti slike profila
+function update_serial($serial){
+	include("dbconn.php");
+	$sql_query="UPDATE serial_numbers SET used='1' WHERE serial='$serial'";
+	$exe_q=mysqli_query($dbc,$sql_query);
+	if($exe_q){
+		echo "Update successfull.";
+	}
 }
 
 ?>

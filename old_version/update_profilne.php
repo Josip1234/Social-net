@@ -105,8 +105,8 @@ while($row=mysqli_fetch_array($res)){
     $uimgdt=$row['imageData'];
    //trebalo bi razmisliti da se prvo prilikom dodavanja slike profila spreme i files dodaci
    //ovo bi trebalo ići tamo gdje je imgdata i properties kod uploada file-a
-    $serial=getSerialNumberFromDatabase();
-    saveProfileHistory($serial,$uimgtp,$uimgdt,$email);
+    //$serial=getSerialNumberFromDatabase();
+    //saveProfileHistory($serial,$uimgtp,$uimgdt,$email);
     //spremi u privremenu bazu podatke o slikama sa nekim random unique id-om, i tablica kao u profilnoj
    //ako korisnik potvrdi da ne želi spremiti onda izbriši iz baze
    //dodana tablica serial number koja će sadržavati random serijske brojeve iz koje će se vaditi podaci za serial image 
@@ -133,13 +133,15 @@ if(count($_FILES)>0){
         if($succ){
             mysqli_close($dbc);
         echo "Update successfull.";
-        echo "Do you want to save your previous profile picture?";
-        echo "<form action='save_profile_picture_history.php' method='post'>
-        <input name='odgovor' type='checkbox' value='yes'>Yes <br>
-        <input name='odgovor' type='checkbox' value='no'>No <br>
-        <input type='submit' value='Odgovor'>
-        </form>";
+        //echo "Do you want to save your previous profile picture?";
+        //echo "<form action='save_profile_picture_history.php' method='post'>
+        //<input name='odgovor' type='checkbox' value='yes'>Yes <br>
+        //<input name='odgovor' type='checkbox' value='no'>No <br>
+        //<input type='submit' value='Odgovor'>
+        //</form>";
            //echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
+           //ovdje treba koristizti fukciju za spremanje history-a
+           //u history će se spremiti slika koja se sprema u bazu trenutno.
         }else{
             die('Cannot update profile picture.');
             mysqli_close($dbc);
