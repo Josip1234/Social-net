@@ -13,10 +13,7 @@ if(!isset($_SESSION['username'])){
 	}
 	
 }
-$dali_postoji_profilna_već_u_bazi=provjeri_postoji_li_već_slika_profila_u_bazi($_SESSION['username']);
-if($dali_postoji_profilna_već_u_bazi==1){
-    echo "<script type='text/javascript'> document.location = 'update_profilne.php'; </script>";
-}
+
 ?>
 <!doctype html>
 <html>
@@ -92,7 +89,9 @@ if($dali_postoji_profilna_već_u_bazi==1){
     </section>
 <div class="pravila">
 <section><h2>Your previous profiles gallery</h2>
-
+<?php 
+print_image_profile_history($_SESSION['username']);
+?>
 </div>
 
 <footer>

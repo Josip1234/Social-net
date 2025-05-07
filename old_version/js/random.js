@@ -231,6 +231,7 @@ var slik=[
 "/Social-net/old_version/slike/WIN_20170426_13_24_27_Pro.jpg",
 "/Social-net/old_version/slike/WIN_20170426_13_38_04_Pro.jpg",
 "/Social-net/old_version/slike/WIN_20170426_13_39_20_Pro.jpg",
+"/Social-net/old_version/slike/ženske čizme",
 ];
 var b=Math.floor(Math.random()*slik.length);
 document.getElementById('s').innerHTML='<img src='+slik[b]+'></img>'

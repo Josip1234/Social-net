@@ -247,12 +247,13 @@ $saved=true;
 //funkcija za ispis profile image history-a
 function print_image_profile_history($email){
 	include("dbconn.php");
-	$sql="SELECT imageId,imageType,imageData FROM profilna WHERE email='$username'";
+	$sql="SELECT imageType,imageData FROM profile_image_history WHERE email='$email'";
 $res=mysqli_query($dbc,$sql);
 while($row=mysqli_fetch_array($res)){
-    echo "<label for='profilna'>User image:</label> <br>";
-    echo '<img src="data:'.$row['imageType'].';base64,'.base64_encode($row['imageData']).'"width="100%" height="100%" />';
+    
+    echo '<img src="data:'.$row['imageType'].';base64,'.base64_encode($row['imageData']).'"width="30%" height="30%" />';
 }
+mysqli_close($dbc);
 }
 
 //ažuriraj serijski broj da je korišten prilikom spremanja povijesti slike profila
