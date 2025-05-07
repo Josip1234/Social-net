@@ -79,7 +79,12 @@ if($dali_postoji_profilna_već_u_bazi==1){
     <a href="index.html" target="_blank" rel="noopener noreferrer">Back to home page</a>
     </div>
   </div>
-
+  <div class="dropdown">
+    <button class="dropbtn">Photos</button>
+    <div class="dropdown-content">
+    <a href="print_profile_history.php" target="_blank" rel="noopener noreferrer">Print profile history images</a>
+    </div>
+  </div>
 </nav>
 </div>
 <section id="cal" class="cl">

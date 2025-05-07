@@ -57,7 +57,12 @@
   
     </div>
   </div>
-
+  <div class="dropdown">
+    <button class="dropbtn">Photos</button>
+    <div class="dropdown-content">
+    <a href="print_profile_history.php" target="_blank" rel="noopener noreferrer">Print profile history images</a>
+    </div>
+  </div>
 </nav>
 
 
