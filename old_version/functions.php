@@ -154,6 +154,7 @@ function dohvati_listu_slika_iz_direktorija(){
 	//Get the current working directory:
 	//echo getcwd();
 	$current_directory=getcwd();
+    //za prilagodbu direktorija trebasamo primijeniti put u \\slike\\nešto\\ i treba promijeniti relativni put /slike/nešto/
 	$direktorij_za_skeniranje="\\slike\\";
 	//sortira se prema rastućem rasporedu
 	//$list=scandir($current_directory.$direktorij_za_skeniranje);
