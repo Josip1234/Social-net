@@ -183,6 +183,32 @@ if (is_dir($direktorij)){
 //ako se naleti slučajno na file koji se zove newfile.txt kojeg smo napravili prilikom testiranja neka samo preskoči.
 if($file=="newfile.txt"){
 	continue;
+
+}//kao provremeno riješenje za fix napisati ćemo ime podirektorija i privjerava se ako je to taj string
+else if($file=="ženske čizme"){
+      //echo $file;//file name su ženske čizme (to bi trebao biti ime direktorija)
+	  $directory=$file;
+	  //koristimo prijašnju varijablu za relativni put
+	  //filename varijablu prijašnju deklariranu gdje ćemo spremiti podatke.  
+	  //spoji trenutni direktorij koji se skenira sa imenom poddirektorija (ženske čizme)
+	  $subdirectory_to_scan=$direktorij.$file;
+	  //echo $subdirectory_to_scan;
+	  //tu trebamo funkciju postaviti kao i prethodnu kod će se ponavljati za sada neka se ponavlja.
+	  //funkcija će pisati također nakon prekskanja točki u file datoteke.
+	  $preskoci_tocke=0;
+	  if (is_dir($subdirectory_to_scan)){
+          
+		  if ($dh2 = opendir($subdirectory_to_scan)){
+			while (($file2 = readdir($dh2)) !== false){
+                  //echo $subdirectory_to_scan."\\".$file2;
+				  $drugi_relativni_put=$relativni_put."/".$directory."/".$file2;
+                 echo $drugi_relativni_put;
+				 write_to_js_file($filename,'"'.$drugi_relativni_put.'",',"a");
+			}
+		  }
+		    closedir($dh2);
+	  }
+
 }else{
 	write_to_js_file($filename,'"'.$relativni_put.$file.'",',"a"); //spoji relativni put i datoteku koja se skenirala pa prosljedi funkciji write to js file
 }
