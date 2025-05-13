@@ -231,17 +231,15 @@ var slik=[
 "/Social-net/old_version/slike/WIN_20170426_13_24_27_Pro.jpg",
 "/Social-net/old_version/slike/WIN_20170426_13_38_04_Pro.jpg",
 "/Social-net/old_version/slike/WIN_20170426_13_39_20_Pro.jpg",
-"/Social-net/old_version/slike//ženske čizme/.",
-"/Social-net/old_version/slike//ženske čizme/..",
-"/Social-net/old_version/slike//ženske čizme/0089f564fec86275c15475c19cd5116c.jpg",
-"/Social-net/old_version/slike//ženske čizme/1838b6daac0ea5374d316725bc6e2cda.jpg",
-"/Social-net/old_version/slike//ženske čizme/44febd93f0bcb8cacde024da49327f3c.jpg",
-"/Social-net/old_version/slike//ženske čizme/62f151b63e95c5f67f2127bf8cc56211.jpg",
-"/Social-net/old_version/slike//ženske čizme/79b671e027d0ff30c914ca837c89d544.jpg",
-"/Social-net/old_version/slike//ženske čizme/7ad1247a474bb557a46f17c922b52c76.jpg",
-"/Social-net/old_version/slike//ženske čizme/7d1bc99fcec67bb743c76907a263c1ec.jpg",
+"/Social-net/old_version/slike/ženske_čizme/0089f564fec86275c15475c19cd5116c.jpg",
+"/Social-net/old_version/slike/ženske_čizme/1838b6daac0ea5374d316725bc6e2cda.jpg",
+"/Social-net/old_version/slike/ženske_čizme/44febd93f0bcb8cacde024da49327f3c.jpg",
+"/Social-net/old_version/slike/ženske_čizme/62f151b63e95c5f67f2127bf8cc56211.jpg",
+"/Social-net/old_version/slike/ženske_čizme/79b671e027d0ff30c914ca837c89d544.jpg",
+"/Social-net/old_version/slike/ženske_čizme/7ad1247a474bb557a46f17c922b52c76.jpg",
+"/Social-net/old_version/slike/ženske_čizme/7d1bc99fcec67bb743c76907a263c1ec.jpg",
 ];
 var b=Math.floor(Math.random()*slik.length);
-document.getElementById('s').innerHTML='<img src='+slik[b]+'></img>'
+document.getElementById('s').innerHTML='<img src='+slik[b]+' ></img>'
 ;
 }

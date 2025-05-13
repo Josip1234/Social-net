@@ -150,7 +150,7 @@ function dohvati_listu_slika_iz_direktorija(){
 	$function_start="function slike(){";
 	$function_end="}";
     $rand_func="var b=Math.floor(Math.random()*slik.length);";
-	$return_func="document.getElementById('s').innerHTML='<img src='+slik[b]+'></img>'";"'";
+	$return_func="document.getElementById('s').innerHTML='<img src='+slik[b]+' ></img>'";"'";
 	//Get the current working directory:
 	//echo getcwd();
 	$current_directory=getcwd();
@@ -185,7 +185,7 @@ if($file=="newfile.txt"){
 	continue;
 
 }//kao provremeno riješenje za fix napisati ćemo ime podirektorija i privjerava se ako je to taj string
-else if($file=="ženske čizme"){
+else if($file=="ženske_čizme"){
       //echo $file;//file name su ženske čizme (to bi trebao biti ime direktorija)
 	  $directory=$file;
 	  //koristimo prijašnju varijablu za relativni put
@@ -195,7 +195,9 @@ else if($file=="ženske čizme"){
 	  //echo $subdirectory_to_scan;
 	  //tu trebamo funkciju postaviti kao i prethodnu kod će se ponavljati za sada neka se ponavlja.
 	  //funkcija će pisati također nakon prekskanja točki u file datoteke.
-	  $preskoci_tocke=0;
+	  //relativni put spajamo u funkciji
+	  save_pictures_to_random_js($subdirectory_to_scan,$relativni_put.$file,$filename,true);
+	/*  $preskoci_tocke=0;
 	  if (is_dir($subdirectory_to_scan)){
           
 		  if ($dh2 = opendir($subdirectory_to_scan)){
@@ -207,7 +209,7 @@ else if($file=="ženske čizme"){
 			}
 		  }
 		    closedir($dh2);
-	  }
+	  }*/
 
 }else{
 	write_to_js_file($filename,'"'.$relativni_put.$file.'",',"a"); //spoji relativni put i datoteku koja se skenirala pa prosljedi funkciji write to js file
@@ -292,5 +294,37 @@ function update_serial($serial){
 		echo "Update successfull.";
 	}
 }
+//spremati će se urlovi slika u obliku polja u random.js
+//subdirectory označava dali je poddirektorij ili ne bitno je za skeniranje
+function save_pictures_to_random_js($directory_for_reading,$relative_path,$name_of_file_for_save,$is_subdirectory){
+	echo $relative_path;
+	$skip_full_stop_index=0;
+
+	if($is_subdirectory==true){
+		  if (is_dir($directory_for_reading)){
+          
+		  if ($dh2 = opendir($directory_for_reading)){
+			while (($file2 = readdir($dh2)) !== false){
+                 	//preskoči točke
+		if($skip_full_stop_index==0){
+			$skip_full_stop_index++;
+			continue;
+			
+		}else if($skip_full_stop_index==1){
+			$skip_full_stop_index++;
+			continue;
+		}else{
+				  $drugi_relativni_put=$relative_path."/".$file2;
+                 //echo $drugi_relativni_put;
+				 write_to_js_file($name_of_file_for_save,'"'.$drugi_relativni_put.'",',"a");
+			}
+		}
+		  }
+		    closedir($dh2);
+	  }
+	}
+	
+}
+
 
 ?>
