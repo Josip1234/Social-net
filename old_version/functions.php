@@ -166,6 +166,7 @@ function dohvati_listu_slika_iz_direktorija(){
 	$index=0;
 	write_to_js_file($filename,$function_start,"w");
 	write_to_js_file($filename,"var slik=[","a");
+	save_pictures_to_random_js($direktorij,$relativni_put,$filename,false);
 if (is_dir($direktorij)){
 	if ($dh = opendir($direktorij)){
 	  while (($file = readdir($dh)) !== false){
@@ -297,7 +298,7 @@ function update_serial($serial){
 //spremati će se urlovi slika u obliku polja u random.js
 //subdirectory označava dali je poddirektorij ili ne bitno je za skeniranje
 function save_pictures_to_random_js($directory_for_reading,$relative_path,$name_of_file_for_save,$is_subdirectory){
-	echo $relative_path;
+	//echo $relative_path;
 	$skip_full_stop_index=0;
 
 	if($is_subdirectory==true){
