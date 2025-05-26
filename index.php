@@ -1,11 +1,26 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet</title>
     <link rel="stylesheet" href="css/stil.css">
-</head>
+</head>-->
+<?php 
+include("classes/header_html.php");
+//ispiši konstante iz header_html skripte koja sadrži header i title klasu
+echo Header::START_HTML;
+echo Header::HTML_LANG;
+echo Header::OPEN_HEADER;
+echo Header::META_CHARSET;
+echo Header::VIEWPORT;
+//stvori novi naslov 
+$title=new Title("Socialnet");
+//ispiši naslov
+$title->printTitle();
+echo Header::MAIN_CSS;
+echo Header::CLOSE_HEADER;
+?>
 <body>
     <div class="con">
         <nav>
