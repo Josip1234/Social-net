@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikacija za prikaz tečajnih lista</title>
+    <script src="js/valut.js"></script>
+    <link rel="stylesheet" href="css/val.css">
+</head>
+<body>
+    <div id="kontejner">
+<section id="liste">
+<table id="tble">
+<thead>
+    <tr>
+        <th>Valuta</th>
+        <th>Kupovni</th>
+        <th>Srednji</th>
+        <th>Prodajni</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>CHF</td>
+        <td>5.642</td>
+        <td>5.861</td>
+        <td>6.061</td>
+    </tr>
+    <tr>
+        <td>EUR</td>
+        <td>7.156</td>
+        <td>7.258</td>
+        <td>7.356</td>
+    </tr>
+    <tr>
+        <td>USD</td>
+        <td>4.326</td>
+        <td>4.586</td>
+        <td>4.698</td>
+    </tr>
+</tbody>
+</table>
+</section>
+<div id="input">
+<select name="selected" id="selected" onChange="selected(this.value)">
+    <option value="none" id="none">None</option>
+      <option value="CHF" id="CHF">CHF</option>
+     <option value="EUR" id="EUR">EUR</option>
+     <option value="USD" id="USD">USD</option>
+</select>
+<p id="txt"></p>
+<p id="tecaj"></p>
+<p id="res"></p>
+</div>
+    </div>
+</body>
+</html>
