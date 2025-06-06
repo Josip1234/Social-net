@@ -186,12 +186,12 @@ if($file=="newfile.txt"){
 	continue;
 
 }//kao provremeno riješenje za fix napisati ćemo ime podirektorija i privjerava se ako je to taj string
-else if($file=="ženske_čizme"){
-      //echo $file;//file name su ženske čizme (to bi trebao biti ime direktorija)
+else if($file=="something"){
+      //echo $file;//file name su something (to bi trebao biti ime direktorija)
 	  $directory=$file;
 	  //koristimo prijašnju varijablu za relativni put
 	  //filename varijablu prijašnju deklariranu gdje ćemo spremiti podatke.  
-	  //spoji trenutni direktorij koji se skenira sa imenom poddirektorija (ženske čizme)
+	  //spoji trenutni direktorij koji se skenira sa imenom poddirektorija (something)
 	  $subdirectory_to_scan=$direktorij.$file;
 	  //echo $subdirectory_to_scan;
 	  //tu trebamo funkciju postaviti kao i prethodnu kod će se ponavljati za sada neka se ponavlja.
