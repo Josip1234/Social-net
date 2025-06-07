@@ -30,7 +30,7 @@ if(!isset($_SESSION['username'])){
 <script src="js/dropdownmenu.js"></script>
 <script src="js/ajax.js"></script>
 </head>
-<body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()" onload="slike(),pokaziteme()">
+<body onmouseover="prikazi_datum(), dohvati_kalendar_nova_verzija()" onload="slike(),pokaziteme(),dohvati_odgovore(),pokazitemu('now')">
     <div class="con">
 <nav>
 <div class="dropdown">
@@ -98,7 +98,9 @@ if(!isset($_SESSION['username'])){
     <div id="tema">
 <h2>Ovdje idu teme</h2>
 <p id="demo"></p>
-<?php include("ispis_tema.php"); ?>
+<?php //include("ispis_tema.php"); ?>
+<p id="txtHint"></p>
+<p id="txt"></p>
     </div>
     <div id="podtema">
 <h2>Podteme</h2>

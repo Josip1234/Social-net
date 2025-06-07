@@ -11,7 +11,7 @@ function pokaziteme(){
     conn.send();
 }
 
-function pokazitemu(){
+function pokazitemu(str){
     if(str==""){
         document.getElementById("txtHint").innerHTML="";
         return;
@@ -29,4 +29,15 @@ function pokazitemu(){
         xmlhttp.open("GET","ispis_tema.php",true);
         xmlhttp.send();
     }
+}
+
+function dohvati_odgovore(){
+    var xhttp=new XMLHttpRequest();
+    xhttp.onreadystatechange=function(){
+        if(this.readyState==4 && this.status==200){
+            document.getElementById("txt").innerHTML=this.responseText;
+        }
+    };
+    xhttp.open("GET","odgovori.php",true);
+    xhttp.send();
 }

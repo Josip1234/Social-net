@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet forum - popis tema</title>
+    <script src="js/ajax.js"></script>
 </head>
-<body>
+<body onload="dohvati_odgovore()">
     <?php 
 include("dbconn.php");
 echo "<table><thead><tr><th><b>Broj teme</b></th><th>Naziv teme</th></tr></thead>";
@@ -20,5 +21,6 @@ while($result=mysqli_fetch_array($query)){
 echo "</tbody></table>";
 
 ?>
+<div id="txt"></div>
 </body>
 </html>
