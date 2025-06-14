@@ -39,16 +39,16 @@ if(!isset($_SESSION['username'])){
         <a href="terminirajprofil.php">Delete profile</a>
 <a href="profilna.php" style="font-size: 10px;">Add profile picture</a>
 <a href="update_profilne.php" style="font-size: 10px;">Update profile picture</a>
-<a href="login.php" target="_blank">Login</a>
-<a href="logout.php" target="_blank">Logout</a>
+<a href="login.php" target="_self">Login</a>
+<a href="logout.php" target="_self">Logout</a>
     </div>
   </div>
   <div class="dropdown">
     <button class="dropbtn">Privacy, feedbacks</button>
     <div class="dropdown-content">
-        <a href="privacy.php" target="_blank" style="font-size: 12px;">Terms of privacy</a>
+        <a href="privacy.php" target="_self" style="font-size: 12px;">Terms of privacy</a>
          
-        <a href="feedback.php" target="_blank">Add feedback</a>
+        <a href="feedback.php" target="_self">Add feedback</a>
         <?php 
         if($_SESSION['role']=="Administrator"){
             echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer' style='font-size: 10px;'>Trenutni feedbackovi</a>";
@@ -71,14 +71,14 @@ if(!isset($_SESSION['username'])){
 <div class="dropdown">
     <button class="dropbtn">Forumi,chatovi, početna</button>
     <div class="dropdown-content">
-    <a href="forum.php" target="_blank" rel="noopener noreferrer">Forum</a>
-    <a href="index.html" target="_blank" rel="noopener noreferrer">Back to home page</a>
+    <a href="forum.php" target="_self" rel="noopener noreferrer">Forum</a>
+    <a href="index.html" target="_self" rel="noopener noreferrer">Back to home page</a>
     </div>
   </div>
   <div class="dropdown">
     <button class="dropbtn">Photos</button>
     <div class="dropdown-content">
-    <a href="print_profile_history.php" target="_blank" rel="noopener noreferrer">Print profile history images</a>
+    <a href="print_profile_history.php" target="_self" rel="noopener noreferrer">Print profile history images</a>
     </div>
   </div>
         </nav>
