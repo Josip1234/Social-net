@@ -3,6 +3,7 @@ include("classes/header_html.php");
 include("classes/body_html.php");
 include("classes/headings.php");
 include("classes/paragraph.php");
+include("classes/css_js_includes.php");
 //ispiši konstante iz header_html skripte koja sadrži header i title klasu
 echo Header::START_HTML;
 echo Header::HTML_LANG;
@@ -14,6 +15,10 @@ $title=new Title("Socialnet");
 //ispiši naslov
 $title->printTitle();
 echo Header::MAIN_CSS;
+echo Styles::BOOTSTRAP_BUNDLE;
+echo Styles::BOOTSTRAP_CSS;
+echo Styles::BOOTSTRAP_MIN_JS;
+echo Styles::BOOTSTRAP_POPPER;
 echo Header::CLOSE_HEADER;
 echo Body::OPEN_BODY;
 echo Body::OPEN_CONTAINER;
