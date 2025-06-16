@@ -126,3 +126,11 @@ p#s img{
 		height: 20%;
 	width: 20%;
 }
+iframe[seamless]{border: none}
+#valut{
+	margin-top: 2%;
+	height:  16%;
+	width:  16%;
+	
+	overflow: hidden;
+}

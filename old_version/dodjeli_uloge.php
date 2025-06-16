@@ -78,6 +78,7 @@ if(!isset($_SESSION['username'])){
     <button class="dropbtn">Photos</button>
     <div class="dropdown-content">
     <a href="print_profile_history.php" target="_self" rel="noopener noreferrer">Print profile history images</a>
+    <a href="galerija.html" target="_self" rel="noopener noreferrer">Photo gallery</a>
     </div>
   </div>
 
@@ -92,6 +93,9 @@ if(!isset($_SESSION['username'])){
 <h2>Random slike</h2>
 <p id="s"></p>
     </section>
+    <section id="valut">
+	<iframe src="valutaV3.html" seamless></iframe>
+</section>
     <div class="pravila">
 <section>
     <h1>Lista korisnika koja nemaju ulogu u bazi podataka a nisu se ulogirali prvi put</h1>
