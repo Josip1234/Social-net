@@ -98,7 +98,7 @@ if(!isset($_SESSION['username'])){
         <iframe src="valutaV3.html" seamless></iframe>
     </section>
 <div class="pravila">
-<section><h2>Feedbackovi</h2>
+<section id="sec"><h2>Feedbackovi</h2>
 <!--<table>
 <?php
 
