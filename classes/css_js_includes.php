@@ -4,6 +4,9 @@ class Styles{
     const BOOTSTRAP_BUNDLE="<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js' integrity='sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO' crossorigin='anonymous'></script>";
     const BOOTSTRAP_POPPER="<script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous'></script>";
     const BOOTSTRAP_MIN_JS="<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js' integrity='sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D' crossorigin='anonymous'></script>";
+    const CALENDAR_JS="<script src='js_scripts/calendar.js'></script>";
+    const DATE_JS="<script src='js_scripts/social.js'></script>";
+    const CURRENCY_JS="<script src='js_scripts/valutV3.js'></script>";
 }
 /***
  * 
@@ -16,3 +19,4 @@ class Styles{
  */
 
 ?>
+
