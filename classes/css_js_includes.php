@@ -7,6 +7,8 @@ class Styles{
     const CALENDAR_JS="<script src='js_scripts/calendar.js'></script>";
     const DATE_JS="<script src='js_scripts/social.js'></script>";
     const CURRENCY_JS="<script src='js_scripts/valutV3.js'></script>";
+    const CUSTOM_COLOR_AND_BORDERS_CSS="<link rel='stylesheet' href='css/custom_colors_and_borders.css'>";
+    const CUSTOM_MARGIN_PADDING_CSS="<link rel='stylesheet' href='css/custom_margin_padding.css'>";
 }
 /***
  * 
