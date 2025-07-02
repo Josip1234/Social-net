@@ -99,32 +99,37 @@ if(!isset($_SESSION['username'])){
     </section>
 <div class="pravila">
 <section id="sec"><h2>Feedbackovi</h2>
-<!--<table>
+<table>
 <?php
 
-//$query="SELECT * FROM kvaliteta";
-//$q=mysqli_query($dbc,$query);
-//while($row=mysqli_fetch_array($q)){
-//	echo"<tr>";
-	/**echo"<td>".$row['id']."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/> <input type='checkbox' name='obavljeno' value='Obavljeno?'/><label>Obavljeno?</label></td>";*/
-//	echo"<td>".$row['id']."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br/> <form action='feedbackdone.php' method='post'><input type='checkbox' name='obavljeno' value='Yes'/><label>Obavljeno?</label><input type='submit' name='formSubmit' value='Posalji'></form></td>";
-//	echo "</tr>";
-//};
-//$obavljeno=$_POST['obavljeno'];
-//mysqli_close($dbc);
+$query="SELECT * FROM kvaliteta";
+$q=mysqli_query($dbc,$query);
+while($row=mysqli_fetch_array($q)){
+	echo"<tr>";
+	echo"<td>".$row['id']." ".$row['firstname']." ".$row['lastname']." ".$row['suggestion']." <form action='trenutnifeedback.php' method='post'><input type='checkbox' name='obavljeno' value='Yes'/><label>Obavljeno?</label>
+  <input type='hidden' name='id_feedbacka' value='".$row['id']."'>
+  <input type='submit' name='formSubmit' value='Posalji'></form></td>";
+	echo "</tr>";
+};
 ?>
-</table>-->
-<form action="trenutnifeedback.php" method="post"><label for="selectcom">Select comment</label><br>
-<select name="select" id="selectcom">
-	<?php $query="SELECT id, suggestion FROM kvaliteta";
-	$exe_query=mysqli_query($dbc,$query); 
-	while($res=mysqli_fetch_array($exe_query)){
-		echo "<option value='".$res['id']."'>".$res['suggestion']."</option>";
-	}
-	?>
-</select>
-<input type="submit" value="Insert" name="insert">
-</form>
+</table>
+<?php 
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+$obavljeno=$_POST['obavljeno'];
+
+  $done=1;
+  echo "Obavljeno=".$done;
+  $id_feedbacka=$_POST['id_feedbacka'];
+echo "Id feedbacka:".$id_feedbacka;
+$email=$_SESSION['username'];
+echo "User who check feedback:".$email;
+ $sql="INSERT INTO `obavljeno` ( `obavljeno`, `id_feedbacka`, `email`) VALUES ( '$done', '$id_feedbacka', '$email')";
+mysqli_query($dbc,$sql);
+mysqli_close($dbc);
+
+}
+
+?>
 </section>
 </div>
 
