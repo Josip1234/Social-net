@@ -101,8 +101,8 @@ if(!isset($_SESSION['username'])){
 <section id="sec"><h2>Feedbackovi</h2>
 <table>
 <?php
-
-$query="SELECT * FROM kvaliteta";
+//SELECT ALL VALUES WHICH ARE NOT DONE YET
+$query="SELECT kvaliteta.id,kvaliteta.firstname,kvaliteta.lastname,kvaliteta.suggestion FROM kvaliteta,obavljeno WHERE kvaliteta.id <> obavljeno.id_feedbacka";
 $q=mysqli_query($dbc,$query);
 while($row=mysqli_fetch_array($q)){
 	echo"<tr>";
