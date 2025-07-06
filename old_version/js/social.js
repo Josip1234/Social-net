@@ -7,3 +7,11 @@ function selected(selected){
 	var val=selected;
 	document.getElementById("sec").innerHTML=val;
 }
+function setColorGreen(){
+	document.getElementById("sel").style.backgroundColor="green";
+	document.getElementById("op").style.color="green";
+}
+function setColorWhite(){
+	document.getElementById("sel").style.backgroundColor="white";
+	document.getElementById("op").style.color="white";
+}
