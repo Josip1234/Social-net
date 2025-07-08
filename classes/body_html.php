@@ -30,6 +30,8 @@ const OPEN_SECTION_CALENDAR="<section id='calendar' class='calendar'>";
 const OPEN_DIV_CALENDAR="<div id='calendar' class='calendar'>";
 const OPEN_BODY_ONMOUSEOVER_CALENDAR_ONLY="<body class='rounded-5 orange outset m-3 p-1' onmouseover='dohvati_kalendar_nova_verzija()'>";
 const OPEN_BODY_ONLOAD_CALENDAR_ONLY="<body class='rounded-5 orange outset m-3 p-1' onload='dohvati_kalendar_nova_verzija()'>";
+const OPEN_SECTION_CLASS_RANDSLIKE="<section id='randslike'>";
+const OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES="<body class='rounded-5 orange outset m-3 p-1' onload='dohvati_kalendar_nova_verzija(),slike()'>";
 }
 
 ?>

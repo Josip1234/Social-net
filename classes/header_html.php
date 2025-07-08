@@ -8,7 +8,6 @@ class Header{
     const CLOSE_HEADER="</head>";
     const META_CHARSET="<meta charset='UTF-8'>";
     const VIEWPORT="<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-    const MAIN_CSS="<link rel='stylesheet' href='css/stil.css'>";
     const OPEN_TITLE="<title>";
     const CLOSE_TITLE="</title>";
 }

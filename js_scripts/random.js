@@ -247,6 +247,6 @@ var slik=[
 "/Social-net/old_version/slike/WIN_20170426_13_39_20_Pro.jpg",
 ];
 var b=Math.floor(Math.random()*slik.length);
-document.getElementById('s').innerHTML='<img src='+slik[b]+' ></img>'
+document.getElementById('s').innerHTML='<img src='+slik[b]+' alt='+b+'></img>'
 ;
 }

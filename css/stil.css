@@ -1,55 +1,11 @@
 @charset "utf-8";
-body{
-    background-color: orange;
-}
-nav a:link, a:visited{
-    /*background-color: #f44336;*/
-    border: 2px solid red;
-    border-radius: 30px;
-    margin-left: 5%;
-    margin-right: -5%;
-    background-color: red;
-    color: #fff;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-nav a:hover,a:active{
-    border: 2px solid red;
-    border-radius: 30px;
-    background-color: red;
-}
-#privacy{
-    text-decoration: none;
-    color: #2A0000;
-    text-align: justify;
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom-style: none;
-    border-left-style: none;
-    background-color: orange;
-}
-.rules{
-    padding: 30%;
-    text-align: justify;
-    font-size: 20px;
-}
-nav{
-    border: 2px solid red;
-    border-radius: 30px;
-    border-color: orange;
-}
 #randslike{
     height: 16%;
     width: 16%;
 }
-#randomvideozapisi{
-    height: 16%;
-    width: 16%;
-}
+
 #randslike #s img{
     padding: 6px;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: auto;
 }

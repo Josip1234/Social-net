@@ -3,6 +3,7 @@
 class Paragraph{
 const OPEN_P="<p>";
 const CLOSE_P="</p>";
+const P_WITH_ID_S="<p id='s'>";
 private $paragraph_value;
 
 public function __construct( $paragraph_value){$this->paragraph_value = $paragraph_value;}
