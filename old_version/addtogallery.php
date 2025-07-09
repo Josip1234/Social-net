@@ -68,18 +68,15 @@ if(!isset($_SESSION['username'])){
 <section><h2>Add into gallery</h2>
 
 <?php
-	$date=getdate();
-	$day=$date['mday'];
-	
-	$month=$date['mon'];
 
-	$year=$date['year'];
-	$currentdate=$day.".".$month.".".$year;
 	
 	
 	$user=$_SESSION['username'];
-	
+
+if(isset($_POST['type'])){
 $type=$_POST['type'];
+}
+
     
 	
 		
@@ -93,7 +90,7 @@ $imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
 $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
 
 	
-$sql="INSERT INTO `galerija` (`korisnik`, `datum_uploada`, `type_of_gallery`, imageType ,imageData) VALUES ('$user', '$currentdate', '$type', '{$imageProperties['mime']}', '{$imgData}')";
+$sql="INSERT INTO `galerija` (`korisnik`, `type_of_gallery`, imageType ,imageData) VALUES ('$user', '$type', '{$imageProperties['mime']}', '{$imgData}')";
 
 
 mysqli_query($dbc,$sql);

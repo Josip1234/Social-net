@@ -81,6 +81,7 @@ if(!isset($_SESSION['username'])){
     <div class="dropdown-content">
     <a href="print_profile_history.php" target="_self" rel="noopener noreferrer">Print profile history images</a>
     <a href="galerija.html" target="_self" rel="noopener noreferrer">Photo gallery</a>
+    <a href="addtogallery.php" target="_self">Add to gallery</a>
     </div>
   </div>
 
