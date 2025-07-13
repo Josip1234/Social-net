@@ -73,6 +73,8 @@ echo Paragraph::CLOSE_P;
 echo Body::CLOSE_SECTION;
 echo Body::CLOSE_DIV;
 echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
+
+//--------------------------------------------------------------------------------------------------------------------//
 //connect to databse
 $database_connection=new DatabaseConnection("localhost","root","","scn","utf8");
 $database_connection->connectToDatabase();
@@ -102,6 +104,7 @@ $exists=$database_connection->check_for_unique("scanned_data","COUNT(*)","url","
 echo $exists;
 
 $database_connection->close_database();
+//--------------------------------------------------------------------------------------------------------------------//
 
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;

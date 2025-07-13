@@ -2,6 +2,7 @@
 class File_Directory
 {
     private $directory_name;
+    private $available;
 
     public function __construct($directory_name)
     {
