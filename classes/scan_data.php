@@ -1,6 +1,10 @@
 <?php
+include("images.php");
 class Scanned_data
 {
+    const TABLE_NAME="scanned_data";
+    const COLUMN_NAME="url";
+    
     private $url;
     public function __construct($url)
     {
@@ -16,45 +20,33 @@ class Scanned_data
     }
     //insert scanned urls to tabase into the table
     public function insert_scanned_data_into_database($database_connection_object,$dataset){
-        $query="INSERT INTO scanned_data (url) VALUES (?)";
+        $tn=Scanned_data::TABLE_NAME;
+        $query="INSERT INTO $tn (url) VALUES (?)";
         foreach ($dataset as $value) {
             //check if url already exists in database
-            $exists=$database_connection_object->check_for_unique("scanned_data","COUNT(*)","url",$value);
+            $exists=$database_connection_object->check_for_unique($tn,"COUNT(*)",Scanned_data::COLUMN_NAME,$value);
             //insert into database if value does not exists
             //if data exists skip current url continue to check others
             if($exists==0){
                $statement=$database_connection_object->getDbconn()->prepare($query);
                $statement->bind_param("s",$value);
                $statement->execute();
-               echo "New records inserted successfuly";
+               
             }else if($exists==1){
                  continue;
+            }else if(empty($value)||($value=="")){
+                echo "There is empty value. This value will not be inserted into our database.";
             }
         }
     }
+    public function return_list_of_images_from_database($database_connection_object){
+        $imgs=array();
+        $image=new Image("","","");
+        $what_data=array();
+        $what_data[]=Scanned_data::COLUMN_NAME;
+        $imgs=$database_connection_object->print_all_data_from_database(Scanned_data::TABLE_NAME,$what_data);
+        return $imgs;
+
+    }
+
 }
-/*prepare and bind
-$stmt = $conn->prepare("INSERT INTO MyGuests (firstname, lastname, email) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $firstname, $lastname, $email);
-
-// set parameters and execute
-$firstname = "John";
-$lastname = "Doe";
-$email = "john@example.com";
-$stmt->execute();
-
-$firstname = "Mary";
-$lastname = "Moe";
-$email = "mary@example.com";
-$stmt->execute();
-
-$firstname = "Julie";
-$lastname = "Dooley";
-$email = "julie@example.com";
-$stmt->execute();
-
-echo "New records created successfully";
-
-$stmt->close();
-$conn->close();
-*/

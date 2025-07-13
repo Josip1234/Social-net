@@ -80,7 +80,7 @@ echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
 $database_connection=new DatabaseConnection("localhost","root","","scn","utf8");
 $database_connection->connectToDatabase();
 $result=array();
-$heading=new Heading("Neki drugi sadržaj");
+$heading=new Heading("Slike");
 echo $heading->print_h2();
 //scan files
 //need an array of data what to print from database
@@ -100,11 +100,22 @@ foreach ($result as $value) {
 $fil_dir_array=array();
 //this is the list of url-s from scanned directories from database
 $fil_dir_array=explode(",",$files_in_directories);
-
+echo "<br>";
+//filer empty values
+$fil_dir_array = array_filter($fil_dir_array);
 //insert values for scanned urls into database
 $scanned_data=new Scanned_data("");
+$images=array();
 $scanned_data->insert_scanned_data_into_database($database_connection,$fil_dir_array);
+$images=$scanned_data->return_list_of_images_from_database($database_connection);
+//convert list of image array to real images
+$image = new Image("","","");
+$new_images=array();
+$new_images=$image->convert_urls_to_images($images);
 
+foreach ($new_images as $value) {
+     echo $value;
+}
 
 $database_connection->close_database();
 //--------------------------------------------------------------------------------------------------------------------//
