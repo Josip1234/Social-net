@@ -84,7 +84,7 @@ echo $heading->print_h2();
 $data_to_print=array();
 $data_to_print[]="relativni_put";
 $result=$database_connection->print_all_data_from_database("file_directory_for_scan",$data_to_print);
-$database_connection->close_database();
+
 $files_in_directories="";
 //loop trough array of directories
 foreach ($result as $value) {
@@ -95,10 +95,13 @@ foreach ($result as $value) {
 //we got returning string we need to separate it by ,
 //we will use explode
 $fil_dir_array=array();
+//this is the list of url-s from scanned directories from database
 $fil_dir_array=explode(",",$files_in_directories);
-foreach ($fil_dir_array as $va) {
-    echo $va."<br>";
-}
+
+$exists=$database_connection->check_for_unique("scanned_data","COUNT(*)","url","neki_url");
+echo $exists;
+
+$database_connection->close_database();
 
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;

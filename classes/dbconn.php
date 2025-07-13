@@ -121,6 +121,47 @@ class DatabaseConnection{
       return $result_arr;
 
     }
+    //this is template for checking unique values in tables 
+    //wgat values can be sql function like count(*)
+    public function check_for_unique($what_table,$what_values, $compare_field,$value_in_database){
+        //if this value is 1 then value already exists in database 
+        //if it is 0 value does not exists in database.
+        $exists=0;
+
+    $sql_part1 = "SELECT ";
+    $sql_part2 ="";
+
+    //ako postoji samo jedna vrijednost kao string spoji to sa stringom ako ne spoji polja
+     if(gettype($what_values)=="string"){
+           $sql_part2 .= $what_values;
+     }else{
+  foreach ($what_values as $value) {
+        $sql_part2 .= $value;
+    }
+     }
+  
+    $sql_part3=" FROM ";
+    $sql_part4=" ".$what_table." ";
+    $sql_part5=" WHERE ";
+
+    $sql_part6="  ".$compare_field."  ";
+    $sql_part7="=?";
+     
+    $full_sql_query=$sql_part1.$sql_part2.$sql_part3.$sql_part4.$sql_part5.$sql_part6.$sql_part7;
+    $stat = $this->getDbconn()->prepare($full_sql_query);
+    $stat->bind_param("s", $value_in_database);
+    $stat->execute();
+    $result = $stat->get_result()->fetch_column();
+    $this->setNumOfRecords($result);
+     
+    if($this->getNumOfRecords()>0){
+          $exists=1;
+    }else if($this->getNumOfRecords()==0){
+        $exists=0;
+    }
+
+    return $exists;
+    }
 	
 
 }
