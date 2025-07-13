@@ -6,6 +6,7 @@ include("classes/paragraph.php");
 include("classes/css_js_includes.php");
 include("classes/dbconn.php");
 include("classes/files_and_directories.php");
+include("classes/scan_data.php");
 //ispiši konstante iz header_html skripte koja sadrži header i title klasu
 echo Header::START_HTML;
 echo Header::HTML_LANG;
@@ -100,8 +101,10 @@ $fil_dir_array=array();
 //this is the list of url-s from scanned directories from database
 $fil_dir_array=explode(",",$files_in_directories);
 
-$exists=$database_connection->check_for_unique("scanned_data","COUNT(*)","url","neki_url");
-echo $exists;
+//insert values for scanned urls into database
+$scanned_data=new Scanned_data("");
+$scanned_data->insert_scanned_data_into_database($database_connection,$fil_dir_array);
+
 
 $database_connection->close_database();
 //--------------------------------------------------------------------------------------------------------------------//
