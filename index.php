@@ -4,6 +4,8 @@ include("classes/body_html.php");
 include("classes/headings.php");
 include("classes/paragraph.php");
 include("classes/css_js_includes.php");
+include("classes/dbconn.php");
+include("classes/files_and_directories.php");
 //ispiši konstante iz header_html skripte koja sadrži header i title klasu
 echo Header::START_HTML;
 echo Header::HTML_LANG;
@@ -71,8 +73,33 @@ echo Paragraph::CLOSE_P;
 echo Body::CLOSE_SECTION;
 echo Body::CLOSE_DIV;
 echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
+//connect to databse
+$database_connection=new DatabaseConnection("localhost","root","","scn","utf8");
+$database_connection->connectToDatabase();
+$result=array();
 $heading=new Heading("Neki drugi sadržaj");
 echo $heading->print_h2();
+//scan files
+//need an array of data what to print from database
+$data_to_print=array();
+$data_to_print[]="relativni_put";
+$result=$database_connection->print_all_data_from_database("file_directory_for_scan",$data_to_print);
+$database_connection->close_database();
+$files_in_directories="";
+//loop trough array of directories
+foreach ($result as $value) {
+    $files=new File_Directory($value);
+    //add scanned files to array of results
+    $files_in_directories.=$files->scan_files_in_directory();
+}
+//we got returning string we need to separate it by ,
+//we will use explode
+$fil_dir_array=array();
+$fil_dir_array=explode(",",$files_in_directories);
+foreach ($fil_dir_array as $va) {
+    echo $va."<br>";
+}
+
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
