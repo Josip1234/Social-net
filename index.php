@@ -7,6 +7,8 @@ include("classes/css_js_includes.php");
 include("classes/dbconn.php");
 include("classes/files_and_directories.php");
 include("classes/scan_data.php");
+include("classes/random_js_structure.php");
+
 //ispiši konstante iz header_html skripte koja sadrži header i title klasu
 echo Header::START_HTML;
 echo Header::HTML_LANG;
@@ -113,9 +115,8 @@ $image = new Image("","","");
 $new_images=array();
 $new_images=$image->convert_urls_to_images($images);
 
-foreach ($new_images as $value) {
-     echo $value;
-}
+$random_js=new Randomjs($new_images);
+$random_js->save_images_to_random_js(Image::ROOT_URL,"js_scripts/random.js");
 
 $database_connection->close_database();
 //--------------------------------------------------------------------------------------------------------------------//
