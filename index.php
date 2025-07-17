@@ -102,7 +102,6 @@ foreach ($result as $value) {
 $fil_dir_array=array();
 //this is the list of url-s from scanned directories from database
 $fil_dir_array=explode(",",$files_in_directories);
-echo "<br>";
 //filer empty values
 $fil_dir_array = array_filter($fil_dir_array);
 //insert values for scanned urls into database
@@ -117,10 +116,24 @@ $new_images=$image->convert_urls_to_images($images);
 
 $random_js=new Randomjs($new_images);
 $random_js->save_images_to_random_js(Image::ROOT_URL,"js_scripts/random.js");
-
+//--------------------------------------------------------------------------------------------------------------------//
+echo Body::OPEN_BOOTSTRAP_DIV_ROW;
+//we assume all of id does not have break 
+//we need to add a fix if there is some id break 
+//to generate another number
+$rec_num=array();
+$rec_num[]=$database_connection->get_num_of_records_from_table(Scanned_data::TABLE_NAME);
+$image_array=array();
+$image_array=$image->get_nth_number_of_random_images_from_database(3,$database_connection,$rec_num);
+//print filtered array
+foreach ($image_array as $value) {
+    echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
+    echo $value;
+    echo Body::CLOSE_DIV;
+}
+echo Body::CLOSE_DIV;
 $database_connection->close_database();
 //--------------------------------------------------------------------------------------------------------------------//
-
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
