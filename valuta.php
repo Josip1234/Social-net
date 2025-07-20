@@ -4,6 +4,8 @@ include("classes/css_js_includes.php");
 include("classes/body_html.php");
 include("classes/headings.php");
 include("templates/table_template.php");
+include("templates/forms_templates.php");
+include("classes/paragraph.php");
 
 echo Header::START_HTML;
 echo Header::HTML_LANG;
@@ -24,45 +26,18 @@ $th_data=array("Valuta","Kupovni","Srednji","Prodajni");
 $td_data=array("CHF","5.642","5.861","6.061","EUR","7.156","7.258","7.356","USD","4.326","4.586","4.698");
 $table=new Table("table table-striped",$th_data,$td_data,3);
 $table->print_table();
+echo Body::CLOSE_SECTION;
+echo Body::OPEN_DIV_WITH_ID_INPUT;
+echo Form::OPEN_SELECT_WITH_ONCHANGE_EVENT;
+echo Form::OPEN_EMPTY_OPTION_WITH_ID;
+echo Form::CLOSE_OPTION;
+$currencies=array("CHF","EUR","USD");
+$form=new Form("","",$currencies);
+$form->print_option_values_only_with_id_s();
+echo FORM::CLOSE_SELECT;
+echo Paragraph::P_WITH_ID_TXT;
+echo Paragraph::CLOSE_P;
 	?>
-	<table>
-		<th>Valuta</th>
-		<th>Kupovni</th>
-		<th>Srednji</th>
-		<th>Prodajni</th>
-		<tr>
-			<td>CHF</td>
-			<td>5.642</td>
-			<td>5.861</td>
-			<td>6.061</td>
-			
-		</tr>
-		<tr>
-			<td>EUR</td>
-			<td>7.156</td>
-			<td>7.258</td>
-			<td>7.356</td>
-		</tr>
-		<tr>
-			
-				<td>USD</td>
-				<td>4.326</td>
-				<td>4.586</td>
-				<td>4.698</td>
-				
-			
-		</tr>
-	</table>
-	
-	</section>
-	<div id="input">
-<select id="selected" onChange="selected(this.value)">
-    <option id=""></option>
-	<option id="CHF">CHF</option>
-	<option id="EUR">EUR</option>
-	<option id="USD">USD</option>
-</select>
-<p id="txt"></p>
 		
 </div>
 </div>
