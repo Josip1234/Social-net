@@ -6,11 +6,12 @@ class Styles{
     const BOOTSTRAP_MIN_JS="<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js' integrity='sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D' crossorigin='anonymous'></script>";
     const CALENDAR_JS="<script src='js_scripts/calendar.js'></script>";
     const DATE_JS="<script src='js_scripts/social.js'></script>";
-    const CURRENCY_JS="<script src='js_scripts/valutV3.js'></script>";
+    const CURRENCY_JS="<script src='js_scripts/valut.js'></script>";
     const CUSTOM_COLOR_AND_BORDERS_CSS="<link rel='stylesheet' href='css/custom_colors_and_borders.css'>";
     const CUSTOM_MARGIN_PADDING_CSS="<link rel='stylesheet' href='css/custom_margin_padding.css'>";
     const GALERIJA_JS="<script src='js_scripts/random.js'></script>";
     const MAIN_CSS="<link rel='stylesheet' href='css/stil.css'>";
+    const CURRENCY_CSS="<link rel='stylesheet' href='css/val.css'>";
 }
 /***
  * 

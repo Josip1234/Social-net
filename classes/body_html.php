@@ -21,6 +21,7 @@ const REGISTRATION_URL="<a href='#' target='_self' rel='noopener noreferrer' cla
 const LOGIN_URL="<a href='#' target='_self' rel='noopener noreferrer' class='text-decoration-none text-white'>Login</a>";
 const OPEN_RULES_DIV="<div class='rules'>";
 const OPEN_SECTION="<section>";
+const OPEN_SECTION_WITH_ID_LISTE="<section id='liste'>";
 const CLOSE_SECTION="</section>";
 const CLOSE_HTML_DOCUMENT="</html>";
 const OPEN_HORIZONTAL_UL="<ul class='list-group list-group-horizontal'>";
@@ -32,6 +33,7 @@ const OPEN_BODY_ONMOUSEOVER_CALENDAR_ONLY="<body class='rounded-5 orange outset 
 const OPEN_BODY_ONLOAD_CALENDAR_ONLY="<body class='rounded-5 orange outset m-3 p-1' onload='dohvati_kalendar_nova_verzija()'>";
 const OPEN_SECTION_CLASS_RANDSLIKE="<section id='randslike'>";
 const OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES="<body class='rounded-5 orange outset m-3 p-1' onload='dohvati_kalendar_nova_verzija(),slike()'>";
+const OPEN_CONTAINER_WITH_ID_CN="<div id='cn' class='container-fluid text-center'>";
 }
 
 ?>
