@@ -2,7 +2,7 @@
 class Form
 {
     const OPEN_SELECT_WITH_ONCHANGE_EVENT = "<select id='selected' onChange='selected(this.value)'>";
-    const OPEN_EMPTY_OPTION_WITH_ID = " <option id=''>";
+    const OPEN_EMPTY_OPTION_WITH_ID = " <option id='Select'>";
     const CLOSE_OPTION = "</option>";
     const OPEN_OPTION_WITH_ID_NEEDED = "<option id='";
     private $option_id;

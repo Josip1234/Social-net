@@ -1,9 +1,10 @@
 <?php 
 
-include("navigation_template.php");
-
 function create_body_template($url){
-    echo Body::OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES;
+    
+//----------------------------------------------------------
+    if($url==Url_constant::INDEX){
+        echo Body::OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES;
 echo Body::OPEN_CONTAINER;
 echo Body::OPEN_BOOTSTRAP_DIV_ROW_CUSTOMISED;
 create_navigation_template(Url_constant::INDEX);
@@ -13,8 +14,6 @@ echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
 echo Body::OPEN_DIV_CALENDAR;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
-//----------------------------------------------------------
-    if($url==Url_constant::INDEX){
        echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
 echo Body::OPEN_RULES_DIV;
 echo Body::OPEN_SECTION;
@@ -27,7 +26,7 @@ echo $par->print_paragraphs_values();
 echo Body::CLOSE_SECTION;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
-    }
+    
 
 echo Body::CLOSE_DIV;
 echo Body::OPEN_BOOTSTRAP_DIV_ROW;
@@ -106,7 +105,32 @@ echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_BODY;
 echo Body::CLOSE_HTML_DOCUMENT;
-
+    }else if($url==Url_constant::VALUTA){
+        echo Body::OPEN_BODY;
+echo Body::OPEN_CONTAINER_WITH_ID_CN;
+$heading=new Heading("Credit bank");
+$heading->print_h2();
+echo Body::OPEN_SECTION_WITH_ID_LISTE;
+$heading->setH2("Odaberi vrijednost:");
+$heading->print_h2();
+$th_data=array("Valuta","Kupovni","Srednji","Prodajni");
+$td_data=array("CHF","5.642","5.861","6.061","EUR","7.156","7.258","7.356","USD","4.326","4.586","4.698");
+$table=new Table("table table-striped",$th_data,$td_data,3);
+$table->print_table();
+echo Body::CLOSE_SECTION;
+echo Body::OPEN_DIV_WITH_ID_INPUT;
+echo Form::OPEN_SELECT_WITH_ONCHANGE_EVENT;
+echo Form::OPEN_EMPTY_OPTION_WITH_ID;
+$new_id_value=new Form("","Select","");
+echo $new_id_value->getOptionValue();
+echo Form::CLOSE_OPTION;
+$currencies=array("CHF","EUR","USD");
+$form=new Form("","",$currencies);
+$form->print_option_values_only_with_id_s();
+echo FORM::CLOSE_SELECT;
+echo Paragraph::P_WITH_ID_TXT;
+echo Paragraph::CLOSE_P;
+    }
 }
 
 ?>
