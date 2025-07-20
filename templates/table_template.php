@@ -2,115 +2,129 @@
 class Table
 {
     const OPEN_TABLE = "<table";
-    const CLASS_TABLE = "class='";
+    const CLASS_TABLE = " class='";
     private $class_name; //class for for example table stripped from bootstrap
     const CLOSE_OPEN_TABLE = "'>";
-    private $header; //true if user wants a table header false if he does not
-    private $footer; //same as header
     const CLOSE_TABLE = "</table>";
-    private $how_many_rows; //how many rows table could have
-    private $how_many_cols; //how many cols table could have
-    private $dynamic_cols_rows; //if true, table will automaticly add rows and cols
-    //will be usefull for making a table which prints data from database
-    private $data_rows; //class will recieve what data will be in th or first row 
-    //if user does not want table header
-    private $data_cols; //data which will be as table data per row 
+    const OPEN_THEAD = "<thead>";
+    const CLOSE_THEAD = "</thead>";
     const OPEN_TH = "<th>";
     const OPEN_TR = "<tr>";
     const OPEN_TD = "<td>";
     const CLOSE_TH = "</th>";
     const CLOSE_TR = "</tr>";
     const CLOSE_TD = "</td>";
+    const OPEN_TBODY = "<tbody>";
+    const CLOSE_TBODY = "</tbody>";
+    private $th_data;
+    private $td_data;
+    private $num_of_rows_excluding_th;
+ 
 
-    public function __construct($class_name,  $header,  $footer,  $how_many_rows,  $how_many_cols,  $dynamic_cols_rows,  $data_rows,  $data_cols)
+
+    public function __construct($class_name,  $th_data,  $td_data,  $num_of_rows_excluding_th)
     {
         $this->class_name = $class_name;
-        $this->header = $header;
-        $this->footer = $footer;
-        $this->how_many_rows = $how_many_rows;
-        $this->how_many_cols = $how_many_cols;
-        $this->dynamic_cols_rows = $dynamic_cols_rows;
-        $this->data_rows = $data_rows;
-        $this->data_cols = $data_cols;
-    }
+        $this->th_data = $th_data;
+        $this->td_data = $td_data;
+        $this->num_of_rows_excluding_th = $num_of_rows_excluding_th;
 
+    }
     public function getClassName()
     {
         return $this->class_name;
     }
 
-    public function getHeader()
+    public function getThData()
     {
-        return $this->header;
+        return $this->th_data;
     }
 
-    public function getFooter()
+    public function getTdData()
     {
-        return $this->footer;
+        return $this->td_data;
     }
 
-    public function getHowManyRows()
+    public function getNumOfRowsExcludingTh()
     {
-        return $this->how_many_rows;
+        return $this->num_of_rows_excluding_th;
     }
 
-    public function getHowManyCols()
-    {
-        return $this->how_many_cols;
-    }
-
-    public function getDynamicColsRows()
-    {
-        return $this->dynamic_cols_rows;
-    }
-
-    public function getDataRows()
-    {
-        return $this->data_rows;
-    }
-
-    public function getDataCols()
-    {
-        return $this->data_cols;
-    }
 
     public function setClassName($class_name)
     {
         $this->class_name = $class_name;
     }
 
-    public function setHeader($header)
+    public function setThData($th_data)
     {
-        $this->header = $header;
+        $this->th_data = $th_data;
     }
 
-    public function setFooter($footer)
+    public function setTdData($td_data)
     {
-        $this->footer = $footer;
+        $this->td_data = $td_data;
     }
 
-    public function setHowManyRows($how_many_rows)
+    public function setNumOfRowsExcludingTh($num_of_rows_excluding_th)
     {
-        $this->how_many_rows = $how_many_rows;
+        $this->num_of_rows_excluding_th = $num_of_rows_excluding_th;
     }
 
-    public function setHowManyCols($how_many_cols)
+
+
+
+
+
+    public function print_table()
     {
-        $this->how_many_cols = $how_many_cols;
+        $table = TABLE::OPEN_TABLE;
+        $table .= Table::CLASS_TABLE;
+        $table .= $this->getClassName();
+        $table .= Table::CLOSE_OPEN_TABLE;
+        //open thead first
+        $table .= Table::OPEN_THEAD;
+        $table .= Table::OPEN_TR;
+        foreach ($this->getThData() as $value) {
+            $table .= Table::OPEN_TH . $value . Table::CLOSE_TH;
+        }
+        $table .= Table::CLOSE_TR;
+        $table .= Table::CLOSE_THEAD;
+        $table .= Table::OPEN_TBODY;
+
+        $data=array();
+        $data=$this->add_tr_td_tags_to_each_element_in_array($this->getTdData());
+    
+        foreach ($data as $value) {
+            $table .= $value;
+        }
+          
+        $table .= Table::CLOSE_TBODY;
+        $table .= Table::CLOSE_TABLE;
+        echo $table;
+    }
+    //this will add td and </td> to each element of array
+    public function add_tr_td_tags_to_each_element_in_array($array_data){
+        $new_array=array();
+        $index=0;
+        $size_of_array=sizeof($array_data);
+        foreach ($array_data as $value) {
+            if($index==0){
+                $new_array[]=TABLE::OPEN_TR.Table::OPEN_TD.$value.Table::CLOSE_TD;
+            }else if($index%4==0){
+                $new_array[]=TABLE::OPEN_TR.Table::OPEN_TD.$value.Table::CLOSE_TD;
+            }else if($index==$size_of_array){
+                $new_array[]=Table::OPEN_TD.$value.Table::CLOSE_TD.Table::CLOSE_TR;
+            }
+            else{
+                $new_array[]=Table::OPEN_TD.$value.Table::CLOSE_TD;
+
+            }
+            $index++;
+        }
+         
+        return $new_array;
     }
 
-    public function setDynamicColsRows($dynamic_cols_rows)
-    {
-        $this->dynamic_cols_rows = $dynamic_cols_rows;
-    }
 
-    public function setDataRows($data_rows)
-    {
-        $this->data_rows = $data_rows;
-    }
-
-    public function setDataCols($data_cols)
-    {
-        $this->data_cols = $data_cols;
-    }
 }

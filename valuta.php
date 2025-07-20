@@ -3,6 +3,7 @@ include("classes/header_html.php");
 include("classes/css_js_includes.php");
 include("classes/body_html.php");
 include("classes/headings.php");
+include("templates/table_template.php");
 
 echo Header::START_HTML;
 echo Header::HTML_LANG;
@@ -19,6 +20,10 @@ echo Body::OPEN_CONTAINER_WITH_ID_CN;
 $heading=new Heading("Credit bank");
 $heading->print_h2();
 echo Body::OPEN_SECTION_WITH_ID_LISTE;
+$th_data=array("Valuta","Kupovni","Srednji","Prodajni");
+$td_data=array("CHF","5.642","5.861","6.061","EUR","7.156","7.258","7.356","USD","4.326","4.586","4.698");
+$table=new Table("table table-striped",$th_data,$td_data,3);
+$table->print_table();
 	?>
 	<table>
 		<th>Valuta</th>
