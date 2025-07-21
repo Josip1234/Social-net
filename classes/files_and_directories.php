@@ -31,7 +31,10 @@ if (is_dir($this->getDirectoryName())){
             continue;
         } else if($file==".."){
             continue;
-        }else{
+        }else if($file=="newfile.txt"){
+            continue;
+        }
+        else{
             $res.=$this->getDirectoryName().$file.",";
         }
     }
@@ -40,4 +43,8 @@ if (is_dir($this->getDirectoryName())){
 }
         return $res;
     }
+
+    //need to get a list of directories from database 
+    //if file has same value as in directory in our database 
+    //skip it do not add it to the array
 }

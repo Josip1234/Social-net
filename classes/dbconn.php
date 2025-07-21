@@ -163,6 +163,23 @@ class DatabaseConnection{
     return $exists;
     }
 	
+    //SELECT * FROM `scanned_data` WHERE `url` NOT LIKE '%.jpeg%' AND `url` NOT LIKE '%.jpg%' AND `url` NOT LIKE '%.png%' AND `url` NOT LIKE '%.gif%';
+    public function select_from_database_all_except_image_extensions($what_table,$what_values){
+       $data=array();
+       $sql_query="SELECT * FROM $what_table WHERE `url` NOT LIKE '%.jpeg%' AND `url` NOT LIKE '%.jpg%' AND `url` NOT LIKE '%.png%' AND `url` NOT LIKE '%.gif%'";
+       $statement=$this->getDbconn()->prepare($sql_query);
+       if($statement->execute()){
+        $fetch_data = $statement->get_result();
+     
+        while($result=mysqli_fetch_array($fetch_data)){
+            foreach ($what_values as $value) {
+                $data[]=$result[$value];
+            }
+        
+        }
+       }
+       return $data;
+    }
 
 }
 

@@ -97,6 +97,7 @@ foreach ($image_array as $value) {
     echo Body::CLOSE_DIV;
 }
 echo Body::CLOSE_DIV;
+$scanned_data->maintainDatabase($database_connection);
 $database_connection->close_database();
 }
 //--------------------------------------------------------------------------------------------------------------------//

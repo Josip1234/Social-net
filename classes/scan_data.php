@@ -48,5 +48,34 @@ class Scanned_data
         return $imgs;
 
     }
+//SELECT * FROM `scanned_data` WHERE `url` LIKE '%.txt'; select everything which has .txt in it 
+//SELECT * FROM `scanned_data` WHERE `url` NOT LIKE '%.jpeg%' OR NOT LIKE '%.jpg%';
+//we can use this query SELECT * FROM `scanned_data` WHERE `url` NOT LIKE '%.jpeg%' AND `url` NOT LIKE '%.jpg%' AND `url` NOT LIKE '%.png%' AND `url` NOT LIKE '%.gif%';
+//will select values which dont contains image extensions
+//make function fix database 
+//will retrive id's from records which contains txt 
+//then we will execute delete operations
+public function maintainDatabase($database_connection){
+$values_to_select=array("id","url");
+$fetch_data_which_does_not_have_image_extension=array();
+$fetch_data_which_does_not_have_image_extension=$database_connection->select_from_database_all_except_image_extensions(Scanned_data::TABLE_NAME,$values_to_select);
+//delete values by id
+$tn=Scanned_data::TABLE_NAME;
+foreach ($fetch_data_which_does_not_have_image_extension as $value) {
+    if(gettype($value)=="integer"){
+        $query="DELETE FROM $tn WHERE id=?";
+        $statement=$database_connection->getDbconn()->prepare($query);
+        $statement->bind_param("i",$value);
+        $statement->execute();
+    }else{
+       continue;
+    }
+}
+
 
 }
+
+
+}
+
+?>
