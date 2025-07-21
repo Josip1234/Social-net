@@ -41,7 +41,7 @@ class Scanned_data
     }
     public function return_list_of_images_from_database($database_connection_object){
         $imgs=array();
-        $image=new Image("","","");
+        $image=new Image("","","","");
         $what_data=array();
         $what_data[]=Scanned_data::COLUMN_NAME;
         $imgs=$database_connection_object->print_all_data_from_database(Scanned_data::TABLE_NAME,$what_data);

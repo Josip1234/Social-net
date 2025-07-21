@@ -6,8 +6,8 @@ function create_body_template($url){
     if($url==Url_constant::INDEX){
         echo Body::OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES;
 echo Body::OPEN_CONTAINER;
-echo Body::OPEN_BOOTSTRAP_DIV_ROW_CUSTOMISED;
 create_navigation_template(Url_constant::INDEX);
+echo Body::OPEN_BOOTSTRAP_DIV_ROW_CUSTOMISED;
 echo Body::CLOSE_DIV;
 echo Body::OPEN_BOOTSTRAP_DIV_ROW;
 echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
@@ -75,7 +75,7 @@ $images=array();
 $scanned_data->insert_scanned_data_into_database($database_connection,$fil_dir_array);
 $images=$scanned_data->return_list_of_images_from_database($database_connection);
 //convert list of image array to real images
-$image = new Image("","","");
+$image = new Image("","","","img__size");
 $new_images=array();
 $new_images=$image->convert_urls_to_images($images);
 
@@ -110,9 +110,6 @@ $heading->setH2("Currencies");
 $heading->print_h2();
 echo Body::IFRAME_WITH_VALUTA_DOCUMENT;
 echo Body::CLOSE_SECTION;
-echo Body::CLOSE_DIV;
-echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
-echo "Neki dodatni sadržaj";
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;

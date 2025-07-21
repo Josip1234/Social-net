@@ -15,6 +15,7 @@ const OPEN_NAV="<nav>";
 const CLOSE_NAV="</nav>";
 const OPEN_UL="<ul>";
 const OPEN_LI="<li>";
+const OPEN_LI_CLASS_RED="<li class='red'>";
 const CLOSE_LI="</li>";
 const CLOSE_UL="</ul>";
 const REGISTRATION_URL="<a href='#' target='_self' rel='noopener noreferrer' class='text-decoration-none text-white'>Registration</a>";
@@ -36,7 +37,7 @@ const OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES="<body class='rounded-5 oran
 const OPEN_CONTAINER_WITH_ID_CN="<div id='cn' class='container-fluid text-center'>";
 const OPEN_DIV_WITH_ID_INPUT="<div id='input'>";
 const OPEN_SECTION_WITH_ID_VALUT="<section id='valut'>";
-const IFRAME_WITH_VALUTA_DOCUMENT="<iframe src='valuta.php' seamless></iframe>";
+const IFRAME_WITH_VALUTA_DOCUMENT="<iframe src='valuta.php'></iframe>";
 }
 
 ?>

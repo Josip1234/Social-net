@@ -9,3 +9,13 @@
     width: 100%;
     height: auto;
 }
+.img__size{
+    width: 80%;
+    height: auto;
+}
+
+nav ul li.red{
+    text-decoration: none;
+    list-style-type: none;
+    padding-left: 5%;
+}
