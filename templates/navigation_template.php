@@ -1,5 +1,6 @@
 <?php 
  function create_navigation_template($url){
+    echo Body::OPEN_BOOTSTRAP_DIV_ROW_CUSTOMISED;
 echo Body::OPEN_BOOTSTRAP_DIV_COLUMN_CUSTOM_MARGIN;
 echo Body::OPEN_NAV_CUSTOMISED;
 echo Body::OPEN_HORIZONTAL_UL;

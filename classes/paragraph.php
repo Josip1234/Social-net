@@ -5,6 +5,8 @@ const OPEN_P="<p>";
 const CLOSE_P="</p>";
 const P_WITH_ID_S="<p id='s'>";
 const P_WITH_ID_TXT="<p id='txt'>";
+const P_WITH_ID_DATUM ="<p id='datum'>";
+
 private $paragraph_value;
 
 public function __construct( $paragraph_value){$this->paragraph_value = $paragraph_value;}

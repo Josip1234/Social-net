@@ -4,10 +4,10 @@ function create_body_template($url){
     
 //----------------------------------------------------------
     if($url==Url_constant::INDEX){
-        echo Body::OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES;
+        echo Body::OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES_AND_DATE;
 echo Body::OPEN_CONTAINER;
 create_navigation_template(Url_constant::INDEX);
-echo Body::OPEN_BOOTSTRAP_DIV_ROW_CUSTOMISED;
+
 echo Body::CLOSE_DIV;
 echo Body::OPEN_BOOTSTRAP_DIV_ROW;
 echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
@@ -113,6 +113,11 @@ echo Body::CLOSE_SECTION;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
+
+echo Body::OPEN_FOOTER;
+echo Paragraph::P_WITH_ID_DATUM;
+echo Paragraph::CLOSE_P;
+echo Body::CLOSE_FOOTER;
 echo Body::CLOSE_BODY;
 echo Body::CLOSE_HTML_DOCUMENT;
     }else if($url==Url_constant::VALUTA){

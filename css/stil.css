@@ -19,3 +19,11 @@ nav ul li.red{
     list-style-type: none;
     padding-left: 5%;
 }
+footer{
+	text-align: center;
+    margin-top: 10%;
+}
+#valut{
+    padding-top: 10%;
+    padding-right: 85%;
+}
