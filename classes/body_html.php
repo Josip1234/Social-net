@@ -35,6 +35,8 @@ const OPEN_SECTION_CLASS_RANDSLIKE="<section id='randslike'>";
 const OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES="<body class='rounded-5 orange outset m-3 p-1' onload='dohvati_kalendar_nova_verzija(),slike()'>";
 const OPEN_CONTAINER_WITH_ID_CN="<div id='cn' class='container-fluid text-center'>";
 const OPEN_DIV_WITH_ID_INPUT="<div id='input'>";
+const OPEN_SECTION_WITH_ID_VALUT="<section id='valut'>";
+const IFRAME_WITH_VALUTA_DOCUMENT="<iframe src='valuta.php' seamless></iframe>";
 }
 
 ?>

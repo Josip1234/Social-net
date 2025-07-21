@@ -102,6 +102,19 @@ $database_connection->close_database();
 //--------------------------------------------------------------------------------------------------------------------//
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
+
+echo Body::OPEN_BOOTSTRAP_DIV_ROW;
+echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
+echo Body::OPEN_SECTION_WITH_ID_VALUT;
+$heading->setH2("Currencies");
+$heading->print_h2();
+echo Body::IFRAME_WITH_VALUTA_DOCUMENT;
+echo Body::CLOSE_SECTION;
+echo Body::CLOSE_DIV;
+echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
+echo "Neki dodatni sadržaj";
+echo Body::CLOSE_DIV;
+echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_BODY;
 echo Body::CLOSE_HTML_DOCUMENT;
