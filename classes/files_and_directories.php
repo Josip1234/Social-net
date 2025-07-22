@@ -42,7 +42,25 @@ if (is_dir($this->getDirectoryName())){
             continue;
         }
         else{
-            $res.=$this->getDirectoryName().$file.",";
+            $file_parts=pathinfo($file);
+            if(isset($file_parts["extension"])){
+            switch ($file_parts["extension"]) {
+                case 'jpg':
+                    $res.=$this->getDirectoryName().$file.",";
+                    break;
+                case 'png':
+                     $res.=$this->getDirectoryName().$file.",";
+                    break;
+                case 'jpeg':
+                     $res.=$this->getDirectoryName().$file.",";
+                     break;
+                case 'gif':
+                     $res.=$this->getDirectoryName().$file.",";
+                     break;
+                case NULL:
+                    break;
+            }
+        }
         }
     }
     closedir($dh);
