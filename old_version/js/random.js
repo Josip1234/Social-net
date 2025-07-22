@@ -228,6 +228,8 @@ var slik=[
 "/Social-net/old_version/slike/something/0089f564fec86275c15475c19cd5116c.jpg",
 "/Social-net/old_version/slike/something/1838b6daac0ea5374d316725bc6e2cda.jpg",
 "/Social-net/old_version/slike/something/44febd93f0bcb8cacde024da49327f3c.jpg",
+"/Social-net/old_version/slike/something/499037221_18408891637106308_832955439954233472_n.jpg",
+"/Social-net/old_version/slike/something/503577433_18408891646106308_5930830588370354124_n.jpg",
 "/Social-net/old_version/slike/something/62f151b63e95c5f67f2127bf8cc56211.jpg",
 "/Social-net/old_version/slike/something/79b671e027d0ff30c914ca837c89d544.jpg",
 "/Social-net/old_version/slike/something/7ad1247a474bb557a46f17c922b52c76.jpg",

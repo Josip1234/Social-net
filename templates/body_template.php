@@ -60,7 +60,7 @@ $files_in_directories="";
 foreach ($result as $value) {
     $files=new File_Directory($value);
     //add scanned files to array of results
-    $files_in_directories.=$files->scan_files_in_directory();
+    $files_in_directories.=$files->scan_files_in_directory($database_connection);
 }
 //we got returning string we need to separate it by ,
 //we will use explode

@@ -180,6 +180,28 @@ class DatabaseConnection{
        }
        return $data;
     }
+    //function will be updated depending of needs if we would need array what colums then we 
+    //need to update and statement execute
+    public function select_from_database($what_columns,$what_table){
+        $results=array();
+        $sql_query="SELECT ";
+        if(gettype($what_columns)=="string"){
+            $sql_query .= $what_columns;
+        }
+        $sql_query .= " FROM ";
+        $sql_query .= $what_table;
+        $sql_query .= ";";
+        $statement=$this->getDbconn()->prepare($sql_query);
+        if($statement->execute()){
+            $data= $statement->get_result();
+            while($result=mysqli_fetch_array($data)){
+                     $results[]=$result[$what_columns];  
+                }
+            
+        }
+        return $results;
+
+    }
 
 }
 
