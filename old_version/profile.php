@@ -53,6 +53,7 @@ if(!isset($_SESSION['username'])){
         <?php 
         if($_SESSION['role']=="Administrator"){
             echo "<a href='trenutnifeedback.php' target='_blank' rel='noopener noreferrer' style='font-size: 10px;'>Trenutni feedbackovi</a>";
+            echo "<a href='trenutnifeedbackv2.php' target='_blank' rel='noopener noreferrer' style='font-size: 10px;'>Trenutni feedbackovi verzija 2</a>";
         };?>
     </div>
   </div>

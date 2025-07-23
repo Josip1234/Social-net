@@ -1,0 +1,160 @@
+@charset "utf-8";
+/* CSS Document */
+
+iframe[seamless]{border: none}
+
+body{background-color:orange;
+border:groove;
+border-radius:30px;
+
+}
+nav a:link,a:visited{
+	border: 2px solid red;
+    border-radius: 30px;
+	margin-left:5%;
+	margin-right:-5%;
+	background-color:red;
+	color:#FFF;
+	padding:14px 25px;
+	text-align:center;
+	text-decoration:none;
+	display:inline-block;
+	font-size: 12px;
+	
+}
+nav ,a:hover,a:active{
+	border: 2px solid red;
+    border-radius: 30px;
+	background-color:red;
+	
+}
+
+
+.pravila {
+	padding:30%;
+	text-align:justify;
+	font-size:20px;
+	margin-top: -60%;
+	
+	
+	
+}
+nav{
+	border: 2px solid red;
+    border-radius: 30px;
+	border-color:orange;
+	
+	
+}
+
+#privatnost{
+	color: #2A0000;
+	text-decoration: none;
+	text-align: justify;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	
+	
+}
+section{
+	background-image:url("../slike/ba.jpg");
+	color:#FFFFFF;
+	font:bold;
+	
+	
+	
+	
+  
+}
+
+
+
+
+section form input {
+	border-radius:7px;
+	
+	
+}
+textarea{
+	
+	border-radius:7px;
+	
+}
+footer {
+	text-align: center;
+}
+#cal {
+	
+	background-image: none;
+	
+}
+#f1{
+	margin:0;
+	padding:0;
+	z-index:30;
+}
+#f1 li{
+	margin:0;
+	padding:0;
+	list-style:none;
+	float:left;
+	font:bold 11px arial;
+	
+	}
+#f1 li a{
+	display:block;
+	margin: 0 1px 0 0;
+	padding: 4px 10px;
+	width:60px;
+	background:#5970B2;
+	color:#FFF;
+	text-align:center;
+	text-decoration:none;
+}
+#f1 li a:hover{
+	background:#49A3FF;
+	
+}
+#f1 div{
+	position:absolute;
+	visibility:hidden;
+	margin:0;
+	padding:0;
+	background:#EAEBD8;
+	border:1px solid #5970B2;
+}
+#f1 div a{
+	position:relative;
+	display:block;
+	margin:0;
+	padding:5px 10px;
+	width:auto;
+	white-space:nowrap;
+	text-align:left;
+	text-decoration:none;
+	background:#cccccc;
+	color:#2875DE;
+	font:11px arial;}
+	
+#f1 div a:hover{
+	background:#49A3FF;
+	color:#FFF;
+}
+#randslike {
+	height: 16%;
+	width: 16%;
+}
+#randslike #s img {
+	padding:6px;
+	width:200px;
+	height:200px;
+}
+#valut{
+	margin-top: 2%;
+	height:  16%;
+	width:  16%;
+	
+	overflow: hidden;
+}
