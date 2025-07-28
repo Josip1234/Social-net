@@ -41,6 +41,8 @@ const IFRAME_WITH_VALUTA_DOCUMENT="<iframe src='valuta.php'></iframe>";
 const OPEN_FOOTER="<footer>";
 const CLOSE_FOOTER="</footer>";
 const OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES_AND_DATE="<body class='rounded-5 orange outset m-3 p-1' onload='dohvati_kalendar_nova_verzija(),slike(),prikazi_datum()'>";
+const OPEN_DIV_CLASS_DROPDOWN="<div class='dropdown'>";
+const OPEN_DIV_CLASS_DROPDOWN_CONTENT="<div class='dropdown-content'>";
 }
 
 ?>
