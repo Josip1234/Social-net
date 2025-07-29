@@ -3,8 +3,9 @@ class File_Directory
 {
     const TABLE_NAME="file_directory_for_scan";
     const COLUMN_NAME_DIRECTORY="name";
+    const ROOT_DIRECTORY="/Social-net/";
 
-    private $directory_name;
+    protected $directory_name;
     //this $available variable is extra maybe we will need to delete this variable class
     private $available;
 
