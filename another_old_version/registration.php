@@ -1,0 +1,135 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width-device-width,initial-scale=1">
+<title>Socialnet</title>
+<link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script language="JavaScript" src="js/drustvenijs.js" type="application/javascript"></script>
+<script language="JavaScript" src="js/calendar.js" type="application/javascript"></script>
+<script src="js/dropdownmenu.js" type="application/javascript"></script>
+<script src="js/randomslike.js" type="application/javascript"></script>
+</head>
+
+<body onMouseOver="prikazi_datum(),dohvati_kalendar()", onLoad="slike()">
+
+<div class="con">
+<nav>
+
+<a href="registration.php" target="_self">Registation</a>
+<a href="login.php" target="_self">Login</a>
+<a href="privacy.php" target="_self">Terms of privacy</a>
+<a href="trenutnifeedback.php" target="_self">Feedbacks-only for admins</a>
+<a href="profile.php" target="_self">Profile of user</a>
+<a href="logout.php" target="_self">Logout</a>
+<a href="dodjelauloga.php" target="_self">Set user roles</a>
+<a href="feedback.php" target="_self">Add feedback</a>
+<a href="forum.php" target="_self">Forum</a>
+</nav>
+</div>
+<ul id="f1">
+<li><a href="#" onMouseOver="openmenu('m1')" onMouseOut="menuclosetime()">Opcije profila</a>
+<div id="m1" onMouseOver="menucanceltime()" onMouseOut="menuclosetime()">
+<a href="terminirajprofil.php" target="_self">Delete profile</a>
+<a href="profilna.php" target="_self">Add profile picture</a>
+<a href="updateprofilne.php" target="_self">Update profile picture</a>
+<a href="Galerija.html" target="_self">Picture gallery</a>
+<a href="addtogallery.php" target="_self">Add to gallery</a>
+
+</div>
+</li>
+</ul>
+<div style="clear:both"></div>
+<section id="cal">
+<h2>Calendar for March 2017</h2>
+<p id="calendar"></p>
+
+</section>
+<section id="randslike">
+<h2>Random slike</h2>
+<p id="s"></p>
+
+</section>
+<section id="valut">
+	<iframe src="Pretvorba valuta/valuta.html" seamless></iframe>
+</section>	
+
+<div class="pravila">
+<section><h2>Register here</h2>
+<form action="registration.php" method="post">
+<label>First name:</label><br/>
+<input type="text" name="fname" autocomplete="off" maxlength="50" size="17" required/><br/>
+<label>Last name:</label><br/>
+<input type="text" name="lname" autocomplete="off" maxlength="50" size="17" required/><br/>
+<label id="r">Sex:</label><br/>
+
+<input type="radio"  id="radb" name="spol" value="muski" required>M 
+<input type="radio"   id="radb" name="spol" value="zenski" required>Z 
+
+<br/>
+<label>Date of birth:</label><br/>
+<input type="date" name="datum_rodjenja" required/><br/>
+<label>City of birth:</label><br/>
+<input type="text" name="city_of_birth" maxlength="50" size="17" autocomplete="off" required/><br/>
+<label>Country of birth:</label><br/>
+<input type="text" name="country_of_birth" maxlength="50" size="17" autocomplete="off" required /><br/>
+<label>Pass:</label><br/>
+<input type="password" name="pass" maxlength="50" size="17" required autocomplete="off" /><br/>
+
+<br/>
+<label>Email:</label><br/>
+<input type="email" name="email" required maxlength="50" size="17" autocomplete="off"/><br/>
+<input type="submit" value="Register"/>
+
+</form>
+<?php
+include('dbconn.php');
+$default_role="Korisnik";
+$firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
+if($firstname!=''){
+	$lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
+	if($lastname!=''){
+		$sex=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['spol'])));
+		if($sex!=''){
+			$datum_rodjenja=$_POST['datum_rodjenja'];
+			if($datum_rodjenja!=''){
+				$city=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['city_of_birth'])));
+				if($city!=''){
+					$country=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['country_of_birth'])));
+					if($country!=''){
+						$pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
+						if($pass!=''){
+							
+								$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
+								if($email!=''){
+								$query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email,uloga) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email','$default_role')";
+mysqli_query($dbc,$query);
+
+
+mysqli_close($dbc);
+if($query){
+	
+	header('Location:login.php');
+}else{
+	die('Error! Connot add informations!');
+}
+								
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+?>
+</section>
+</div>
+
+
+<footer>
+<p id="datum"></p>
+</footer>
+</body>
+</html>
