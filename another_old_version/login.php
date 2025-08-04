@@ -72,10 +72,12 @@ $username=$_POST['username'];
 if($username!=''){
 $pass=$_POST['pass'];
 if($pass!=''){
-$upit="SELECT id,pass,email,uloga FROM registration WHERE email='$username' AND pass='$pass'";
+$upit="SELECT DISTINCT registration.id,registration.email,pass,uloga FROM registration RIGHT JOIN uloge ON registration.email = uloge.email WHERE registration.email='$username' AND registration.pass='$pass'";
 $r=mysqli_query($dbc,$upit);
 while($res=mysqli_fetch_array($r)){
-	if(mysqli_num_rows($res)<2){
+	$num_rows=mysqli_num_rows($r);
+	echo $num_rows;
+	if($num_rows<2){
 		        if($username==$res['email']){
 					if($pass==$res['pass']){
 						session_start();
