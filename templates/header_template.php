@@ -12,6 +12,8 @@ include("classes/files_and_directories.php");
 include("classes/scan_data.php");
 include("classes/random_js_structure.php");
 include("navigation_template.php");
+   include("classes/navigation.php");
+     include("classes/table_constants.php");
 
   }else if($url==Url_constant::VALUTA){
     include("classes/header_html.php");
@@ -22,13 +24,20 @@ include("templates/table_template.php");
 include("templates/forms_templates.php");
 include("classes/paragraph.php");
 
+  }else if($url==Url_constant::TEST_PAGE){
+    include("classes/dbconn.php");
+    include("classes/navigation.php");
+    include("classes/header_html.php");
+    include("navigation_template.php");
+    include("classes/table_constants.php");
+    include("classes/css_js_includes.php");
   }
 echo Header::START_HTML;
 echo Header::HTML_LANG;
 echo Header::OPEN_HEADER;
 echo Header::META_CHARSET;
 echo Header::VIEWPORT;
-if($url==Url_constant::INDEX){
+if($url==Url_constant::INDEX || $url==Url_constant::TEST_PAGE){
 //stvori novi naslov 
 $title=new Title("Socialnet");
 //ispiši naslov

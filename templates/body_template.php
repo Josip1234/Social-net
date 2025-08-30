@@ -6,7 +6,10 @@ function create_body_template($url){
     if($url==Url_constant::INDEX){
         echo Body::OPEN_BODY_ONLOAD_CALENDAR_AND_RANDOM_PICTURES_AND_DATE;
 echo Body::OPEN_CONTAINER;
-create_navigation_template(Url_constant::INDEX);
+$database_connection=new DatabaseConnection("localhost","root","","scn","utf8");
+$database_connection->connectToDatabase();
+ $what_data_to_print=array("nav_name","nav_script_name","tag");
+ create_navigation_template_from_database(Url_constant::INDEX,$database_connection,Table_constant::TABLE_NAVIGATION,$what_data_to_print);
 
 echo Body::CLOSE_DIV;
 echo Body::OPEN_BOOTSTRAP_DIV_ROW;
@@ -44,8 +47,6 @@ if($url==Url_constant::INDEX){
 echo Body::OPEN_BOOTSTRAP_DIV_COLUMN;
 //--------------------------------------------------------------------------------------------------------------------//
 //connect to databse
-$database_connection=new DatabaseConnection("localhost","root","","scn","utf8");
-$database_connection->connectToDatabase();
 $result=array();
 $heading=new Heading("Slike");
 echo $heading->print_h2();
@@ -113,7 +114,7 @@ echo Body::IFRAME_WITH_VALUTA_DOCUMENT;
 echo Body::CLOSE_SECTION;
 echo Body::CLOSE_DIV;
 echo Body::CLOSE_DIV;
-echo Body::CLOSE_DIV;
+
 
 echo Body::OPEN_FOOTER;
 echo Paragraph::P_WITH_ID_DATUM;

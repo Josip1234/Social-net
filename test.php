@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Php file for function testing</title>
-</head>
+<?php 
+include("templates/header_template.php");
+create_header_template("test.php");
+?>
 <body>
-    <?php 
- echo "This is a php file for function testing.<br>";
- include("classes/files_and_directories.php");
- include("classes/files.php");
- include("classes/constant_arrays.php");
- //with this we will create new file if does not exists
- //we will use function create file if not exists from file class
- $file = new File("test/","test.php");
- $arrays=new Cnst_array();
- $file->setDirectoryName("test");
- $file->create_new_files_if_exists($arrays->getPhpScripts());
+<?php 
+ 
+ $dbconn=new DatabaseConnection("localhost","root","","scn","utf8");
+ $dbconn->connectToDatabase();
+ $what_data_to_print=array("nav_name","nav_script_name","tag");
+ create_navigation_template_from_database("test.php",$dbconn,Table_constant::TABLE_NAVIGATION,$what_data_to_print);
+ $dbconn->close_database();
+
 ?>
 </body>
 </html>
