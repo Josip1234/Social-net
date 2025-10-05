@@ -1,3 +1,7 @@
+<?php 
+include "scripts/functions.php";
+
+?>
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -6,3 +10,6 @@
     <title>Drustvena mreza</title>
 </head>
 <body>
+<header>
+    <p>Vrijeme provedeno na stranici: 00:00:00</p>
+</header>
