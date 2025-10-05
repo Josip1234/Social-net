@@ -1,0 +1,54 @@
+header{
+ padding: 20px;
+    background-color:orange;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    text-align: center;
+}
+#sadrzaj{
+    margin-top: 100px;
+}
+#podnozje{
+    padding: 20px;
+    background-color: orange;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+table{
+    border-collapse: collapse;
+    width: 80%;
+    margin-bottom: 20px;
+    margin-left: 10%;
+}
+th,td{
+    border: 1px solid red;
+    padding: 8px;
+    text-align: center;
+    color: white;
+}
+th{
+    background-color: red;
+}
+nav a:link,a:visited{
+	background-color:#f44336;
+	color:#FFF;
+	padding:14px 25px;
+	text-align:center;
+	text-decoration:none;
+	display:inline-block;
+}
+nav ,a:hover,a:active{
+	background-color:red;
+	
+}
+#privatnost{
+	text-decoration:none;
+}
+p{
+    color: white;
+}
