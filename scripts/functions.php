@@ -14,5 +14,16 @@ function dohvatiTrenutnoVrijeme($format){
     $time=date($format);
     return $time;
 }
+//funkcija koja će ispisati formu za prijavu korisnika
+function ispisiFormuZaPrijavu(){
+     echo  "<form class='forma' action=".$_SERVER['PHP_SELF']." method='post'>
+          <label>Korisničko ime:</label>
+          <label><input type='text' name='user' id='user'></label>
+          <label>Lozinka:</label>
+          <label><input type='password' name='pass' id='pass'></label>
+          <label><input type='submit' value='Prijavi se'></label>
+      </form>";
+}
+
 
 ?>

@@ -35,15 +35,15 @@ th{
     background-color: red;
 }
 nav a:link,a:visited{
-	background-color:#f44336;
+	background-color:orange;
 	color:#FFF;
 	padding:14px 25px;
 	text-align:center;
 	text-decoration:none;
 	display:inline-block;
 }
-nav ,a:hover,a:active{
-	background-color:red;
+#navigacija a:hover{
+	background-color:orange;
 	
 }
 #privatnost{
@@ -54,4 +54,75 @@ p{
 }
 h1{
     text-align: center;
+}
+
+#navigacija a{
+    background-color: red;
+    font-size: 14px;
+}
+
+#navigacija .user{
+    float: right;
+    font-weight: bold;
+    margin-right: 50px;
+}
+
+a{
+    padding: 5px 10px;
+    margin: 2px; text-decoration: none;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+}
+
+li a {
+  display: block;
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* Change the link and background color on hover */
+li a:hover {
+  background-color: #555555;
+  color: white;
+}
+input[type="text"],input[type="password"]{
+padding: 5px;
+}
+
+input[type="submit"]{
+padding: 5px;
+margin-top: 10px;
+background-color: red;
+border: none;
+color: white;
+cursor: pointer;
+}
+.error{
+    color: red;
+    font-weight: bold;
+}
+label{
+    display: block;
+    margin-top: 10px;
+}
+.forma{
+    margin-left: 40%;
+    margin-top: 7%;
+}
+input[type="submit"]:hover{
+    background-color: orange;
 }

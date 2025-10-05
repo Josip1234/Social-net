@@ -1,5 +1,10 @@
 <?php  include "zaglavlje.php"; ?>
     <div id="sadrzaj">
-            <h1>Dobrodošli na našu društvenu mrežu!</h1>
+            <?php include "navigacija.php"; ?>
+             <?php 
+              (isset($_GET["akcija"]))?(($_GET["akcija"]==="prijava")?ispisiFormuZaPrijavu():""):"";
+             
+             
+             ?>
     </div>
 <?php include "podnozje.php"; ?>
