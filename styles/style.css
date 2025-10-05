@@ -112,6 +112,7 @@ color: white;
 cursor: pointer;
 }
 .error{
+    margin-left: 40%;
     color: red;
     font-weight: bold;
 }
@@ -121,7 +122,7 @@ label{
 }
 .forma{
     margin-left: 40%;
-    margin-top: 7%;
+    margin-top: 3%;
 }
 input[type="submit"]:hover{
     background-color: orange;

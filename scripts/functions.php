@@ -25,5 +25,25 @@ function ispisiFormuZaPrijavu(){
       </form>";
 }
 
+//funkcija za učitavanje podataka iz jsona
+function UcitajPodatke($file){
+$podaci=file_exists($file)?json_decode(file_get_contents($file),true):[];
+return $podaci;
+}
+
+//funkcija koja će odjaviti korisnika uništavajući sesiju
+//i vratiti će vrijeme u sekundama koliko je sesija trajala
+function unistiSesiju(){
+    $vrijeme="";
+    $vrijeme=isset($_SESSION["login"]);
+    unset($_SESSION["user"]);
+    unset($_SESSION["login"]);
+    session_unset();
+    session_destroy();
+    header("Location:pocetna.php");
+    return $vrijeme;
+}
+
+
 
 ?>

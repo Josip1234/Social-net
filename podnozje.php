@@ -16,7 +16,10 @@
                         <?php echo dohvatiTrenutnoVrijeme("H:i:s") ?>
                     </td>
                     <td>
-                        Neprijavljen
+                        <?php $status="";
+                         (isset($_SESSION["user"]))?$status="Prijavljen":$status="Neprijavljen";
+                         echo $status;
+                        ?>
                     </td>
                 </tr>
             </tbody>
