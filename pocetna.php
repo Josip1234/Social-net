@@ -22,6 +22,7 @@
                         if(in_array($password,$value) && $password===$value["pass"]){
                             $_SESSION["login"]=time();
                             $_SESSION["user"]=$user;
+                            echo PRIJAVA.PODI.USER." ".date(CRO_TIMESTAMP_FORMAT);
                             header("Location: pocetna.php");
                             break;
                         }else{

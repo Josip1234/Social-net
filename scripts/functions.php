@@ -36,23 +36,28 @@ return $podaci;
 function unistiSesiju(){
     $vrijeme="";
     $vrijeme=isset($_SESSION["login"]);
-    unset($_SESSION["user"]);
+     $tmp=(isset($_SESSION["user"]))?$_SESSION["user"]:"";
+    echo ODJAVA.PODI.$tmp." ".date(CRO_TIMESTAMP_FORMAT);
+     unset($_SESSION["user"]);
     unset($_SESSION["login"]);
     session_unset();
     session_destroy();
+    echo PRIJAVLJEN.PODI.$tmp." ".izracnajVrijeme(time()).MIN;
     header("Location:pocetna.php");
     return $vrijeme;
 }
 
 //funkcija koja će računati vrijeme koliko je korisnik bio na stranici
 function izracnajVrijeme($trenutnoVrijeme){
+    $rezultat=0.0;
     //dodatni podaci koji će se ispisati u headeru
     if(isset($_SESSION["login"])){
        $rezultat=$trenutnoVrijeme-$_SESSION["login"];
        $rezultat_u_mnutama=round($rezultat/60,2);
        echo "<p>Korisnik je  prijavljen: ".$rezultat_u_mnutama." minuta.</p>";
+       $rezultat=$rezultat_u_mnutama;
     }
-    
+    return $rezultat;
 }
 //funkcija koja će ispisati formu za registraciju korisnika
 function ispisiFormuZaRegistraciju(){

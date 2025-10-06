@@ -1,5 +1,6 @@
 <?php 
 include "scripts/functions.php";
+include "konstante/konstante.php";
 if(session_status()===PHP_SESSION_NONE){
     session_start();
 }
@@ -20,7 +21,7 @@ if(session_status()===PHP_SESSION_NONE){
          //sesija postoji
          if(isset($_SESSION["login"]) && isset($_SESSION["user"])){
            
-            echo "<p>Vrijeme prijave:".date("H:i:s",$_SESSION["login"])."</p>";
+            echo "<p>Vrijeme prijave:".date(CRO_TIME_FORMAT,$_SESSION["login"])."</p>";
             
          }else{
             echo  "<p>Nema prijavljenog korisnika.</p>";
