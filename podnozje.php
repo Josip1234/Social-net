@@ -13,9 +13,11 @@
                         <?php echo dohvatiDanašnjiDatum("d.m.Y");  ?>
                     </td>
                     <td>
+                         <span id='trenutno_vrijeme'></span>
                         <?php $trenutnoVrijeme=dohvatiTrenutnoVrijeme(dohvatiTrenutnoVrijeme("H:i:s"));
                         //za izračun trenutnog vremena u session sam stavio time tako treba i ovdje da se dobije ispravna razlika
-                        echo $trenutnoVrijeme; izracnajVrijeme(time());?>
+                        //echo $trenutnoVrijeme;
+                         izracnajVrijeme(time());?>
                     </td>
                     <td>
                         <?php $status="";

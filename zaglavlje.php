@@ -11,6 +11,7 @@ if(session_status()===PHP_SESSION_NONE){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drustvena mreza</title>
     <link rel="stylesheet" href="styles/style.css">
+    <script src="script/social.js"></script>
 </head>
 <body>
 <header>
