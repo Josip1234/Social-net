@@ -5,6 +5,7 @@
               $vrijeme="";
               (isset($_GET["akcija"]))?(($_GET["akcija"]==="prijava")?ispisiFormuZaPrijavu():""):"";
               (isset($_GET["akcija"]))?(($_GET["akcija"]==="odjava")?$vrijeme=unistiSesiju():""):"";
+              (isset($_GET["akcija"]))?(($_GET["akcija"]==="registracija")?ispisiFormuZaRegistraciju():""):"";
                
               //ako su postani podaci i ako se u urlu nalazi akcija
               if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_GET["akcija"])){

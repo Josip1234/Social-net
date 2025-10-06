@@ -124,6 +124,9 @@ label{
     margin-left: 40%;
     margin-top: 3%;
 }
+.registracija{
+    margin-top: -4%;
+}
 input[type="submit"]:hover{
     background-color: orange;
 }
