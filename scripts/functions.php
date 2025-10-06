@@ -44,6 +44,12 @@ function unistiSesiju(){
     return $vrijeme;
 }
 
-
+//funkcija koja će računati vrijeme koliko je korisnik bio na stranici
+function izracnajVrijeme($trenutnoVrijeme){
+    //dodatni podaci koji će se ispisati u headeru
+    $rezultat=$trenutnoVrijeme-$_SESSION["login"];
+    $rezultat_u_mnutama=round($rezultat/60,2);
+       echo "<p>Korisnik je  prijavljen: ".$rezultat_u_mnutama." minuta.</p>";
+}
 
 ?>

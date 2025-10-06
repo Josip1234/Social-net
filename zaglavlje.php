@@ -14,5 +14,16 @@ if(session_status()===PHP_SESSION_NONE){
 </head>
 <body>
 <header>
-    <p>Vrijeme provedeno na stranici: 00:00:00</p>
+     <?php 
+         //ispiši vrijeme kad se korisnik ulogirao i trenutno vrijeme iz sesije samo u slučaju ako je korisnik logiran tj ako
+         //sesija postoji
+         if(isset($_SESSION["login"]) && isset($_SESSION["user"])){
+           
+            echo "<p>Vrijeme prijave:".date("H:i:s",$_SESSION["login"])."</p>";
+            
+         }else{
+            echo  "<p>Nema prijavljenog korisnika.</p>";
+         }
+     
+     ?>
 </header>

@@ -41,4 +41,5 @@
              
              ?>
     </div>
-<?php include "podnozje.php"; ?>
+
+<?php include "podnozje.php";?>
