@@ -16,12 +16,12 @@ function dohvatiTrenutnoVrijeme($format){
 }
 //funkcija koja će ispisati formu za prijavu korisnika
 function ispisiFormuZaPrijavu(){
-     echo  "<form class='forma' action=".$_SERVER['PHP_SELF']." method='post'>
+     echo  "<form class='forma' action=".$_SERVER['PHP_SELF'].'?akcija=prijava'." method='post'>
           <label>Korisničko ime:</label>
           <label><input type='text' name='user' id='user'></label>
           <label>Lozinka:</label>
           <label><input type='password' name='pass' id='pass'></label>
-          <label><input type='submit' value='Prijavi se'></label>
+          <label><input type='submit' value='Prijavi se' name='prijava'></label>
       </form>";
 }
 
@@ -53,6 +53,42 @@ function izracnajVrijeme($trenutnoVrijeme){
        echo "<p>Korisnik je  prijavljen: ".$rezultat_u_mnutama." minuta.</p>";
     }
     
+}
+//funkcija koja će ispisati formu za registraciju korisnika
+function ispisiFormuZaRegistraciju(){
+      echo "<form action='".$_SERVER["PHP_SELF"]."' method='post'>
+        <label>Ime:</label>
+        <label><input type='text' name='ime' id='ime'></label>
+        <label>Prezime:</label>
+        <label><input type='text' name='prezime' id='prezime'></label>
+        <label for='telbroj'>Telefonski broj:</label>
+        <label><input type='tel' name='telbroj' id='telbroj'></label>
+        <label for='datum_rodjenja'>Datum rođenja:</label>
+        <label><input type='date' name='datum_rodjenja' id='datum_rodjenja'></label>
+        <label for='mjesto_drzava'>Mjesto i država rođenja:</label>
+        <label><input type='text' name='mjesto_drzava' id='mjesto_drzava'></label>
+        <label for='zavrsena_skola'>Završene škole: (opcionalno)</label>
+        <label><input type='checkbox' name='zavrsena_skola' id='zavrsena_skola' value='Osnovna škola'>Osnovna škola
+        <input type='checkbox' name='zavrsena_skola' id='zavrsena_skola' value='Srednja škola - strukovna'>Srednja strukovna škola 
+        <input type='checkbox' name='zavrsena_skola' id='zavrsena_skola' value='Srednja škola - gimnazija'>Gimnazija
+        <input type='checkbox' name='zavrsena_skola' id='zavrsena_skola' value='Preddiplomski studij'>Pred diplomski studij
+        <input type='checkbox' name='zavrsena_skola' id='zavrsena_skola' value='Diplomski studij'>Diplomski studij
+        </label>
+        <label for='adresa'>Trenutna adresa prebivlišta:</label>
+        <label><input type='text' name='adresa' id='adresa'></label>
+        <label for='spol'>Odaberite spol:</label>
+        <label><input type='radio' name='spol' id='muski'>Muški 
+         <input type='radio' name='spol' id='zenski'>Ženski
+        </label>
+        <label for='email'>Unesite email adresu:</label>
+        <label><input type='email' name='email' id='email'></label>
+        <label for='sifra1'>Upišite lozinku:</label>
+        <label><input type='password' name='lozinka1' id='lozinka1'></label>
+        <label for='sifra2'>Ponovite lozinku:</label>
+        <label><input type='password' name='lozinka2' id='lozinka2'></label>
+        <label><input type='submit' value='Registracija' name='registracija'></label>
+    </form>
+    ";
 }
 
 ?>
