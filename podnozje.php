@@ -17,12 +17,18 @@
                         <?php $trenutnoVrijeme=dohvatiTrenutnoVrijeme(dohvatiTrenutnoVrijeme(CRO_TIME_FORMAT));
                         //za izračun trenutnog vremena u session sam stavio time tako treba i ovdje da se dobije ispravna razlika
                         //echo $trenutnoVrijeme;
-                         izracnajVrijeme(time());?>
+                         $res=izracnajVrijeme(time());
+                         if(isset($_SESSION["user"])){
+                               $sakupljac_logova[date(SQLTIMEST)]=PRIJAVLJEN.PODI.$_SESSION["user"]." ".$res.MIN;
+                         }
+                            
+                         ?>
                     </td>
                     <td>
                         <?php $status="";
                          (isset($_SESSION["user"]))?$status="Prijavljen":$status="Neprijavljen";
                          echo $status;
+                         
                         ?>
                     </td>
                 </tr>

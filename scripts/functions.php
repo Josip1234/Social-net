@@ -34,15 +34,19 @@ return $podaci;
 //funkcija koja će odjaviti korisnika uništavajući sesiju
 //i vratiti će vrijeme u sekundama koliko je sesija trajala
 function unistiSesiju(){
+    global $sakupljac_logova;
+    global $res;
     $vrijeme="";
     $vrijeme=isset($_SESSION["login"]);
      $tmp=(isset($_SESSION["user"]))?$_SESSION["user"]:"";
-    echo ODJAVA.PODI.$tmp." ".date(CRO_TIMESTAMP_FORMAT);
+    //echo ODJAVA.PODI.$tmp." ".date(CRO_TIMESTAMP_FORMAT);
+    $sakupljac_logova[date(SQLTIMEST)]=ODJAVA.PODI.$tmp." ".date(CRO_TIMESTAMP_FORMAT);
+    //echo PRIJAVLJEN.PODI.$tmp." ".izracnajVrijeme(time()).MIN;
+ ispisi_logove();
      unset($_SESSION["user"]);
     unset($_SESSION["login"]);
     session_unset();
     session_destroy();
-    echo PRIJAVLJEN.PODI.$tmp." ".izracnajVrijeme(time()).MIN;
     header("Location:pocetna.php");
     return $vrijeme;
 }
@@ -88,6 +92,15 @@ function ispisiFormuZaRegistraciju(){
         <label><input type='submit' value='Registracija' name='registracija'></label>
     </form>
     ";
+}
+//funkcija koja će ispisivati logove ne treba argumente
+function ispisi_logove(){
+    global $sakupljac_logova;
+    foreach ($sakupljac_logova as $key => $value) {
+             echo $key." ".$value."<br>";
+        
+       
+    }
 }
 
 ?>

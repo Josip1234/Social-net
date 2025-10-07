@@ -22,33 +22,32 @@
                         if(in_array($password,$value) && $password===$value["pass"]){
                             $_SESSION["login"]=time();
                             $_SESSION["user"]=$user;
-                            echo PRIJAVA.PODI.USER." ".date(CRO_TIMESTAMP_FORMAT);
+                            $sakupljac_logova[date(SQLTIMEST)]=PRIJAVA.PODI.$user." ".date(CRO_TIMESTAMP_FORMAT);
                             header("Location: pocetna.php");
                             break;
                         }else{
                             echo "<p class='error'>Wrong password!</p>";
-                            echo GRESKA." ".date(CRO_TIMESTAMP_FORMAT);
+                             $sakupljac_logova[date(SQLTIMEST)]=GRESKA." Pogrešan password! ".date(CRO_TIMESTAMP_FORMAT);
                         }
                     }else{
                         echo "<p class='error'>Wrong username!</p>";
-                         echo GRESKA." ".date(CRO_TIMESTAMP_FORMAT);
+                           $sakupljac_logova[date(SQLTIMEST)]=GRESKA." Pogrešan username! ".date(CRO_TIMESTAMP_FORMAT);
                      
                     }
                     }
                 
                  }else{
                     echo "<p class='error'>Podaci nisu valjani.</p>";
-                     echo GRESKA." ".date(CRO_TIMESTAMP_FORMAT);
+                       $sakupljac_logova[date(SQLTIMEST)]=GRESKA." Podaci nisu valjani. ".date(CRO_TIMESTAMP_FORMAT);
                  }
                 
-                } //ako akcija nije za login
-                else{
+                } else if($_GET["akcija"]!="prijava"){
                     echo "<p class='error'>Niste kliknuli na obrazac!</p>";
-                    echo NOTFORM." ".date(CRO_TIMESTAMP_FORMAT);
+                      $sakupljac_logova[date(SQLTIMEST)]=NOTFORM." ".date(CRO_TIMESTAMP_FORMAT);
                 }
               }
                
-             
+            
              
              ?>
     </div>

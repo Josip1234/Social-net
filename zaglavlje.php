@@ -4,6 +4,7 @@ include "konstante/konstante.php";
 if(session_status()===PHP_SESSION_NONE){
     session_start();
 }
+$sakupljac_logova=array();
 ?>
 <!DOCTYPE html>
 <html lang="hr">
@@ -20,11 +21,12 @@ if(session_status()===PHP_SESSION_NONE){
          //ispiši vrijeme kad se korisnik ulogirao i trenutno vrijeme iz sesije samo u slučaju ako je korisnik logiran tj ako
          //sesija postoji
          if(isset($_SESSION["login"]) && isset($_SESSION["user"])){
-           
             echo "<p>Vrijeme prijave:".date(CRO_TIME_FORMAT,$_SESSION["login"])."</p>";
+              $sakupljac_logova[date(SQLTIMEST)]=INFO." Vrijeme prijave".PODI.$_SESSION["user"];
             
          }else{
             echo  "<p>Nema prijavljenog korisnika.</p>";
+           
          }
      
      ?>
