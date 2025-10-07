@@ -27,20 +27,24 @@
                             break;
                         }else{
                             echo "<p class='error'>Wrong password!</p>";
+                            echo GRESKA." ".date(CRO_TIMESTAMP_FORMAT);
                         }
                     }else{
                         echo "<p class='error'>Wrong username!</p>";
+                         echo GRESKA." ".date(CRO_TIMESTAMP_FORMAT);
                      
                     }
                     }
                 
                  }else{
                     echo "<p class='error'>Podaci nisu valjani.</p>";
+                     echo GRESKA." ".date(CRO_TIMESTAMP_FORMAT);
                  }
                 
                 } //ako akcija nije za login
                 else{
                     echo "<p class='error'>Niste kliknuli na obrazac!</p>";
+                    echo NOTFORM." ".date(CRO_TIMESTAMP_FORMAT);
                 }
               }
                

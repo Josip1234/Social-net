@@ -13,5 +13,7 @@ define("USER",$_POST["user"]);
 define("ODJAVA","Korisnik se odjavio:");
 define("PRIJAVLJEN","Korisnik je bio prijavljen:");
 define("MIN","minuta");
+define("GRESKA","Korisnik je upisao nevaljali podatak:");
+define("NOTFORM","Korisnik nije otišao na obrazac.");
 
 ?>
