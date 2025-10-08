@@ -23,6 +23,7 @@ $sakupljac_logova=array();
          if(isset($_SESSION["login"]) && isset($_SESSION["user"])){
             echo "<p>Vrijeme prijave:".date(CRO_TIME_FORMAT,$_SESSION["login"])."</p>";
               $sakupljac_logova[date(SQLTIMEST)]=INFO." Vrijeme prijave".PODI.$_SESSION["user"];
+              zapisiLogUDatoteku($sakupljac_logova,LOGFILE);
             
          }else{
             echo  "<p>Nema prijavljenog korisnika.</p>";

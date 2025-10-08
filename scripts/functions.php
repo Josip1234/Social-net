@@ -42,7 +42,7 @@ function unistiSesiju(){
     //echo ODJAVA.PODI.$tmp." ".date(CRO_TIMESTAMP_FORMAT);
     $sakupljac_logova[date(SQLTIMEST)]=ODJAVA.PODI.$tmp." ".date(CRO_TIMESTAMP_FORMAT);
     //echo PRIJAVLJEN.PODI.$tmp." ".izracnajVrijeme(time()).MIN;
- ispisi_logove();
+   
      unset($_SESSION["user"]);
     unset($_SESSION["login"]);
     session_unset();
@@ -102,5 +102,21 @@ function ispisi_logove(){
        
     }
 }
+//funkcija koja će zapisivati logove u datoteku
+//možemo napraviti da se kreira datoteka po današnjem datumu
+//primjerice log_08-10-2025 mogli bi koristiti format date za to
+//trebamo provjeru dali datoteka već postoji ako postoji pročitaj datoteku 
+//dodaj u polje onda dodaj u to polje zapis i dodaj u json 
+//inače napravi novi file i dodaj zapis
+function zapisiLogUDatoteku($zapis,$datoteka){
+if(!file_exists($datoteka)){
+    file_put_contents($datoteka,json_encode([]));
+}else{
+   $podaci=json_decode(file_get_contents($datoteka),true);
+}
 
+    $podaci[]=[$zapis];
+    $encode=json_encode($podaci,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    file_put_contents($datoteka, $encode);
+}
 ?>

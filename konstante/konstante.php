@@ -16,5 +16,6 @@ define("GRESKA","Korisnik je upisao nevaljali podatak:");
 define("NOTFORM","Korisnik nije otišao na obrazac.");
 define("SQLTIMEST","Y-m-d H:i:s");
 define("INFO","(info)");
+define("LOGFILE","log_datoteke/log_".date("d-m-Y").".json");
 
 ?>
