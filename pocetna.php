@@ -15,6 +15,9 @@
                     $user=$_POST["user"];
                     $password=$_POST["pass"];
                     $podaci=UcitajPodatke("files/users.json");
+                    //registriraj i upiši vrijeme logiranja u log
+                     $sakupljac_logova[date(SQLTIMEST)]=INFO." Vrijeme prijave".PODI.$user;
+                   zapisiLogUDatoteku($sakupljac_logova,LOGFILE);
                     //pretraži podatke u jsonu ako postoji korisničko ime i lozinka startaj sesiju
                     //ako ne javi grešku
                     foreach ($podaci as $key => $value) {
