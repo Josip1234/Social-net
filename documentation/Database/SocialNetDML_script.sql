@@ -1,0 +1,1 @@
+INSERT INTO state(name) values ('Hrvatska'),('Italija'),('Francuska');
