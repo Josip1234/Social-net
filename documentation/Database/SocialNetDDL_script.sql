@@ -11,3 +11,15 @@ addressId int unsigned primary key not null auto_increment,
 street varchar(255) not null,
 postNumber varchar(20) not null,
 constraint postNumber_fk foreign key (postNumber) references city (postNumber) on delete cascade on update cascade);
+create table profile(
+userId int unsigned primary key not null auto_increment,
+firstName varchar(50) not null,
+lastName varchar(50) not null,
+email varchar(50) not null,
+sex char(1) not null,
+dateOfBirth date not null,
+addressId int unsigned null,
+hashPassword text not null,
+unique(email),
+constraint addressId_fk foreign key (addressId) references address (addressId) on delete cascade on update cascade);
+
