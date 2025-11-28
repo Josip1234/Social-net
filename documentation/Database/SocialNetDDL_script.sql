@@ -6,3 +6,9 @@ postNumber varchar(20) primary key,
 name varchar(150) not null,
 stateId int unsigned not null, 
 constraint stateId_fk foreign key (stateId) references state (stateId) on delete cascade on update cascade);
+create table address (
+addressId int unsigned primary key not null,
+street varchar(255) not null,
+stateId int unsigned not null,
+postNumber varchar(20) not null,
+constraint postNumber_fk foreign key (postNumber) references city (postNumber) on delete cascade on update cascade);
