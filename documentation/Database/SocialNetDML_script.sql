@@ -6,3 +6,5 @@ INSERT INTO state(name) values ('Thailand'),('Portugal'),('Argentina'),('Russia'
 insert into city values ('34000','Požega','1'),('10000','Zagreb','1'),('35000','Slavonski Brod',1);
 insert into city values ('10450','Jastrebarsko','1'),('44330','Novska','1'),('47240','Slunj',1);
 insert into city values ('34310','Pleternica','1'),('34311','Kuzmica','1'),('52434','Boljun',1);
+
+insert into address (street,postNumber) values ('Izmišljena ulica 53','34000'),('Izmišljena ulica 25','34000'),('Izmišljena uliva 55','34000');
