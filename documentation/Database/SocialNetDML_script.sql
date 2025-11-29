@@ -1,4 +1,5 @@
 -- states will be chosen from select choice 
+-- real data for countries
 INSERT INTO state(name) values ('Croatia'),('Italy'),('France'),('USA'),('Mexico'),('Uruguay'),('Brazil'),('Ukraine'),('Saudi Arabia');
 INSERT INTO state(name) values ('Serbia'),('Montenegro'),('Bosnia and Herzegovina'),('Hungary'),('China'),('Taiwan'),('Bangladesh');
 INSERT INTO state(name) values ('Australia'),('New Zeland'),('Denmark'),('United Kingdom'),('Wales'),('Germany'),('Spain');
@@ -18,3 +19,5 @@ insert into address (street,postNumber) values ('Izmišljena ulica 54','10000'),
 
 -- test data for profile
 insert into profile (firstName,lastName,email,sex,dateOfBirth,addressId,hashPassword) VALUES ('Josip','Bošnjak','jbosnjak@mail.com','m','1992-11-05',1,sha1('pass1234'));
+
+-- real data for accounttype

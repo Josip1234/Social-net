@@ -22,4 +22,10 @@ addressId int unsigned null,
 hashPassword text not null,
 unique(email),
 constraint addressId_fk foreign key (addressId) references address (addressId) on delete cascade on update cascade);
+create table accounttype(
+acTypeId int unsigned auto_increment primary key not null,
+acTypeName varchar(30) not null,
+listOfPrivileges text not null,
+unique(acTypeName),
+unique(listOfPrivileges));
 
