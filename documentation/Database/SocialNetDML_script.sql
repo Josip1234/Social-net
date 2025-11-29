@@ -21,3 +21,10 @@ insert into address (street,postNumber) values ('Izmišljena ulica 54','10000'),
 insert into profile (firstName,lastName,email,sex,dateOfBirth,addressId,hashPassword) VALUES ('Josip','Bošnjak','jbosnjak@mail.com','m','1992-11-05',1,sha1('pass1234'));
 
 -- real data for accounttype
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('All privileges','GRANT ALL PRIVILEGES');
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Insert and update','insert,update');
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Read','select');
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Read and delete','select,delete');
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('CRUD','select,insert,update,delete');
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Update,delete','update,delete');
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('DEL','delete'),('INS','insert'),('UPD','update');
