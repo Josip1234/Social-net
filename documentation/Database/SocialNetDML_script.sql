@@ -4,6 +4,7 @@ INSERT INTO state(name) values ('Serbia'),('Montenegro'),('Bosnia and Herzegovin
 INSERT INTO state(name) values ('Australia'),('New Zeland'),('Denmark'),('United Kingdom'),('Wales'),('Germany'),('Spain');
 INSERT INTO state(name) values ('Thailand'),('Portugal'),('Argentina'),('Russia'),('Venezuela'),('Colombia'),('Barbados');
 INSERT INTO state(name) values ('Marocco'),('Algeria'),('South Africa'),('South Korea'),('North Korea'),('Chile');
+INSERT INTO state(name) values ('Angola'),('Austria'),('Afghanistan'),('Nigeria'),('Namibia'),('Kenya');
 
 -- cities will be inserted by text fields
 insert into city values ('34000','Požega','1'),('10000','Zagreb','1'),('35000','Slavonski Brod',1);
@@ -14,3 +15,6 @@ insert into city values ('44213','Kratečko','1'),('34550','Pakrac','1'),('31309
 -- addresses will be inserted with text fields
 insert into address (street,postNumber) values ('Izmišljena ulica 53','34000'),('Izmišljena ulica 25','34000'),('Izmišljena uliva 55','34000');
 insert into address (street,postNumber) values ('Izmišljena ulica 54','10000'),('Izmišljena ulica 25','10450'),('Izmišljena uliva 55','44213');
+
+-- test data for profile
+insert into profile (firstName,lastName,email,sex,dateOfBirth,addressId,hashPassword) VALUES ('Josip','Bošnjak','jbosnjak@mail.com','m','1992-11-05',1,sha1('pass1234'));
