@@ -28,4 +28,14 @@ acTypeName varchar(30) not null,
 listOfPrivileges text not null,
 unique(acTypeName),
 unique(listOfPrivileges));
-
+create table profiledetails(
+proDetId int unsigned primary key auto_increment not null,
+userId int unsigned not null,
+acTypeId int unsigned null,
+registrationDate datetime not null,
+pdUpdateDate datetime not null,
+accountStatus enum('Active','Banned','Inactive'),
+constraint userIdac_fk foreign key (userId) references profile (userId) on update cascade on delete cascade,
+constraint acTypeId_fk foreign key (acTypeId) references accounttype (acTypeId) on delete SET NULL on update cascade); 
+-- if profile is updated or deleted, update or delete also profile details
+-- if type is deleted, set null, if it is updated update also here 
