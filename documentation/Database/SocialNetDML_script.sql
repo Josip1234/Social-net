@@ -20,6 +20,9 @@ insert into address (street,postNumber) values ('Izmišljena ulica 54','10000'),
 -- test data for profile
 insert into profile (firstName,lastName,email,sex,dateOfBirth,addressId,hashPassword) VALUES ('Josip','Bošnjak','jbosnjak@mail.com','m','1992-11-05',1,sha1('pass1234'));
 
+-- test data for profile details
+insert into profiledetails (userId,acTypeId,registrationDate,pdUpdateDate,accountStatus) values (1,3,now(),date_add(current_date(), interval 1 day),'Inactive');
+
 -- real data for accounttype
 
 -- this one is for main admin
