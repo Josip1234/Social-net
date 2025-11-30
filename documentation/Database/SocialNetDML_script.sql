@@ -37,3 +37,5 @@ insert into accounttype (acTypeName,listOfPrivileges) VALUES ('DEL','delete'),('
 insert into imagetype (iTypeName) values ('.jpg'),('.jpeg'),('.png'),('.gif'),('.webp'),('.svg');
 -- insert some data into image details
 insert into imagedetails(typeId,imageSize,imageDateAdded,imageDateUpdated) values (1,'16 kb',now(),now());
+-- insert data to image table
+insert into image(userId,imageName,url,iDetailsId) VALUES (1,'Nova slika','www.localhost/image/image2.jpg',1);
