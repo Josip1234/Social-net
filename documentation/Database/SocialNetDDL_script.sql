@@ -43,6 +43,7 @@ create table imageType(
 typeId int unsigned primary key auto_increment not null,
 iTypeName enum('.jpg','.jpeg','.png','.gif','.webp','.svg'),
 unique(iTypeName));
+-- need to update this
 create table imagedetails(
 iDetailsId int unsigned primary key auto_increment not null,
 typeId int unsigned not null,
