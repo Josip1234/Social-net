@@ -51,12 +51,14 @@ imageDateAdded datetime not null,
 imageDateUpdated datetime not null,
 -- unique(typeId),
 constraint typeId_fk foreign key(typeId) references imagetype (typeId) on update cascade on delete cascade);
+-- one image can have one only one detail
 create table image(
 imageId int primary key auto_increment not null,
 userId int unsigned not null,
 imageName varchar(50) not null,
 url text not null,
 iDetailsId int unsigned not null,
+unique(iDetailsId),
 unique(url),
 constraint userid_imgid_fk foreign key (userId) references profile(userId) on update cascade on delete cascade,
 constraint iDetailsId_fk foreign key (iDetailsId) references imagedetails (iDetailsId) on update cascade on delete cascade);
