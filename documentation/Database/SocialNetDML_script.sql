@@ -35,3 +35,5 @@ insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Update,delete','u
 insert into accounttype (acTypeName,listOfPrivileges) VALUES ('DEL','delete'),('INS','insert'),('UPD','update');
 -- real data for image types
 insert into imagetype (iTypeName) values ('.jpg'),('.jpeg'),('.png'),('.gif'),('.webp'),('.svg');
+-- insert some data into image details
+insert into imagedetails(typeId,imageSize,imageDateAdded,imageDateUpdated) values (1,'16 kb',now(),now());

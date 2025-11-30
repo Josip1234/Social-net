@@ -43,3 +43,11 @@ create table imageType(
 typeId int unsigned primary key auto_increment not null,
 iTypeName enum('.jpg','.jpeg','.png','.gif','.webp','.svg'),
 unique(iTypeName));
+create table imagedetails(
+iDetailsId int unsigned primary key auto_increment not null,
+typeId int unsigned not null,
+imageSize varchar(15) not null,
+imageDateAdded datetime not null,
+imageDateUpdated datetime not null,
+unique(typeId),
+constraint typeId_fk foreign key(typeId) references imagetype (typeId) on update cascade on delete cascade);
