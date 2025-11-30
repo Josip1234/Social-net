@@ -43,6 +43,15 @@ create table imageType(
 typeId int unsigned primary key auto_increment not null,
 iTypeName enum('.jpg','.jpeg','.png','.gif','.webp','.svg'),
 unique(iTypeName));
+-- one image can have one multiple details
+create table image(
+imageId int unsigned primary key auto_increment not null,
+userId int unsigned not null,
+imageName varchar(50) not null,
+url text not null,
+unique(url),
+constraint userid_imgid_fk foreign key (userId) references profile(userId) on update cascade on delete cascade);
+
 -- need to update this
 create table imagedetails(
 iDetailsId int unsigned primary key auto_increment not null,
@@ -50,18 +59,8 @@ typeId int unsigned not null,
 imageSize varchar(15) not null,
 imageDateAdded datetime not null,
 imageDateUpdated datetime not null,
+imageId int unsigned not null,
 -- unique(typeId),
-constraint typeId_fk foreign key(typeId) references imagetype (typeId) on update cascade on delete cascade);
--- one image can have one only one detail
-create table image(
-imageId int primary key auto_increment not null,
-userId int unsigned not null,
-imageName varchar(50) not null,
-url text not null,
-iDetailsId int unsigned not null,
-unique(iDetailsId),
-unique(url),
-constraint userid_imgid_fk foreign key (userId) references profile(userId) on update cascade on delete cascade,
-constraint iDetailsId_fk foreign key (iDetailsId) references imagedetails (iDetailsId) on update cascade on delete cascade);
-
+constraint typeId_fk foreign key(typeId) references imagetype (typeId) on update cascade on delete cascade,
+constraint imageId_fk foreign key(imageId) references image (imageId) on update cascade on delete cascade);
 
