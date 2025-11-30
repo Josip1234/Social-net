@@ -39,3 +39,7 @@ constraint userIdac_fk foreign key (userId) references profile (userId) on updat
 constraint acTypeId_fk foreign key (acTypeId) references accounttype (acTypeId) on delete SET NULL on update cascade); 
 -- if profile is updated or deleted, update or delete also profile details
 -- if type is deleted, set null, if it is updated update also here 
+create table imageType(
+typeId int unsigned primary key auto_increment not null,
+iTypeName enum('.jpg','.jpeg','.png','.gif','.webp','.svg'),
+unique(iTypeName));

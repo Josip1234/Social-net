@@ -24,7 +24,6 @@ insert into profile (firstName,lastName,email,sex,dateOfBirth,addressId,hashPass
 insert into profiledetails (userId,acTypeId,registrationDate,pdUpdateDate,accountStatus) values (1,3,now(),date_add(current_date(), interval 1 day),'Inactive');
 
 -- real data for accounttype
-
 -- this one is for main admin
 insert into accounttype (acTypeName,listOfPrivileges) VALUES ('All privileges','GRANT ALL PRIVILEGES'); 
 -- every other user
@@ -34,3 +33,5 @@ insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Read and delete',
 insert into accounttype (acTypeName,listOfPrivileges) VALUES ('CRUD','select,insert,update,delete');
 insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Update,delete','update,delete');
 insert into accounttype (acTypeName,listOfPrivileges) VALUES ('DEL','delete'),('INS','insert'),('UPD','update');
+-- real data for image types
+insert into imagetype (iTypeName) values ('.jpg'),('.jpeg'),('.png'),('.gif'),('.webp'),('.svg');
