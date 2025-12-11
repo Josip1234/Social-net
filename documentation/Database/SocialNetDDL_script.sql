@@ -64,3 +64,12 @@ imageId int unsigned not null,
 constraint typeId_fk foreign key(typeId) references imagetype (typeId) on update cascade on delete cascade,
 constraint imageId_fk foreign key(imageId) references image (imageId) on update cascade on delete cascade);
 
+create table databaseUser(
+userId int unsigned primary key not null auto_increment,
+userName varchar(255) not null,
+unique(username));
+
+create table database_logger(
+dbLogId int unsigned primary key auto_increment not null,
+userId int unsigned not null,
+constraint user_id_fk foreign key(userId) references databaseUser(userId) on update cascade on delete cascade);
