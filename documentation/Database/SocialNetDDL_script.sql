@@ -73,3 +73,15 @@ create table database_logger(
 dbLogId int unsigned primary key auto_increment not null,
 userId int unsigned not null,
 constraint user_id_fk foreign key(userId) references databaseUser(userId) on update cascade on delete cascade);
+
+create table logger_content(
+idLogCon int unsigned primary key auto_increment not null,
+dbLogId int unsigned not null,
+loggerDescription text not null,
+userAdded varchar(255) not null,
+userUpdated varchar(255) null,
+userDeleted varchar(255) null,
+dateDeleted datetime null,
+dateUpdated datetime null,
+dateAdded datetime not null,
+constraint dbLogId_fk foreign key(dbLogId) references database_logger(dbLogId) on update cascade on delete cascade);
