@@ -134,5 +134,27 @@ constraint userIdPcs_fk foreign key (userId) references profile(userId) on updat
 constraint commentId_fk foreign key(commentId) references comments(commentId) on update cascade on delete cascade,
 constraint subtopicsid_pcs_fk foreign key (subTopicsId) references subtopics(subTopicsId) on update cascade on delete cascade);
 
+-- there is no need for image and comment subcomment logger we already have that in image details and comments
+create table profile_logger(
+plId int unsigned not null primary key auto_increment,
+userId int unsigned not null,
+message text not null,
+additionDate datetime not null,
+updateDate datetime null,
+deleteDate datetime null,
+constraint userIdpl_fk foreign key (userId) references profile(userId) on update cascade on delete cascade);
 
+create table image_gallery(
+galleryId int unsigned not null primary key auto_increment,
+galleryName varchar(50) not null,
+galleryDateAdded datetime not null,
+galleryDateUpdated datetime null,
+unique(galleryName));
+
+create table img_img_gal(
+uniqueId int unsigned not null primary key auto_increment,
+imageId int unsigned not null,
+galleryId int unsigned not null,
+constraint imageIdiig_fk foreign key (imageId) references image(imageId) on update cascade on delete cascade,
+constraint galleryId_fk foreign key (galleryId) references gallery(galleryId) on update cascade on delete cascade);
 
