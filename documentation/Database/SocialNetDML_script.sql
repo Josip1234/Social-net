@@ -39,3 +39,6 @@ insert into imagetype (iTypeName) values ('.jpg'),('.jpeg'),('.png'),('.gif'),('
 insert into imagedetails(typeId,imageSize,imageDateAdded,imageDateUpdated,imageId) values (1,'16 kb',now(),now(),1);
 -- insert data to image table
 insert into image(userId,imageName,url) VALUES (1,'Nova slika','www.localhost/image/image2.jpg');
+
+insert into databaseuser(userName) VALUES ('social_admin');
+insert into databaseuser(userName) VALUES ('regular');

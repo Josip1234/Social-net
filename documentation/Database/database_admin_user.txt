@@ -1,0 +1,3 @@
+root admin with all privileges on socialnet database: username: 'social_admin'@'localhost' privileges: all 
+(must be in database, need a procedure and/or trigger to validate admin user)
+password for admin: rootadmin123

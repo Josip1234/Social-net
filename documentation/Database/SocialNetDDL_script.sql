@@ -156,5 +156,5 @@ uniqueId int unsigned not null primary key auto_increment,
 imageId int unsigned not null,
 galleryId int unsigned not null,
 constraint imageIdiig_fk foreign key (imageId) references image(imageId) on update cascade on delete cascade,
-constraint galleryId_fk foreign key (galleryId) references gallery(galleryId) on update cascade on delete cascade);
+constraint galleryId_fk foreign key (galleryId) references image_gallery(galleryId) on update cascade on delete cascade);
 

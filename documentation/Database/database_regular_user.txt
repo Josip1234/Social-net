@@ -1,0 +1,2 @@
+regular user for CRUD operations on socialnet database: 'regular'@'localhost' pass reg
+(also for the connection as regular user)
