@@ -42,3 +42,4 @@ insert into image(userId,imageName,url) VALUES (1,'Nova slika','www.localhost/im
 
 insert into databaseuser(userName) VALUES ('social_admin');
 insert into databaseuser(userName) VALUES ('regular');
+SELECT count(*) FROM databaseuser d WHERE d.userName='social_admin';
