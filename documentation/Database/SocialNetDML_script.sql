@@ -6,6 +6,7 @@ INSERT INTO state(name) values ('Australia'),('New Zeland'),('Denmark'),('United
 INSERT INTO state(name) values ('Thailand'),('Portugal'),('Argentina'),('Russia'),('Venezuela'),('Colombia'),('Barbados');
 INSERT INTO state(name) values ('Marocco'),('Algeria'),('South Africa'),('South Korea'),('North Korea'),('Chile');
 INSERT INTO state(name) values ('Angola'),('Austria'),('Afghanistan'),('Nigeria'),('Namibia'),('Kenya');
+INSERT INTO state(name) VALUES ('Qatar');
 
 -- cities will be inserted by text fields
 insert into city values ('34000','Požega','1'),('10000','Zagreb','1'),('35000','Slavonski Brod',1);
