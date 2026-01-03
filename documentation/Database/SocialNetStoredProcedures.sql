@@ -27,5 +27,42 @@ BEGIN
     end if;
 END $$
 DELIMITER ;
+-- procerdure for saving log from user
+DELIMITER $$
+create procedure saveStateLog()
+BEGIN
+   -- variable to store current user
+   declare currentUser varchar(255);
+    -- need user id first
+   declare id int(10) unsigned;
+   declare dbLoggerid int(10) unsigned;
+   -- get current user
+   select substring_index(current_user(),'@',1) INTO currentUser;
+   -- get uder id from current user
+   select userId into id from databaseuser where userName=currentUser;
+-- now we need to select logger id
+SELECT dbLogId into dbLoggerid from database_logger WHERE userId=userId;
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has added new state',current_user(),now());
+END $$
+DELIMITER ;
 
-
+-- procedure will insert users into database logger if they do not exists
+DELIMITER $$
+create procedure insertUserIntoDbLoggerIfNotExists()
+BEGIN
+   -- variable to store current user
+   declare currentUser varchar(255);
+    -- need user id first
+   declare id int(10) unsigned;
+   -- get current user
+   select substring_index(current_user(),'@',1) INTO currentUser;
+   -- get uder id from current user
+   select userId into id from databaseuser where userName=currentUser;
+   -- if userid is not null insert into db logger current user id
+   if id is not null then
+      insert into database_logger(userId) value (id);
+   end if;
+END $$
+DELIMITER ;
+-- for each user logged in intop database need to insert id from that user to database logger 
+call insertUserIntoDbLoggerIfNotExists();

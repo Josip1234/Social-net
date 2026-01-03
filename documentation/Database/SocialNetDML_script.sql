@@ -7,6 +7,8 @@ INSERT INTO state(name) values ('Thailand'),('Portugal'),('Argentina'),('Russia'
 INSERT INTO state(name) values ('Marocco'),('Algeria'),('South Africa'),('South Korea'),('North Korea'),('Chile');
 INSERT INTO state(name) values ('Angola'),('Austria'),('Afghanistan'),('Nigeria'),('Namibia'),('Kenya');
 INSERT INTO state(name) VALUES ('Qatar');
+INSERT INTO state(name) VALUES ('Kosovo');
+INSERT INTO state(name) VALUES ('Bosnia & Herzegovina');
 
 -- cities will be inserted by text fields
 insert into city values ('34000','Požega','1'),('10000','Zagreb','1'),('35000','Slavonski Brod',1);
