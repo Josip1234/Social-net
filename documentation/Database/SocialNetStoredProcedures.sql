@@ -44,6 +44,8 @@ BEGIN
 SELECT dbLogId into dbLoggerid from database_logger WHERE userId=userId;
 if operation = 'insert' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has added new state',current_user(),now());
+elseif operation = 'update' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has updated state',current_user(),now());
 end if;
 END $$
 DELIMITER ;

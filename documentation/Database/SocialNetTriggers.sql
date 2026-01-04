@@ -7,5 +7,13 @@ call saveStateLog('insert');
 end $$
 DELIMITER ;
 
+DELIMITER $$
+create trigger UserLogAfterUpdateOnState after update on state
+for each row 
+begin 
+call saveStateLog('update');
+end $$
+DELIMITER ;
+
 drop trigger UserLogAfterInsertOnState;
 
