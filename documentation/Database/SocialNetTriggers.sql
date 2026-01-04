@@ -15,5 +15,13 @@ call saveStateLog('update');
 end $$
 DELIMITER ;
 
+DELIMITER $$
+create trigger UserLogAfterDeleteOnState after delete on state
+for each row 
+begin 
+call saveStateLog('delete');
+end $$
+DELIMITER ;
+
 drop trigger UserLogAfterInsertOnState;
 

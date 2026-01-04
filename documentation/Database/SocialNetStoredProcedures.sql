@@ -46,6 +46,8 @@ if operation = 'insert' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has added new state',current_user(),now());
 elseif operation = 'update' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Logged in user has updated state',current_user(),now());
+elseif operation = 'delete' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Logged in user has deleted a state',current_user(),now());
 end if;
 END $$
 DELIMITER ;
