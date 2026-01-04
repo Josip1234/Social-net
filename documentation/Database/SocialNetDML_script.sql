@@ -13,7 +13,7 @@ INSERT INTO state(name) VALUES ('Canada');
 UPDATE state set name='Can' where name = 'Canada';
 UPDATE state set name='Canada' where name = 'Can';
 DELETE FROM state where name='North Korea';
-
+DELETE FROM state where name='Italy';
 -- cities will be inserted by text fields
 insert into city values ('34000','Požega','1'),('10000','Zagreb','1'),('35000','Slavonski Brod',1);
 insert into city values ('10450','Jastrebarsko','1'),('44330','Novska','1'),('47240','Slunj',1);
