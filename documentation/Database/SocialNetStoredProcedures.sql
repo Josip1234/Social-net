@@ -32,38 +32,38 @@ DELIMITER $$
 create procedure saveStateLog(in operation varchar(10))
 BEGIN
    -- variable to store current user
-   declare currentUser varchar(255);
+     declare currentUser varchar(255);
     -- need user id first
-   declare id int(10) unsigned;
-   declare dbLoggerid int(10) unsigned;
+    declare id int(10) unsigned;
+    declare dbLoggerid int(10) unsigned;
    -- get current user
-   select substring_index(current_user(),'@',1) INTO currentUser;
+   select userName into currentUser from databaseuser where userName=substring_index(user(),'@',1);
    -- get uder id from current user
    select userId into id from databaseuser where userName=currentUser;
 -- now we need to select logger id
-SELECT dbLogId into dbLoggerid from database_logger WHERE userId=userId;
+SELECT dbLogId into dbLoggerid from database_logger WHERE userId=id;
 if operation = 'insert' then
-INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has added new state',current_user(),now());
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has added new state',currentUser,now());
 elseif operation = 'update' then
-INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Logged in user has updated state',current_user(),now());
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Logged in user has updated state',currentUser,now());
 elseif operation = 'delete' then
-INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Logged in user has deleted a state',current_user(),now());
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Logged in user has deleted a state',currentUser,now());
 end if;
 END $$
 DELIMITER ;
 
 -- procedure will insert users into database logger if they do not exists
 DELIMITER $$
-create procedure insertUserIntoDbLoggerIfNotExists()
+create procedure insertUsersIntoDbLoggerIfNotExists(in userName varchar(255))
 BEGIN
    -- variable to store current user
-   declare currentUser varchar(255);
+   -- declare currentUser varchar(255);
     -- need user id first
    declare id int(10) unsigned;
    -- get current user
-   select substring_index(current_user(),'@',1) INTO currentUser;
+   -- select substring_index(current_user(),'@',1) INTO currentUser;
    -- get uder id from current user
-   select userId into id from databaseuser where userName=currentUser;
+   select userId into id from databaseuser where userName=userName;
    -- if userid is not null insert into db logger current user id
    if id is not null then
       insert into database_logger(userId) value (id);
@@ -71,4 +71,6 @@ BEGIN
 END $$
 DELIMITER ;
 -- for each user logged in intop database need to insert id from that user to database logger 
-call insertUserIntoDbLoggerIfNotExists();
+call insertUsersIntoDbLoggerIfNotExists();
+call saveStateLog('delete');
+

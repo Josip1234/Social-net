@@ -23,5 +23,13 @@ call saveStateLog('delete');
 end $$
 DELIMITER ;
 
+DELIMITER $$
+create trigger insertUserIntoDatabaseLogger after insert on databaseuser
+for each row 
+begin 
+call insertUsersIntoDbLoggerIfNotExists(new.userName);
+end $$
+DELIMITER ;
+
 drop trigger UserLogAfterInsertOnState;
 

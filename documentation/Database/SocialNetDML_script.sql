@@ -9,6 +9,7 @@ INSERT INTO state(name) values ('Angola'),('Austria'),('Afghanistan'),('Nigeria'
 INSERT INTO state(name) VALUES ('Qatar');
 INSERT INTO state(name) VALUES ('Kosovo');
 INSERT INTO state(name) VALUES ('Bosnia & Herzegovina');
+INSERT INTO state(name) VALUES ('Cnd');
 INSERT INTO state(name) VALUES ('Canada');
 UPDATE state set name='Can' where name = 'Canada';
 UPDATE state set name='Canada' where name = 'Can';
@@ -50,3 +51,6 @@ insert into image(userId,imageName,url) VALUES (1,'Nova slika','www.localhost/im
 insert into databaseuser(userName) VALUES ('social_admin');
 insert into databaseuser(userName) VALUES ('regular');
 SELECT count(*) FROM databaseuser d WHERE d.userName='social_admin';
+-- we have made a triger and stored procedure to auto insert into database logger new user 
+-- however this user needs to insert manually.
+insert into database_logger(userId) value (2);
