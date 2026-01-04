@@ -29,7 +29,7 @@ END $$
 DELIMITER ;
 -- procerdure for saving log from user
 DELIMITER $$
-create procedure saveStateLog()
+create procedure saveStateLog(in operation varchar(10))
 BEGIN
    -- variable to store current user
    declare currentUser varchar(255);
@@ -42,7 +42,9 @@ BEGIN
    select userId into id from databaseuser where userName=currentUser;
 -- now we need to select logger id
 SELECT dbLogId into dbLoggerid from database_logger WHERE userId=userId;
+if operation = 'insert' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has added new state',current_user(),now());
+end if;
 END $$
 DELIMITER ;
 
