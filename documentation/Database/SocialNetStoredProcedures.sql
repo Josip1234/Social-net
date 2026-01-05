@@ -29,7 +29,7 @@ END $$
 DELIMITER ;
 -- procerdure for saving log from user
 DELIMITER $$
-create procedure saveStateLog(in operation varchar(10))
+create procedure saveLog(in operation varchar(10), in tableName varchar(50))
 BEGIN
    -- variable to store current user
      declare currentUser varchar(255);
@@ -42,12 +42,18 @@ BEGIN
    select userId into id from databaseuser where userName=currentUser;
 -- now we need to select logger id
 SELECT dbLogId into dbLoggerid from database_logger WHERE userId=id;
-if operation = 'insert' then
+if operation = 'insert' && tableName = 'state' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has added new state',currentUser,now());
-elseif operation = 'update' then
+elseif operation = 'update' && tableName = 'state' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Logged in user has updated state',currentUser,now());
-elseif operation = 'delete' then
+elseif operation = 'delete' && tableName = 'state' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Logged in user has deleted a state',currentUser,now());
+elseif operation = 'insert' && tableName = 'city' then 
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has added new city.',currentUser,now());
+elseif operation = 'update' && tableName = 'city' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Logged in user has updated a city',currentUser,now());
+elseif operation = 'delete' && tableName = 'city' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Logged in user has deleted a city',currentUser,now());
 end if;
 END $$
 DELIMITER ;

@@ -14,12 +14,14 @@ INSERT INTO state(name) VALUES ('Canada');
 UPDATE state set name='Can' where name = 'Canada';
 UPDATE state set name='Canada' where name = 'Can';
 DELETE FROM state where name='North Korea';
-DELETE FROM state where name='Italy';
+DELETE FROM state where name='Canada';
 -- cities will be inserted by text fields
 insert into city values ('34000','Požega','1'),('10000','Zagreb','1'),('35000','Slavonski Brod',1);
 insert into city values ('10450','Jastrebarsko','1'),('44330','Novska','1'),('47240','Slunj',1);
 insert into city values ('34310','Pleternica','1'),('34311','Kuzmica','1'),('52434','Boljun',1);
 insert into city values ('44213','Kratečko','1'),('34550','Pakrac','1'),('31309','Kneževi Vinogradi',1);
+update city set name='Zagereb', postNumber='10001', stateId='2' WHERE postNumber='34000';
+delete from city where postNumber='10001';
 
 -- addresses will be inserted with text fields
 insert into address (street,postNumber) values ('Izmišljena ulica 53','34000'),('Izmišljena ulica 25','34000'),('Izmišljena uliva 55','34000');
