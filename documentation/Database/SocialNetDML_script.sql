@@ -26,6 +26,8 @@ delete from city where postNumber='10001';
 -- addresses will be inserted with text fields
 insert into address (street,postNumber) values ('Izmišljena ulica 53','34000'),('Izmišljena ulica 25','34000'),('Izmišljena uliva 55','34000');
 insert into address (street,postNumber) values ('Izmišljena ulica 54','10000'),('Izmišljena ulica 25','10450'),('Izmišljena uliva 55','44213');
+update address set postNumber='34310' where postNumber='10000';
+delete from address where postNumber='34310';
 
 -- test data for profile
 insert into profile (firstName,lastName,email,sex,dateOfBirth,addressId,hashPassword) VALUES ('Josip','Bošnjak','jbosnjak@mail.com','m','1992-11-05',1,sha1('pass1234'));

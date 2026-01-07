@@ -48,11 +48,37 @@ call saveLog('delete','city');
 end $$
 DELIMITER ;
 
+
 DELIMITER $$
 create trigger insertUserIntoDatabaseLogger after insert on databaseuser
 for each row 
 begin 
 call insertUsersIntoDbLoggerIfNotExists(new.userName);
+end $$
+DELIMITER ;
+
+-- triggers for table address
+DELIMITER $$
+create trigger insertAdrIntoDatabaseLogger after insert on address
+for each row 
+begin 
+call saveLog('insert','adr');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger updateAdrIntoDatabaseLogger after update on address
+for each row 
+begin 
+call saveLog('update','adr');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger deleteAdrIntoDatabaseLogger after delete on address
+for each row 
+begin 
+call saveLog('delete','adr');
 end $$
 DELIMITER ;
 
@@ -62,5 +88,6 @@ drop trigger UserLogAfterUpdateOnState;
 drop trigger UserLogAfterInsertOnCity;
 drop trigger UserLogAfterDeleteOnCity;
 drop trigger UserLogAfterUpdateOnCity;
+drop trigger updateAdrIntoDatabaseLogger;
 
 
