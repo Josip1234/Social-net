@@ -58,3 +58,10 @@ SELECT count(*) FROM databaseuser d WHERE d.userName='social_admin';
 -- we have made a triger and stored procedure to auto insert into database logger new user 
 -- however this user needs to insert manually.
 insert into database_logger(userId) value (2);
+-- some test data for user profile
+-- password is jobo
+-- hash bycript password is generated online by https://bcrypt.online/
+insert into profile(firstName,lastName,email,sex,dateOfBirth,addressId,hashPassword) values 
+('Josip','Bošnjak','jbosnjak@mail.com','m','1992-11-05',11,'$2y$10$Yu5uppfKPS/VHf0WkcSA5uKjmsw1jMFgmANzNh5iIZoYryLtd6DhG');
+update profile set firstName='Josipa', sex='f' where email='jbosnjak@mail.com';
+delete from profile where email='jbosnjak@mail.com';

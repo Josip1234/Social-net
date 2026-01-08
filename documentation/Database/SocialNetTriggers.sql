@@ -82,6 +82,31 @@ call saveLog('delete','adr');
 end $$
 DELIMITER ;
 
+-- triggers for log user profile
+DELIMITER $$
+create trigger userProfileLog after insert on profile
+for each row 
+begin 
+call saveProfileLog('insert','profile',concat(new.firstName,' ',new.lastName),null);
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger userUpdateProfileLog after update on profile
+for each row 
+begin 
+call saveProfileLog('update','profile',concat(new.firstName,' ',new.lastName),concat(old.firstName,' ',old.lastName));
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger userDeleteProfileLog after delete on profile
+for each row 
+begin 
+call saveProfileLog('delete','profile',concat(old.firstName,' ',old.lastName),null);
+end $$
+DELIMITER ;
+
 drop trigger UserLogAfterInsertOnState;
 drop trigger UserLogAfterDeleteOnState;
 drop trigger UserLogAfterUpdateOnState;
@@ -89,5 +114,7 @@ drop trigger UserLogAfterInsertOnCity;
 drop trigger UserLogAfterDeleteOnCity;
 drop trigger UserLogAfterUpdateOnCity;
 drop trigger updateAdrIntoDatabaseLogger;
-
+drop trigger userUpdateProfileLog;
+drop trigger userDeleteProfileLog;
+drop trigger userProfileLog;
 

@@ -64,6 +64,33 @@ end if;
 END $$
 DELIMITER ;
 
+-- procedure for profile only modification of save log to database only to reference profile name as argument
+
+DELIMITER $$
+create procedure saveProfileLog(in operation varchar(10), in tableName varchar(50), in userName2 varchar(255), in oldUserName varchar(255))
+BEGIN
+   -- variable to store current user
+     declare currentUser varchar(255);
+    -- need user id first
+    declare id int(10) unsigned;
+    declare dbLoggerid int(10) unsigned;
+   -- get current user
+   select userName into currentUser from databaseuser where userName=substring_index(user(),'@',1);
+   -- get uder id from current user
+   select userId into id from databaseuser where userName=currentUser;
+-- now we need to select logger id
+SELECT dbLogId into dbLoggerid from database_logger WHERE userId=id;
+if operation = 'insert' && tableName = 'profile' then 
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,concat('New user ',userName2,' has been added'),currentUser,now());
+elseif operation = 'update' && tableName = 'profile' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,concat('Username ',oldUserName,' has been updated. New value ',userName2),currentUser,now());
+elseif operation = 'delete' && tableName = 'profile' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,concat('User ',userName2,' has been deleted'),currentUser,now());
+end if;
+END $$
+DELIMITER ;
+
+
 -- procedure will insert users into database logger if they do not exists
 DELIMITER $$
 create procedure insertUsersIntoDbLoggerIfNotExists(in userName varchar(255))
