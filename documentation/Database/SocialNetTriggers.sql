@@ -107,6 +107,33 @@ call saveProfileLog('delete','profile',concat(old.firstName,' ',old.lastName),nu
 end $$
 DELIMITER ;
 
+-- triggers for profile details table
+DELIMITER $$
+create trigger addedProfileDetailsLog after insert on profiledetails
+for each row 
+begin 
+call saveLog('insert','pd');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger updatedProfileDetailsLog after update on profiledetails
+for each row 
+begin 
+call saveLog('update','pd');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger deletedProfileDetailsLog after delete on profiledetails
+for each row 
+begin 
+call saveLog('delete','pd');
+end $$
+DELIMITER ;
+
+
+
 drop trigger UserLogAfterInsertOnState;
 drop trigger UserLogAfterDeleteOnState;
 drop trigger UserLogAfterUpdateOnState;

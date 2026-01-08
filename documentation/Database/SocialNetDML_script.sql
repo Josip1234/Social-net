@@ -65,3 +65,8 @@ insert into profile(firstName,lastName,email,sex,dateOfBirth,addressId,hashPassw
 ('Josip','Bošnjak','jbosnjak@mail.com','m','1992-11-05',11,'$2y$10$Yu5uppfKPS/VHf0WkcSA5uKjmsw1jMFgmANzNh5iIZoYryLtd6DhG');
 update profile set firstName='Josipa', sex='f' where email='jbosnjak@mail.com';
 delete from profile where email='jbosnjak@mail.com';
+-- dml test data for profile details
+insert into profiledetails (userId,acTypeId,registrationDate,pdUpdateDate,accountStatus) values
+(6,1,now(),now(),'Inactive');
+update profiledetails set accountStatus='Banned' where proDetId=2;
+delete from profiledetails where proDetId=2;

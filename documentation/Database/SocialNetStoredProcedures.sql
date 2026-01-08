@@ -60,6 +60,12 @@ elseif operation = 'update' && tableName = 'adr' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Logged in user updated an adress.',currentUser,now());
 elseif operation = 'delete' && tableName = 'adr' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Logged in user deleted an address',currentUser,now());
+elseif operation = 'insert' && tableName = 'pd' then 
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Added new profile detail.',currentUser,now());
+elseif operation = 'update' && tableName = 'pd' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Updated profile detail.',currentUser,now());
+elseif operation = 'delete' && tableName = 'pd' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Deleted profile detail.',currentUser,now());
 end if;
 END $$
 DELIMITER ;
