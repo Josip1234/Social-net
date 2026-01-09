@@ -70,3 +70,5 @@ insert into profiledetails (userId,acTypeId,registrationDate,pdUpdateDate,accoun
 (6,1,now(),now(),'Inactive');
 update profiledetails set accountStatus='Banned' where proDetId=2;
 delete from profiledetails where proDetId=2;
+-- dml test data for account type
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('some account','triggers');

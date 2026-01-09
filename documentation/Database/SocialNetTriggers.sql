@@ -132,6 +132,31 @@ call saveLog('delete','pd');
 end $$
 DELIMITER ;
 
+-- triggers for limiting use of account type table will be triggered before insert, update and delete
+DELIMITER $$
+create trigger limitAccountTypeTableBeforeInsert before insert on accounttype
+for each row 
+begin 
+call limitUseOfCudOperationsOnAccountTypeTable('insert');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger limitAccountTypeTableBeforeUpdate before update on accounttype
+for each row 
+begin 
+call limitUseOfCudOperationsOnAccountTypeTable('update');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger limitAccountTypeTableBeforeDelete before delete on accounttype
+for each row 
+begin 
+call limitUseOfCudOperationsOnAccountTypeTable('delete');
+end $$
+DELIMITER ;
+
 
 
 drop trigger UserLogAfterInsertOnState;
@@ -144,4 +169,6 @@ drop trigger updateAdrIntoDatabaseLogger;
 drop trigger userUpdateProfileLog;
 drop trigger userDeleteProfileLog;
 drop trigger userProfileLog;
-
+drop trigger limitAccountTypeTableBeforeDelete;
+drop trigger limitAccountTypeTableBeforeUpdate;
+drop trigger limitAccountTypeTableBeforeInsert;

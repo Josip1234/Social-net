@@ -128,8 +128,11 @@ call saveStateLog('delete');
 -- also we will put into database logger message if regular user tries to
 -- use insert update and delete 
 DELIMITER $$
-create procedure limitUseOfCudOperationsOnAccountTypeTable(in operation varchar(10), in typeOfUser varchar(50))
+create procedure limitUseOfCudOperationsOnAccountTypeTable(in operation varchar(10))
 BEGIN
+declare typeOfUser varchar(30);
+select act.acTypeName into typeOfUser from accountType act  inner join databaseuser du on act.acTypeId=du.acTypeId where 
+du.userName=substring_index(user(),'@',1);
 if operation = 'insert' && typeOfUser='Regular' then
 select concat('Regular user can only read data from this table.') as Poruka;
 INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,Poruka,currentUser,now());
