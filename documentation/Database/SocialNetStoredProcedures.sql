@@ -119,3 +119,30 @@ DELIMITER ;
 call insertUsersIntoDbLoggerIfNotExists();
 call saveStateLog('delete');
 
+
+-- procerdure for limit use of table account type if user is not admin
+-- cud operations will be limited for admin user only
+-- regular user will only read information from this table
+-- since we did not declare limitation with dml we will use 
+-- stored procedure to limit what regular user can do and what he cannot do
+-- also we will put into database logger message if regular user tries to
+-- use insert update and delete 
+DELIMITER $$
+create procedure limitUseOfCudOperationsOnAccountTypeTable(in operation varchar(10), in typeOfUser varchar(50))
+BEGIN
+if operation = 'insert' && typeOfUser='Regular' then
+select concat('Regular user can only read data from this table.') as Poruka;
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,Poruka,currentUser,now());
+elseif operation = 'update' && typeOfUser='Regular' then
+select concat('Regular user can only read data from this table.') as Poruka;
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,Poruka,currentUser,now());
+elseif operation = 'delete' && typeOfUser='Regular' then
+select concat('Regular user can only read data from this table.') as Poruka;
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,Poruka,currentUser,now());
+end if;
+END $$
+DELIMITER ;
+
+
+
+
