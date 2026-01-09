@@ -131,17 +131,21 @@ DELIMITER $$
 create procedure limitUseOfCudOperationsOnAccountTypeTable(in operation varchar(10))
 BEGIN
 declare typeOfUser varchar(30);
+declare dbLoggerid int(10) unsigned;
+    declare id int(10) unsigned;
 select act.acTypeName into typeOfUser from accountType act  inner join databaseuser du on act.acTypeId=du.acTypeId where 
 du.userName=substring_index(user(),'@',1);
+select userId into id from databaseuser where userName=substring_index(user(),'@',1);
+SELECT dbLogId into dbLoggerid from database_logger WHERE userId=id;
 if operation = 'insert' && typeOfUser='Regular' then
-select concat('Regular user can only read data from this table.') as Poruka;
-INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,Poruka,currentUser,now());
+-- select concat('Regular user can only read data from this table.') as Poruka;
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Regular user can only read data from this table.',substring_index(user(),'@',1),now());
 elseif operation = 'update' && typeOfUser='Regular' then
-select concat('Regular user can only read data from this table.') as Poruka;
-INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,Poruka,currentUser,now());
+-- select concat('Regular user can only read data from this table.') as Poruka;
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Regular user can only read data from this table.',substring_index(user(),'@',1),now());
 elseif operation = 'delete' && typeOfUser='Regular' then
-select concat('Regular user can only read data from this table.') as Poruka;
-INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,Poruka,currentUser,now());
+-- select concat('Regular user can only read data from this table.') as Poruka;
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Regular user can only read data from this table.',substring_index(user(),'@',1),now());
 end if;
 END $$
 DELIMITER ;
