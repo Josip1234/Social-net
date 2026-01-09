@@ -77,6 +77,15 @@ userId int unsigned primary key not null auto_increment,
 userName varchar(255) not null,
 unique(username));
 
+-- need to update database user table
+-- need account type table to pull account type for database users
+-- we will fetch acocunt type id and we will use that id 
+-- to fetch type of user to validate operations with triggers 
+-- and stored procedure to limit regular user cannot change 
+-- anything in account type table unless he have admin rights
+alter table databaseUser add column acTypeId int(10) unsigned after userName;
+alter table databaseUser add constraint accountType_fk foreign key(acTypeId) references accountType(acTypeId) on update cascade on delete cascade;
+
 create table database_logger(
 dbLogId int unsigned primary key auto_increment not null,
 userId int unsigned not null,
