@@ -243,22 +243,3 @@ DELIMITER ;
 
 
 
--- trigger deletes
-drop trigger UserLogAfterInsertOnState;
-drop trigger UserLogAfterDeleteOnState;
-drop trigger UserLogAfterUpdateOnState;
-drop trigger UserLogAfterInsertOnCity;
-drop trigger UserLogAfterDeleteOnCity;
-drop trigger UserLogAfterUpdateOnCity;
-drop trigger updateAdrIntoDatabaseLogger;
-drop trigger userUpdateProfileLog;
-drop trigger userDeleteProfileLog;
-drop trigger userProfileLog;
-drop trigger limitAccountTypeTableBeforeDelete;
-drop trigger limitAccountTypeTableBeforeUpdate;
-drop trigger limitAccountTypeTableBeforeInsert;
-drop trigger insertTypeLog;
-drop trigger updateTypeLog;
-drop trigger deleteTypeLog;
-drop trigger dbuserInsertLog;
-drop trigger insertUserIntoDatabaseLogger;

@@ -81,4 +81,5 @@ insert into databaseuser(userName) values ('regular');
 insert into databaseuser(userName) values ('social_admin');
 insert into databaseuser(userName) values ('socialadmin12345');
 update databaseuser set acTypeId='1' where userName='social_admin';
+update databaseuser set acTypeId='2' where userName='regular';
 delete from databaseuser where userName='social_admin';

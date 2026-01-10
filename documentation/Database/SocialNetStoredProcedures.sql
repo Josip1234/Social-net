@@ -125,7 +125,7 @@ BEGIN
    -- get uder id from current user
    -- select userId into id from databaseuser where userName=userName;
    -- if userid is not null insert into db logger current user id
-   if id is not null && user()='Admin' then
+   if id is not null && user()='social_admin@localhost' then
       insert into database_logger(userId) value (id);
        call saveLog('insert','dbus');
 	else 
@@ -135,8 +135,8 @@ BEGIN
 END $$
 DELIMITER ;
 -- for each user logged in intop database need to insert id from that user to database logger 
-call insertUsersIntoDbLoggerIfNotExists();
-call saveStateLog('delete');
+-- call insertUsersIntoDbLoggerIfNotExists();
+-- call saveStateLog('delete');
 
 
 -- procerdure for limit use of table account type if user is not admin
