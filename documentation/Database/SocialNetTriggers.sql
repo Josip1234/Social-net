@@ -156,8 +156,30 @@ begin
 call limitUseOfCudOperationsOnAccountTypeTable('delete');
 end $$
 DELIMITER ;
+-- triggers for logging account type table
+DELIMITER $$
+create trigger insertTypeLog after insert on accounttype
+for each row 
+begin 
+call saveLog('insert','at');
+end $$
+DELIMITER ;
 
+DELIMITER $$
+create trigger updateTypeLog after update on accounttype
+for each row 
+begin 
+call saveLog('update','at');
+end $$
+DELIMITER ;
 
+DELIMITER $$
+create trigger deleteTypeLog after delete on accounttype
+for each row 
+begin 
+call saveLog('delete','at');
+end $$
+DELIMITER ;
 
 drop trigger UserLogAfterInsertOnState;
 drop trigger UserLogAfterDeleteOnState;
@@ -172,3 +194,6 @@ drop trigger userProfileLog;
 drop trigger limitAccountTypeTableBeforeDelete;
 drop trigger limitAccountTypeTableBeforeUpdate;
 drop trigger limitAccountTypeTableBeforeInsert;
+drop trigger insertTypeLog;
+drop trigger updateTypeLog;
+drop trigger deleteTypeLog;

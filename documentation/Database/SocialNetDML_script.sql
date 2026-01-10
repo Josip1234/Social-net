@@ -71,6 +71,6 @@ insert into profiledetails (userId,acTypeId,registrationDate,pdUpdateDate,accoun
 update profiledetails set accountStatus='Banned' where proDetId=2;
 delete from profiledetails where proDetId=2;
 -- dml test data for account type
-insert into accounttype (acTypeName,listOfPrivileges) VALUES ('some account','triggers'); 
-update accounttype set acTypeName='Regular' where acTypeId=1;
-delete from accounttype where acTypeId=4;
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('someaccount34','trigger52'); 
+update accounttype set acTypeName='Regulars' where acTypeId=7;
+delete from accounttype where acTypeId=5;

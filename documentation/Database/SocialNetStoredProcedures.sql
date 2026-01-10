@@ -36,12 +36,15 @@ BEGIN
     -- need user id first
     declare id int(10) unsigned;
     declare dbLoggerid int(10) unsigned;
+    declare userType varchar(30);
    -- get current user
    select userName into currentUser from databaseuser where userName=substring_index(user(),'@',1);
    -- get uder id from current user
    select userId into id from databaseuser where userName=currentUser;
 -- now we need to select logger id
 SELECT dbLogId into dbLoggerid from database_logger WHERE userId=id;
+select act.acTypeName into userType from accountType act  inner join databaseuser du on act.acTypeId=du.acTypeId where 
+du.userName=substring_index(user(),'@',1);
 if operation = 'insert' && tableName = 'state' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Logged in user has added new state',currentUser,now());
 elseif operation = 'update' && tableName = 'state' then
@@ -66,6 +69,12 @@ elseif operation = 'update' && tableName = 'pd' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Updated profile detail.',currentUser,now());
 elseif operation = 'delete' && tableName = 'pd' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Deleted profile detail.',currentUser,now());
+elseif operation = 'insert' && tableName = 'at' && userType ='Admin' then 
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New account type has been added.',currentUser,now());
+elseif operation = 'update' && tableName = 'at' && userType = 'Admin' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Account type has been updated.',currentUser,now());
+elseif operation = 'delete' && tableName = 'at' && userType = 'Admin' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Deleted account type.',currentUser,now());
 end if;
 END $$
 DELIMITER ;
