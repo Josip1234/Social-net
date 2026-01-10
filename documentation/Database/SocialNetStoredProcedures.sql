@@ -75,6 +75,12 @@ elseif operation = 'update' && tableName = 'at' && userType = 'Admin' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Account type has been updated.',currentUser,now());
 elseif operation = 'delete' && tableName = 'at' && userType = 'Admin' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Deleted account type.',currentUser,now());
+elseif operation = 'insert' && tableName = 'dbus' && userType ='Admin' then 
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New database user has been added.',currentUser,now());
+elseif operation = 'update' && tableName = 'dbus' && userType = 'Admin' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Database user has been updated.',currentUser,now());
+elseif operation = 'delete' && tableName = 'dbus' && userType = 'Admin' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Deleted database user.',currentUser,now());
 end if;
 END $$
 DELIMITER ;
@@ -108,19 +114,23 @@ DELIMITER ;
 
 -- procedure will insert users into database logger if they do not exists
 DELIMITER $$
-create procedure insertUsersIntoDbLoggerIfNotExists(in userName varchar(255))
+create procedure insertUsersIntoDbLoggerIfNotExists(in id int(10) unsigned)
 BEGIN
    -- variable to store current user
    -- declare currentUser varchar(255);
     -- need user id first
-   declare id int(10) unsigned;
+  -- declare id int(10) unsigned;insertUserIntoDatabaseLogger
    -- get current user
    -- select substring_index(current_user(),'@',1) INTO currentUser;
    -- get uder id from current user
-   select userId into id from databaseuser where userName=userName;
+   -- select userId into id from databaseuser where userName=userName;
    -- if userid is not null insert into db logger current user id
-   if id is not null then
+   if id is not null && user()='Admin' then
       insert into database_logger(userId) value (id);
+       call saveLog('insert','dbus');
+	else 
+    SIGNAL sqlstate '45000' 
+     set message_text='User is not admin.Operation not allowed.';
    end if;
 END $$
 DELIMITER ;

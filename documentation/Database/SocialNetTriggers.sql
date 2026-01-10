@@ -53,7 +53,12 @@ DELIMITER $$
 create trigger insertUserIntoDatabaseLogger after insert on databaseuser
 for each row 
 begin 
-call insertUsersIntoDbLoggerIfNotExists(new.userName);
+if user()='regular' then
+SIGNAL sqlstate '45000' 
+set message_text='User is not admin.Operation not allowed.';
+	else
+call insertUsersIntoDbLoggerIfNotExists(new.userId);
+end if;
 end $$
 DELIMITER ;
 
@@ -196,6 +201,49 @@ end if;
 end $$
 DELIMITER ;
 
+-- trigger for databaseusers logging
+DELIMITER $$
+create trigger dbuserInsertLog before insert on databaseuser
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000' 
+set message_text='User is not admin.Operation not allowed.';
+	else
+call saveLog('insert','dbus');
+end if;
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger dbuserUpdateLog after update on databaseuser
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000' 
+set message_text='User is not admin.Operation not allowed.';
+	else
+call saveLog('update','dbus');
+end if;
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger dbuserDeleteLog after delete on databaseuser
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000' 
+set message_text='User is not admin.Operation not allowed.';
+	else
+call saveLog('delete','dbus');
+end if;
+end $$
+DELIMITER ;
+
+
+
+-- trigger deletes
 drop trigger UserLogAfterInsertOnState;
 drop trigger UserLogAfterDeleteOnState;
 drop trigger UserLogAfterUpdateOnState;
@@ -212,3 +260,5 @@ drop trigger limitAccountTypeTableBeforeInsert;
 drop trigger insertTypeLog;
 drop trigger updateTypeLog;
 drop trigger deleteTypeLog;
+drop trigger dbuserInsertLog;
+drop trigger insertUserIntoDatabaseLogger;

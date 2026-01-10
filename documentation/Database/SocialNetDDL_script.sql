@@ -167,3 +167,15 @@ galleryId int unsigned not null,
 constraint imageIdiig_fk foreign key (imageId) references image(imageId) on update cascade on delete cascade,
 constraint galleryId_fk foreign key (galleryId) references image_gallery(galleryId) on update cascade on delete cascade);
 
+
+ALTER TABLE `socialnet`.`databaseuser` 
+DROP FOREIGN KEY `accountType_fk`;
+ALTER TABLE `socialnet`.`databaseuser` 
+CHANGE COLUMN `acTypeId` `acTypeId` INT(10) unsigned NULL DEFAULT NULL ;
+ALTER TABLE `socialnet`.`databaseuser` 
+ADD CONSTRAINT `accountType_fk`
+  FOREIGN KEY (`acTypeId`)
+  REFERENCES `socialnet`.`accounttype` (`acTypeId`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
