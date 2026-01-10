@@ -146,15 +146,21 @@ select act.acTypeName into typeOfUser from accountType act  inner join databaseu
 du.userName=substring_index(user(),'@',1);
 select userId into id from databaseuser where userName=substring_index(user(),'@',1);
 SELECT dbLogId into dbLoggerid from database_logger WHERE userId=id;
-if operation = 'insert' && typeOfUser='Regular' then
+if operation = 'insert' && typeOfUser='Regular' && user()='regular' then
 -- select concat('Regular user can only read data from this table.') as Poruka;
 INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'Regular user can only read data from this table.',substring_index(user(),'@',1),now());
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
 elseif operation = 'update' && typeOfUser='Regular' then
 -- select concat('Regular user can only read data from this table.') as Poruka;
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Regular user can only read data from this table.',substring_index(user(),'@',1),now());
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
 elseif operation = 'delete' && typeOfUser='Regular' then
 -- select concat('Regular user can only read data from this table.') as Poruka;
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Regular user can only read data from this table.',substring_index(user(),'@',1),now());
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
 end if;
 END $$
 DELIMITER ;

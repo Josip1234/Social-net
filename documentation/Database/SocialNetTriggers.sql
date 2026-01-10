@@ -161,7 +161,12 @@ DELIMITER $$
 create trigger insertTypeLog after insert on accounttype
 for each row 
 begin 
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
 call saveLog('insert','at');
+end if;
 end $$
 DELIMITER ;
 
@@ -169,7 +174,12 @@ DELIMITER $$
 create trigger updateTypeLog after update on accounttype
 for each row 
 begin 
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
 call saveLog('update','at');
+end if;
 end $$
 DELIMITER ;
 
@@ -177,7 +187,12 @@ DELIMITER $$
 create trigger deleteTypeLog after delete on accounttype
 for each row 
 begin 
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
 call saveLog('delete','at');
+end if;
 end $$
 DELIMITER ;
 
