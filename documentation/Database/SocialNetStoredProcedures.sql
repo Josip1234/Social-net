@@ -81,6 +81,15 @@ elseif operation = 'update' && tableName = 'dbus' && userType = 'Admin' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Database user has been updated.',currentUser,now());
 elseif operation = 'delete' && tableName = 'dbus' && userType = 'Admin' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Deleted database user.',currentUser,now());
+
+elseif operation = 'insert' && tableName = 'cmt' then 
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New comment has been added.',currentUser,now());
+elseif operation = 'update' && tableName = 'cmt' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Comment has been updated.',currentUser,now());
+elseif operation = 'delete' && tableName = 'cmt' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Comment has been deleted.',currentUser,now());
+
+
 end if;
 END $$
 DELIMITER ;

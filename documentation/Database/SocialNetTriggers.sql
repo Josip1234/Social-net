@@ -240,6 +240,30 @@ call saveLog('delete','dbus');
 end if;
 end $$
 DELIMITER ;
+-- triggers for comments
+DELIMITER $$
+create trigger CommentLogAfterInsert after insert on comments
+for each row 
+begin 
+call saveLog('insert','cmt');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger CommentLogAfterUpdate after update on comments
+for each row 
+begin 
+call saveLog('update','cmt');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger CommentLogAfterDelete after delete on comments
+for each row 
+begin 
+call saveLog('delete','cmt');
+end $$
+DELIMITER ;
 
 
 

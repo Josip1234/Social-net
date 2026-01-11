@@ -83,3 +83,7 @@ insert into databaseuser(userName) values ('socialadmin12345');
 update databaseuser set acTypeId='1' where userName='social_admin';
 update databaseuser set acTypeId='2' where userName='regular';
 delete from databaseuser where userName='social_admin';
+-- dml test data for comments
+insert into comments(commentContent,markOfOffensiveness,comDateAdded,commentLike,commentDislike) values ('Testni komentar','Not offensive',now(),0,0);
+update comments set commentlike='1' where commentId=1;
+delete from comments where commentId=1;
