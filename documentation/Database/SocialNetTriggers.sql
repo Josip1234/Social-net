@@ -265,5 +265,28 @@ call saveLog('delete','cmt');
 end $$
 DELIMITER ;
 
+-- triggers for table images
+DELIMITER $$
+create trigger ImageLogAfterInsert after insert on image
+for each row 
+begin 
+call saveLog('insert','img');
+end $$
+DELIMITER ;
 
+DELIMITER $$
+create trigger ImageLogAfterUpdate after update on image
+for each row 
+begin 
+call saveLog('update','img');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageLogAfterDelete after delete on image
+for each row 
+begin 
+call saveLog('delete','img');
+end $$
+DELIMITER ;
 

@@ -89,6 +89,12 @@ INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VA
 elseif operation = 'delete' && tableName = 'cmt' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Comment has been deleted.',currentUser,now());
 
+elseif operation = 'insert' && tableName = 'img' then 
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New image has been uploaded.',currentUser,now());
+elseif operation = 'update' && tableName = 'img' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Image has been updated.',currentUser,now());
+elseif operation = 'delete' && tableName = 'img' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Image has been deleted.',currentUser,now());
 
 end if;
 END $$

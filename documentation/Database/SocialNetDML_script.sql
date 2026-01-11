@@ -16,7 +16,7 @@ UPDATE state set name='Canada' where name = 'Can';
 DELETE FROM state where name='North Korea';
 DELETE FROM state where name='Canada';
 -- cities will be inserted by text fields
-insert into city values ('34000','Požega','1'),('10000','Zagreb','1'),('35000','Slavonski Brod',1);
+insert into city values ('34000','Požega','10'),('10000','Zagreb','10'),('35000','Slavonski Brod',10);
 insert into city values ('10450','Jastrebarsko','1'),('44330','Novska','1'),('47240','Slunj',1);
 insert into city values ('34310','Pleternica','1'),('34311','Kuzmica','1'),('52434','Boljun',1);
 insert into city values ('44213','Kratečko','1'),('34550','Pakrac','1'),('31309','Kneževi Vinogradi',1);
@@ -87,3 +87,7 @@ delete from databaseuser where userName='social_admin';
 insert into comments(commentContent,markOfOffensiveness,comDateAdded,commentLike,commentDislike) values ('Testni komentar','Not offensive',now(),0,0);
 update comments set commentlike='1' where commentId=1;
 delete from comments where commentId=1;
+-- dml test data for image table
+insert into image(userId,imageName,url) values (2,'slikica.jpg','www.google.com/slikica.jpg');
+update image set imageName='new image' where imageId='1';
+logger_contentdelete from image where imageId='1';
