@@ -95,3 +95,12 @@ delete from image where imageId='1';
 insert into image_gallery(galleryName,galleryDateAdded) VALUES ('new gal',now());
 update image_gallery set galleryDateUpdated=now() where galleryId=1;
 delete from image_gallery where galleryId=1;
+-- dml for image details
+-- when image is added also we need to automaticly insert other data in imagedetails
+-- need default values for inserting in image details 
+-- default for image type will be .jpg
+-- date addition needs to be now after insert into image
+-- trigger and procedure needs to be made on image table for that
+insert into imagedetails (typeId,imageSize,imageDateAdded,imageId) VALUES (1,'1.2MB',now(),1);
+update imagedetails set imageDateUpdated=now() where iDetailsId=4;
+delete from imagedetails where iDetailsId=4;

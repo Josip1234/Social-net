@@ -102,6 +102,15 @@ elseif operation = 'update' && tableName = 'imgal' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Gallery has been updated.',currentUser,now());
 elseif operation = 'delete' && tableName = 'imgal' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Image gallery has been deleted.',currentUser,now());
+
+elseif operation = 'insert' && tableName = 'imgdet' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New image detail has been added.',currentUser,now());
+elseif operation = 'update' && tableName = 'imgdet' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Image detail has been updated.',currentUser,now());
+elseif operation = 'delete' && tableName = 'imgdet' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Image detail has been deleted.',currentUser,now());
+
+
 end if;
 END $$
 DELIMITER ;

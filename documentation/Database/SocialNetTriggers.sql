@@ -313,3 +313,27 @@ begin
 call saveLog('delete','imgal');
 end $$
 DELIMITER ;
+-- triggers for image details
+DELIMITER $$
+create trigger ImageDetailsLogAfterInsert after insert on imagedetails
+for each row 
+begin 
+call saveLog('insert','imgdet');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageDetailsLogAfterUpdate after update on imagedetails
+for each row 
+begin 
+call saveLog('update','imgdet');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageDetailsLogAfterDelete after delete on imagedetails
+for each row 
+begin 
+call saveLog('delete','imgdet');
+end $$
+DELIMITER ;
