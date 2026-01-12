@@ -289,4 +289,27 @@ begin
 call saveLog('delete','img');
 end $$
 DELIMITER ;
+-- triggers for image gallery
+DELIMITER $$
+create trigger ImageGalleryLogAfterInsert after insert on image_gallery
+for each row 
+begin 
+call saveLog('insert','imgal');
+end $$
+DELIMITER ;
 
+DELIMITER $$
+create trigger ImageGalleryLogAfterUpdate after update on image_gallery
+for each row 
+begin 
+call saveLog('update','imgal');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageGalleryLogAfterDelete after delete on image_gallery
+for each row 
+begin 
+call saveLog('delete','imgal');
+end $$
+DELIMITER ;

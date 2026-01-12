@@ -90,4 +90,8 @@ delete from comments where commentId=1;
 -- dml test data for image table
 insert into image(userId,imageName,url) values (2,'slikica.jpg','www.google.com/slikica.jpg');
 update image set imageName='new image' where imageId='1';
-logger_contentdelete from image where imageId='1';
+delete from image where imageId='1';
+-- dml test data for image gallery
+insert into image_gallery(galleryName,galleryDateAdded) VALUES ('new gal',now());
+update image_gallery set galleryDateUpdated=now() where galleryId=1;
+delete from image_gallery where galleryId=1;
