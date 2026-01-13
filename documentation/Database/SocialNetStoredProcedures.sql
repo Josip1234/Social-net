@@ -110,6 +110,12 @@ INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VA
 elseif operation = 'delete' && tableName = 'imgdet' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Image detail has been deleted.',currentUser,now());
 
+elseif operation = 'insert' && tableName = 'imgtyp' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New image type has been added.',currentUser,now());
+elseif operation = 'update' && tableName = 'imgtyp' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Image type has been updated.',currentUser,now());
+elseif operation = 'delete' && tableName = 'imgtyp' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Image type has been deleted.',currentUser,now());
 
 end if;
 END $$

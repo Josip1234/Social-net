@@ -376,5 +376,29 @@ begin
 call limitUseOfCudOperations('delete');
 end $$
 DELIMITER ;
+-- triggers for logging image type
+DELIMITER $$
+create trigger logImageTypeAfterInsert after insert on imagetype
+for each row 
+begin 
+call saveLog('insert','imgtyp');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logImageTypeAfterUpdate after update on imagetype
+for each row 
+begin 
+call saveLog('update','imgtyp');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logImageTypeAfterDelete after delete on imagetype
+for each row 
+begin 
+call saveLog('delete','imgtyp');
+end $$
+DELIMITER ;
 
 
