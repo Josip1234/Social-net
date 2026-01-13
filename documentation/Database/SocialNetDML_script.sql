@@ -106,3 +106,7 @@ delete from image_gallery where galleryId=1;
 insert into imagedetails (typeId,imageSize,imageDateAdded,imageId) VALUES (1,'1.2MB',now(),1);
 update imagedetails set imageDateUpdated=now() where iDetailsId=4;
 delete from imagedetails where iDetailsId=4;
+-- dml type for imagetype data
+insert into imagetype (iTypeName) VALUES ('.webp');
+update imagetype set iTypeName='.png' where typeId=1;
+delete from imagetype where typeId=1;

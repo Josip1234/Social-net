@@ -352,3 +352,29 @@ begin
 call saveLog('delete','imgdet');
 end $$
 DELIMITER ;
+-- triggers for limiting regular user for making crud operations on imagetype table
+DELIMITER $$
+create trigger limitUserOfInsertingDataToImageType before insert on imagetype
+for each row 
+begin 
+call limitUseOfCudOperations('insert');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger limitUserOfUpdatingDataToImageType before update on imagetype
+for each row 
+begin 
+call limitUseOfCudOperations('update');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger limitUserOfDeletingDataToImageType before delete on imagetype
+for each row 
+begin 
+call limitUseOfCudOperations('delete');
+end $$
+DELIMITER ;
+
+
