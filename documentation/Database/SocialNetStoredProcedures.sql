@@ -117,6 +117,15 @@ INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VA
 elseif operation = 'delete' && tableName = 'imgtyp' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Image type has been deleted.',currentUser,now());
 
+elseif operation = 'insert' && tableName = 'iig' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New image has been added to the gallery.',currentUser,now());
+elseif operation = 'update' && tableName = 'iig' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Image has been replace in gallery.',currentUser,now());
+elseif operation = 'delete' && tableName = 'iig' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Image has been removed from the gallery.',currentUser,now());
+
+
+
 end if;
 END $$
 DELIMITER ;

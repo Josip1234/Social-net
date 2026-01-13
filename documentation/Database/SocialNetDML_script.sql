@@ -91,6 +91,7 @@ update comments set commentlike='1' where commentId=1;
 delete from comments where commentId=1;
 -- dml test data for image table
 insert into image(userId,imageName,url) values (2,'slikica.jpg','www.google.com/slikica.jpg');
+insert into image(userId,imageName,url) values (2,'slikic1a.jpg','www.googl1e.com/slikica.jpg');
 update image set imageName='new image' where imageId='1';
 delete from image where imageId='1';
 -- dml test data for image gallery
@@ -110,3 +111,9 @@ delete from imagedetails where iDetailsId=4;
 insert into imagetype (iTypeName) VALUES ('.webp');
 update imagetype set iTypeName='.png' where typeId=3;
 delete from imagetype where typeId=3;
+-- dml test data for img img gal
+SELECT * FROM socialnet.image;
+SELECT * FROM socialnet.image_gallery;
+insert into img_img_gal (imageId,galleryId) values (1,2);
+update img_img_gal set imageId=2 where uniqueId=1;
+delete from img_img_gal where uniqueId=1;

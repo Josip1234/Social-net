@@ -400,5 +400,28 @@ begin
 call saveLog('delete','imgtyp');
 end $$
 DELIMITER ;
+-- trigger for img img gallery
+DELIMITER $$
+create trigger imageInGalleryLogAfterInsert after insert on img_img_gal
+for each row 
+begin 
+call saveLog('insert','iig');
+end $$
+DELIMITER ;
 
+DELIMITER $$
+create trigger imageInGalleryLogAfterUpdate after update on img_img_gal
+for each row 
+begin 
+call saveLog('update','iig');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger imageInGalleryLogAfterDelete after delete on img_img_gal
+for each row 
+begin 
+call saveLog('delete','iig');
+end $$
+DELIMITER ;
 
