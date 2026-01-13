@@ -74,8 +74,10 @@ delete from profiledetails where proDetId=2;
 insert into accounttype (acTypeName,listOfPrivileges) VALUES ('social_admin','ALL PRIVILEGES'); 
 insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Admin','ALL PRIVILEGES'); 
 insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Regular','Create,insert,delete,select'); 
-update accounttype set acTypeName='Regulars' where acTypeId=13;
-delete from accounttype where acTypeId=13;
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Banned','Account is locked'); 
+insert into accounttype (acTypeName,listOfPrivileges) VALUES ('Bak','Accountislocked'); 
+update accounttype set acTypeName='Not bannedaccounttype' where acTypeId=3;
+delete from accounttype where acTypeId=3;
 -- dml test for database user
 insert into databaseuser(userName) values ('regular');
 insert into databaseuser(userName) values ('social_admin');

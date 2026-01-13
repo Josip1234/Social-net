@@ -142,7 +142,12 @@ DELIMITER $$
 create trigger limitAccountTypeTableBeforeInsert before insert on accounttype
 for each row 
 begin 
-call limitUseOfCudOperationsOnAccountTypeTable('insert');
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
+call limitUseOfCudOperations('insert');
+end if;
 end $$
 DELIMITER ;
 
@@ -150,7 +155,12 @@ DELIMITER $$
 create trigger limitAccountTypeTableBeforeUpdate before update on accounttype
 for each row 
 begin 
-call limitUseOfCudOperationsOnAccountTypeTable('update');
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
+call limitUseOfCudOperations('update');
+end if;
 end $$
 DELIMITER ;
 
@@ -158,7 +168,12 @@ DELIMITER $$
 create trigger limitAccountTypeTableBeforeDelete before delete on accounttype
 for each row 
 begin 
-call limitUseOfCudOperationsOnAccountTypeTable('delete');
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
+call limitUseOfCudOperations('delete');
+end if;
 end $$
 DELIMITER ;
 -- triggers for logging account type table

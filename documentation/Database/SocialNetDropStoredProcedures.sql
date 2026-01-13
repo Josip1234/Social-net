@@ -4,3 +4,5 @@ drop procedure if exists saveLog;
 drop procedure if exists insertUsersIntoDbLoggerIfNotExists;
 drop procedure if exists saveProfileLog;
 drop procedure if exists limitUseOfCudOperationsOnAccountTypeTable;
+drop procedure if exists limitUseOfCudOperationsOnImageTypeTable;
+drop procedure if exists limitUseOfCudOperations;
