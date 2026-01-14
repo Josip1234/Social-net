@@ -1,4 +1,4 @@
--- states will be chosen from select choice 
+databaseuser-- states will be chosen from select choice 
 -- real data for countries
 INSERT INTO state(name) values ('Croatia'),('Italy'),('France'),('USA'),('Mexico'),('Uruguay'),('Brazil'),('Ukraine'),('Saudi Arabia');
 INSERT INTO state(name) values ('Serbia'),('Montenegro'),('Bosnia and Herzegovina'),('Hungary'),('China'),('Taiwan'),('Bangladesh');
@@ -51,9 +51,17 @@ insert into imagetype (iTypeName) values ('.jpg'),('.jpeg'),('.png'),('.gif'),('
 insert into imagedetails(typeId,imageSize,imageDateAdded,imageDateUpdated,imageId) values (1,'16 kb',now(),now(),1);
 -- insert data to image table
 insert into image(userId,imageName,url) VALUES (1,'Nova slika','www.localhost/image/image2.jpg');
-
+-- database user dml
 insert into databaseuser(userName) VALUES ('social_admin');
 insert into databaseuser(userName) VALUES ('regular');
+insert into databaseuser(userName) VALUES ('Someone new');
+select * from database_logger;
+select * from logger_content;
+select * from databaseuser;
+update databaseuser set acTypeId=2 where userId=10;
+delete from database_logger where dbLogId = 3;
+update database_logger set userId=8 where userId=9;
+update database_logger set userId=9 where userId=8;
 SELECT count(*) FROM databaseuser d WHERE d.userName='social_admin';
 -- we have made a triger and stored procedure to auto insert into database logger new user 
 -- however this user needs to insert manually.

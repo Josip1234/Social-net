@@ -441,4 +441,27 @@ begin
 call saveLog('update','pcs');
 end $$
 DELIMITER ;
+-- triggers for logging database loger
+DELIMITER $$
+create trigger databaseLogAfterInsert after insert on database_logger
+for each row 
+begin 
+call saveLog('insert','dblog');
+end $$
+DELIMITER ;
 
+DELIMITER $$
+create trigger databaseLogAfterUpdate after update on database_logger
+for each row 
+begin 
+call saveLog('update','dblog');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger databaseLogAfterDelete after delete on database_logger
+for each row 
+begin 
+call saveLog('delete','dblog');
+end $$
+DELIMITER ;
