@@ -425,3 +425,20 @@ call saveLog('delete','iig');
 end $$
 DELIMITER ;
 
+-- triggers for table procomsub
+DELIMITER $$
+create trigger proComSubLogAfterInsert after insert on procomsub
+for each row 
+begin 
+call saveLog('insert','pcs');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger proComSubLogAfterUpdate after update on procomsub
+for each row 
+begin 
+call saveLog('update','pcs');
+end $$
+DELIMITER ;
+

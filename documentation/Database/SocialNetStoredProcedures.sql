@@ -124,6 +124,12 @@ INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VA
 elseif operation = 'delete' && tableName = 'iig' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Image has been removed from the gallery.',currentUser,now());
 
+elseif operation = 'insert' && tableName = 'pcs' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New comment has been connected with profile comment subtopic table.',currentUser,now());
+elseif operation = 'update' && tableName = 'pcs' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Comment has been updated.',currentUser,now());
+elseif operation = 'delete' && tableName = 'pcs' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Comment has been deleted.',currentUser,now());
 
 
 end if;

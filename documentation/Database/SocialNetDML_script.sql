@@ -117,3 +117,17 @@ SELECT * FROM socialnet.image_gallery;
 insert into img_img_gal (imageId,galleryId) values (1,2);
 update img_img_gal set imageId=2 where uniqueId=1;
 delete from img_img_gal where uniqueId=1;
+-- dml for procomsub
+SELECT * FROM socialnet.procomsub;
+select * from profile;
+select * from topics;
+insert into topics(userId,topicContent,topicDateAdded) values (2,'Fašizam u Americi',now());
+select * from subtopics;
+insert into subtopics(topicId,subTopicContent,subTopicDateAdded) values (1,'Donald Trumo novi Hitler?',now());
+select * from comments;
+select * from procomsub;
+insert into procomsub (userId,commentId,subTopicsId) values (2,2,1);
+insert into comments(commentContent,markOfOffensiveness,comDateAdded,commentLike,commentDislike) values ('Fuck you DonaldTrump the new Adolf Hitler!!','Offensive',now(),0,0);
+update procomsub set commentId=3 where proComSub=1;
+delete from procomsub where proComSub = 1;
+
