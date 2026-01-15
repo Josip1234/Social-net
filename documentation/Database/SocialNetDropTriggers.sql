@@ -19,3 +19,5 @@ drop trigger deleteTypeLog;
 drop trigger dbuserInsertLog;
 drop trigger insertUserIntoDatabaseLogger;
 drop trigger CommentLogAfterInsertOnState;
+drop trigger logContentAfterinsert;
+drop trigger logContentAfterDelete;
