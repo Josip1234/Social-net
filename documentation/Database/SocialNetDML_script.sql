@@ -1,4 +1,4 @@
-databaseuser-- states will be chosen from select choice 
+-- states will be chosen from select choice 
 -- real data for countries
 INSERT INTO state(name) values ('Croatia'),('Italy'),('France'),('USA'),('Mexico'),('Uruguay'),('Brazil'),('Ukraine'),('Saudi Arabia');
 INSERT INTO state(name) values ('Serbia'),('Montenegro'),('Bosnia and Herzegovina'),('Hungary'),('China'),('Taiwan'),('Bangladesh');
@@ -138,4 +138,6 @@ insert into procomsub (userId,commentId,subTopicsId) values (2,2,1);
 insert into comments(commentContent,markOfOffensiveness,comDateAdded,commentLike,commentDislike) values ('Fuck you DonaldTrump the new Adolf Hitler!!','Offensive',now(),0,0);
 update procomsub set commentId=3 where proComSub=1;
 delete from procomsub where proComSub = 1;
-
+-- dml for testing logger content
+select * from logger_content;
+insert into logger_content(dbLogId,loggerDescription,userAdded,dateAdded) values (2,'Novi zapis',substring_index(user(),'@',1),now());

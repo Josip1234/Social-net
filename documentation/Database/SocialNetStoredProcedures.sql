@@ -138,6 +138,11 @@ INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VA
 elseif operation = 'delete' && tableName = 'dblog' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'User has been deleted.',currentUser,now());
 
+elseif operation = 'insert' && tableName = 'lc' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New log has been added to log content.',currentUser,now());
+elseif operation = 'delete' && tableName = 'lc' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Log record has been deleted.',currentUser,now());
+
 
 end if;
 END $$
