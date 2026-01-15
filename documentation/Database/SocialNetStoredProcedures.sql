@@ -27,7 +27,8 @@ BEGIN
     end if;
 END $$
 DELIMITER ;
--- procerdure for saving log from user
+-- procerdure for saving log from user 
+-- procedure has reached his own limit use savelog2 for futher log stuff
 DELIMITER $$
 create procedure saveLog(in operation varchar(10), in tableName varchar(50))
 BEGIN
