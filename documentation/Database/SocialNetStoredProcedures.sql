@@ -265,7 +265,27 @@ END $$
 DELIMITER ;
 
 
-
+-- procedure will insert users for databaseuser and register profile user into 
+-- database logger and profile logger which depends of input parameters
+-- function for inserting into database for user is functional this is not needed
+-- however we will leave it here in case we need universal function 
+DELIMITER $$
+create procedure insertUsersIntoLoggers(in tableNameForInsert varchar(50), in userNum int(10) unsigned)
+BEGIN
+declare userCount int(10) unsigned;
+-- to insert users with id into database logger first we need to check if user already exists
+select count(userId) into userCount from database_logger where userId=userNum;
+if tableNameForInsert='database_logger' then
+if userCount=0 then
+insert into database_logger(userId) value (userId);
+else 
+SIGNAL sqlstate '45000'
+set message_text='User already exists in database logger. Insert operation will be aborted.';
+end if;
+end if;
+END $$
+DELIMITER ;
+call insertUsersIntoLoggers('database_logger',11);
 
 
 
