@@ -160,10 +160,12 @@ BEGIN
 SELECT dbLogId into dbLoggerid from database_logger WHERE userId=id;
 select act.acTypeName into userType from accountType act  inner join databaseuser du on act.acTypeId=du.acTypeId where 
 du.userName=substring_index(user(),'@',1);
-if operation = 'insert' && tableName = 'lc' then
-INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New log has been added to log content.',currentUser,now());
-elseif operation = 'delete' && tableName = 'lc' then
-INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Log record has been deleted.',currentUser,now());
+if operation = 'insert' && tableName = 'pl' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New user has been added to profile logger.',currentUser,now());
+elseif operation = 'update' && tableName = 'pl' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'User has been updated from profile logger',currentUser,now());
+elseif operation = 'delete' && tableName = 'pl' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'User has been deleted from profile logger.',currentUser,now());
 end if;
 END $$
 DELIMITER ;
@@ -198,6 +200,7 @@ DELIMITER ;
 
 
 -- procedure will insert users into database logger if they do not exists
+-- only work for admins need to modify this
 DELIMITER $$
 create procedure insertUsersIntoDbLoggerIfNotExists(in id int(10) unsigned)
 BEGIN

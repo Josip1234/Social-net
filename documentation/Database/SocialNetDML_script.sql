@@ -141,3 +141,10 @@ delete from procomsub where proComSub = 1;
 -- dml for testing logger content
 select * from logger_content;
 insert into logger_content(dbLogId,loggerDescription,userAdded,dateAdded) values (2,'Novi zapis',substring_index(user(),'@',1),now());
+-- dml for profile logger 
+-- need procedure similar to insertUsersIntoDbLoggerIfNotExists
+-- also need to modify that procedure only logged in admin can be inserted in db logger
+select * from profile;
+insert into profile_logger(userId,message,additionDate) values (2,'Dodan',now());
+update profile_logger set message='Ažuriran', updateDate=now() where plId=1;
+delete from profile_logger where plId=1;

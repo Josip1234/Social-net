@@ -492,3 +492,27 @@ begin
 call saveLog2('delete','lc');
 end $$
 DELIMITER ;
+-- triggers for profile logger
+DELIMITER $$
+create trigger logContentAfterinsert after insert on profile_logger
+for each row 
+begin 
+call saveLog2('insert','pl');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterUpdate after insert on profile_logger
+for each row 
+begin 
+call saveLog2('update','pl');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterDelete after delete on profile_logger
+for each row 
+begin 
+call saveLog2('delete','pl');
+end $$
+DELIMITER ;
