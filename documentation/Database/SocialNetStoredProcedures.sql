@@ -137,16 +137,37 @@ elseif operation = 'update' && tableName = 'dblog' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'User has been updated.',currentUser,now());
 elseif operation = 'delete' && tableName = 'dblog' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'User has been deleted.',currentUser,now());
-
-elseif operation = 'insert' && tableName = 'lc' then
-INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New log has been added to log content.',currentUser,now());
-elseif operation = 'delete' && tableName = 'lc' then
-INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Log record has been deleted.',currentUser,now());
-
-
 end if;
 END $$
 DELIMITER ;
+
+
+DELIMITER $$
+create procedure saveLog2(in operation varchar(10), in tableName varchar(50))
+BEGIN
+   -- variable to store current user
+     declare currentUser varchar(255);
+    -- need user id first
+    declare id int(10) unsigned;
+    declare dbLoggerid int(10) unsigned;
+    declare userType varchar(30);
+   -- get current user
+   select userName into currentUser from databaseuser where userName=substring_index(user(),'@',1);
+   -- get uder id from current user
+   select userId into id from databaseuser where userName=currentUser;
+-- now we need to select logger id
+SELECT dbLogId into dbLoggerid from database_logger WHERE userId=id;
+select act.acTypeName into userType from accountType act  inner join databaseuser du on act.acTypeId=du.acTypeId where 
+du.userName=substring_index(user(),'@',1);
+if operation = 'insert' && tableName = 'lc' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New log has been added to log content.',currentUser,now());
+elseif operation = 'delete' && tableName = 'lc' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Log record has been deleted.',currentUser,now());
+end if;
+END $$
+DELIMITER ;
+
+
 
 -- procedure for profile only modification of save log to database only to reference profile name as argument
 

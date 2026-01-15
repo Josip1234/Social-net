@@ -10,7 +10,7 @@ INSERT INTO state(name) VALUES ('Qatar');
 INSERT INTO state(name) VALUES ('Kosovo');
 INSERT INTO state(name) VALUES ('Bosnia & Herzegovina');
 INSERT INTO state(name) VALUES ('Cnd');
-INSERT INTO state(name) VALUES ('Canada');
+INSERT INTO state(name) VALUES ('Ca');
 UPDATE state set name='Can' where name = 'Canada';
 UPDATE state set name='Canada' where name = 'Can';
 DELETE FROM state where name='North Korea';

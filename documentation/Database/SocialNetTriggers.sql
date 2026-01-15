@@ -472,7 +472,7 @@ DELIMITER $$
 create trigger logContentAfterinsert after insert on logger_content
 for each row 
 begin 
-call saveLog('insert','lc');
+call saveLog2('insert','lc');
 end $$
 DELIMITER ;
 
@@ -489,6 +489,6 @@ DELIMITER $$
 create trigger logContentAfterDelete after delete on logger_content
 for each row 
 begin 
-call saveLog('delete','lc');
+call saveLog2('delete','lc');
 end $$
 DELIMITER ;
