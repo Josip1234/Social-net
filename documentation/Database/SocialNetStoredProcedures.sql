@@ -201,6 +201,7 @@ DELIMITER ;
 
 -- procedure will insert users into database logger if they do not exists
 -- only work for admins need to modify this
+-- will make new procedure see procedure insertUsersIntoLoggers
 DELIMITER $$
 create procedure insertUsersIntoDbLoggerIfNotExists(in id int(10) unsigned)
 BEGIN
