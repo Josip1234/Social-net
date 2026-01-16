@@ -1,15 +1,10 @@
-# Privileges for `regular`@`localhost`
+ CREATE USER IF NOT EXISTS 'social_admin'@'localhost' IDENTIFIED BY 'rootadmin123';
+           GRANT ALL PRIVILEGES ON socialnet.* TO 'social_admin'@'localhost' with grant option;
+           FLUSH PRIVILEGES;
 
-GRANT USAGE ON *.* TO `regular`@`localhost` IDENTIFIED BY PASSWORD '*873276E5E5ED7750E7F74DCD72D93803DF4861A6';
-
-GRANT SELECT, INSERT, UPDATE, DELETE ON `socialnet`.* TO `regular`@`localhost`;
-
-
-# Privileges for `social_admin`@`localhost`
-
-GRANT USAGE ON *.* TO `social_admin`@`localhost` IDENTIFIED BY PASSWORD '*059EF22F6B87A074483D1994D4C02BECB736EA99';
-
-GRANT ALL PRIVILEGES ON `socialnet`.* TO `social_admin`@`localhost` WITH GRANT OPTION;
+    CREATE USER IF NOT EXISTS 'regular'@'localhost' IDENTIFIED BY 'reg';
+           GRANT select,insert,update,delete ON socialnet.* TO 'regular'@'localhost';
+           FLUSH PRIVILEGES;
 
 -- root admin with all privileges on socialnet database: username: 'social_admin'@'localhost' privileges: all 
 -- (must be in database, need a procedure and/or trigger to validate admin user)
