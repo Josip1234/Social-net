@@ -166,8 +166,14 @@ elseif operation = 'update' && tableName = 'pl' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'User has been updated from profile logger',currentUser,now());
 elseif operation = 'delete' && tableName = 'pl' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'User has been deleted from profile logger.',currentUser,now());
+elseif operation = 'insert' && tableName = 'st' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New subtopic has been added.',currentUser,now());
+elseif operation = 'update' && tableName = 'st' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Subtopic has been updated.',currentUser,now());
+elseif operation = 'delete' && tableName = 'st' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Subtopic has been deleted.',currentUser,now());
 end if;
-END $$
+END $$;
 DELIMITER ;
 
 

@@ -516,3 +516,28 @@ begin
 call saveLog2('delete','pl');
 end $$
 DELIMITER ;
+
+-- triggers for subtopics
+DELIMITER $$
+create trigger logContentAfterInsertSt after insert on subtopics
+for each row 
+begin 
+call saveLog2('insert','st');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterUpdateSt after update on subtopics
+for each row 
+begin 
+call saveLog2('update','st');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterDeleteSt after delete on subtopics
+for each row 
+begin 
+call saveLog2('delete','st');
+end $$
+DELIMITER ;

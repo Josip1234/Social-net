@@ -148,3 +148,11 @@ select * from profile;
 insert into profile_logger(userId,message,additionDate) values (2,'Dodan',now());
 update profile_logger set message='Ažuriran', updateDate=now() where plId=1;
 delete from profile_logger where plId=1;
+-- dml for subtopics
+select * from topics;
+select * from profile;
+insert into subtopics(topicId,subTopicContent,subTopicDateAdded) values (2,'Nova podtema',now());
+select * from subtopics;
+update subtopics set topicId=1,subTopicDateUpdated=now() where subTopicsId=2;
+delete from subtopics where subTopicsId=1;
+
