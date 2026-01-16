@@ -9,3 +9,6 @@ call Create_user_Or_grant_roles('Social_admin');
 show grants for 'regular'@'localhost';
 revoke INSERT,UPDATE,DELETE on socialnet.accounttype from 'regular'@'localhost';
 GRANT ALL PRIVILEGES ON socialnet.* TO 'social_admin'@'localhost' with grant option;
+
+drop user 'social_admin'@'localhost';
+drop user 'regular'@'localhost';
