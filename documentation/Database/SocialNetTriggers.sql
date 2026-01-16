@@ -441,6 +441,15 @@ begin
 call saveLog('update','pcs');
 end $$
 DELIMITER ;
+
+DELIMITER $$
+create trigger proComSubLogAfterDelete after delete on procomsub
+for each row 
+begin 
+call saveLog('delete','pcs');
+end $$
+DELIMITER ;
+
 -- triggers for logging database loger
 DELIMITER $$
 create trigger databaseLogAfterInsert after insert on database_logger
@@ -468,6 +477,7 @@ DELIMITER ;
 -- triggers for logger content will have only update and delete
 -- will have only select even from admin 
 -- will make trigger for update but forbid operations for update
+/*
 DELIMITER $$
 create trigger logContentAfterinsert after insert on logger_content
 for each row 
@@ -475,7 +485,7 @@ begin
 call saveLog2('insert','lc');
 end $$
 DELIMITER ;
-
+*/
 DELIMITER $$
 create trigger logContentBeforeUpdate before update on logger_content
 for each row 
@@ -484,7 +494,7 @@ SIGNAL sqlstate '45000'
 set message_text='Update operation for update log content in logger content table is not allowed.';
 end $$
 DELIMITER ;
-
+/*
 DELIMITER $$
 create trigger logContentAfterDelete after delete on logger_content
 for each row 
@@ -492,6 +502,7 @@ begin
 call saveLog2('delete','lc');
 end $$
 DELIMITER ;
+*/
 -- triggers for profile logger
 DELIMITER $$
 create trigger logContentAfterinsert after insert on profile_logger

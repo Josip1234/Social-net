@@ -21,3 +21,9 @@ drop trigger insertUserIntoDatabaseLogger;
 drop trigger CommentLogAfterInsertOnState;
 drop trigger logContentAfterinsert;
 drop trigger logContentAfterDelete;
+drop trigger insertAdrIntoDatabaseLogger;
+drop trigger insertUserIntoDatabaseLogger;
+drop trigger deleteAdrIntoDatabaseLogger;
+drop trigger insertAdrIntoDatabaseLogger;
+drop trigger deleteAdrIntoDatabaseLogger;
+

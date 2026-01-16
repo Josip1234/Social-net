@@ -297,7 +297,7 @@ end if;
 end if;
 END $$
 DELIMITER ;
-call insertUsersIntoLoggers('database_logger',11);
+-- call insertUsersIntoLoggers('database_logger',11);
 
 
 
