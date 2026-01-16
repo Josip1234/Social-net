@@ -172,6 +172,12 @@ elseif operation = 'update' && tableName = 'st' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Subtopic has been updated.',currentUser,now());
 elseif operation = 'delete' && tableName = 'st' then
 INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Subtopic has been deleted.',currentUser,now());
+elseif operation = 'insert' && tableName = 'top' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userAdded,dateAdded) VALUES (dbLoggerid,'New topic has been added.',currentUser,now());
+elseif operation = 'update' && tableName = 'top' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userUpdated,dateUpdated) VALUES (dbLoggerid,'Topic has been updated.',currentUser,now());
+elseif operation = 'delete' && tableName = 'top' then
+INSERT INTO logger_content(dbLogId,loggerDescription,userDeleted,dateDeleted) VALUES (dbLoggerid,'Topic has been deleted.',currentUser,now());
 end if;
 END $$;
 DELIMITER ;

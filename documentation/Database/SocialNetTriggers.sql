@@ -541,3 +541,27 @@ begin
 call saveLog2('delete','st');
 end $$
 DELIMITER ;
+-- triggers for topics
+DELIMITER $$
+create trigger logContentAfterInsertTop after insert on topics
+for each row 
+begin 
+call saveLog2('insert','top');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterUpdateTop after update on topics
+for each row 
+begin 
+call saveLog2('update','top');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterDeleteTop after delete on topics
+for each row 
+begin 
+call saveLog2('delete','top');
+end $$
+DELIMITER ;

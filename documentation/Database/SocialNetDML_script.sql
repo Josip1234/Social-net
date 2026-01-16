@@ -107,11 +107,6 @@ insert into image_gallery(galleryName,galleryDateAdded) VALUES ('new gal',now())
 update image_gallery set galleryDateUpdated=now() where galleryId=1;
 delete from image_gallery where galleryId=1;
 -- dml for image details
--- when image is added also we need to automaticly insert other data in imagedetails
--- need default values for inserting in image details 
--- default for image type will be .jpg
--- date addition needs to be now after insert into image
--- trigger and procedure needs to be made on image table for that
 insert into imagedetails (typeId,imageSize,imageDateAdded,imageId) VALUES (1,'1.2MB',now(),1);
 update imagedetails set imageDateUpdated=now() where iDetailsId=4;
 delete from imagedetails where iDetailsId=4;
@@ -155,4 +150,10 @@ insert into subtopics(topicId,subTopicContent,subTopicDateAdded) values (2,'Nova
 select * from subtopics;
 update subtopics set topicId=1,subTopicDateUpdated=now() where subTopicsId=2;
 delete from subtopics where subTopicsId=1;
+-- dml for topics
+select * from profile;
+insert into topics(userId,topicContent,topicDateAdded) values (2,'Novija tema',now());
+select * from topics;
+update topics set topicLike=1, topicDateUpdated=now() where topicId=1;
+delete from topics where topicId=3;
 
