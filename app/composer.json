@@ -1,0 +1,22 @@
+{
+    "name": "app/drustvena_mreza",
+    "description": "A network for communicating with other people, sharing images and image galleries, and commenting on topics and subtopics",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\":"core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Josip1234",
+            "email": "jbosnjak3@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "nesbot/carbon": "^3.11",
+        "ramsey/uuid": "^4.9"
+    }
+}
