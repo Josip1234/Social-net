@@ -3,3 +3,5 @@
 *.jpg
 *.jpeg
 Web application/vendor
+Web application/vendor/composer
+Web application/vendor/autoload.php
