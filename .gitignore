@@ -2,4 +2,4 @@
 *.torrent
 *.jpg
 *.jpeg
-app/vendor
+Web application/vendor
