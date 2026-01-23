@@ -1,0 +1,28 @@
+How to choose environment env? how much check do we need?
+
+1.) First check if there is any user as local databas user. 
+If not, call error there is no local users. please, use initial script of database.
+Second check - if user count is > 0 check if user is social_admin. If it is not
+social_admin, call error there is no admins as local database user. Please 
+use initial sql script to add it. 
+
+2.) Before number of users, need to check account type dana. Needs to be minimal 2 records.
+If there is no minimal 2 records, call an error minimal two records  must be in account type.
+Then check the values. If First check has been passed, check the values. Two values must be 
+in database: Admin and Regular. If there is no values with specific values, call an error.
+There must be Admin and Regular values in account table. Please add them. Use dml script to add
+account types.
+
+3.) After checks from number 1 has been finished, check number of users in profile.
+If user count > 0, second check will be in procedure. Otherwise call error 
+minimum one user must be in database. If that check was successfull, check then 
+if user is social_admin. Need to check user account in table user accounts. If that
+user is not social_admin, call error at least 1 profile must be admin in social_net database, 
+in profile registered. 
+
+4.) If check has been succeded, you can login First as admin. After login, account will be set to be active. 
+From now on, when user is being registered, user will have regular environment instead social_admin.Need to see
+it would be better if default env shoud be regular?
+
+5.) After user has been logged in, check user type. If type is regular, after all the previous checks, set env variable
+to be regular. 
