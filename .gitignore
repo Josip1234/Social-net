@@ -6,3 +6,4 @@ Web application/vendor
 Web application/vendor/composer
 Web application/vendor/autoload.php
 /Web_application/vendor
+/Web_application/public/assets/images
