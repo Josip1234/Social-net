@@ -24,7 +24,7 @@
     font-weight: bold;
 }
 .form-box input{
-    width: 100%;
+    width: 97.5%;
     padding: 8px;
     margin-top: 5px;
 }
@@ -32,13 +32,13 @@
     margin-top: 15px;
     padding: 10px;
     width: 100%;
-    background-color: #2980b9;
+    background-color: orange;
     color: #fff;
     border: none;
     cursor: pointer;
 }
 .form-box button:hover{
-    background-color: #1f6391;
+    background-color: red;
 }
 .form-box span{
     display: block;
@@ -59,3 +59,11 @@ nav a:hover{
     background-color: #e42828;
     padding: 5px;
 }
+/* css for body */
+body {
+    background-color: orange;
+    border-radius: 30px;
+}
+
+
+
