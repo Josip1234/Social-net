@@ -1,3 +1,8 @@
+<?php 
+function active(string $page,string $current):string{
+    return $page === $current ? 'activelink':'';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +13,11 @@
 </head>
 <body>
     <header>
-        <div class="nav">
-<nav>
-<ul>
-<li><a href="#" target="_blank">Registration form</a></li>
-<li><a href="#" target="_blank">Login form</a></li>
-</ul>
-</nav>
-</div>
+        <h1>Social network</h1>
+        <nav>
+<!--urls for all unregistered and not logged in users -->
+<a href="index.php" class="<?= active('index',$activePage) ?>">Home page</a>
+        </nav>
+        
+
     </header>
