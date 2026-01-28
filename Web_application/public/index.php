@@ -12,6 +12,9 @@ require_once __DIR__.'/../bootstrap.php';
 $controller=new HomeController();
 $page=$_GET['page']??'home/index';
 switch($page){
+    case 'login':
+        $controller->login();
+        break;
     default:
         $controller->index();
 }

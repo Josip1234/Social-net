@@ -17,6 +17,9 @@ function active(string $page,string $current):string{
         <nav>
 <!--urls for all unregistered and not logged in users -->
 <a href="index.php" class="<?= active('index',$activePage) ?>">Home page</a>
+<!--urls for non logged in users -->
+<a href="index.php?page=register" class="<?= active('register',$activePage) ?>">Registration</a>
+<a href="index.php?page=login" class="<?= active('login',$activePage) ?>">Login</a>
         </nav>
         
 
