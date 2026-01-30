@@ -2,7 +2,7 @@
 
 use App\Controllers\HomeController;
 
-$_SERVER['APP_ENV']='social_admin';
+$_SERVER['APP_ENV']='regular';
 require_once __DIR__.'/../bootstrap.php';
 
 
