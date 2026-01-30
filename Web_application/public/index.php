@@ -2,7 +2,12 @@
 
 use App\Controllers\HomeController;
 
-$_SERVER['APP_ENV']='regular';
+$_SERVER['APP_ENV']='';
+//if app env has not been set set regular user automaticly 
+// or something else has been written
+if($_SERVER['APP_ENV']==='' || $_SERVER['APP_ENV']!=='social_admin'){
+    $_SERVER['APP_ENV']='regular';
+}
 require_once __DIR__.'/../bootstrap.php';
 
 

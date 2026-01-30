@@ -5,12 +5,13 @@ session_start();
 //load composer autoload
 require_once __DIR__.'/vendor/autoload.php';
 //environment before loading env files
-$appEnv=$_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? 'regular';
+$appEnv=$_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? 'social_admin';
 //env file choosing
 $envFile=match ($appEnv) {
      'social_admin'=> '.env.social_admin',
      'regular'=> '.env.regular',
-     default => '.env.regular'
+     ''=>'.env.regular',
+     default => '.env.social_admin'
 };
 //load .env
 $dotenv=Dotenv::createImmutable(__DIR__,$envFile);
