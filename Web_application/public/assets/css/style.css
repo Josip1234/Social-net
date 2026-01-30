@@ -64,6 +64,12 @@ body {
     background-color: orange;
     border-radius: 30px;
 }
-
-
+/* footer*/
+footer{
+    margin-top: 19.35%;
+    padding: 15px;
+    text-align: center;
+    background-color: red;
+    color:#fff;
+}
 
