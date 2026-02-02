@@ -32,4 +32,13 @@ class Database{
             die($e->getMessage());
         }
     }
+    //if class instance do not exists 
+    //call class constructor to get new class instance
+    //return pdo object
+    public static function getInstance():PDO{
+        if(!self::$instance){
+            self::$instance=new self();
+        }
+        return self::$instance->pdo;
+    }
 }
