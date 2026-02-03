@@ -42,33 +42,41 @@ class Auth{
      //if there are no register users return registration form
      //or there is no admin users
      //or there are no registered users and there is no admin users
-      //return registration form
+      //put validated false add error into array
      //if there is less than 2 data in user type table stop executing script and display message
      //if there is no user Regular and Social display message
      //then check database users 
      //if number of database records are less than two stop executing script and display message
      //if there is no regular and social_admin in databaseusers table stop executing script and display message
-     //anything else stop executing script and display message
+     //put validated false add error into array return arrays
       public static function requireRegistration(int $numberOfRegisteredUsers, int $numberOfAdminUsers, int $numberOfRecordsUserTypes, array $dataTypeRecords
-      ,int $numberOfDatabaseUserRecords,array $databaseUsers):void{
+      ,int $numberOfDatabaseUserRecords,array $databaseUsers):array{
+        $validated=true;
+        $errors=[];
         if(($numberOfRegisteredUsers===0 || $numberOfAdminUsers<1) || ($numberOfRegisteredUsers===0 && $numberOfAdminUsers<1)){
-            header("Location: index.php?page=registration");
-            exit;
+           $validated=false;
+           $errors["userNum"]=["There is not enough registered users or there is no admins."];
         }elseif ($numberOfRecordsUserTypes<2) {
-             die('There must be at least two records at user type table. Please add missing data.');
+             $validated=false;
+             $errors['recordNum']=['There must be at least two records at user type table. Please add missing data.'];
         }elseif ($numberOfRecordsUserTypes>=2) {
            if((int)in_array("Regular",$dataTypeRecords)===0 || (int)in_array("Admin",$dataTypeRecords)===0){
-            die('There must be at least 1 regular and 1 admin user in table. Please, add some admin and regular user.');
+            $validated=false;
+            $errors['numRegAdm']=['There must be at least 1 regular and 1 admin user in table. Please, add some admin and regular user.'];
            }
         }elseif ($numberOfDatabaseUserRecords<2) {
-            die('There must be at least two database users in database user table.');
+            $validated=false;
+            $errors['numDatUs']=['There must be at least two database users in database user table.'];
         }elseif ($numberOfDatabaseUserRecords>=2) {
                if((int)in_array("regular",$databaseUsers)===0 || (int)in_array("social_admin",$databaseUsers)===0){
-            die('There must be at least 1 user regular and 1 user social_admin in databaseuser table.');
+                $validated=false;
+                $errors['numRegAdmDat']=['There must be at least 1 user regular and 1 user social_admin in databaseuser table.'];
            }
         }else{
-            die('Unknown error');
+            $validated=false;
+            $errors['unkErr']=['Unknown error'];
         }
+        return [$validated,"errors"=>$errors];
     }
 
 }

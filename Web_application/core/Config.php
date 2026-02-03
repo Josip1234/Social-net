@@ -6,4 +6,8 @@ class Config{
     public static function get(string $key,$default=null){
         return $_ENV[$key] ?? $default;
     }
+    //this function will set env variables depending user
+    public function chooseEnv(){
+
+    }
 }
