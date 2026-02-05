@@ -15,9 +15,13 @@ require_once __DIR__.'/../bootstrap.php';
 //otherwise use social admin will implement this later
 
 $controller=new HomeController();
-$page=$_GET['page']??'home/index';
+$page=$_GET['page']??'index';
 switch($page){
+    case 'index':
+        $controller->index();
+        break;
     case 'login':
+        //get login form process form if they have post data
         $controller->login();
         break;
     default:
