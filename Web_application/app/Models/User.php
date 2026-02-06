@@ -57,4 +57,29 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         $user=$stmt->fetch();
         return $user ?:null;
     }
+      //function to get number of registered users
+      public static function getNumberOfRegisteredUsers():array{
+        $db=Database::getInstance();
+        $sql="select count(p.userId) as userNum from profile p";
+        return $db->query($sql)->fetchAll();
+      }
+      //function to get number of admin users
+      public static function getNumberOfAdminUsers():array{
+        $db=Database::getInstance();
+        $sql="select count(p.userId) as userNum from profile p inner join profiledetails pd on p.userId=pd.userId
+            inner join accounttype `at` on pd.acTypeId=`at`.acTypeId";
+        return $db->query($sql)->fetchAll();
+      }
+      //function to get number of user type records in table account type
+      public static function getNumberOfAccountTypes():array{
+        $db=Database::getInstance();
+        $sql="select count(act.acTypeId) as userNum from accounttype act";
+        return $db->query($sql)->fetchAll();
+      }
+      //function to get fields of user types in account type table
+      public static function getRecordsFromAccountTypeTable():array{
+        $db=Database::getInstance();
+        $sql="select act.acTypeName as dataTypeRec from accounttype act";
+        return $db->query($sql)->fetchAll();
+      }
 }
