@@ -20,16 +20,24 @@ class HomeController extends Controller{
             //first we need to check number of registered users number of admins
             //get number of registered users
             $num=User::getNumberOfRegisteredUsers();
+            $numberOfRegisteredUsers=Conversions::convertToIntValue($num,"userNum");
             //get number of admins
             $numAdmins=User::getNumberOfAdminUsers();
+            $numberOfAdminUsers=Conversions::convertToIntValue($numAdmins,"userNum");
             //get number of records in account type
             $numAccTypes=User::getNumberOfAccountTypes();
+            $numberOfRecordsUserTypes=Conversions::convertToIntValue($numAccTypes,"userNum");
             //get account type data from database
             $accountTypes=User::getRecordsFromAccountTypeTable();
             //convert assoc array to indexed array
-            $at=Conversions::convertToIndexArray($accountTypes);
+            $dataTypeRecords=Conversions::convertToIndexArray($accountTypes);
             //get number of database users
-            
+            $nDu=User::getNumberOfDatabaseUser();
+            $numberOfDatabaseUserRecords=Conversions::convertToIntValue($nDu,"usNum");
+            //get list of database users
+            $databaseU=User::getRecordsOfDatabaseUsers();
+            //convert a list to regular array
+            $databaseUsers=Conversions::convertToIndexArray($databaseU);
             //if user does not exists return view with errors
             if(!$user){
                 $this->view('home/login',[

@@ -82,4 +82,16 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         $sql="select act.acTypeName as dataTypeRec from accounttype act";
         return $db->query($sql)->fetchAll();
       }
+      //function for getting a number of database user
+      public static function getNumberOfDatabaseUser():array{
+        $db=Database::getInstance();
+        $sql="SELECT count(dbu.userId) as usNum FROM databaseuser dbu";
+        return $db->query($sql)->fetchAll();
+      }
+      //function for getting a list of database users
+      public static function getRecordsOfDatabaseUsers():array{
+        $db=Database::getInstance();
+        $sql="SELECT dbu.userName as usNa FROM databaseuser dbu";
+        return $db->query($sql)->fetchAll();
+      }
 }
