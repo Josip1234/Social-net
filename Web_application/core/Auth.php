@@ -51,32 +51,32 @@ class Auth{
      //put validated false add error into array return arrays
       public static function requireRegistration(int $numberOfRegisteredUsers, int $numberOfAdminUsers, int $numberOfRecordsUserTypes, array $dataTypeRecords
       ,int $numberOfDatabaseUserRecords,array $databaseUsers):array{
-        $validated=true;
+        $validated["validated"]=(int)true;
         $errors=[];
         if(($numberOfRegisteredUsers===0 || $numberOfAdminUsers<1) || ($numberOfRegisteredUsers===0 && $numberOfAdminUsers<1)){
-           $validated=false;
+           $validated["validated"]=(int)false;
            $errors["userNum"]=["There is not enough registered users or there is no admins."];
         }elseif ($numberOfRecordsUserTypes<2) {
-             $validated=false;
+             $validated["validated"]=(int)false;
              $errors['recordNum']=['There must be at least two records at user type table. Please add missing data.'];
         }elseif ($numberOfRecordsUserTypes>=2) {
            if((int)in_array("Regular",$dataTypeRecords)===0 || (int)in_array("Admin",$dataTypeRecords)===0){
-            $validated=false;
+            $validated["validated"]=(int)false;
             $errors['numRegAdm']=['There must be at least 1 regular and 1 admin user in table. Please, add some admin and regular user.'];
            }
         }elseif ($numberOfDatabaseUserRecords<2) {
-            $validated=false;
+            $validated["validated"]=(int)false;
             $errors['numDatUs']=['There must be at least two database users in database user table.'];
         }elseif ($numberOfDatabaseUserRecords>=2) {
                if((int)in_array("regular",$databaseUsers)===0 || (int)in_array("social_admin",$databaseUsers)===0){
-                $validated=false;
+                $validated["validated"]=(int)false;
                 $errors['numRegAdmDat']=['There must be at least 1 user regular and 1 user social_admin in databaseuser table.'];
            }
         }else{
-            $validated=false;
+            $validated["validated"]=(int)false;
             $errors['unkErr']=['Unknown error'];
         }
-        return [$validated,"errors"=>$errors];
+        return [$validated,$errors];
     }
 
 }
