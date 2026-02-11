@@ -2,7 +2,7 @@
 namespace Core;
 class Auth{
 
-//this function returns session admin if user is admin
+//this function true if user is set and user type is admin
     public static function isAdmin():bool{
         return isset($_SESSION['user']) &&
         $_SESSION['user']['type']==='Admin';

@@ -1,15 +1,13 @@
 <?php
 
 use App\Controllers\HomeController;
+use Core\Config;
 
-$_SERVER['APP_ENV']='';
-//if app env has not been set set regular user automaticly 
-// or something else has been written
-if($_SERVER['APP_ENV']==='' || $_SERVER['APP_ENV']!=='social_admin'){
-    $_SERVER['APP_ENV']='regular';
-}
+
 require_once __DIR__.'/../bootstrap.php';
 
+//choose app env if logged in user is admin app env set to admin otherwise set it to regular user.
+$_SERVER['APP_ENV']=Config::chooseEnv();
 
 //we need to fetch user from database if user is regular then regular env should be used 
 //otherwise use social admin will implement this later
