@@ -85,6 +85,9 @@ class HomeController extends Controller{
         }
         $this->view('home/login');
     }
-
+        //function for get and post for registration user
+        public function register(){
+            $this->view('home/register');
+        }
     
 }

@@ -22,6 +22,9 @@ switch($page){
         //get login form process form if they have post data
         $controller->login();
         break;
+    case 'register':
+        $controller->register();
+        break;
     default:
         $controller->index();
 }

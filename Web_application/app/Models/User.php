@@ -22,7 +22,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
             ':sex' => $data['sex'],
             ':dbirth' => $data['dbirth'],
             ':adid' => $data['adid'],
-            ':hp' => $data[':hp']
+            ':hp' => password_hash($data[':hp'],PASSWORD_DEFAULT)
         ]);
     }
     //function for activating account, 

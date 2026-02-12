@@ -1,4 +1,5 @@
 <?php 
+
 function active(string $page,string $current):string{
     return $page === $current ? 'activelink':'';
 }
