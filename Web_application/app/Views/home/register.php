@@ -16,13 +16,18 @@
      
             <label for="dbirth">Date of birth</label>
             <input type="date" name="dbirth" id="dbirth">
-            <label for="ia">Input address?</label>
-            <input type="checkbox" name="ia" id="ia">
-            <div class="disabled">
-                <label for="adid">Address select</label>
-                <select name="adid" id="adid">
-                    <option value="">Choose address</option>
-                </select>
+        
+             <p id="pi"> <b>Input address?</b></p>
+            <input type="checkbox" id="ia" onclick="showForm()">
+          
+       
+            <div class="disabled" id="form">
+                <label for="city">Insert city</label>
+                <input type="text" name="city">
+                <label for="state">Add new state</label>
+                <input type="text" name="state">
+                <label for="address">Add new address</label>
+                <input type="text" name="address">
             </div>
             <label for="hp">Input password</label>
             <input type="hp" name="hp" id="hp">

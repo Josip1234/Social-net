@@ -15,21 +15,19 @@ class HomeController extends Controller{
     //return login page
     //if there is any post data process data
     public function login():void{
-         if($_SERVER["REQUEST_METHOD"]==="POST"){
-            //this array will recieve validated value and array of errors
+          //this array will recieve validated value and array of errors
             $auth_array=[];
-            //we need user from database
-            $user=User::findByUsername($_POST["username"]);
-            //first we need to check number of registered users number of admins
+                //first we need to check number of registered users number of admins
             //get number of registered users
             $num=User::getNumberOfRegisteredUsers();
             $numberOfRegisteredUsers=Conversions::convertToIntValue($num,"userNum");
-            //get number of admins
+              //get number of admins
             $numAdmins=User::getNumberOfAdminUsers();
             $numberOfAdminUsers=Conversions::convertToIntValue($numAdmins,"userNum");
-            //get number of records in account type
+               //get number of records in account type
             $numAccTypes=User::getNumberOfAccountTypes();
             $numberOfRecordsUserTypes=Conversions::convertToIntValue($numAccTypes,"userNum");
+              
             //get account type data from database
             $accountTypes=User::getRecordsFromAccountTypeTable();
             //convert assoc array to indexed array
@@ -45,9 +43,8 @@ class HomeController extends Controller{
             $auth_array[]=Auth::requireRegistration($numberOfRegisteredUsers,
             $numberOfAdminUsers,$numberOfRecordsUserTypes,$dataTypeRecords,
             $numberOfDatabaseUserRecords,$databaseUsers);
-    
-            $errors='Incorrect data.';
-            //if error array exist and it is set add to error string
+             $errors='Error.';
+                        //if error array exist and it is set add to error string
             if((int)isset($auth_array[0][1]["userNum"][0])===1){
                 $errors.=$auth_array[0][1]["userNum"][0];
             }
@@ -71,13 +68,34 @@ class HomeController extends Controller{
                 if((int)isset($auth_array[0][1]["unkErr"][0])===1){
                 $errors.=$auth_array[0][1]["unkErr"][0];
             }
+           
+            //to differ user auth we need to return additional parametar to enable again login form
+                if($auth_array[0][0]["validated"]===0){
+                $this->view('home/login',[
+                    'error'=>$errors,
+                    'auth'=>0
+                ]);
+                return;
+            }
+
+         if($_SERVER["REQUEST_METHOD"]==="POST"){
+          
+            //we need user from database
+            $user=User::findByUsername($_POST["username"]);
+        
+          
+       
+    
+            $errors='Incorrect data.';
+
 
             //if user does not exists in database and auth validation has not been passed
             //or user has not been fetched or auth has not been passed
-            //return error
+            //return error, 
             if(!$user && $auth_array[0][0]["validated"]===0 || (!$user || $auth_array[0][0]["validated"]===0)){
                 $this->view('home/login',[
                     'error'=>$errors,
+                    'auth'=>1
                 ]);
                 return;
             }

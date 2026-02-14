@@ -1,9 +1,10 @@
 /* error css*/
-.error{
-    color:red;
+.error {
+    color: red;
 }
+
 /* form css*/
-.form-box{
+.form-box {
     background: #fff;
     padding: 25px;
     border-radius: 6px;
@@ -12,23 +13,28 @@
     margin: 0 auto;
 
 }
-.form-box-home{
+
+.form-box-home {
     width: 100%;
 }
-.form-box h2{
+
+.form-box h2 {
     margin-bottom: 15px;
 }
-.form-box label{
+
+.form-box label {
     display: block;
     margin-top: 10px;
     font-weight: bold;
 }
-.form-box input{
+
+.form-box input {
     width: 97.5%;
     padding: 8px;
     margin-top: 5px;
 }
-.form-box button{
+
+.form-box button {
     margin-top: 15px;
     padding: 10px;
     width: 100%;
@@ -37,53 +43,89 @@
     border: none;
     cursor: pointer;
 }
-.form-box button:hover{
+
+.form-box button:hover {
     background-color: red;
 }
-.form-box span{
+
+.form-box span {
     display: block;
     line-height: 150%;
 }
+
 /*navigation css*/
-nav a{
-    color:#ecf0f1;
+nav a {
+    color: #ecf0f1;
     margin-right: 15px;
     text-decoration: none;
     font-weight: bold;
     font-size: 75%;
 }
-nav a:hover{
-    text-decoration: underline;
+
+nav a:hover {
+    text-decoration: none;
 }
-.activelink{
+
+.activelink {
+    text-decoration: none;
     background-color: #e42828;
     padding: 5px;
 }
+
 /* css for body */
 body {
     background-color: orange;
     border-radius: 30px;
 }
+
 /* footer*/
-footer{
+footer {
     margin-top: 19.35%;
     padding: 15px;
     text-align: center;
     background-color: red;
-    color:#fff;
+    color: #fff;
 }
-.disabled{
+
+.disabled {
     display: none;
 }
-select{
+
+.enabled {
+    display: inline;
+}
+
+select {
     width: 100%;
     padding: 8px;
     margin-bottom: 12px;
-  
+
     border-radius: 4px;
 }
+
 input[type=radio] {
     border: 0px;
     width: 4%;
     height: 2em;
+}
+
+input[type=submit] {
+    margin-top: 3%;
+    width: 100%;
+    background-color: #e42828;
+    border-style: none;
+    color: white;
+    font-weight: bold;
+
+
+}
+
+input[type=submit]:hover {
+    margin-top: 3%;
+    width: 100%;
+    background-color: orange;
+    border-style: none;
+    color: white;
+    font-weight: bold;
+
 }
