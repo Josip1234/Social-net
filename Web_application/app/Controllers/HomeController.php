@@ -106,8 +106,16 @@ class HomeController extends Controller{
     }
         //function for get and post for registration user
         public function register(){
-            $errors=Validation::validateForm();
-            $this->view('home/register');
+            $validation=Validation::validateForm();
+           
+            if($validation===true){
+                 $this->view('home/register');
+            }else{
+                 $this->view('home/register',[
+                    'errors'=>$validation
+                 ]);
+            }
+           
         }
     
 }

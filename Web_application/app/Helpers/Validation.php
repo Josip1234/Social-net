@@ -36,15 +36,26 @@ class Validation{
                                 
                         }
                         $password=self::clean_input($_POST["hp"]);
-
-                        if(empty($fname)){
+                        //if first name is empty add error to array
+                        //or if length of the string is equal to 0
+                        if(empty($fname) || strlen($fname)===0){
                             $errors["fn"]="First name is empty.";
                         }
-                        if(empty($lname)){
+                        //if name is numeric or has numbers in string value add error to array
+                        if(is_numeric($fname) || (self::hasNumbersInString($fname))){
+                            $errors["fnn"]="First name cannot have numbers.";
+                        }
+                        if(empty($lname) || strlen($lname)===0){
                             $errors["ln"]="Last name is empty.";
+                        }
+                          if(is_numeric($lname) || (self::hasNumbersInString($lname))){
+                            $errors["lnn"]="Last name cannot have numbers.";
                         }
                         if(empty($email)){
                             $errors["em"]="Email is empty.";
+                        }
+                        if((int)self::validateEmail($email)===0){
+                            $errors["ism"]="Invalid email.";
                         }
                          if(empty($sex)){
                             $errors["sx"]="Sex has not been chosen.";
@@ -80,7 +91,37 @@ private static function clean_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-
-
+//function which will return true if string contains number
+private static function hasNumbersInString(string $value):bool{
+    $containsNumber=false;
+    for($i=0;$i<strlen($value);$i++){
+        if(is_numeric($value[$i])){
+            $containsNumber=true;
+            break;
+        }
+    }
+    return $containsNumber;
+}
+//function for email validation
+//it will be simple validation, if string contains @ only
+//this validation will be updated
+private static function validateEmail(string $value):bool{
+    $isEmail=true;
+    //email must contain @ and must have at least 1 .
+    $monkeyCharCount=0;
+    for($i=0;$i<strlen($value);$i++){
+            if($value[$i]==='@'){
+                $monkeyCharCount++;
+            }
+    }
+       if($monkeyCharCount>1){
+                $isEmail=false;
+                
+            }else if($monkeyCharCount==0){
+                $isEmail=false;
+            }
+  
+    return $isEmail;
+}
 
 }
