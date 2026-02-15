@@ -1,9 +1,9 @@
 <main>
     <div class="form-box">
         <h2>User registration</h2>
-        <form method="post">
+        <form method="post" action="<?=  htmlspecialchars($_SERVER["PHP_SELF"].'?page=register');?>">
             <label for="fname">First name:</label>
-            <input type="text" name="fname" id="fname" required>
+            <input type="text" name="fname" id="fname">
             <label for="lname">Last name:</label>
             <input type="text" name="lname" id="lname">
             <label for="email">Email address:</label>
@@ -23,15 +23,17 @@
        
             <div class="disabled" id="form">
                 <label for="city">Insert city</label>
-                <input type="text" name="city">
+                <input type="text" name="city" id="city">
                 <label for="state">Add new state</label>
-                <input type="text" name="state">
+                <input type="text" name="state" id="state">
                 <label for="address">Add new address</label>
-                <input type="text" name="address">
+                <input type="text" name="address" id="address">
             </div>
             <label for="hp">Input password</label>
             <input type="hp" name="hp" id="hp">
             <input type="hidden" name="registrationDate" value="<?= \Carbon\Carbon::now()->format("Y-m-d"); ?>">
+            <span id="hidden" class="disabled"></span>
+            <input type="hidden" name="regValidation" value="validate">
             <input type="submit" value="Register">
         </form>
     </div>

@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Helpers\Conversions;
+use App\Helpers\Validation;
 use Core\Controller;
 use Core\Url;
 use App\Models\User;
@@ -105,6 +106,7 @@ class HomeController extends Controller{
     }
         //function for get and post for registration user
         public function register(){
+            $errors=Validation::validateForm();
             $this->view('home/register');
         }
     
