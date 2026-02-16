@@ -42,12 +42,28 @@
             <span class="radio">
             <input type="radio" name="sex" id="sex1" value="m" >Male
             <input type="radio" name="sex" id="sex2" value="f">Female
-             <span class="error">Errors for sex</span>
+            
+                      <?php if(isset($errors["sx"])): ?>
+            <span class="error"> <?= $errors["sx"]; ?></span>
+            <?php endif; ?>
+              <?php if(isset( $errors["sxv"])): ?>
+            <span class="error"> <?=  $errors["sxv"]; ?></span>
+            <?php endif; ?>
+
+
+
             </span>
      
             <label for="dbirth">Date of birth</label>
             <input type="date" name="dbirth" id="dbirth">
-             <span class="error">Errors for date of birth</span>
+                      <?php if(isset($errors["db"])): ?>
+            <span class="error"> <?= $errors["db"]; ?></span>
+            <?php endif; ?>
+              <?php if(isset( $errors["dtb"])): ?>
+            <span class="error"> <?=  $errors["dtb"]; ?></span>
+            <?php endif; ?>
+
+
         
              <p id="pi"> <b>Input address?</b></p>
             <input type="checkbox" id="ia" onclick="showForm()">
@@ -66,7 +82,13 @@
             </div>
             <label for="hp">Input password</label>
             <input type="hp" name="hp" id="hp">
-             <span class="error">Errors for password</span>
+                       <?php if(isset($errors["ps"])): ?>
+            <span class="error"> <?= $errors["ps"]; ?></span>
+            <?php endif; ?>
+              <?php if(isset( $errors["pl"])): ?>
+            <span class="error"> <?=  $errors["pl"]; ?></span>
+            <?php endif; ?>
+
             <input type="hidden" name="registrationDate" value="<?= \Carbon\Carbon::now()->format("Y-m-d"); ?>">
             <span id="hidden" class="disabled"></span>
             <input type="hidden" name="regValidation" value="validate">

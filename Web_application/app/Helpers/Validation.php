@@ -1,5 +1,8 @@
 <?php 
 namespace App\Helpers;
+
+use Carbon\Carbon;
+
 class Validation{
     //validate form depending on post method
     //return array or bool value true
@@ -60,11 +63,27 @@ class Validation{
                          if(empty($sex)){
                             $errors["sx"]="Sex has not been chosen.";
                         }
+                        if($sex!=="m" || $sex!=="f"){
+                            $errors["sxv"]="Value can be only m for male, f for female. Invalid input.";
+                        }
                         if(empty($dbirth)){
                             $errors["db"]="Date of birth has not been chosen.";
                         }
+                        //if date of birth is equal to today call error
+                        //if difference between date of birth and today date is equal to zero 
+                        //call an error
+                        $date1=Carbon::parse($dbirth);
+                        $date2=Carbon::now();
+                        $dateDiffInDays=$date1->diffInDays($date2);
+                        //if date difference is less that zero it is future date
+                        if($dateDiffInDays===0 || $dateDiffInDays<0){
+                            $errors["dtb"]="Date of birth cannot be today or future date.";
+                        }
                         if(empty($password)){
                             $errors["ps"]="Password is empty.";
+                        }
+                        if(strlen($password)<8){
+                            $errors["pl"]="Password have less than 8 characters. Please, add more characters.";
                         }
                     
                         
