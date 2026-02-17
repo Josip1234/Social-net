@@ -109,24 +109,7 @@ class HomeController extends Controller{
     }
         //function for get and post for registration user
         public function register(){
-             //if sessions exists and variables are not empty
-             //activate account 
-             if(isset($_SESSION["registrationDate"]) && isset($_SESSION["email"]) && isset($_SESSION["userAccountType"])){
-                if(!empty($_SESSION["registrationDate"]) && !empty($_SESSION["email"]) && !empty($_SESSION["userAccountType"])){
-                    //find user id 
-                    $userId=User::getUserId($_SESSION["email"]);
-                    //find account type id
-                    $accTypeId=User::getAcTypeId($_SESSION["userAccountType"]);
-                    //return true if activated account                    
-                    $activated=User::activate_account($userId["userId"],$accTypeId["acTypeId"],$_SESSION["registrationDate"]);
-                    if($activated===1){
-                        echo "Account has been activated.";
-                        unset($_SESSION["registrationDate"]);
-                        unset($_SESSION["email"]);
-                        unset($_SESSION["userAccountType"]);
-                    }
-                }
-             }
+
             //if data has been posted
             if($_SERVER["REQUEST_METHOD"]==="POST"){
                 //perform validation first
@@ -134,11 +117,8 @@ class HomeController extends Controller{
             
               //if validation has been passed register user
             if($validation===true){
-                 User::register($_POST);
-                 //set registration date email and user account type name in the session for account activation
-                 $_SESSION["registrationDate"]=$_POST["registrationDate"];
-                 $_SESSION["email"]=$_POST["email"];
-                 $_SESSION["userAccountType"]=self::REGULAR;
+                 User::register($_POST);        
+
           
                  $this->view('home/register');
             //in every other case return to registration form with validation errors

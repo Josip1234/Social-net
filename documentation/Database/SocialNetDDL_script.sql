@@ -179,3 +179,4 @@ ADD CONSTRAINT `accountType_fk`
   ON DELETE CASCADE
   ON UPDATE CASCADE;
 
+alter table profiledetails modify column pdUpdateDate datetime null;

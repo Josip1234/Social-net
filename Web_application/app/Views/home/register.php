@@ -89,7 +89,7 @@
             <span class="error"> <?=  $errors["pl"]; ?></span>
             <?php endif; ?>
 
-            <input type="hidden" name="registrationDate" value="<?= \Carbon\Carbon::now()->format("Y-m-d"); ?>">
+            <input type="hidden" name="registrationDate" value="<?= \Carbon\Carbon::now()->format("Y-m-d H:m:s"); ?>">
             <span id="hidden" class="disabled"></span>
             <input type="hidden" name="regValidation" value="validate">
             <input type="submit" value="Register">
