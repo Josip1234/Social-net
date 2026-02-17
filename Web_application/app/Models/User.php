@@ -29,9 +29,9 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
     //two parameters user id to add user id in profile details table and acctype id
     //it is id from account type role of the user should be already known.
     //also need registration date as additional field
-    //registration date should be passed with hidden field
+    //registration date
     //account will be activated right away after registration
-    public static function activate_account(int $userId, int $accTypeId, string $registration):bool{
+    public static function activate_account(int $userId, int $accTypeId, string $registration_date):bool{
         $db=Database::getInstance();
         $sql="INSERT INTO profiledetails (userId,acTypeId,registrationDate,accountStatus)
         values (:uid,:atid,:rdate,:astatus)";
@@ -39,7 +39,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         $stmt->execute([
             ':uid'=>$userId,
             ':atid'=>$accTypeId,
-            ':rdate'=>$registration,
+            ':rdate'=>$registration_date,
             ':astatus'=>'Active'
         ]);
         return $stmt->rowCount()===1;
@@ -93,5 +93,29 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         $db=Database::getInstance();
         $sql="SELECT dbu.userName as usNa FROM databaseuser dbu";
         return $db->query($sql)->fetchAll();
+      }
+      //function for getting userId from database depending on user email
+      public static function getUserId(string $email):int{
+         $userId=0;
+         $db=Database::getInstance();
+         $sql="SELECT p.userId from profile p where p.email=:email";
+         $stmt=$db->prepare($sql);
+         $stmt->execute([
+            ':email'=>$email
+         ]);
+         $userId=$stmt->fetchColumn();
+         return $userId;
+      }
+      //function for selecting account type id depending of account type name
+          public static function getAcTypeId(string $accountTypeName):int{
+         $userId=0;
+         $db=Database::getInstance();
+         $sql="SELECT at.acTypeId FROM accounttype at where at.acTypeName=:acTypeName";
+         $stmt=$db->prepare($sql);
+         $stmt->execute([
+            'acTypeName'=>$accountTypeName
+         ]);
+         $userId=$stmt->fetchColumn();
+         return $userId;
       }
 }

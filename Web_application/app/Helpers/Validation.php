@@ -63,9 +63,7 @@ class Validation{
                          if(empty($sex)){
                             $errors["sx"]="Sex has not been chosen.";
                         }
-                        if($sex!=="m" || $sex!=="f"){
-                            $errors["sxv"]="Value can be only m for male, f for female. Invalid input.";
-                        }
+                      
                         if(empty($dbirth)){
                             $errors["db"]="Date of birth has not been chosen.";
                         }

@@ -81,7 +81,7 @@
                  <span class="error">Errors for address</span>
             </div>
             <label for="hp">Input password</label>
-            <input type="hp" name="hp" id="hp">
+            <input type="password" name="hp" id="hp">
                        <?php if(isset($errors["ps"])): ?>
             <span class="error"> <?= $errors["ps"]; ?></span>
             <?php endif; ?>

@@ -10,6 +10,8 @@ use App\Models\User;
 use Core\Auth;
 
 class HomeController extends Controller{
+    //this const is default user type
+    private const REGULAR="Regular";
     //this function will rerutn index view
     public function index():void{
         $this->view('home/index');
@@ -29,7 +31,7 @@ class HomeController extends Controller{
                //get number of records in account type
             $numAccTypes=User::getNumberOfAccountTypes();
             $numberOfRecordsUserTypes=Conversions::convertToIntValue($numAccTypes,"userNum");
-              
+            
             //get account type data from database
             $accountTypes=User::getRecordsFromAccountTypeTable();
             //convert assoc array to indexed array
@@ -80,7 +82,7 @@ class HomeController extends Controller{
                 return;
             }
 
-         if($_SERVER["REQUEST_METHOD"]==="POST"){
+         if($_SERVER["REQUEST_METHOD"] ==="POST"){
           
             //we need user from database
             $user=User::findByUsername($_POST["username"]);
@@ -107,16 +109,50 @@ class HomeController extends Controller{
     }
         //function for get and post for registration user
         public function register(){
-            $validation=Validation::validateForm();
-         
+             //if sessions exists and variables are not empty
+             //activate account 
+             if(isset($_SESSION["registrationDate"]) && isset($_SESSION["email"]) && isset($_SESSION["userAccountType"])){
+                if(!empty($_SESSION["registrationDate"]) && !empty($_SESSION["email"]) && !empty($_SESSION["userAccountType"])){
+                    //find user id 
+                    $userId=User::getUserId($_SESSION["email"]);
+                    //find account type id
+                    $accTypeId=User::getAcTypeId($_SESSION["userAccountType"]);
+                    //return true if activated account                    
+                    $activated=User::activate_account($userId["userId"],$accTypeId["acTypeId"],$_SESSION["registrationDate"]);
+                    if($activated===1){
+                        echo "Account has been activated.";
+                        unset($_SESSION["registrationDate"]);
+                        unset($_SESSION["email"]);
+                        unset($_SESSION["userAccountType"]);
+                    }
+                }
+             }
+            //if data has been posted
+            if($_SERVER["REQUEST_METHOD"]==="POST"){
+                //perform validation first
+                         $validation=Validation::validateForm();
+            
+              //if validation has been passed register user
             if($validation===true){
+                 User::register($_POST);
+                 //set registration date email and user account type name in the session for account activation
+                 $_SESSION["registrationDate"]=$_POST["registrationDate"];
+                 $_SESSION["email"]=$_POST["email"];
+                 $_SESSION["userAccountType"]=self::REGULAR;
+          
                  $this->view('home/register');
-            }else{
+            //in every other case return to registration form with validation errors
+            //also return posted data to fill out old values if they are inputted
+             }else{
                  $this->view('home/register',[
-                    'errors'=>$validation
+                    'errors'=>$validation,
+                    'data'=>$_POST
                  ]);
             }
-           
+            }
+       
+            $this->view('home/register');
         }
+        
     
 }
