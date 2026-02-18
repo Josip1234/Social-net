@@ -499,6 +499,7 @@ call saveLog2('insert','lc');
 end $$
 DELIMITER ;
 */
+-- as default
 DELIMITER $$
 create trigger logContentBeforeUpdate before update on logger_content
 for each row 
