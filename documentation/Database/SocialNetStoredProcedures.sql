@@ -297,8 +297,21 @@ end if;
 end if;
 END $$
 DELIMITER ;
--- call insertUsersIntoLoggers('database_logger',11);
-
+-- call insertUsersIntoLoggers('database_logger',1userId1);
+-- this procedure will automatic insert data into profile details.
+DELIMITER $$
+create procedure autoInsertIntoProfileDet(in userId int unsigned,in acTypeId int unsigned, in registrationDate datetime, in accountStatus varchar(50))
+begin
+-- validate if status is one of the three in enum of account status table
+if accountStatus = 'Active' || accountStatus = 'Banned' || accountStatus = 'Inactive' then
+insert into profiledetails(userId,acTypeId,registrationDate,accountStatus)
+values (userId,acTypeId,registrationDate, accountStatus);
+else
+SIGNAL sqlstate '45000'
+set message_text = 'Account status is invalid. Please, choose one of the values: Active, Banned or Inactive.';
+end if;
+end $$
+DELIMITER ;
 
 
 

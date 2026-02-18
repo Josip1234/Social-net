@@ -88,13 +88,26 @@ end $$
 DELIMITER ;
 
 -- triggers for log user profile
+-- except for the log this trigger will be used to auto insert data into profile details after insert
+-- into profile new user 
 DELIMITER $$
 create trigger userProfileLog after insert on profile
 for each row 
 begin 
+-- need to find regular user int account type data
+declare accTypeId int unsigned;
+select acTypeId into accTypeId from accounttype where acTypeName='Regular';
+if accTypeId is not null then
 call saveProfileLog('insert','profile',concat(new.firstName,' ',new.lastName),null);
+call autoInsertIntoProfileDet(new.userId,accTypeId, now(), 'Active');
+else 
+SIGNAL sqlstate '45000'
+set message_text = 'There are no account type under this name. Please check data in the table account type.';
+end if;
 end $$
 DELIMITER ;
+
+
 
 DELIMITER $$
 create trigger userUpdateProfileLog after update on profile
