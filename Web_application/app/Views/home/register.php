@@ -2,8 +2,9 @@
     <div class="form-box">
         <h2>User registration</h2>
         <form method="post" action="<?=  htmlspecialchars($_SERVER["PHP_SELF"].'?page=register');?>">
+            <?php if(isset($_POST)): ?>
             <label for="fname">First name:</label>
-            <input type="text" name="fname" id="fname">
+            <input type="text" name="fname" id="fname" value="<?= $_POST["fname"]; ?>">
             <?php if(isset($errors["fn"])): ?>
             <span class="error"> <?= $errors["fn"]; ?></span>
             <?php endif; ?>
@@ -11,7 +12,7 @@
             <span class="error"> <?=  $errors["fnn"]; ?></span>
             <?php endif; ?>
             <label for="lname">Last name:</label>
-            <input type="text" name="lname" id="lname">
+            <input type="text" name="lname" id="lname" value="<?= $_POST["lname"] ?>">
             
                <?php if(isset($errors["ln"])): ?>
             <span class="error"> <?= $errors["ln"]; ?></span>
@@ -24,7 +25,7 @@
 
 
             <label for="email">Email address:</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" value="<?= $_POST["email"] ?>">
             
                  <?php if(isset($errors["em"])): ?>
             <span class="error"> <?= $errors["em"]; ?></span>
@@ -40,8 +41,9 @@
 
             <label for="sex1">Sex:</label>
             <span class="radio">
-            <input type="radio" name="sex" id="sex1" value="m" >Male
-            <input type="radio" name="sex" id="sex2" value="f">Female
+              
+            <input type="radio" name="sex" id="sex1" value="m" <?php if($_POST["sex"]==="m") echo "checked"; ?>>Male
+            <input type="radio" name="sex" id="sex2" value="f" <?php if($_POST["sex"]==="f") echo "checked"; ?>>Female
             
                       <?php if(isset($errors["sx"])): ?>
             <span class="error"> <?= $errors["sx"]; ?></span>
@@ -55,15 +57,19 @@
             </span>
      
             <label for="dbirth">Date of birth</label>
-            <input type="date" name="dbirth" id="dbirth">
+            <input type="date" name="dbirth" id="dbirth" value="<?= $_POST["dbirth"]; ?>">
                       <?php if(isset($errors["db"])): ?>
             <span class="error"> <?= $errors["db"]; ?></span>
             <?php endif; ?>
               <?php if(isset( $errors["dtb"])): ?>
             <span class="error"> <?=  $errors["dtb"]; ?></span>
             <?php endif; ?>
+            
+                <?php if(isset( $errors["yva"])): ?>
+            <span class="error"> <?=  $errors["yva"]; ?></span>
+            <?php endif; ?>
 
-
+           
         
              <p id="pi"> <b>Input address?</b></p>
             <input type="checkbox" id="ia" onclick="showForm()">
@@ -93,6 +99,7 @@
             <span id="hidden" class="disabled"></span>
             <input type="hidden" name="regValidation" value="validate">
             <input type="submit" value="Register">
+            <?php endif; ?>
         </form>
     </div>
 </main>

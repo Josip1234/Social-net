@@ -77,6 +77,13 @@ class Validation{
                         if($dateDiffInDays===0 || $dateDiffInDays<0){
                             $errors["dtb"]="Date of birth cannot be today or future date.";
                         }
+                        //validate year only persons who have 18+ can be registered
+                        $yearOfBirth=(int)Carbon::parse($dbirth)->format("Y");
+                        $currentYear=(int)Carbon::now()->format("Y");
+                        $difference=$currentYear-$yearOfBirth;
+                        if($difference<18){
+                            $errors["yva"]="Only persons which have 18 years and greather can be registered to the social network.";
+                        }
                         if(empty($password)){
                             $errors["ps"]="Password is empty.";
                         }

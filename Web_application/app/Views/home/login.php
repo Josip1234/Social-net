@@ -4,7 +4,7 @@
     <?php
         if(!empty($error)):
         ?>
-        <p class="error"><?= $error ?></p>
+        <p class="error"><?= $error; ?></p>
         <p class="error">Go to the <a href="index.php?page=register">registration</a> form.</p>
         <?php endif; ?>
         <!-- htmlspecialchars is to prevent sql injection 
@@ -12,7 +12,7 @@
         
         -->
            
-             <?php if($auth===1 && empty($error)): ?>
+             <?php if(empty($error)): ?>
     <form method="post">
         <label for="username">Enter your email</label>
         <input type="email" name="username" id="username" required autocomplete="off">

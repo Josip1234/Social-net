@@ -47,37 +47,41 @@ class HomeController extends Controller{
             $auth_array[]=Auth::requireRegistration($numberOfRegisteredUsers,
             $numberOfAdminUsers,$numberOfRecordsUserTypes,$dataTypeRecords,
             $numberOfDatabaseUserRecords,$databaseUsers);
-             $errors='Error.';
+             $errors='';
                         //if error array exist and it is set add to error string
             if((int)isset($auth_array[0][1]["userNum"][0])===1){
-                $errors.=$auth_array[0][1]["userNum"][0];
+                $errors.='<br>'.$auth_array[0][1]["userNum"][0];
             }
 
+              if((int)isset($auth_array[0][1]["userNumAdm"][0])===1){
+                $errors.='<br>'.$auth_array[0][1]["userNumAdm"][0];
+            }
+           
               if((int)isset($auth_array[0][1]["recordNum"][0])===1){
-                $errors.=$auth_array[0][1]["recordNum"][0];
+                $errors.='<br>'.$auth_array[0][1]["recordNum"][0];
             }
 
             if((int)isset($auth_array[0][1]["numRegAdm"][0])===1){
-                $errors.=$auth_array[0][1]["numRegAdm"][0];
+                $errors.='<br>'.$auth_array[0][1]["numRegAdm"][0];
             }
 
               if((int)isset($auth_array[0][1]["numDatUs"][0])===1){
-                $errors.=$auth_array[0][1]["numDatUs"][0];
+                $errors.='<br>'.$auth_array[0][1]["numDatUs"][0];
             }
 
                if((int)isset($auth_array[0][1]["numRegAdmDat"][0])===1){
-                $errors.=$auth_array[0][1]["numRegAdmDat"][0];
+                $errors.='<br>'.$auth_array[0][1]["numRegAdmDat"][0];
+                
             }
 
                 if((int)isset($auth_array[0][1]["unkErr"][0])===1){
-                $errors.=$auth_array[0][1]["unkErr"][0];
+                $errors.='<br>'.$auth_array[0][1]["unkErr"][0];
             }
            
             //to differ user auth we need to return additional parametar to enable again login form
                 if($auth_array[0][0]["validated"]===0){
                 $this->view('home/login',[
                     'error'=>$errors,
-                    'auth'=>0
                 ]);
                 return;
             }
@@ -98,8 +102,7 @@ class HomeController extends Controller{
             //return error, 
             if(!$user && $auth_array[0][0]["validated"]===0 || (!$user || $auth_array[0][0]["validated"]===0)){
                 $this->view('home/login',[
-                    'error'=>$errors,
-                    'auth'=>1
+                    'error'=>$errors
                 ]);
                 return;
             }
