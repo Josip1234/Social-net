@@ -118,4 +118,12 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
          $userId=$stmt->fetchColumn();
          return $userId;
       }
+      //select max id from database
+      public static function selectMaxId():int{
+        $maxId=0;
+        $db=Database::getInstance();
+        $sql="SELECT MAX(p.userId) as Max FROM profile p";
+        $maxId=$db->query($sql)->fetchColumn();
+        return $maxId;
+      }
 }

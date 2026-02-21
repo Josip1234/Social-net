@@ -81,9 +81,11 @@ class Validation{
                         $yearOfBirth=(int)Carbon::parse($dbirth)->format("Y");
                         $currentYear=(int)Carbon::now()->format("Y");
                         $difference=$currentYear-$yearOfBirth;
+                        
                         if($difference<18){
                             $errors["yva"]="Only persons which have 18 years and greather can be registered to the social network.";
                         }
+                   
                         if(empty($password)){
                             $errors["ps"]="Password is empty.";
                         }

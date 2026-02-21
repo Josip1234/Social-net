@@ -1,5 +1,18 @@
 <main>
     <div class="form-box">
+        <?php if(isset($max) && ($max===1)): ?>
+          <form action="<?=  htmlspecialchars($_SERVER["PHP_SELF"].'?page=setAdmin');?>" method="post">
+            <label for="userId">Current user id:</label>
+            <input type="number" name="userId" id="userId" readonly>
+            <label for="regDate">Current registration date:</label>
+            <input type="date" name="regDate" id="regDate" readonly>
+            <label for="accTypeId">Promjena uloge korisnika</label>
+            <select name="accTypeId" id="accTypeId">
+                <option value="">Select user option</option>
+            </select>
+            <button type="submit">Promijeni ulogu korisnika</button>
+          </form>
+          <?php else: ?>
         <h2>User registration</h2>
         <form method="post" action="<?=  htmlspecialchars($_SERVER["PHP_SELF"].'?page=register');?>">
             <?php if(isset($_POST)): ?>
@@ -57,7 +70,7 @@
             </span>
      
             <label for="dbirth">Date of birth</label>
-            <input type="date" name="dbirth" id="dbirth" value="<?= $_POST["dbirth"]; ?>">
+            <input type="date" name="dbirth" id="dbirth" value="<?= $_POST["dbirth"]; ?>" max="999-12-31">
                       <?php if(isset($errors["db"])): ?>
             <span class="error"> <?= $errors["db"]; ?></span>
             <?php endif; ?>
@@ -69,7 +82,10 @@
             <span class="error"> <?=  $errors["yva"]; ?></span>
             <?php endif; ?>
 
-           
+              <?php if(isset( $errors["yvc"])): ?>
+            <span class="error"> <?=  $errors["yvc"]; ?></span>
+            <?php endif; ?>
+          
         
              <p id="pi"> <b>Input address?</b></p>
             <input type="checkbox" id="ia" onclick="showForm()">
@@ -99,7 +115,9 @@
             <span id="hidden" class="disabled"></span>
             <input type="hidden" name="regValidation" value="validate">
             <input type="submit" value="Register">
+            <button type="reset">Reset entry</button>
             <?php endif; ?>
         </form>
+        <?php endif; ?>
     </div>
 </main>

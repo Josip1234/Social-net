@@ -20,6 +20,7 @@
         <input type="password" name="password" id="password" required autocomplete="off">
        
         <button type="submit">Login</button>
+        <button type="reset">Reset entry</button>
         <?php endif; ?>
     </form>
 

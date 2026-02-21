@@ -18,7 +18,7 @@ class HomeController extends Controller{
     }
     //return login page
     //if there is any post data process data
-    public function login():void{
+    public function login():void{     
           //this array will recieve validated value and array of errors
             $auth_array=[];
                 //first we need to check number of registered users number of admins
@@ -120,10 +120,18 @@ class HomeController extends Controller{
             
               //if validation has been passed register user
             if($validation===true){
-                 User::register($_POST);        
-
+                 User::register($_POST); 
+                 //return to view max id from user 
+                 //it will be used to check if first user has been registered
+                 //if first user is registered, 
+                 //additional form will be shown with user data like id registration date and account type 
+                 //as select box it will be chosen default form will have update button
+                 //after form button has been posted, that user will be admin      
+                 $maxId=User::selectMaxId();
           
-                 $this->view('home/register');
+                 $this->view('home/register',[
+                    'max'=>$maxId
+                 ]);
             //in every other case return to registration form with validation errors
             //also return posted data to fill out old values if they are inputted
              }else{
