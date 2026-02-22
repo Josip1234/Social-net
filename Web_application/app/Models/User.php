@@ -45,6 +45,17 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         return $stmt->rowCount()===1;
 
     }
+    //function for update account type in profiledetails table
+    public static function update_account(int $accTypeId, int $userId){
+      $db=Database::getInstance();
+      $sql = "UPDATE profiledetails set acTypeId=:acTypeId, pdUpdateDate=:pdUpdateDate where userId=:userId";
+      $stmt=$db->prepare($sql);
+      return $stmt->execute([
+          ':acTypeId'=>$accTypeId,
+          ':userId'=>$userId,
+          ':pdUpdateDate'=>\Carbon\Carbon::now()
+      ]);
+    }
     //this function will return array of user data if user exists
     //? optional return data array
     public static function findByUsername(string $username):?array{
@@ -113,7 +124,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
          $sql="SELECT at.acTypeId FROM accounttype at where at.acTypeName=:acTypeName";
          $stmt=$db->prepare($sql);
          $stmt->execute([
-            'acTypeName'=>$accountTypeName
+            ':acTypeName'=>$accountTypeName
          ]);
          $userId=$stmt->fetchColumn();
          return $userId;
@@ -125,5 +136,24 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         $sql="SELECT MAX(p.userId) as Max FROM profile p";
         $maxId=$db->query($sql)->fetchColumn();
         return $maxId;
+      }
+      //return registrationDate from profile details from database
+      public static function selectRegistrationDate(int $userId):string{
+        $regDate="";
+        $db=Database::getInstance();
+        $sql = "SELECT pd.registrationDate FROM profiledetails pd where pd.userId=:userId";
+        $stmt=$db->prepare($sql);
+        $stmt->execute([
+          ':userId'=>$userId
+        ]);
+        $regDate=$stmt->fetchColumn();
+        return \Carbon\Carbon::parse($regDate)->format("Y-m-d");
+      }
+
+      //function to get all of data from user types in account type table
+      public static function getAllRecordsFromAccountTypeTable():array{
+        $db=Database::getInstance();
+        $sql="select * from accounttype act";
+        return $db->query($sql)->fetchAll();
       }
 }

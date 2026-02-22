@@ -25,6 +25,9 @@ switch($page){
     case 'register':
         $controller->register();
         break;
+    case 'setAdmin':
+        $controller->setAdmin();
+        break;
     default:
         $controller->index();
 }

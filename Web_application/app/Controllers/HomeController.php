@@ -128,9 +128,25 @@ class HomeController extends Controller{
                  //as select box it will be chosen default form will have update button
                  //after form button has been posted, that user will be admin      
                  $maxId=User::selectMaxId();
-          
+                 //we need registration date in view first 
+                 //since we have trigger and procedure to insert user as regular user 
+                 //we need to get reg date from database
+                 //need to select user id from database first
+                 //to get a date we need to select latest record created at profile details
+                 //we can use max id 
+                $regDate=User::selectRegistrationDate($maxId);
+                 //need to get current data
+                 //need a list of account type users
+                 $accTypes=User::getAllRecordsFromAccountTypeTable();
+                 //need to see which user is what type of user
+                 //default account name is regular we will use constant regular
+                 $userType=User::getAcTypeId(self::REGULAR);
+                 
                  $this->view('home/register',[
-                    'max'=>$maxId
+                    'max'=>$maxId,
+                    'regDate'=>$regDate,
+                    'types'=>$accTypes,
+                    $userType
                  ]);
             //in every other case return to registration form with validation errors
             //also return posted data to fill out old values if they are inputted
@@ -145,5 +161,12 @@ class HomeController extends Controller{
             $this->view('home/register');
         }
         
-    
+    //function for setting admins users
+    public function setAdmin(){
+        if($_SERVER["REQUEST_METHOD"]==="POST"){
+            $userData=$_POST;
+            User::update_account($_POST["accTypeId"],$_POST["userId"]);
+            header("Location: index.php?page=login");
+        }
+    }
 }
