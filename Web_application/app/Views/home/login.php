@@ -2,6 +2,7 @@
 <div class="form-box">
     <h2>Login</h2>
     <?php
+      
         if(!empty($error)):
         ?>
         <p class="error"><?= $error; ?></p>

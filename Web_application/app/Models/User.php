@@ -61,8 +61,8 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
     public static function findByUsername(string $username):?array{
         $db=Database::getInstance();
         $sql="SELECT p.userId,
-        concat('p.firstName',' ','p.lastName') as username,
-        p.email FROM profile p WHERE p.email = :email";
+        concat(p.firstName,' ',p.lastName) as username,
+        p.email,p.hashPassword as hp FROM profile p WHERE p.email = :email";
         $stmt=$db->prepare($sql);
         $stmt->execute([':email'=>$username]);
         $user=$stmt->fetch();
@@ -155,5 +155,25 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         $db=Database::getInstance();
         $sql="select * from accounttype act";
         return $db->query($sql)->fetchAll();
+      }
+      //function to return username by id
+      public static function getUserNameById(int $userId):string{
+        $db=Database::getInstance();
+        $sql="SELECT p.email as Email FROM profile p where userId=:userId";
+        $stmt=$db->prepare($sql);
+        $stmt->execute([
+          ':userId'=>$userId
+        ]);
+        return $stmt->fetchColumn();
+      }
+      //function to return account type id using user id
+      public static function getAccountTypeId(int $userId):int{
+        $db=Database::getInstance();
+        $sql="SELECT pd.acTypeId FROM profiledetails pd where userId=:userId";
+        $stmt=$db->prepare($sql);
+        $stmt->execute([
+          ':userId'=>$userId
+        ]);
+        return $stmt->fetchColumn();
       }
 }

@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Helpers\Conversions;
 use App\Helpers\Validation;
+use App\Models\ProfileLogger;
 use App\Models\State;
 use Core\Controller;
 use Core\Url;
@@ -106,6 +107,30 @@ class HomeController extends Controller{
                 ]);
                 return;
             }
+
+          
+            //verify password
+            if(!password_verify($_POST["password"],$user["hp"])){
+                //upis neuspješne prijave u log 
+                  $msg="Unsuccessfull login by ".User::getUserNameById($user["userId"]);
+                ProfileLogger::log($user["userId"],$msg);
+                 $this->view('home/login',[
+                    'error'=>$errors."Incorrect password.",
+                ]);
+                return;
+            }
+            //save successfull login 
+            $msg="User with email ".User::getUserNameById($user["userId"])." has been logged in";
+            ProfileLogger::log($user["userId"],$msg);
+            $acType=User::getAccountTypeId($user['userId']);
+            var_dump($acType);
+            $_SESSION['user']=[
+                'id'=>$user['userId'],
+                'username'=>$user['username'],
+                'accounttype'=>$acType
+            ];
+            header("Location: index.php");
+            exit;
             
         }
         $this->view('home/login');
