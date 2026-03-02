@@ -4,8 +4,9 @@ class Auth{
 
 //this function true if user is set and user type is admin
     public static function isAdmin():bool{
+        
         return isset($_SESSION['user']) &&
-        $_SESSION['user']['type']==='Admin';
+        $_SESSION['user']['accounttype']===1;
     }
     //this function calls is admin function 
     //if user is not admin user cannot continue until his role is admin

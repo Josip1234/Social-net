@@ -17,7 +17,7 @@ class Config
     {
         if ($_SERVER['APP_ENV'] === '' || $_SERVER['APP_ENV'] !== 'social_admin') {
             $_SERVER['APP_ENV'] = 'regular';
-        }else if((int)Auth::isAdmin()===1){
+        }else if(Auth::isAdmin()===1){
              $_SERVER['APP_ENV'] = 'social_admin';
         }
     }

@@ -123,7 +123,7 @@ class HomeController extends Controller{
             $msg="User with email ".User::getUserNameById($user["userId"])." has been logged in";
             ProfileLogger::log($user["userId"],$msg);
             $acType=User::getAccountTypeId($user['userId']);
-            var_dump($acType);
+            
             $_SESSION['user']=[
                 'id'=>$user['userId'],
                 'username'=>$user['username'],
