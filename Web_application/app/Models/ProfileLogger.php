@@ -14,4 +14,25 @@ class ProfileLogger{
             ':additionDate'=>Carbon::now()
         ]);
     }
+          //function for selecting last inserted id for profile logger
+      public static function getLastIdFromProfileLogger(int $userId):int{
+        $db=Database::getInstance();
+        $sql="SELECT max(pl.plId) FROM profile_logger pl where pl.userId=:userId";
+        $stmt=$db->prepare($sql);
+        $stmt->execute([
+              ':userId'=>$userId
+        ]);
+        return $stmt->fetchColumn();
+      }
+      //function for update profile logger to log user logout
+      public static function updateProfileLogger(int $profileLoggerId):bool{
+        $db=Database::getInstance();
+        $sql = "UPDATE profile_logger set updateDate=:updateDate where plId=:profileLoggerId";
+      $stmt=$db->prepare($sql);
+      return $stmt->execute([
+          ':updateDate'=>\Carbon\Carbon::now(),
+          ':profileLoggerId'=>$profileLoggerId,
+      ]);
+
+      }
 }

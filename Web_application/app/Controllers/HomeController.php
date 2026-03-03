@@ -197,9 +197,9 @@ class HomeController extends Controller{
     //function for user logout
     public function logout():void{
         //get last inserted record from logged in user
-        $lastInsertedIdPl=User::getLastIdFromProfileLogger($_SESSION["user"]["id"]);
+        $lastInsertedIdPl=ProfileLogger::getLastIdFromProfileLogger($_SESSION["user"]["id"]);
         //update profile logger table from last user id
-        User::updateProfileLogger($lastInsertedIdPl);
+        ProfileLogger::updateProfileLogger($lastInsertedIdPl);
         session_destroy();
         header("Location: index.php?page=login");
         exit;
