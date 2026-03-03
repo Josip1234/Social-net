@@ -20,8 +20,13 @@ function active(string $page,string $current):string{
 <!--urls for all unregistered and not logged in users -->
 <a href="index.php" class="<?= active('index',$activePage) ?>">Home page</a>
 <!--urls for non logged in users -->
+<?php if(!isset($_SESSION['user'])): ?>
 <a href="index.php?page=register" class="<?= active('register',$activePage) ?>">Registration</a>
 <a href="index.php?page=login" class="<?= active('login',$activePage) ?>">Login</a>
+<?php else: ?>
+<!-- Logout - all logged in users -->
+ <a href="index.php?page=logout">Logout</a>
+ <?php endif; ?>
         </nav>
         
 

@@ -194,4 +194,14 @@ class HomeController extends Controller{
             header("Location: index.php?page=login");
         }
     }
+    //function for user logout
+    public function logout():void{
+        //get last inserted record from logged in user
+        $lastInsertedIdPl=User::getLastIdFromProfileLogger($_SESSION["user"]["id"]);
+        //update profile logger table from last user id
+        User::updateProfileLogger($lastInsertedIdPl);
+        session_destroy();
+        header("Location: index.php?page=login");
+        exit;
+    }
 }

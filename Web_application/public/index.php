@@ -28,6 +28,9 @@ switch($page){
     case 'setAdmin':
         $controller->setAdmin();
         break;
+    case 'logout':
+        $controller->logout();
+        break;
     default:
         $controller->index();
 }
