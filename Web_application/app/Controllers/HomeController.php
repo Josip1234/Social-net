@@ -200,6 +200,9 @@ class HomeController extends Controller{
         $lastInsertedIdPl=ProfileLogger::getLastIdFromProfileLogger($_SESSION["user"]["id"]);
         //update profile logger table from last user id
         ProfileLogger::updateProfileLogger($lastInsertedIdPl);
+        //message for logout
+          $msg="User with email ".User::getUserNameById($_SESSION["user"]["id"])." has been logged out.";
+        ProfileLogger::log($_SESSION["user"]["id"],$msg);
         session_destroy();
         header("Location: index.php?page=login");
         exit;
