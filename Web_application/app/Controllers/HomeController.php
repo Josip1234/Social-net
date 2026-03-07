@@ -181,7 +181,8 @@ class HomeController extends Controller{
              }else{
                  $this->view('home/register',[
                     'errors'=>$validation,
-                    'data'=>$_POST
+                    'data'=>$_POST,
+                     'states'=>$listOfStates,
                  ]);
             }
             }
