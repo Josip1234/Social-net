@@ -14,4 +14,9 @@ class State{
         $isInserted=($stmt->fetchColumn()>0)?$isInserted=true:$isInserted=false;
         return $isInserted;
     } 
+    //function for selecting all the states from database
+    public static function selectAllStatesFromDatabase():array{
+        $db=Database::getInstance();
+        return $db->query("SELECT s.stateId,s.name FROM state s order by s.stateId asc")->fetchAll();
+    }
 }

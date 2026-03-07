@@ -15,11 +15,13 @@ class HomeController extends Controller{
     private const REGULAR="Regular";
     //this function will rerutn index view
     public function index():void{
+        setcookie("selected","",1);
         $this->view('home/index');
     }
     //return login page
     //if there is any post data process data
     public function login():void{     
+        setcookie("selected","",1);
           //this array will recieve validated value and array of errors
             $auth_array=[];
                 //first we need to check number of registered users number of admins
@@ -137,7 +139,8 @@ class HomeController extends Controller{
     }
         //function for get and post for registration user
         public function register(){
-
+            //get list of states
+             $listOfStates=State::selectAllStatesFromDatabase();
             //if data has been posted
             if($_SERVER["REQUEST_METHOD"]==="POST"){
                 //perform validation first
@@ -183,7 +186,9 @@ class HomeController extends Controller{
             }
             }
        
-            $this->view('home/register');
+            $this->view('home/register',[
+                'states'=>$listOfStates,
+            ]);
         }
         
     //function for setting admins users
@@ -196,6 +201,7 @@ class HomeController extends Controller{
     }
     //function for user logout
     public function logout():void{
+        setcookie("selected","",1);
         //get last inserted record from logged in user
         $lastInsertedIdPl=ProfileLogger::getLastIdFromProfileLogger($_SESSION["user"]["id"]);
         //update profile logger table from last user id

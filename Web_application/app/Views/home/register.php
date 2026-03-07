@@ -105,12 +105,32 @@
           
        
             <div class="disabled" id="form">
+
+                    <label for="state">Select state</label>
+                   <select name="state" id="state" onchange="showSelected()">
+                      <option value="0">--- Select state ---</option>
+                      <?php 
+                      foreach ($states as $state):
+                      ?>
+                      <option value="<?= $state["stateId"] ?>"><?= $state["name"] ?></option>
+                      <?php endforeach; ?>
+                   </select>
+                 <span class="error">Errors for state</span>
+                 <?php
+                 
+                 
+                 $selected=isset($_COOKIE["selected"])??0;
+             
+                  echo $selected;
+                
+                  
+                 ?>
+
                 <label for="city">Insert city</label>
                 <input type="text" name="city" id="city">
                  <span class="error">Errors for city</span>
-                <label for="state">Add new state</label>
-                <input type="text" name="state" id="state">
-                 <span class="error">Errors for state</span>
+              
+             
                 <label for="address">Add new address</label>
                 <input type="text" name="address" id="address">
                  <span class="error">Errors for address</span>

@@ -14,8 +14,10 @@ $_SERVER['APP_ENV']=Config::chooseEnv();
 
 $controller=new HomeController();
 $page=$_GET['page']??'index';
+
 switch($page){
     case 'index':
+        
         $controller->index();
         break;
     case 'login':

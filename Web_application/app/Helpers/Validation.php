@@ -32,6 +32,8 @@ class Validation{
                                 }
                                 if(empty($state)){
                                     $errors["st"]="State is empty.";
+                                }else if($state==="0"){
+                                    $errors["st"]="Invalid chosen state. Please choose valid state.";
                                 }
                                 if(empty($address)){
                                     $errors["ad"]="Address is empty.";
