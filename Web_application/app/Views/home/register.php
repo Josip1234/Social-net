@@ -120,7 +120,7 @@
                       ?>
                       
                      <option value="<?=$state["stateId"]; ?>"
-                     <?= $_POST["state"]===$state["stateId"]?:"selected"; ?>> <?= $state["name"]; ?></option>
+                     <?= (isset($_POST["state"]))?(($_POST["state"]===$state["stateId"])?:"selected"):"" ?>> <?= $state["name"]; ?></option>
                    
                       
                 

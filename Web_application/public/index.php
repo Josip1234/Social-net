@@ -9,6 +9,7 @@ require_once __DIR__.'/../bootstrap.php';
 //choose app env if logged in user is admin app env set to admin otherwise set it to regular user.
 $_SERVER['APP_ENV']=Config::chooseEnv();
 
+
 //we need to fetch user from database if user is regular then regular env should be used 
 //otherwise use social admin will implement this later
 

@@ -1,11 +1,12 @@
 <?php 
 use Dotenv\Dotenv;
+use Core\Config;
 //session start
 session_start();
 //load composer autoload
 require_once __DIR__.'/vendor/autoload.php';
 //environment before loading env files
-$appEnv=$_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? 'social_admin';
+$appEnv=$_SERVER['APP_ENV'] ?? $_ENV['APP_ENV'] ?? Config::chooseEnv();
 //env file choosing
 $envFile=match ($appEnv) {
      'social_admin'=> '.env.social_admin',
