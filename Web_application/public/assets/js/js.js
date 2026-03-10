@@ -22,10 +22,17 @@ function showSelected(){
      var s = document.getElementById("state");
 var selNum = s.options[s.selectedIndex].value;
 //create cookie to tell php that what value has been selected
- createCookie("selected", selNum);
+createCookie("selected", selNum);
  //reloads current url
 // location.reload();
  //showForm();
+ //new solution we will append selected value to url
+ //var oldUrl=window.location;
+ //var newUrl=oldUrl+"?selected="+selNum;
+
+//window.location=newUrl;
+
+                
 }
 
 // Function to create the cookie 

@@ -127,19 +127,30 @@
                 
                 <?php endforeach; ?>
                    </select>
-                 <span class="error">Errors for state</span>
+                   <?php if(isset( $errors["st"])): ?>
+                 <span class="error"><?php $errors["st"]; ?></span>
+                 <?php endif; ?>
                  <?php
                  
                  
-                 $selected=isset($_COOKIE["selected"])??0;
-             
+                 $selected=isset($_COOKIE["selected"])?$_COOKIE["selected"]:0;
+                
+               
                 
                 
                   
                  ?>
-
+               
+               
                 <label for="city">Insert city</label>
-                <input type="text" name="city" id="city">
+                 <select name="city" id="city">
+                  <option value="-1">Odaberi grad</option>
+                  <?php 
+                    foreach ($city as $cit):
+                  ?>
+                  <option value="<?= $cit["postNumber"]; ?>"><?= $cit["name"]; ?></option>
+                  <?php endforeach; ?>
+                 </select>
                  <span class="error">Errors for city</span>
               
              

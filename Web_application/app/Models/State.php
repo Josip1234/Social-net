@@ -19,4 +19,16 @@ class State{
         $db=Database::getInstance();
         return $db->query("SELECT s.stateId,s.name FROM state s order by s.stateId asc")->fetchAll();
     }
+    //function for selecting a state by id 
+    public static function selectStateNameById(int $stateId):string{
+        $selected="";
+        $db=Database::getInstance();
+        $sql="SELECT s.name FROM state s where stateId=:stateId";
+        $stmt=$db->prepare($sql);
+        $stmt->execute([
+            ":stateId"=>$stateId
+        ]);
+        $selected=$stmt->fetchColumn();
+        return $selected;
+    }
 }
