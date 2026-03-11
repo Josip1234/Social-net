@@ -103,15 +103,10 @@
             <span class="error"> <?=  $errors["yvc"]; ?></span>
             <?php endif; ?>
           
-        
-             <p id="pi"> <b>Input address?</b></p>
-            <input type="checkbox" id="ia" onclick="showForm()">
-          
-       
-            <div class="disabled" id="form">
+            <div id="form">
 
                     <label for="state">Select state</label>
-                   <select name="state" id="state" onchange="showSelected()">
+                   <select name="state" id="state" onchange="showSelected()" >
                       <option value="0">--- Select state ---</option>
                
                        <?php    
@@ -120,7 +115,23 @@
                       ?>
                       
                      <option value="<?=$state["stateId"]; ?>"
-                     <?= (isset($_POST["state"]))?(($_POST["state"]===$state["stateId"])?:"selected"):"" ?>> <?= $state["name"]; ?></option>
+                     <?php //because location.refresh after we set up cookie we need to put selected cookie value also in the form 
+                     //need to do this in other fields also ?>
+                     <?php
+                        if(isset($_POST["state"])){
+                          if($_POST["state"]===$state["stateId"]){
+                            echo "selected";
+                          }
+                        }elseif(isset($_COOKIE["selected"])){
+                          if($_COOKIE["selected"]===$state["stateId"]){
+                            echo "selected";
+                          }
+                        }     
+                     ?>
+                    >
+                    <?= $state["name"]; ?>
+                  
+                  </option>
                    
                       
                 
@@ -143,7 +154,7 @@
                
                
                 <label for="city">Insert city</label>
-                 <select name="city" id="city">
+                 <select name="city" id="city" onchange="showSelectedCity()">
                   <option value="-1">Odaberi grad</option>
                   <?php 
                     foreach ($city as $cit):

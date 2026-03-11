@@ -1,3 +1,10 @@
+//this function will load selected values into select choice after cookies 
+//has been set
+window.onload=function(){
+    document.getElementById("state").selectedIndex=localStorage.getItem("selected");
+    document.getElementById("city").selectedIndex=localStorage.getItem("selectedCity");
+}
+
 //show form hide checbox and label checkbox
 function showForm(){
      document.getElementById("form").className="enabled";
@@ -24,15 +31,27 @@ var selNum = s.options[s.selectedIndex].value;
 //create cookie to tell php that what value has been selected
 createCookie("selected", selNum);
  //reloads current url
-// location.reload();
+ var selected=document.getElementById("state").value;
+ localStorage.setItem("selected",selected);
+ location.reload();
+
  //showForm();
  //new solution we will append selected value to url
  //var oldUrl=window.location;
  //var newUrl=oldUrl+"?selected="+selNum;
 
-//window.location=newUrl;
-
-                
+//window.location=newUrl;           
+}
+//this function will refresh page and create city cookie
+function showSelectedCity(){
+         var s = document.getElementById("city");
+var selNumCit = s.options[s.selectedIndex].value;
+//create cookie to tell php that what value has been selected
+createCookie("selectedCity", selNumCit);
+ //reloads current url
+ var selected=document.getElementById("city").value;
+ localStorage.setItem("selectedCity",selected);
+ location.reload();
 }
 
 // Function to create the cookie 
@@ -51,3 +70,6 @@ function createCookie(name, value, days) {
     document.cookie = name + "=" +
         value + expires + "; path=Social-net/Web_application/public/index.php?page=register";
 }
+
+
+    
