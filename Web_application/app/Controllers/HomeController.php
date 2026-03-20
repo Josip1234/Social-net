@@ -147,6 +147,7 @@ class HomeController extends Controller{
            
                 //perform validation first
                          $validation=Validation::validateForm();
+                       
             
               //if validation has been passed register user
             if($validation===true){

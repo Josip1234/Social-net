@@ -22,24 +22,6 @@ class Validation{
                         $dbirth=$_POST["dbirth"];
                         //if address exists recive post variable from address
                         //and if input value is yes
-                        if(isset($_POST["includeAddress"]) && $_POST["includeAddress"]==="yes"){
-                                $city=self::clean_input($_POST["city"]);
-                                $state=self::clean_input($_POST["state"]);
-                                $address=self::clean_input($_POST["address"]);
-
-                                if(empty($city)){
-                                    $errors["ct"]="City is empty.";
-                                }
-                                if(empty($state)){
-                                    $errors["st"]="State is empty.";
-                                }else if($state==="0"){
-                                    $errors["st"]="Invalid chosen state. Please choose valid state.";
-                                }
-                                if(empty($address)){
-                                    $errors["ad"]="Address is empty.";
-                                }
-                                
-                        }
                         $password=self::clean_input($_POST["hp"]);
                         //if first name is empty add error to array
                         //or if length of the string is equal to 0
