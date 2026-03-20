@@ -102,73 +102,7 @@
               <?php if(isset( $errors["yvc"])): ?>
             <span class="error"> <?=  $errors["yvc"]; ?></span>
             <?php endif; ?>
-          
-            <div id="form">
-
-                    <label for="state">Select state</label>
-                   <select name="state" id="state" onchange="showSelected()" >
-                      <option value="0">--- Select state ---</option>
-               
-                       <?php    
-                  
-                    foreach ($states as $state):
-                      ?>
-                      
-                     <option value="<?=$state["stateId"]; ?>"
-                     <?php //because location.refresh after we set up cookie we need to put selected cookie value also in the form 
-                     //need to do this in other fields also ?>
-                     <?php
-                        if(isset($_POST["state"])){
-                          if($_POST["state"]===$state["stateId"]){
-                            echo "selected";
-                          }
-                        }elseif(isset($_COOKIE["selected"])){
-                          if($_COOKIE["selected"]===$state["stateId"]){
-                            echo "selected";
-                          }
-                        }     
-                     ?>
-                    >
-                    <?= $state["name"]; ?>
-                  
-                  </option>
-                   
-                      
-                
-                
-                <?php endforeach; ?>
-                   </select>
-                   <?php if(isset( $errors["st"])): ?>
-                 <span class="error"><?php $errors["st"]; ?></span>
-                 <?php endif; ?>
-                 <?php
-                 
-                 
-                 $selected=isset($_COOKIE["selected"])?$_COOKIE["selected"]:0;
-                
-               
-                
-                
-                  
-                 ?>
-               
-               
-                <label for="city">Insert city</label>
-                 <select name="city" id="city" onchange="showSelectedCity()">
-                  <option value="-1">Odaberi grad</option>
-                  <?php 
-                    foreach ($city as $cit):
-                  ?>
-                  <option value="<?= $cit["postNumber"]; ?>"><?= $cit["name"]; ?></option>
-                  <?php endforeach; ?>
-                 </select>
-                 <span class="error">Errors for city</span>
-              
-             
-                <label for="address">Add new address</label>
-                <input type="text" name="address" id="address">
-                 <span class="error">Errors for address</span>
-            </div>
+        
             <label for="hp">Input password</label>
             <input type="password" name="hp" id="hp">
                        <?php if(isset($errors["ps"])): ?>

@@ -141,32 +141,10 @@ class HomeController extends Controller{
     }
         //function for get and post for registration user
         public function register(){
-            //select state for selected id 
-            //if there is no selected value list cities with id 0
-            $selected=(isset($_COOKIE["selected"]))?$_COOKIE["selected"]:0;
-            $selectStates=State::selectStateNameById($selected);
-            
-            
-              //get list of cities depending of selected value
-              $listOfCities= City::getCityRecord($selectStates);
-            
-          
-            
-            //get list of states
-             $listOfStates=State::selectAllStatesFromDatabase();
+         
             //if data has been posted
             if($_SERVER["REQUEST_METHOD"]==="POST"){
-                     //select state for selected id 
-         
-                       $selected=(isset($_COOKIE["selected"]))?$_COOKIE["selected"]:0;
-            $selectStates=State::selectStateNameById($selected);
            
-              //get list of cities depending of selected value
-              $listOfCities= City::getCityRecord($selectStates);
-          
-            
-            //get list of states
-             $listOfStates=State::selectAllStatesFromDatabase();
                 //perform validation first
                          $validation=Validation::validateForm();
             
@@ -199,7 +177,6 @@ class HomeController extends Controller{
                     'regDate'=>$regDate,
                     'types'=>$accTypes,
                     $userType,
-                    'city'=>$listOfCities
                  ]);
             //in every other case return to registration form with validation errors
             //also return posted data to fill out old values if they are inputted
@@ -207,15 +184,11 @@ class HomeController extends Controller{
                  $this->view('home/register',[
                     'errors'=>$validation,
                     'data'=>$_POST,
-                     'states'=>$listOfStates,
-                      'city'=>$listOfCities
                  ]);
             }
             }
        
             $this->view('home/register',[
-                'states'=>$listOfStates,
-                 'city'=>$listOfCities
             ]);
         }
         

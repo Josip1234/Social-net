@@ -3,7 +3,7 @@
         'name' => 'app/social_network',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '6ec20c959a996596737a46419d1128e11848dcf2',
+        'reference' => 'c2beb663cf0ebf3bfbc74e32a4d0c2906ad5b141',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'app/social_network' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '6ec20c959a996596737a46419d1128e11848dcf2',
+            'reference' => 'c2beb663cf0ebf3bfbc74e32a4d0c2906ad5b141',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
