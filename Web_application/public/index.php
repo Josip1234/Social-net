@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\HomeController;
+use App\Controllers\UserController;
 use Core\Config;
 
 
@@ -14,6 +15,8 @@ $_SERVER['APP_ENV']=Config::chooseEnv();
 //otherwise use social admin will implement this later
 
 $controller=new HomeController();
+$userController = new UserController();
+
 $page=$_GET['page']??'index';
 
 switch($page){
@@ -33,6 +36,9 @@ switch($page){
         break;
     case 'logout':
         $controller->logout();
+        break;
+    case 'users/profile':
+        $userController->index();
         break;
     default:
         $controller->index();
