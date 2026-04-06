@@ -179,12 +179,14 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
       //function to return data from user
       public static function profileData(int $userId):array{
          $db=Database::getInstance();
-         $sql="select p.firstName,p.lastName,p.email,p.sex,p.dateOfBirth,i.imageName,i.url,pd.acTypeId,pd.accountStatus,pd.registrationDate
+         $sql="select p.firstName,p.lastName,p.email,p.sex,p.dateOfBirth,i.imageName,i.url,pd.acTypeId,aty.acTypeName,pd.accountStatus,pd.registrationDate
               ,ad.street,cit.postNumber,cit.name as CitName,st.name as StName from profile p right join image i on p.userId=i.userId
               right join profiledetails pd on p.userId=pd.proDetId 
               right join address ad on p.addressId=ad.addressId
               right join city cit on ad.postNumber=cit.postNumber
               right join state st on cit.stateId=st.stateId
+              right join accounttype aty on 
+              pd.acTypeId = aty.acTypeId
               where p.userId=:userId";
           $stmt=$db->prepare($sql);
           $stmt->execute([":userId"=>$userId]);
