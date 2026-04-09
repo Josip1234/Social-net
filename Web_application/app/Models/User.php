@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Core\Database;
+use Core\Auth;
 
 class User
 {
@@ -191,6 +192,21 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
           $stmt=$db->prepare($sql);
           $stmt->execute([":userId"=>$userId]);
           return $stmt->fetch();
+      }
+      //function for updating basic user information
+      public static function updateProfileTable(array $profile){
+            $db=Database::getInstance();
+            $sql="UPDATE profile set firstName=:firstName, lastName=:lastName, email=:email, sex=:sex, dateOfBirth=:dateOfBirth,
+            where userId=:userId";
+            $stmt=$db->prepare($sql);
+            return $stmt->execute([
+                ':firstName'=>$profile['firstName'],
+                ':lastName'=>$profile['lastName'],
+                ':email'=>$profile['email'],
+                ':sex'=>$profile['sex'],
+                ':dateOfBirth'=>$profile['dateOfBirth'],
+                ':userId'=>$profile['userId']
+            ]);
       }
 
 }
