@@ -12,8 +12,7 @@
 <div class="con">
 <nav>
 
-<a href="#" target="_blank">Registration</a>
-<a href="#" target="_blank">Login</a>
+<?php include "navigacija.php"; ?>
 
 </nav>
 </div>

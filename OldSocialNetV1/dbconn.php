@@ -8,6 +8,7 @@ $db='scn';
 try {
     $dbc=mysqli_connect($host,$user,$pass,$db);
     mysqli_set_charset($dbc,"utf8mb4");
+    ini_set('display_errors',0);
 } catch (mysqli_sql_exception $ex) {
     echo $ex->getMessage();
     echo "<br>";

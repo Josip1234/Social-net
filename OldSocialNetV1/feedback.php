@@ -1,5 +1,5 @@
 <?php
-include "dbconn.php";
+include "functions.php";
 
 ?>
 <!doctype html>
@@ -16,8 +16,7 @@ include "dbconn.php";
 <div class="con">
 <nav>
 
-<a href="#" target="_blank">Registation</a>
-<a href="#" target="_blank">Login</a>
+<?php include "navigacija.php"; ?>
 
 </nav>
 </div>
@@ -26,24 +25,46 @@ include "dbconn.php";
 <h2>Your feedback</h2>
 <form action="<?=  htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
 <label>Your first name:</label><br/>
-<input type="text" name="fname"/><br/>
+<input type="text" name="fname" required autocomplete="off"/><br/>
 <label>Your last name:</label><br/>
-<input type="text" name="lname"/><br/>
+<input type="text" name="lname" required autocomplete="off"/><br/>
 <label>Suggestions of improvment:</label><br/>
-<textarea name="suggestions"></textarea>
+<textarea name="suggestions" required></textarea>
 <br/>
 <input type="submit" value="Send suggestion"/>
 </form>
 
 <?php
 if($_SERVER["REQUEST_METHOD"]==="POST"){
+$msg="Cannot add empty information";
+$smsg="Thanks for adding some suggestions!";
 $fname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
-$lname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
-$suggestions=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['suggestions'])));
+if($fname!=''){
+    $lname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
+    if($lname!=''){
+        $suggestions=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['suggestions'])));
+        if($suggestions!=''){
+                $query="INSERT INTO kvaliteta (firstname,lastname,suggestion) VALUES ('$fname','$lname','$suggestions')";
+                mysqli_query($dbc,$query);
+                mysqli_close($dbc);
+                if($query){
+                    header('Location:index.php?msg='.$smsg);
+                }else{
+                    echo "Error! Information not inserted.";
+                }
+        }else{
+            echo $msg;
+        }
+    }else{
+        echo $msg;
+    }
+}else{
+    echo $msg;
+}
 
-$query="INSERT INTO kvaliteta (firstname,lastname,suggestion) VALUES ('$fname','$lname','$suggestions')";
-mysqli_query($dbc,$query);
-mysqli_close($dbc);
+
+
+
 }
 ?>
 

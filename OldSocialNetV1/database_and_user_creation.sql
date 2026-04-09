@@ -13,3 +13,20 @@ select * from kvaliteta;
 alter table kvaliteta change column fname firstname varchar(50);
 alter table kvaliteta change column lname lastname varchar(50);
 alter table kvaliteta change column suggestions suggestion text;
+create table registration (
+id int primary key auto_increment,
+fname varchar(50) not null,
+lname varchar(50) not null,
+sex char(1) not null,
+dateOfBirth date not null,
+cityOfBirth varchar(50) not null,
+countryOfBirth varchar(50) not null,
+pass varchar(50) not null,
+profilepicture longblob not null);
+alter table kvaliteta modify column firstname varchar(50) not null;
+alter table kvaliteta modify column lastname varchar(50) not null;
+alter table kvaliteta modify column suggestion text not null;
+create table obavljeno(
+id int primary key auto_increment,
+obavljeno tinyint(1) not null);
+select * from registration;
