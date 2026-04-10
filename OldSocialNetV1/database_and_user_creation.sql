@@ -30,3 +30,13 @@ create table obavljeno(
 id int primary key auto_increment,
 obavljeno tinyint(1) not null);
 select * from registration;
+alter table registration add column email varchar(50) unique;
+alter table registration drop column email;
+alter table registration add column email varchar(50) unique not null;
+alter table registration modify column profilepicture longblob null;
+alter table registration drop column profilepicture;
+create table profilna(
+id int auto_increment primary key,
+imageId tinyint(4) not null,
+imageType varchar(25) not null,
+imageData longblob not null);

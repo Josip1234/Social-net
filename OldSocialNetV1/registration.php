@@ -18,7 +18,7 @@
 </div>
 <div class="pravila">
 <section><h2>Register here</h2>
-<form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+<form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 <label>First name:</label><br/>
 <input type="text" name="fname" autocomplete="off" maxlength="50" size="17" required/><br/>
 <label>Last name:</label><br/>
@@ -35,9 +35,10 @@
 <input type="text" name="country_of_birth" maxlength="50" size="17" autocomplete="off" /><br/>
 <label>Pass:</label><br/>
 <input type="password" name="pass" maxlength="50" size="17" required autocomplete="off" /><br/>
-<label>Profile picture:</label><br/>
-<input type="file" name="slika"><br/> 
-<br/>
+
+<label for="email">Email:</label> <br>
+<input type="email" name="email" id="email" size="17" required>
+<br>
 <input type="submit" value="Register"/>
 </form>
 <?php 
@@ -104,19 +105,19 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
      }
      //ako nema grešaka može unos u tablicu
 
-     $profilepicture=$_POST["slika"];
-     if($profilepicture===''){
-        echo "Picture is required!";
-        $numberOfErrors++;
+     $email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
+     if($email===''){
+      echo "Email is required";
+      $numberOfErrors++;
      }
 
      if($numberOfErrors===0){
-        $query="INSERT INTO registration (fname,lname,sex,dateOfBirth,cityOfBirth,countryOfBirth,pass,profilepicture)
-        values ('$fname','$lname','$sex','$dateOfBirth','$cityOfBirth','$countryOfBirth',password_hash($pass,PASSWORD_DEFAULT),'$profilepicture')";
+        $query="INSERT INTO registration (fname,lname,sex,dateOfBirth,cityOfBirth,countryOfBirth,pass,email)
+        values ('$fname','$lname','$sex','$dateOfBirth','$cityOfBirth','$countryOfBirth','" . password_hash($pass, PASSWORD_DEFAULT) . "','$email')";
         mysqli_query($dbc,$query);
         if($query){
             mysqli_close($dbc);
-            header('Location: index.php');
+            header('Location: profilna.php');
         }else{
             die("Cannot add information in tables. Please check your connection.");
                 mysqli_close($dbc);
