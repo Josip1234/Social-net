@@ -196,7 +196,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
       //function for updating basic user information
       public static function updateProfileTable(array $profile){
             $db=Database::getInstance();
-            $sql="UPDATE profile set firstName=:firstName, lastName=:lastName, email=:email, sex=:sex, dateOfBirth=:dateOfBirth,
+            $sql="UPDATE profile set firstName=:firstName, lastName=:lastName, email=:email, sex=:sex, dateOfBirth=:dateOfBirth
             where userId=:userId";
             $stmt=$db->prepare($sql);
             return $stmt->execute([

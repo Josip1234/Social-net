@@ -1,5 +1,5 @@
 //this function will load selected values into select choice after cookies 
-//has been set
+//has been set 
 window.onload=function(){
     document.getElementById("state").selectedIndex=localStorage.getItem("selected");
     document.getElementById("city").selectedIndex=localStorage.getItem("selectedCity");

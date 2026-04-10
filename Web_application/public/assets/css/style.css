@@ -129,3 +129,6 @@ input[type=submit]:hover, button[type=reset]:hover, button[type=submit]:hover {
     font-weight: bold;
 
 }
+.success{
+    color:green;
+}

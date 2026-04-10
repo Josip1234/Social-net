@@ -40,6 +40,12 @@ switch($page){
     case 'users/profile':
         $userController->index();
         break;
+    case 'users/update':
+        $userController->edit();
+        break;
+    case 'users/edit':
+        $userController->update();
+        break;
     default:
         $controller->index();
 }

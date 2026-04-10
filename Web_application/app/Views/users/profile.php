@@ -17,7 +17,7 @@
                 <label for="dbirth">Date of birth</label>
             <input type="date" name="dbirth" id="dbirth" value="<?= $profil["dateOfBirth"]; ?>" max="999-12-31" readonly>
             <span id="updateBasicInfo">
-                 <?php echo "<a href='?id={$profil["userId"]}'>Update basic information</a>"; ?>
+                 <?php echo "<a href='?page=users/update&id={$profil["userId"]}'>Update basic information</a>"; ?>
             </span>
             <label for="img">Profile image:</label>
             <img src="<?= $profil["url"]; ?>" alt="<?= $profil["imageName"] ?>" id="img" readonly>
@@ -59,7 +59,11 @@
                  <?php echo "<a href='?id={$profil["userId"]}'>Update address</a>"; ?>
             </span>
          </form>
-     
+         <?php if(isset($_SESSION['update'])): ?>
+     <div class="message">
+          <p class="success"><?= $_SESSION['update']; ?></p>
+     </div>
+     <?php endif; unset($_SESSION['update']);?>
     </div>
 
 </main>
