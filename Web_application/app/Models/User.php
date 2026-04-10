@@ -208,5 +208,37 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
                 ':userId'=>$profile['userId']
             ]);
       }
-
+      //function for updating basic image data
+      public static function updateImageDate(array $basicImageData){
+        $db=Database::getInstance();
+        $sql="UPDATE image set imageName=:imageName, url=:url where userId=:userId and imageId=:imageId";
+        $stmt=$db->prepare($sql);
+        return $stmt->execute([
+            ':imageName'=>$basicImageData['imageName'],
+            ':url'=>$basicImageData['url'],
+            ':userId'=>$basicImageData['userId'],
+            ':imageId'=>$basicImageData['imageId']
+        ]);
+      }
+    //function for update account type
+    public static function updateAccountType(array $profileDet){
+      $db=Database::getInstance();
+      $sql="UPDATE profiledetails set acTypeId=:acTypeId where userId=:userId";
+      $stmt=$db->prepare($sql);
+      return $stmt->execute([
+          ':acTypeId'=>$profileDet['acTypeId'],
+          ':userId'=>$profileDet['userId']
+      ]);
+    }
+    //function for update account status
+    public static function updateAccountStatus(array $profileDet){
+      $db=Database::getInstance();
+      $sql="UPDATE profiledetails set pdUpdateDate=:pdUpdateDate, accountStatus=:accountStatus where userId=:userId";
+      $stmt=$db->prepare($sql);
+      return $stmt->execute([
+          ':pdUpdateDate'=>date("Y-m-d H:i:s"),
+          ':accountStatus'=>$profileDet['accountStatus'],
+          ':userId'=>$profileDet['userId']
+      ]);
+    }
 }
