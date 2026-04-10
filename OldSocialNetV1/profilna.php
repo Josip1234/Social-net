@@ -20,13 +20,16 @@
 <div class="pravila">
 <section><h2>Update your profile picture here</h2>
 <?php
+
+
 if(count($_FILES) > 0) {
 if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
-
+$email=$_POST["email"];
+$imageId=str_replace([" ","-",":"],"",date("Y-m-d H:i:s"));
 $imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
 $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
-$sql = "INSERT INTO profilna(imageType ,imageData)
-VALUES('{$imageProperties['mime']}', '{$imgData}')";
+$sql = "INSERT INTO profilna(imageType ,imageData,email,imageId)
+VALUES('{$imageProperties['mime']}', '{$imgData}', '$email','$imageId')";
 mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 if($sql){
@@ -35,6 +38,7 @@ if($sql){
 }}
 ?>
 <form name="frmImage" enctype="multipart/form-data" action="profilna.php" method="post" class="frmImageUpload">
+<input type="hidden" name="email" value="<?= $_GET["email"]; ?>">
 <label>Upload Image File:</label><br/>
 <input name="userImage" type="file" class="inputFile" />
 <input type="submit" value="Submit" class="btnSubmit" />

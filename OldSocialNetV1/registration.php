@@ -117,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
         mysqli_query($dbc,$query);
         if($query){
             mysqli_close($dbc);
-            header('Location: profilna.php');
+            header('Location: profilna.php?email='.$email);
         }else{
             die("Cannot add information in tables. Please check your connection.");
                 mysqli_close($dbc);

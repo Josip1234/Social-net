@@ -40,3 +40,17 @@ id int auto_increment primary key,
 imageId tinyint(4) not null,
 imageType varchar(25) not null,
 imageData longblob not null);
+alter table profilna modify column imageId tinyint(4) not null unique;
+use test;
+alter table profilna add column email varchar(50);
+alter table profilna add constraint email_fk foreign key (email) references registration(email);
+create table uloge(
+id int primary key auto_increment,
+user_id int not null,
+uloga enum('Administrator','Korisnik','Banovani korisnik'),
+constraint user_id_fk foreign key (user_id) references registration(id) on delete cascade on update cascade);
+drop table uloge;
+alter table profilna drop constraint email_fk;
+alter table profilna add constraint email_fk foreign key (email) references registration(email) on delete cascade on update cascade;
+alter table profilna drop column imageId;
+alter table profilna add column imageId varchar(50) not null unique;
