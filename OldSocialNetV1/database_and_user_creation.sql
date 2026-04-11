@@ -54,3 +54,5 @@ alter table profilna drop constraint email_fk;
 alter table profilna add constraint email_fk foreign key (email) references registration(email) on delete cascade on update cascade;
 alter table profilna drop column imageId;
 alter table profilna add column imageId varchar(50) not null unique;
+select * from registration;
+alter table registration modify column pass varchar(255) not null;

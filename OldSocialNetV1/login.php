@@ -19,7 +19,7 @@
 <section><h2>Login here</h2>
 <form action="login.php" method="post">
 <label>Username:</label><br/>
-<input type="text" name="username" maxlength="50" size="15" required autocomplete="off"/>
+<input type="text" name="email" maxlength="50" size="15" required autocomplete="off" placeholder="Enter your email"/>
 <br/>
 <label>Password:</label><br/>
 <input type="password" name="pass" required size="15" autocomplete="off"/>
@@ -27,6 +27,17 @@
 <input type="submit" value="Login"/>
 
 </form>
+<?php 
+if($_SERVER["REQUEST_METHOD"]==="POST"){
+$username=mysqli_real_escape_string($dbc,trim(strip_tags($_POST["email"])));
+if($username!=''){
+    $pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST["pass"])));
+    provjeri_dali_postoji_u_bazi($username,$pass);
+}
+}
+
+
+?>
 </section>
 </div>
 

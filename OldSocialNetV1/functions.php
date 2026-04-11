@@ -15,3 +15,34 @@ function provjeri_prethodnog(string $fname,string $lname,string $suggestions):bo
     }
     return $postoji;
 }
+function provjeri_dali_postoji_u_bazi(string $username, string $password){
+    global $dbc;
+    $query="SELECT email from registration where email='$username'";
+    $pass_hash="SELECT pass from registration where email='$username'";
+    $q=mysqli_query($dbc,$query);
+    $q2=mysqli_query($dbc,$pass_hash);
+    if($res=mysqli_fetch_array($q)){
+        if($res["email"]==$username){
+            if($res2=mysqli_fetch_array($q2)){
+                //verifikacija passworda trebamo plain text i hash iz baze
+                
+                if(password_verify($password,$res2["pass"])){
+                          session_start();
+                        $_SESSION["username"]=$username;
+                        $_SESSION["pass"]=password_hash($password,PASSWORD_DEFAULT);
+                        $_SESSION["loggedin"]=1;
+                        echo "User has been successfully logged in.";
+                }else{
+                     $_SESSION["loggedin"]=0;
+                    die("Wrong password. Please, try again.");
+                }
+            }
+           
+        }
+    }else{
+        $_SESSION["loggedin"]=0;
+      
+        die("Username does not exist in database. Registration is needed.");
+        
+    }
+}
