@@ -14,7 +14,7 @@ class Validation{
                 //if post variable regValidation is set and different than null
                 //and if value of hidden field equals validate
                 //that means registration form has been sent
-                if(isset($_POST["regValidation"]) && $_POST["regValidation"]==="validate"){
+                if(isset($_POST["regValidation"]) && $_POST["regValidation"]==="validate" || isset($_POST["updValidation"]) && $_POST["updValidation"]==="validate"){
                         $fname=self::clean_input($_POST["fname"]);
                         $lname=self::clean_input($_POST["lname"]);
                         $email=self::clean_input($_POST["email"]);
@@ -22,7 +22,10 @@ class Validation{
                         $dbirth=$_POST["dbirth"];
                         //if address exists recive post variable from address
                         //and if input value is yes
-                        $password=self::clean_input($_POST["hp"]);
+                        if(isset($_POST["regValidation"])){
+                                $password=self::clean_input($_POST["hp"]);
+                        }
+                        
                         //if first name is empty add error to array
                         //or if length of the string is equal to 0
                         if(empty($fname) || strlen($fname)===0){
@@ -69,14 +72,15 @@ class Validation{
                         if($difference<18){
                             $errors["yva"]="Only persons which have 18 years and greather can be registered to the social network.";
                         }
-                   
+                         if(isset($_POST["regValidation"])){
                         if(empty($password)){
                             $errors["ps"]="Password is empty.";
                         }
+                         
                         if(strlen($password)<8){
                             $errors["pl"]="Password have less than 8 characters. Please, add more characters.";
                         }
-                    
+                         }
                         
                        
                 }

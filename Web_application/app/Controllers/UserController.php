@@ -31,7 +31,14 @@ class UserController extends Controller{
                    $profil=User::profileData($_SESSION['user']['id']);
                 $this->view('users/profile',
                 ['profil'=>$profil]);
+              }else{
+                $profil=User::profileData($_SESSION['user']['id']);
+                  $this->view('users/update',[
+                    'errors'=>$validation,
+                    'profil'=>$profil,
+                    'data'=>$_POST,
+                 ]);
               }
-              //prema registraciji treba dodati ispis grešaka i vraćanje viewa sa greškama.
+             
         }
 }
