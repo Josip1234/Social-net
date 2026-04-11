@@ -177,7 +177,6 @@ class HomeController extends Controller{
                  //need to see which user is what type of user
                  //default account name is regular we will use constant regular
                  $userType=User::getAcTypeId(self::REGULAR);
-                 
                  header("Location: index.php?page=login");
                  $this->view('home/register',[
                     'max'=>$maxId,
