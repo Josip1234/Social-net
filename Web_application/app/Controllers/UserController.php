@@ -1,16 +1,18 @@
 <?php 
 namespace App\Controllers;
 
+use App\Helpers\FilesHelper;
 use App\Helpers\Validation;
 use Core\Controller;
 use Core\Auth;
 use App\Models\User;
 
 class UserController extends Controller{
-  
+        //activate helpers for checking and creating user image folders if they are not existing
         public function index(){
             Auth::requireLogin();
             $profil=User::profileData($_SESSION['user']['id']);
+     
              $this->view('users/profile',[
                 'profil'=>$profil
              ]);

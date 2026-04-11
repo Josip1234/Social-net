@@ -10,13 +10,18 @@ use Core\Url;
 use App\Models\User;
 use Core\Auth;
 use App\Models\City;
+use App\Helpers\FilesHelper;
 
 class HomeController extends Controller{
     //this const is default user type
     private const REGULAR="Regular";
     //this function will rerutn index view
     public function index():void{
-        setcookie("selected","",1);
+        //setcookie("selected","",1);
+                //get list of user ids
+            $userIds=User::getAllUserIds();
+            //create folders
+            FilesHelper::createFoldersForRegisteredUsers($userIds);
         $this->view('home/index');
     }
     //return login page
@@ -146,7 +151,7 @@ class HomeController extends Controller{
             if($_SERVER["REQUEST_METHOD"]==="POST"){
            
                 //perform validation first
-                         $validation=Validation::validateForm();
+                $validation=Validation::validateForm();
                        
             
               //if validation has been passed register user
@@ -173,6 +178,7 @@ class HomeController extends Controller{
                  //default account name is regular we will use constant regular
                  $userType=User::getAcTypeId(self::REGULAR);
                  
+                 header("Location: index.php?page=login");
                  $this->view('home/register',[
                     'max'=>$maxId,
                     'regDate'=>$regDate,

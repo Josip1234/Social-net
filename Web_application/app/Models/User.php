@@ -23,7 +23,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
             ':sex' => $data['sex'],
             ':dbirth' => $data['dbirth'],
             ':adid' => $data['adid'],
-            ':hp' => password_hash($data[':hp'],PASSWORD_DEFAULT)
+            ':hp' => password_hash($data['hp'],PASSWORD_DEFAULT)
         ]);
     }
     //function for activating account, 
@@ -240,5 +240,11 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
           ':accountStatus'=>$profileDet['accountStatus'],
           ':userId'=>$profileDet['userId']
       ]);
+    }
+    //function to get all user id-s from database
+    public static function getAllUserIds():array{
+        $db=Database::getInstance();
+        $sql="SELECT p.userId FROM profile p order by p.userId asc";
+        return $db->query($sql)->fetchAll();
     }
 }
