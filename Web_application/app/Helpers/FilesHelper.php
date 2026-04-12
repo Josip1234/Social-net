@@ -27,5 +27,11 @@ class FilesHelper{
         }
        }
     }
+    //this function will return current directory of profile image folders
+    public static function returnCurrentUrl(int $userId):string{
+            $url=self::IMAGE_DIRECTORY.$userId;
+           
+            return $url;
+    }
 }
 

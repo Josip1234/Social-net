@@ -43,4 +43,11 @@ class UserController extends Controller{
               }
              
         }
+        public function updateProfileImage(){
+                $currentDirectory=isset($_GET["id"])?$_GET["id"]:0;
+                FilesHelper::returnCurrentUrl($currentDirectory);
+                $this->view('users/profile_img_update',[
+                   'directory'=>$currentDirectory
+                ]);;
+        }
 }

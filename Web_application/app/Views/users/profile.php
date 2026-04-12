@@ -23,7 +23,7 @@
             <img src="<?= $profil["url"]; ?>" alt="<?= $profil["imageName"] ?>" id="img" readonly>
 
             <span id="updateProfileImage">
-                 <?php echo "<a href='?id={$profil["userId"]}'>Update profile image</a>"; ?>
+                 <?php echo "<a href='?page=users/profile_img_update&id={$profil["userId"]}'>Update profile image</a>"; ?>
             </span>
 
              <label for="acTypeId">Account type:</label>
