@@ -50,9 +50,10 @@ user_id int not null,
 uloga enum('Administrator','Korisnik','Banovani korisnik'),
 constraint user_id_fk foreign key (user_id) references registration(id) on delete cascade on update cascade);
 drop table uloge;
-alter table profilna drop constraint email_fk;
+
 alter table profilna add constraint email_fk foreign key (email) references registration(email) on delete cascade on update cascade;
 alter table profilna drop column imageId;
 alter table profilna add column imageId varchar(50) not null unique;
 select * from registration;
 alter table registration modify column pass varchar(255) not null;
+select r.id,r.email,u.id,u.uloga from registration r left join uloge u on r.id=u.user_id;

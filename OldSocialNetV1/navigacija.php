@@ -4,3 +4,4 @@
   <a href="registration.php">Registration</a>
   <a href="login.php">Login</a>
 <a href="index.php">Homepage</a>
+<a href="dodjeli_uloge.php">Assign user roles</a>

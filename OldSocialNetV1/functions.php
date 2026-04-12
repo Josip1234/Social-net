@@ -1,5 +1,6 @@
 <?php 
 include "dbconn.php";
+session_start();
 //ova funkcija bi trebala riješiti ponovni unos nakon refresh stranice
 //ova funkcija je višak možda će biti potrebna pa ćemo je ostaviti ovdje
 function provjeri_prethodnog(string $fname,string $lname,string $suggestions):bool{
@@ -27,11 +28,13 @@ function provjeri_dali_postoji_u_bazi(string $username, string $password){
                 //verifikacija passworda trebamo plain text i hash iz baze
                 
                 if(password_verify($password,$res2["pass"])){
-                          session_start();
+                          
                         $_SESSION["username"]=$username;
                         $_SESSION["pass"]=password_hash($password,PASSWORD_DEFAULT);
                         $_SESSION["loggedin"]=1;
+                        $_SESSION["isLogged"]=time();
                         echo "User has been successfully logged in.";
+                        header("Location: trenutnifeedback.php");
                 }else{
                      $_SESSION["loggedin"]=0;
                     die("Wrong password. Please, try again.");
