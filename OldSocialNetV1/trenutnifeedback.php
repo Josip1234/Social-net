@@ -22,8 +22,12 @@
 <?php
 include('functions.php');
 $formAction=htmlspecialchars($_SERVER["PHP_SELF"]);
-$query="SELECT id,firstname,lastname,suggestion FROM kvaliteta";
+//this query will take only suggestions which has noot been solved.
+$query="SELECT k.id,k.firstname,k.lastname,k.suggestion FROM kvaliteta k
+left join obavljeno o on k.id=o.kvaliteta_id where o.obavljeno is null";
 $q=mysqli_query($dbc,$query);
+$numberOfRows=mysqli_num_rows($q);
+if($numberOfRows>0){
 echo "<table border='1'><thead><tr><th>Broj feedbacka</th>
 	<th>Ime i prezime</th>
 	<th>Feedback</th>
@@ -44,16 +48,29 @@ while($row=mysqli_fetch_array($q)){
 	echo "</tr>";
 };
 echo "</tbody></table>";
-mysqli_close($dbc);
+}else{
+	echo "There are no suggestions left. Everything has been solved.";
+}
+
 	if($_SERVER["REQUEST_METHOD"]==="POST"){
 		if(isset($_POST["done"])){
 			$done=$_POST["done"];
 		}else{
 			$done=0;
 		}
+		if($done!=0){
 		$id=$_POST["id"];
-		echo $done;
-		echo $id;
+		$sql="INSERT INTO obavljeno (obavljeno, kvaliteta_id) values ('$done','$id')";
+		mysqli_query($dbc,$sql);
+		if($query){
+			$msg="Successfully solved suggestion.";
+			mysqli_close($dbc);
+			header('Location: trenutnifeedback.php?msg='.$msg);
+		}
+		}else{
+			echo "There is nothing to insert.";
+		}
+
 	}
 ?>
 

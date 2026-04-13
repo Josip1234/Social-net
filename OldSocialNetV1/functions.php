@@ -34,7 +34,7 @@ function provjeri_dali_postoji_u_bazi(string $username, string $password){
                         $_SESSION["loggedin"]=1;
                         $_SESSION["isLogged"]=time();
                         echo "User has been successfully logged in.";
-                        header("Location: trenutnifeedback.php");
+                        header("Location: index.php");
                 }else{
                      $_SESSION["loggedin"]=0;
                     die("Wrong password. Please, try again.");

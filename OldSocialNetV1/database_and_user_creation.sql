@@ -57,3 +57,7 @@ alter table profilna add column imageId varchar(50) not null unique;
 select * from registration;
 alter table registration modify column pass varchar(255) not null;
 select r.id,r.email,u.id,u.uloga from registration r left join uloge u on r.id=u.user_id;
+alter table obavljeno add column kvaliteta_id int;
+alter table kvaliteta drop column kvaliteta_id;
+alter table obavljeno drop constraint fk_kvaliteta_id;
+alter table obavljeno add constraint fk_kvaliteta_id foreign key (kvaliteta_id) references kvaliteta(id) on update cascade on delete cascade;
