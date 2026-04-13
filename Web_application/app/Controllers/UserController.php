@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Helpers\FilesHelper;
 use App\Helpers\Validation;
+use App\Models\Image;
 use Core\Controller;
 use Core\Auth;
 use App\Models\User;
@@ -45,9 +46,12 @@ class UserController extends Controller{
         }
         public function updateProfileImage(){
                 $currentDirectory=isset($_GET["id"])?$_GET["id"]:0;
-                FilesHelper::returnCurrentUrl($currentDirectory);
+                $directory=FilesHelper::returnCurrentUrl($currentDirectory);
+                $profileMarkImage=isset($_GET["profileMarkImage"])?$_GET["profileMarkImage"]:'';
+                $userImage=Image::selectUserImage($_SESSION["user"]["id"],$profileMarkImage);
                 $this->view('users/profile_img_update',[
-                   'directory'=>$currentDirectory
+                   'directory'=>$directory,
+                   'profileImage'=>$userImage,
                 ]);;
         }
 }

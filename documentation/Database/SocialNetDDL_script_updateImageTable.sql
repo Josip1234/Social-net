@@ -1,0 +1,1 @@
+alter table image add column profileMarkImage char(1) not null;
