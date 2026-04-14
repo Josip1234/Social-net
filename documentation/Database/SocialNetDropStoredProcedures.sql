@@ -8,3 +8,4 @@ drop procedure if exists limitUseOfCudOperationsOnAccountTypeTable;
 drop procedure if exists limitUseOfCudOperationsOnImageTypeTable;
 drop procedure if exists limitUseOfCudOperations;
 drop procedure if exists insertUsersIntoLoggers;
+drop procedure if exists autoInsertUserIntoImage;

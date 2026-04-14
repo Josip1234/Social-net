@@ -313,6 +313,12 @@ end if;
 end $$
 DELIMITER ;
 
-
+-- stored procedure for automatic insert image when user has been registered 
+DELIMITER $$
+create procedure autoInsertUserIntoImage(in userId int unsigned, in imageName varchar(50), in url text)
+begin  
+insert into image(userId,imageName,url,profileMarkImage) values (userId,imageName,url);
+end $$;
+DELIMITER ;
 
 

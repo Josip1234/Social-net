@@ -90,11 +90,11 @@ DELIMITER ;
 -- triggers for log user profile
 -- except for the log this trigger will be used to auto insert data into profile details after insert
 -- into profile new user 
+-- also will activate auto insert into image
 DELIMITER $$
 create trigger userProfileLog after insert on profile
 for each row 
 begin 
--- need to find regular user int account type data
 declare accTypeId int unsigned;
 select acTypeId into accTypeId from accounttype where acTypeName='Regular';
 if accTypeId is not null then
