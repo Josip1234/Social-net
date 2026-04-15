@@ -8,6 +8,7 @@ use Core\Controller;
 use Core\Auth;
 use App\Models\User;
 
+
 class UserController extends Controller{
         //activate helpers for checking and creating user image folders if they are not existing
         public function index(){
@@ -53,5 +54,15 @@ class UserController extends Controller{
                    'directory'=>$directory,
                    'profileImage'=>$userImage,
                 ]);;
+        }
+        //current profile will be last inserted by user
+        public function updateImg(){
+                $imgName=Image::uploadImage(FilesHelper::returnCurrentUrl($_SESSION["user"]["id"]));
+                $image=$_POST;
+                $url=FilesHelper::returnCurrentUrl($_SESSION["user"]["id"])."/".$imgName;
+                Image::insertNewImageRecord($image,$imgName,$url);
+                $id=Image::getLatestId($_SESSION["user"]["id"]);
+                Image::updateProfileMarkImage($_SESSION["user"]["id"]);
+                Image::updateProfileMarkImageToNewImage($id["max"],$_SESSION["user"]["id"]);
         }
 }

@@ -49,6 +49,9 @@ switch($page){
     case 'users/profile_img_update':
         $userController->updateProfileImage();
         break;
+    case 'users/img_update':
+        $userController->updateImg();
+        break;
     default:
         $controller->index();
 }
