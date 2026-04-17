@@ -1,6 +1,10 @@
 <?php 
 include "dbconn.php";
-session_start();
+//if session did not started
+if(session_status()===PHP_SESSION_NONE){
+    session_start();
+}
+
 //ova funkcija bi trebala riješiti ponovni unos nakon refresh stranice
 //ova funkcija je višak možda će biti potrebna pa ćemo je ostaviti ovdje
 function provjeri_prethodnog(string $fname,string $lname,string $suggestions):bool{
@@ -28,7 +32,7 @@ function provjeri_dali_postoji_u_bazi(string $username, string $password){
                 //verifikacija passworda trebamo plain text i hash iz baze
                 
                 if(password_verify($password,$res2["pass"])){
-                          
+                        $_SESSION["id"]=$res['id'];
                         $_SESSION["username"]=$username;
                         $_SESSION["pass"]=password_hash($password,PASSWORD_DEFAULT);
                         $_SESSION["loggedin"]=1;
@@ -37,7 +41,9 @@ function provjeri_dali_postoji_u_bazi(string $username, string $password){
                         header("Location: index.php");
                 }else{
                      $_SESSION["loggedin"]=0;
+                     print('<a href="index.php">Back to homepage</a><br>');
                     die("Wrong password. Please, try again.");
+                    
                 }
             }
            
@@ -48,4 +54,18 @@ function provjeri_dali_postoji_u_bazi(string $username, string $password){
         die("Username does not exist in database. Registration is needed.");
         
     }
+}
+
+
+function loggedUsersOnly(){
+    if(!isset($_SESSION["username"])){
+	header('Location: login.php');
+}
+
+}
+
+function logout(){
+    $msg="Logged out.";
+    session_destroy();
+    header("Location: index.php?msg=".$msg);
 }

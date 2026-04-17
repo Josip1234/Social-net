@@ -23,7 +23,7 @@
 <input type="text" name="fname" autocomplete="off" maxlength="50" size="17" required/><br/>
 <label>Last name:</label><br/>
 <input type="text" name="lname" autocomplete="off" maxlength="50" size="17" required/><br/>
-<label>Sex:</label><br/>
+<label id="r">Sex:</label><br/>
 <input type="radio" name="spol" value="m" checked required>M 
 <input type="radio" name="spol" value="z">Z 
 <br/>

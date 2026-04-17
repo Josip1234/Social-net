@@ -1,4 +1,6 @@
-<?php include "functions.php"; ?>
+<?php include "functions.php";
+loggedUsersOnly();
+?>
 <!doctype html>
 <html>
 <head>

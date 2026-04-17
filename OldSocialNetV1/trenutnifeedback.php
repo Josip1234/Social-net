@@ -1,3 +1,8 @@
+<?php  
+include('functions.php');
+loggedUsersOnly();
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -20,7 +25,7 @@
 <section><h2>Feedbackovi</h2>
 <table>
 <?php
-include('functions.php');
+
 $formAction=htmlspecialchars($_SERVER["PHP_SELF"]);
 //this query will take only suggestions which has noot been solved.
 $query="SELECT k.id,k.firstname,k.lastname,k.suggestion FROM kvaliteta k

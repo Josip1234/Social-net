@@ -1,3 +1,9 @@
+<?php
+include "functions.php";
+loggedUsersOnly();
+
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -19,7 +25,7 @@
 <div class="pravila">
 <section>
 <?php
-include "functions.php";
+
 $sql="select r.id,r.email,u.id as rid,u.uloga from registration r left join uloge u on r.id=u.user_id;";
 $q=mysqli_query($dbc,$sql);
 echo "<table border='1'><thead><tr><th>User id</th>
@@ -57,7 +63,8 @@ echo "</tbody></table>";
 </section>
 <?php 
 if($_SERVER["REQUEST_METHOD"]==="POST"){
-		$email=$_POST["email"];
+	$msg="Successfully updated user role.";
+		$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST["email"])));
 		$userId="SELECT r.id FROM registration r where email='$email'";
 		$query=mysqli_query($dbc,$userId);
 		$result=mysqli_fetch_assoc($query);
@@ -72,13 +79,14 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
 			$sql="UPDATE uloge set uloga='$selektiraj' where user_id='$uId'";
 			$stmt=mysqli_query($dbc,$sql);
 			if($stmt){
-				echo "Successfully updated user role.";
+				header('Location: dodjeli_uloge.php?msg='.$msg);
 			}
 		}else{
 			$sql="INSERT INTO uloge (user_id,uloga) VALUES ('$uId','$selektiraj')";
 			$stmt=mysqli_query($dbc,$sql);
 			if($stmt){
-				echo "Successfully added new user role.";
+				$msg="Successfully added new user role.";
+				header('Location: dodjeli_uloge.php?msg='.$msg);
 			}
 		}
 
