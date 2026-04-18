@@ -9,6 +9,7 @@ use Core\Auth;
 use App\Models\User;
 
 
+
 class UserController extends Controller{
         //activate helpers for checking and creating user image folders if they are not existing
         public function index(){
