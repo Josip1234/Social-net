@@ -33,5 +33,25 @@ class FilesHelper{
            
             return $url;
     }
+    //function for display full url 
+    public static function displayFullUrl():string{
+        // Program to display URL of current page.
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+            $link = "https";
+        else 
+            $link = "http";
+            
+        // Here append the common URL characters.
+        $link .= "://";
+            
+        // Append the host(domain name, ip) to the URL.
+        $link .= $_SERVER['HTTP_HOST'];
+            
+        // Append the requested resource location to the URL
+        $link .= $_SERVER['REQUEST_URI'];
+            
+        // Print the link
+        return $link;
+    }
 }
 
