@@ -20,7 +20,10 @@
                  <?php echo "<a href='?page=users/update&id={$profil["userId"]}'>Update basic information</a>"; ?>
             </span>
             <label for="img">Profile image:</label>
-            <img src="<?= $profil["url"]; ?>" alt="<?= $profil["imageName"] ?>" id="img" readonly>
+                 <?php  $imgUrl= 'assets/images/'.$profil["userId"].'/'.$profileImage["alt"]; 
+                    $imgAlt=$profileImage["alt"];
+              ?>
+             <img src="<?= $imgUrl ?>" alt="<?= $imgAlt ?>" width="40%" height="40%">
 
             <span id="updateProfileImage">
                  <?php echo "<a href='?page=users/profile_img_update&id={$profil["userId"]}&profileMarkImage=p'>Update profile image</a>"; ?>
@@ -59,11 +62,7 @@
                  <?php echo "<a href='?id={$profil["userId"]}'>Update address</a>"; ?>
             </span>
          </form>
-         <?php if(isset($_SESSION['update'])): ?>
-     <div class="message">
-          <p class="success"><?= $_SESSION['update']; ?></p>
-     </div>
-     <?php endif; unset($_SESSION['update']);?>
+      
     </div>
 
 </main>

@@ -16,9 +16,11 @@ class UserController extends Controller{
             Auth::requireLogin();
          
             $profil=User::profileData($_SESSION['user']['id']);
+            $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');
      
              $this->view('users/profile',[
-                'profil'=>$profil
+                'profil'=>$profil,
+                'profileImage'=>$userImage
              ]);
         }
         public function edit(){
@@ -35,6 +37,7 @@ class UserController extends Controller{
                 User::updateProfileTable($_POST);          
                 $_SESSION['update']="Successfully updated profile.";
                    $profil=User::profileData($_SESSION['user']['id']);
+                   header('Location: index.php');
                 $this->view('users/profile',
                 ['profil'=>$profil]);
               }else{
