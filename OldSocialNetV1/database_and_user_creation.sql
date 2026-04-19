@@ -61,3 +61,4 @@ alter table obavljeno add column kvaliteta_id int;
 alter table kvaliteta drop column kvaliteta_id;
 alter table obavljeno drop constraint fk_kvaliteta_id;
 alter table obavljeno add constraint fk_kvaliteta_id foreign key (kvaliteta_id) references kvaliteta(id) on update cascade on delete cascade;
+select r.fname,r.lname,r.sex,r.dateOfBirth,r.cityOfBirth,r.countryOfBirth, r.email, pr.imageId,pr.imageType,pr.imageData from registration r inner join profilna pr on r.email=pr.email where pr.email='jbosnjak@mail.com';

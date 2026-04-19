@@ -38,7 +38,7 @@ function provjeri_dali_postoji_u_bazi(string $username, string $password){
                         $_SESSION["loggedin"]=1;
                         $_SESSION["isLogged"]=time();
                         echo "User has been successfully logged in.";
-                        header("Location: index.php");
+                        header("Location: profile.php");
                 }else{
                      $_SESSION["loggedin"]=0;
                      print('<a href="index.php">Back to homepage</a><br>');
