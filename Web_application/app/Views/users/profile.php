@@ -34,7 +34,7 @@
 
             <!-- this must be visible only for admins -->
              <span id="updateAccountType">
-                 <?php echo "<a href='?id={$profil["userId"]}'>Update account type</a>"; ?>
+                 <?php echo "<a href='?page=users/edit_account_type&id={$profil["userId"]}'>Update account type</a>"; ?>
             </span>
 
             <label for="accountStatus">Account status:</label>

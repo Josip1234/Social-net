@@ -11,6 +11,8 @@ use App\Models\User;
 use Core\Auth;
 use App\Models\City;
 use App\Helpers\FilesHelper;
+use App\Models\ProfileDetail;
+use App\Models\AccountType;
 
 class HomeController extends Controller{
     //this const is default user type
@@ -39,11 +41,11 @@ class HomeController extends Controller{
             $numAdmins=User::getNumberOfAdminUsers();
             $numberOfAdminUsers=Conversions::convertToIntValue($numAdmins,"userNum");
                //get number of records in account type
-            $numAccTypes=User::getNumberOfAccountTypes();
+            $numAccTypes=AccountType::getNumberOfAccountTypes();
             $numberOfRecordsUserTypes=Conversions::convertToIntValue($numAccTypes,"userNum");
             
             //get account type data from database
-            $accountTypes=User::getRecordsFromAccountTypeTable();
+            $accountTypes=AccountType::getRecordsFromAccountTypeTable();
             //convert assoc array to indexed array
             $dataTypeRecords=Conversions::convertToIndexArray($accountTypes);
             //get number of database users
@@ -131,7 +133,7 @@ class HomeController extends Controller{
             //save successfull login 
             $msg="User with email ".User::getUserNameById($user["userId"])." has been logged in";
             ProfileLogger::log($user["userId"],$msg);
-            $acType=User::getAccountTypeId($user['userId']);
+            $acType=ProfileDetail::getAccountTypeId($user['userId']);
             
             $_SESSION['user']=[
                 'id'=>$user['userId'],
@@ -170,13 +172,13 @@ class HomeController extends Controller{
                  //need to select user id from database first
                  //to get a date we need to select latest record created at profile details
                  //we can use max id 
-                $regDate=User::selectRegistrationDate($maxId);
+                $regDate=ProfileDetail::selectRegistrationDate($maxId);
                  //need to get current data
                  //need a list of account type users
-                 $accTypes=User::getAllRecordsFromAccountTypeTable();
+                 $accTypes=AccountType::getAllRecordsFromAccountTypeTable();
                  //need to see which user is what type of user
                  //default account name is regular we will use constant regular
-                 $userType=User::getAcTypeId(self::REGULAR);
+                 $userType=AccountType::getAcTypeId(self::REGULAR);
                  header("Location: index.php?page=login");
                  $this->view('home/register',[
                     'max'=>$maxId,
@@ -202,7 +204,7 @@ class HomeController extends Controller{
     public function setAdmin(){
         if($_SERVER["REQUEST_METHOD"]==="POST"){
             $userData=$_POST;
-            User::update_account($_POST["accTypeId"],$_POST["userId"]);
+            ProfileDetail::update_account($_POST["accTypeId"],$_POST["userId"]);
             header("Location: index.php?page=login");
         }
     }

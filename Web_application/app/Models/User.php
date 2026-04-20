@@ -46,17 +46,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         return $stmt->rowCount()===1;
 
     }
-    //function for update account type in profiledetails table
-    public static function update_account(int $accTypeId, int $userId){
-      $db=Database::getInstance();
-      $sql = "UPDATE profiledetails set acTypeId=:acTypeId, pdUpdateDate=:pdUpdateDate where userId=:userId";
-      $stmt=$db->prepare($sql);
-      return $stmt->execute([
-          ':acTypeId'=>$accTypeId,
-          ':userId'=>$userId,
-          ':pdUpdateDate'=>\Carbon\Carbon::now()
-      ]);
-    }
+
     //this function will return array of user data if user exists
     //? optional return data array
     public static function findByUsername(string $username):?array{
@@ -82,18 +72,8 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
             inner join accounttype `at` on pd.acTypeId=`at`.acTypeId";
         return $db->query($sql)->fetchAll();
       }
-      //function to get number of user type records in table account type
-      public static function getNumberOfAccountTypes():array{
-        $db=Database::getInstance();
-        $sql="select count(act.acTypeId) as userNum from accounttype act";
-        return $db->query($sql)->fetchAll();
-      }
-      //function to get fields of user types in account type table
-      public static function getRecordsFromAccountTypeTable():array{
-        $db=Database::getInstance();
-        $sql="select act.acTypeName as dataTypeRec from accounttype act";
-        return $db->query($sql)->fetchAll();
-      }
+
+ 
       //function for getting a number of database user
       public static function getNumberOfDatabaseUser():array{
         $db=Database::getInstance();
@@ -118,18 +98,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
          $userId=$stmt->fetchColumn();
          return $userId;
       }
-      //function for selecting account type id depending of account type name
-          public static function getAcTypeId(string $accountTypeName):int{
-         $userId=0;
-         $db=Database::getInstance();
-         $sql="SELECT at.acTypeId FROM accounttype at where at.acTypeName=:acTypeName";
-         $stmt=$db->prepare($sql);
-         $stmt->execute([
-            ':acTypeName'=>$accountTypeName
-         ]);
-         $userId=$stmt->fetchColumn();
-         return $userId;
-      }
+
       //select max id from database
       public static function selectMaxId():int{
         $maxId=0;
@@ -138,25 +107,9 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         $maxId=$db->query($sql)->fetchColumn();
         return $maxId;
       }
-      //return registrationDate from profile details from database
-      public static function selectRegistrationDate(int $userId):string{
-        $regDate="";
-        $db=Database::getInstance();
-        $sql = "SELECT pd.registrationDate FROM profiledetails pd where pd.userId=:userId";
-        $stmt=$db->prepare($sql);
-        $stmt->execute([
-          ':userId'=>$userId
-        ]);
-        $regDate=$stmt->fetchColumn();
-        return \Carbon\Carbon::parse($regDate)->format("Y-m-d");
-      }
 
-      //function to get all of data from user types in account type table
-      public static function getAllRecordsFromAccountTypeTable():array{
-        $db=Database::getInstance();
-        $sql="select * from accounttype act";
-        return $db->query($sql)->fetchAll();
-      }
+
+
       //function to return username by id
       public static function getUserNameById(int $userId):string{
         $db=Database::getInstance();
@@ -167,16 +120,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         ]);
         return $stmt->fetchColumn();
       }
-      //function to return account type id using user id
-      public static function getAccountTypeId(int $userId):int{
-        $db=Database::getInstance();
-        $sql="SELECT pd.acTypeId FROM profiledetails pd where userId=:userId";
-        $stmt=$db->prepare($sql);
-        $stmt->execute([
-          ':userId'=>$userId
-        ]);
-        return $stmt->fetchColumn();
-      }
+
       //function to return data from user
       public static function profileData(int $userId):array{
          $db=Database::getInstance();
@@ -230,17 +174,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
           ':userId'=>$profileDet['userId']
       ]);
     }
-    //function for update account status
-    public static function updateAccountStatus(array $profileDet){
-      $db=Database::getInstance();
-      $sql="UPDATE profiledetails set pdUpdateDate=:pdUpdateDate, accountStatus=:accountStatus where userId=:userId";
-      $stmt=$db->prepare($sql);
-      return $stmt->execute([
-          ':pdUpdateDate'=>date("Y-m-d H:i:s"),
-          ':accountStatus'=>$profileDet['accountStatus'],
-          ':userId'=>$profileDet['userId']
-      ]);
-    }
+
     //function to get all user id-s from database
     public static function getAllUserIds():array{
         $db=Database::getInstance();

@@ -3,7 +3,9 @@ namespace App\Controllers;
 
 use App\Helpers\FilesHelper;
 use App\Helpers\Validation;
+use App\Models\AccountType;
 use App\Models\Image;
+use App\Models\ProfileDetail;
 use Core\Controller;
 use Core\Auth;
 use App\Models\User;
@@ -90,5 +92,21 @@ class UserController extends Controller{
                 
              
                
+        }
+        public function editAccountType(){
+                Auth::requireLogin();
+                Auth::requireAdmin(); 
+                $accountTypeList=AccountType::getAllRecordsFromAccountTypeTable();
+                if(isset($_GET["id"])){
+                           $profileDetailsId=ProfileDetail::getProfileDetailId($_GET["id"]);
+                             $currentRole=ProfileDetail::getAccountTypeId($_GET["id"]);
+                }
+              
+                $this->view('users/update_account_type',
+                [
+                        'account_type'=>$accountTypeList,
+                        'id'=>$profileDetailsId,
+                        'role'=>$currentRole
+                ]);
         }
 }

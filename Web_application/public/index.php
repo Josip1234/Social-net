@@ -52,6 +52,9 @@ switch($page){
     case 'users/img_update':
         $userController->updateImg();
         break;
+    case 'users/edit_account_type':
+        $userController->editAccountType();
+        break;
     default:
         $controller->index();
 }

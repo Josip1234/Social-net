@@ -7,3 +7,6 @@
               right join accounttype aty on 
               pd.acTypeId = aty.acTypeId
               where p.userId=2;
+              
+select * from profiledetails;
+select proDetId from profiledetails where userId=2;
