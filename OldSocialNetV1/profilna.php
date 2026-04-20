@@ -1,6 +1,4 @@
-<?php include "functions.php";
-loggedUsersOnly();
-?>
+
 <!doctype html>
 <html>
 <head>
@@ -15,15 +13,23 @@ loggedUsersOnly();
 <div class="con">
 <nav>
 
-<?php include "navigacija.php"; ?>
+<?php include "navigacija.php";
+loggedUsersOnly();
+
+if(isset($_GET["email"])){
+   header('Location: registration.php');
+}
+
+?>
 
 </nav>
 </div>
 <div class="pravila">
 <section><h2>Update your profile picture here</h2>
+
+	
+
 <?php
-
-
 if(count($_FILES) > 0) {
 if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 $email=$_POST["email"];

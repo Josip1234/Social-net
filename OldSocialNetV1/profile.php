@@ -1,8 +1,3 @@
-<?php
-include "functions.php";
-loggedUsersOnly();
-
-?>
 <!doctype html>
 <html>
 <head>
@@ -17,7 +12,9 @@ loggedUsersOnly();
 <div class="con">
 <nav>
 
-<?php include "navigacija.php"; ?>
+<?php include "navigacija.php"; 
+loggedUsersOnly();
+?>
 
 </nav>
 </div>

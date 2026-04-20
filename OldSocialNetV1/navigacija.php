@@ -1,9 +1,16 @@
+<?php include "functions.php";  ?>
+  <a href="feedback.php" target="_self">Feedbacks</a>
+  <a href="registration.php" target="_self">Registration</a>
+  <a href="login.php" target="_self">Login</a>
+<a href="index.php" target="_self">Homepage</a>
+<a href="logout.php" target="_self">Logout</a>
+<?php 
+if(isset($_SESSION["id"])){
+    $array=returnAdminNavigationUrls($_SESSION["id"]);
+foreach ($array as $value) {
+     echo $value;
+}
+}
 
-  <a href="feedback.php" target="_blank">Feedbacks</a>
-  <a href="trenutnifeedback.php">Current feedbacks</a>
-  <a href="registration.php">Registration</a>
-  <a href="login.php">Login</a>
-<a href="index.php">Homepage</a>
-<a href="dodjeli_uloge.php">Assign user roles</a>
-<a href="profile.php">User profile</a>
-<a href="logout.php">Logout</a>
+
+?>

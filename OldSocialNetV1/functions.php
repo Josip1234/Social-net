@@ -22,8 +22,9 @@ function provjeri_prethodnog(string $fname,string $lname,string $suggestions):bo
 }
 function provjeri_dali_postoji_u_bazi(string $username, string $password){
     global $dbc;
-    $query="SELECT email from registration where email='$username'";
+    $query="SELECT id,email,uloga from registration inner join uloge on registration.id=uloge.user_id where email='$username'";
     $pass_hash="SELECT pass from registration where email='$username'";
+    $role="";
     $q=mysqli_query($dbc,$query);
     $q2=mysqli_query($dbc,$pass_hash);
     if($res=mysqli_fetch_array($q)){
@@ -32,10 +33,12 @@ function provjeri_dali_postoji_u_bazi(string $username, string $password){
                 //verifikacija passworda trebamo plain text i hash iz baze
                 
                 if(password_verify($password,$res2["pass"])){
+                        $role=$res['uloga'];
                         $_SESSION["id"]=$res['id'];
                         $_SESSION["username"]=$username;
                         $_SESSION["pass"]=password_hash($password,PASSWORD_DEFAULT);
                         $_SESSION["loggedin"]=1;
+                        $_SESSION["role"]=$role;
                         $_SESSION["isLogged"]=time();
                         echo "User has been successfully logged in.";
                         header("Location: profile.php");
@@ -61,7 +64,21 @@ function loggedUsersOnly(){
     if(!isset($_SESSION["username"])){
 	header('Location: login.php');
 }
+}
 
+function returnAdminNavigationUrls($userId):array{
+    $urls=[];
+    global $dbc;
+
+   $sql="SELECT u.uloga from uloge u where user_id='$userId'";
+   $stmt=mysqli_query($dbc,$sql);
+   $query=mysqli_fetch_assoc($stmt);
+   if($query["uloga"]==="Administrator"){
+        $urls["currentFeedbacks"]='<a href="trenutnifeedback.php" target="_self">Current feedbacks</a>';
+        $urls["userRoles"]='<a href="dodjeli_uloge.php" target="_self">Assign user roles</a>';
+        $urls["profile"]='<a href="profile.php" target="_self">User profile</a>';
+   }
+   return $urls;
 }
 
 function logout(){

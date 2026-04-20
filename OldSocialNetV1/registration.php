@@ -12,7 +12,7 @@
 <div class="con">
 <nav>
 
-<?php include "navigacija.php"; include "functions.php"; ?>
+<?php include "navigacija.php";  ?>
 
 </nav>
 </div>

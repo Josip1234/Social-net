@@ -1,7 +1,4 @@
-<?php
-include "functions.php";
 
-?>
 <!doctype html>
 <html>
 <head>
