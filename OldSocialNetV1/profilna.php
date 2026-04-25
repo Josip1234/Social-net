@@ -16,7 +16,7 @@
 <?php include "navigacija.php";
 loggedUsersOnly();
 
-if(isset($_GET["email"])){
+if(!isset($_GET["email"])){
    header('Location: registration.php');
 }
 

@@ -112,12 +112,28 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
      }
 
      if($numberOfErrors===0){
+        //for inserting new default user role for registered user need next user id which will be inserted first in 
+        //registration table
+        $nextIdSql="select max(id)+1 as id from registration";
+        $stmt=mysqli_query($dbc,$nextIdSql);
+        $resId=$stmt->fetch_assoc();
+        $id=$resId["id"];
+
         $query="INSERT INTO registration (fname,lname,sex,dateOfBirth,cityOfBirth,countryOfBirth,pass,email)
         values ('$fname','$lname','$sex','$dateOfBirth','$cityOfBirth','$countryOfBirth','" . password_hash($pass, PASSWORD_DEFAULT) . "','$email')";
         mysqli_query($dbc,$query);
+        $defaultRole="Korisnik";
         if($query){
-            mysqli_close($dbc);
-            header('Location: profilna.php?email='.$email);
+            //INSERT DEFAULT ROLE in table ULOGE when registration query was executed
+            $sql="INSERT INTO uloge(user_id,uloga) values ('$id','$defaultRole')";
+            mysqli_query($dbc,$sql);
+            if($sql){
+                 
+                  login_without_redirection($email,$pass);
+                   mysqli_close($dbc);
+               header('Location: profilna.php?email='.$email);
+            }
+         
         }else{
             die("Cannot add information in tables. Please check your connection.");
                 mysqli_close($dbc);
