@@ -124,7 +124,8 @@ class HomeController extends Controller{
             if(!password_verify($_POST["password"],$user["hp"])){
                 //upis neuspješne prijave u log 
                   $msg="Unsuccessfull login by ".User::getUserNameById($user["userId"]);
-                ProfileLogger::log($user["userId"],$msg);
+                ProfileLogger::log($user["userId"],$msg); 
+             
                  $this->view('home/login',[
                     'error'=>$errors."Incorrect password.",
                 ]);

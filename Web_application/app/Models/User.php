@@ -126,7 +126,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
          $db=Database::getInstance();
          $sql="select p.userId,p.firstName,p.lastName,p.email,p.sex,p.dateOfBirth,i.imageName,i.url,i.profileMarkImage,pd.acTypeId,aty.acTypeName,pd.accountStatus,pd.registrationDate
               ,ad.street,cit.postNumber,cit.name as CitName,st.name as StName from profile p right join image i on p.userId=i.userId
-              right join profiledetails pd on p.userId=pd.proDetId 
+              right join profiledetails pd on p.userId=pd.userId 
               right join address ad on p.addressId=ad.addressId
               right join city cit on ad.postNumber=cit.postNumber
               right join state st on cit.stateId=st.stateId
