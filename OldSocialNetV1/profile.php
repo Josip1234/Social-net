@@ -12,7 +12,10 @@
 <div class="con">
 <nav>
 
-<?php include "navigacija.php"; 
+<?php require_once "navigacija.php"; 
+require_once "dbconn.php";
+
+$checked="";
 loggedUsersOnly();
 ?>
 
@@ -23,7 +26,9 @@ loggedUsersOnly();
 <p>User image</p>
 <?php
 $username=$_SESSION["username"];
-$sql="select r.fname,r.lname,r.sex,r.dateOfBirth,r.cityOfBirth,r.countryOfBirth, r.email, pr.imageId,pr.imageType,pr.imageData from registration r inner join profilna pr on r.email=pr.email where pr.email='".$_SESSION['username']."';";
+$sql="select r.fname,r.lname,r.sex,r.dateOfBirth,r.cityOfBirth,r.countryOfBirth, r.email, pr.imageId,pr.imageType,pr.imageData,u.uloga from registration r inner join profilna pr on r.email=pr.email 
+inner join uloge u on r.id=u.user_id
+where pr.email='".$_SESSION['username']."';";
 $res=mysqli_query($dbc,$sql);
 while($ro=mysqli_fetch_array($res)){
     $img='<img src="data:'.$ro['imageType'].';base64,'.base64_encode( $ro['imageData'] ).'"width="50%" height="50%" ';
@@ -34,13 +39,26 @@ while($ro=mysqli_fetch_array($res)){
 <?php 
 $firstName=$ro["fname"];
 $lastName=$ro["lname"];
+$sex1=$ro['sex'];
 $checked=($ro['sex']==='m')?'m':'z';
 $dateOfBirth=$ro["dateOfBirth"];
 $cityOfBirth=$ro["cityOfBirth"];
 $stateOfBirth=$ro["countryOfBirth"];
 $email=$ro["email"];
+$ul=$ro["uloga"];
+
+//previously saved user data will be used to compare values
+$_SESSION["firstName1"]=$firstName;
+$_SESSION["lastName1"]=$lastName;
+$_SESSION["sex1"]=$sex1;
+$_SESSION["dateOfBirth1"]=$dateOfBirth;
+$_SESSION["cityOfBirth1"]=$cityOfBirth;
+$_SESSION["countryOfBirth1"]=$stateOfBirth;
+$_SESSION["email1"]=$email;
+$_SESSION["uloga1"]=$ul;
+
 };
-mysqli_close($dbc);
+
 ?>
 
 <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -59,10 +77,68 @@ mysqli_close($dbc);
     <input type="text" name="countryOfBirth" id="countryOfBirth" value="<?= $stateOfBirth; ?>"> <br>
     <label for="email">Email:</label> <br>
     <input type="email" name="email" id="email" value="<?= $email; ?>"> <br>
+    <label for="uloga">Role:</label> <br>
+    <input type="text" name="uloga" id="uloga" value="<?= $ul; ?>" readonly>
+    <br>
     <input type="submit" value="Update">
 
 </form>
 
+<?php 
+if($_SERVER["REQUEST_METHOD"]==="POST"){
+    //data values sent via form
+    $id=$_SESSION["id"];
+    $fname=$_POST["fname"];
+    $lname=$_POST["lname"];
+    $sex=$_POST["sex"];
+    $dbirth=$_POST["dateOfBirth"];
+    $cbirth=$_POST["cityOfBirth"];
+    $countryOfBirth=$_POST["countryOfBirth"];
+    $em=$_POST["email"];
+    $role=$_POST["uloga"];
+
+    if($fname!=$_SESSION["firstName1"]){
+        echo "First name has been changed.";
+        //validation will be made after check if some value has been changed
+    }
+    if($lname!=$_SESSION["lastName1"]){
+        echo "Last name has been changed.";
+    }
+    if($sex!=$_SESSION["sex1"]){
+        echo "Sex has been changed.";
+    }
+    if($dbirth!=$_SESSION["dateOfBirth1"]){
+        echo "Date of birth has been changed.";
+    }
+    if($cbirth!=$_SESSION["cityOfBirth1"]){
+        echo "City of birth has been changed.";
+    }
+    if($countryOfBirth!=$_SESSION["countryOfBirth1"]){
+        echo "Country of birth has been changed.";
+    }
+    if($em!=$_SESSION["email1"]){
+        echo "Email has been changed.";
+    }
+    if($role!=$_SESSION["uloga1"]){
+        echo "Role has been changed.";
+    }
+
+    //destroy those sessions
+    unset($_SESSION["firstName1"]);
+    unset($_SESSION["lastName1"]);
+    unset($_SESSION["sex1"]);
+    unset($_SESSION["dateOfBirth1"]);
+    unset($_SESSION["cityOfBirth1"]);
+    unset($_SESSION["countryOfBirth1"]);
+    unset($_SESSION["email1"]);
+    unset($_SESSION["uloga1"]);
+    
+
+}
+
+
+mysqli_close($dbc);
+?>
 
 </section>
 </div>

@@ -13,7 +13,8 @@
 <div class="con">
 <nav>
 
-<?php include "navigacija.php";
+<?php require_once "navigacija.php";
+require_once "dbconn.php";
 loggedUsersOnly();
 
 if(!isset($_GET["email"])){
@@ -25,7 +26,7 @@ if(!isset($_GET["email"])){
 </nav>
 </div>
 <div class="pravila">
-<section><h2>Update your profile picture here</h2>
+<section><h2>Set your profile picture here</h2>
 
 	
 

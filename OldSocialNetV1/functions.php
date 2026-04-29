@@ -8,7 +8,7 @@ if(session_status()===PHP_SESSION_NONE){
 //ova funkcija bi trebala riješiti ponovni unos nakon refresh stranice
 //ova funkcija je višak možda će biti potrebna pa ćemo je ostaviti ovdje
 function provjeri_prethodnog(string $fname,string $lname,string $suggestions):bool{
-    include "dbconn.php";
+    global $dbc;
     $postoji=false;
     $sql1="select suggestion from kvaliteta where id=id-1";
     mysqli_query($dbc,$sql1);
@@ -66,7 +66,7 @@ function loggedUsersOnly(){
 }
 }
 
-function returnUrls($userId):array{
+function returnUrls(int $userId):array{
     $urls=[];
      $urls["logout"]='<a href="logout.php" target="_self">Logout</a>';
      $urls["profile"]='<a href="profile.php" target="_self">User profile</a>'; 
@@ -84,6 +84,7 @@ function returnUrls($userId):array{
 
 function logout(){
     $msg="Logged out.";
+    session_unset();
     session_destroy();
     header("Location: index.php?msg=".$msg);
 }

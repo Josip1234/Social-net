@@ -6,6 +6,7 @@
 <?php 
 if(isset($_SESSION["id"])){
     $array=returnUrls($_SESSION["id"]);
+    
 foreach ($array as $value) {
      echo $value;
 }

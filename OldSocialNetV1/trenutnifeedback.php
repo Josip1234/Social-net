@@ -13,7 +13,8 @@
 <div class="con">
 <nav>
 
-<?php include "navigacija.php"; 
+<?php require_once "navigacija.php"; 
+require_once "dbconn.php";
 loggedUsersOnly();
 ?>
 
