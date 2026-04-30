@@ -23,6 +23,16 @@ loggedUsersOnly();
 </div>
 <div class="pravila">
 <section><h2>Your profile</h2>
+<?php 
+if(isset($_SESSION["success"])){
+    if(!empty($_SESSION["success"])){
+        echo "<p>{$_SESSION['success']}</p>";
+        unset($_SESSION["success"]);
+    }
+}
+
+
+?>
 <p>User image</p>
 <?php
 $username=$_SESSION["username"];
@@ -97,41 +107,60 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
     $em=$_POST["email"];
     $role=$_POST["uloga"];
 
+    $updateFailed="Update failed";
+    $updateSuccessfull="Update successfull";
+
+    $updateFields=[];
+
+    $tableName="registration";
+    $columnValue=[];
+
     if($fname!=$_SESSION["firstName1"]){
         echo "First name has been changed.";
         //validation will be made after check if some value has been changed
+        $updateFields["fname"]=$fname;
     }
     if($lname!=$_SESSION["lastName1"]){
         echo "Last name has been changed.";
+        $updateFields["lname"]=$lname;
     }
+
     if($sex!=$_SESSION["sex1"]){
         echo "Sex has been changed.";
+        $updateFields['sex']=$sex;
     }
+
     if($dbirth!=$_SESSION["dateOfBirth1"]){
         echo "Date of birth has been changed.";
+        $updateFields['dateOfBirth']=$dbirth;
     }
     if($cbirth!=$_SESSION["cityOfBirth1"]){
         echo "City of birth has been changed.";
+        $updateFields['cityOfBirth']=$cbirth;
     }
     if($countryOfBirth!=$_SESSION["countryOfBirth1"]){
         echo "Country of birth has been changed.";
+        $updateFields['countryOfBirth']=$countryOfBirth;
     }
     if($em!=$_SESSION["email1"]){
         echo "Email has been changed.";
+        $updateFields["email"]=$em;
     }
     if($role!=$_SESSION["uloga1"]){
         echo "Role has been changed.";
+        $updateFields["uloga"]=$role;
+    }
+    $columnValue["id"]=$id;
+    $query=createUpdateQuery($updateFields,$tableName,$columnValue);
+    $stmt=mysqli_query($dbc,$query);
+    if($stmt){
+        $_SESSION["success"]=$updateSuccessfull;
+        echo '<meta http-equiv="refresh" content="0">';
+    }else{
+        echo $updateFailed;
     }
 
-    //destroy those sessions
-    unset($_SESSION["firstName1"]);
-    unset($_SESSION["lastName1"]);
-    unset($_SESSION["sex1"]);
-    unset($_SESSION["dateOfBirth1"]);
-    unset($_SESSION["cityOfBirth1"]);
-    unset($_SESSION["countryOfBirth1"]);
-    unset($_SESSION["email1"]);
-    unset($_SESSION["uloga1"]);
+   unsetProfileSessions();
     
 
 }

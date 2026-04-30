@@ -127,3 +127,40 @@ function login_without_redirection(string $username, string $password){
         
     }
 }
+//function for dynamically create update query 
+function createUpdateQuery(array $keyValArray, string $tableName, array $columnValue):string{
+  $sql="";
+  $sql.="UPDATE ".$tableName." set ";
+  $arraySize=count($keyValArray);
+  $currentIndex=0;
+  foreach ($keyValArray as $key => $value) {
+    $currentIndex++;
+
+    $sql.=$key."=";
+    if($currentIndex===$arraySize){
+         $sql.="'".$value."'";
+    }else{
+         $sql.="'".$value."',";
+    }
+
+  }
+  $sql.=" WHERE ";
+
+  foreach ($columnValue as $key => $value) {
+     $sql.=$key."=".$value;
+  }
+
+
+  return $sql;
+}
+function unsetProfileSessions():void{
+        //destroy those sessions
+    unset($_SESSION["firstName1"]);
+    unset($_SESSION["lastName1"]);
+    unset($_SESSION["sex1"]);
+    unset($_SESSION["dateOfBirth1"]);
+    unset($_SESSION["cityOfBirth1"]);
+    unset($_SESSION["countryOfBirth1"]);
+    unset($_SESSION["email1"]);
+    unset($_SESSION["uloga1"]);
+}
