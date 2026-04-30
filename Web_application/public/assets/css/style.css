@@ -132,3 +132,17 @@ input[type=submit]:hover, button[type=reset]:hover, button[type=submit]:hover {
 .success{
     color:green;
 }
+.updateInformations{
+    text-decoration: none;
+    color:white;
+    background-color: #e42828;
+    border-radius: 30px;
+    padding: 5px;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+.updateInformations:hover{
+    background-color: orange;
+}
