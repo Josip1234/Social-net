@@ -26,9 +26,8 @@ loggedUsersOnly();
 
 $sql="select r.id,r.email,u.id as rid,u.uloga from registration r left join uloge u on r.id=u.user_id;";
 $q=mysqli_query($dbc,$sql);
-echo "<table border='1'><thead><tr><th>User id</th>
+echo "<table border='1'><thead><tr><th>ID</th>
 	<th>User email</th>
-	<th>Role id</th>
     <th>Role name</th>
 	</tr></thead><tbody>";
 while($row=mysqli_fetch_array($q)){
@@ -36,7 +35,6 @@ while($row=mysqli_fetch_array($q)){
 	echo"<tr>";
 	echo"<td>{$row['id']}</td>";
 	echo "<td>{$row['email']}</td>";
-	echo "<td>{$row['rid']}</td>";
     echo "<td>{$row['uloga']}</td>";
 	echo "</tr>";
 };
@@ -50,8 +48,20 @@ echo "</tbody></table>";
 	<section>
 <h2>Set the role for one user:</h2>
 <form action="dodjeli_uloge.php" method="post">
-<label>Email of the user which you want so set his role:</label><input type="email" autocomplete="off" name="email">
+	<label for="email">Select user email:</label>
+	<select name="email" id="email">
+		<option value="-">Select email</option>
+		<?php 
+		$sql="SELECT r.email from registration r";
+		$res=mysqli_query($dbc,$sql);
+		while($r=mysqli_fetch_array($res)):
+		?>
+		<option value="<?= $r["email"]; ?>"><?= $r["email"]; ?></option>
+		<?php endwhile; ?>
+	</select>
+
 <select name="selektiraj">
+<option value="-">Select new user role</option>
 <option value="Administrator">Administrator</option>
 <option value="Korisnik">Korisnik</option>
 <option value="Banovani korisnik">Banovani korisnik</option>
@@ -62,6 +72,10 @@ echo "</tbody></table>";
 <?php 
 if($_SERVER["REQUEST_METHOD"]==="POST"){
 	$msg="Successfully updated user role.";
+	$errMsg="Invalid values";
+	    if($_POST["email"]==='-' || $_POST["selektiraj"]==='-'){
+			echo $errMsg;
+		}else{
 		$email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST["email"])));
 		$userId="SELECT r.id FROM registration r where email='$email'";
 		$query=mysqli_query($dbc,$userId);
@@ -87,7 +101,8 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
 				header('Location: dodjeli_uloge.php?msg='.$msg);
 			}
 		}
-
+		}
+		
 }
 
 
