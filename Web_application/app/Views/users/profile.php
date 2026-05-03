@@ -19,6 +19,7 @@
             <span id="updateBasicInfo">
                  <?php
 
+                                                                use Carbon\Carbon;
                                                                 use Core\Auth;
 
  echo "<a class='updateInformations' href='?page=users/update&id={$profil["userId"]}'>Update basic information</a>"; ?>
@@ -40,11 +41,9 @@
             <input type="text" name="accountStatus" id="accountStatus" value="<?= $profil["accountStatus"]; ?>" readonly>
             
             <label for="registrationDate">Registration date</label>
-            <input type="datetime" name="registrationDate" id="registrationDate" value="<?= $profil["registrationDate"]; ?>" readonly>
+            <input type="datetime" name="registrationDate" id="registrationDate" value="<?= Carbon::parse($profil["registrationDate"])->format("d.m.Y H:i:s"); ?>" readonly>
 
-                 <span id="updateProfileDetails">
-                 <?php echo "<a class='updateInformations' href='?id={$profil["userId"]}'>Update profile details</a>"; ?>
-            </span>
+               <!-- Account type and account profile details will be updated by admin on user managment part -->
 
 
                <label for="street">Street</label>
