@@ -11,7 +11,7 @@ class City{
     //otherwise return count 2
    // SELECT count(c.postNumber) as data FROM city c where c.name='Zagreb';
 
-   //function for selecting city depending on chosen state
+   //function for list of cities depending on state name
    public static function getCityRecord(string $state):array{
     $db=Database::getInstance();
     $sql="SELECT c.postNumber,c.name FROM city c inner join state s on c.stateId=s.stateId where s.name=:state";
