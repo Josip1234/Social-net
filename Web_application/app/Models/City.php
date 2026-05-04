@@ -21,4 +21,14 @@ class City{
     ]);
     return $stmt->fetchAll();
    }
+   //function for list of the cities depending on state id
+      public static function getCityRecordById(int $stateId):array{
+    $db=Database::getInstance();
+    $sql="SELECT c.postNumber,c.name FROM city c inner join state s on c.stateId=s.stateId where s.stateId=:stateId";
+    $stmt=$db->prepare($sql);
+    $stmt->execute([
+        ":stateId"=>$stateId,
+    ]);
+    return $stmt->fetchAll();
+   }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\AddressController;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
 use Core\Config;
@@ -16,6 +17,7 @@ $_SERVER['APP_ENV']=Config::chooseEnv();
 
 $controller=new HomeController();
 $userController = new UserController();
+$addressController = new AddressController();
 
 $page=$_GET['page']??'index';
 
@@ -54,6 +56,9 @@ switch($page){
         break;
     case 'users/edit_account_type':
         $userController->editAccountType();
+        break;
+    case 'address/update':
+        $addressController->updateAddress();
         break;
     default:
         $controller->index();

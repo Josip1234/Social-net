@@ -138,4 +138,13 @@ private static function validateEmail(string $value):bool{
     return $isEmail;
 }
 
+
+//helper function for validate address form 
+public static function validateAddressFormInput():array|bool{
+      //intitialize error array
+        $errors=[];
+        return (empty($errors)?true:$errors);
+}
+
+
 }
