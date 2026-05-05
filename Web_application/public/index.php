@@ -2,6 +2,7 @@
 
 use App\Controllers\AddressController;
 use App\Controllers\HomeController;
+use App\Controllers\StateController;
 use App\Controllers\UserController;
 use Core\Config;
 
@@ -18,6 +19,7 @@ $_SERVER['APP_ENV']=Config::chooseEnv();
 $controller=new HomeController();
 $userController = new UserController();
 $addressController = new AddressController();
+$stateController=new StateController();
 
 $page=$_GET['page']??'index';
 
@@ -59,6 +61,12 @@ switch($page){
         break;
     case 'address/update':
         $addressController->updateAddress();
+        break;
+    case 'address/new_state':
+        $stateController->stateIndex();
+        break;
+    case 'insertNewState':
+        $stateController->insertNewState();
         break;
     default:
         $controller->index();

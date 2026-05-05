@@ -30,5 +30,16 @@ class State{
         ]);
         $selected=$stmt->fetchColumn();
         return $selected;
+    } 
+    //function for insert new state into database
+    public static function insertNewStateIntoDatabase(array $data):void{
+    
+             $db = Database::getInstance();
+        $sql = "INSERT INTO state(name)
+values (:name)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([
+            ':name'=>$data["name"]
+        ]);
     }
 }

@@ -1,6 +1,7 @@
 <?php 
 namespace App\Helpers;
 
+use App\Models\State;
 use Carbon\Carbon;
 
 class Validation{
@@ -146,5 +147,25 @@ public static function validateAddressFormInput():array|bool{
         return (empty($errors)?true:$errors);
 }
 
-
+//function for validate state form
+public static function validateStateInput():array|bool{
+    //intitialize error array
+        $errors=[];
+        if($_SERVER["REQUEST_METHOD"]==="POST"){
+               $name=self::clean_input($_POST["name"]);
+            if((int)strlen($_POST["name"])==0){
+                $errors["empty"]="Input name is empty. Please enter some value.";
+            }else{
+                 $alreadyInserted=State::checkInsertedState($_POST["name"]);
+                 if(strlen($name)>100){
+                    $errors["max"]="Maximum input length is 100 characters.";
+                 }elseif(strlen($name)<3){
+                    $errors["min"]="Minimum input length is 3 character.";
+                 }elseif($alreadyInserted===true){
+                    $errors["exists"]="This state already exists in our database.";
+                 }
+            }
+        }
+        return (empty($errors)?true:$errors);
+}
 }

@@ -1,6 +1,6 @@
 <main>
       <div class="form-box">
-          <a href="" class='updateInformations'>Insert new state</a>
+          <a href="?page=address/new_state" class='updateInformations'>Insert new state</a>
         <a href="" class='updateInformations'>Insert new city</a>
         <form action="" method="post">
             <label for="state">Select state:</label>
@@ -19,12 +19,14 @@
                 <option value="-">--Select city--</option>
                 <?php 
                 if(isset($_COOKIE["selected"])):
+                   
                 foreach ($cities as $city):
                 ?>
                 <option value="<?= $city["postNumber"]; ?>"><?= $city["name"]; ?></option>
                 <?php 
                 
                 endforeach;
+           
                 endif;
                 ?>
             </select>
