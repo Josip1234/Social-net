@@ -4,6 +4,19 @@ include "dbconn.php";
 if(session_status()===PHP_SESSION_NONE){
     session_start();
 }
+//function for checking if there is user role 
+//we already have this in dodjeli_uloge.php 
+function check_if_user_already_have_role(int $userId,string $uloga):bool{
+    global $dbc;
+    $haveRole=true;
+    $sql="SELECT count(id) as Res FROM uloge u where user_id=$userId and uloga=$uloga";
+    $stmt=mysqli_query($dbc,$sql);
+    $res=$stmt->fetch_assoc();
+    if((int)$res["res"]===0){
+        $haveRole=false;
+    }
+    return $haveRole;
+}
 
 //ova funkcija bi trebala riješiti ponovni unos nakon refresh stranice
 //ova funkcija je višak možda će biti potrebna pa ćemo je ostaviti ovdje
