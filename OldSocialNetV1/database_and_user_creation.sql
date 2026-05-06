@@ -69,4 +69,4 @@ useremail varchar(50) null,
 imageId varchar(50),
 imageType varchar(25),
 imageData longblob,
-constraint email_fk foreign key (useremail) references registration(email) on delete cascade on update cascade);
+constraint im_reg_email_fk foreign key (useremail) references registration(email) on delete cascade on update cascade);
