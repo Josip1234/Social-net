@@ -1,7 +1,7 @@
 <main>
       <div class="form-box">
           <a href="?page=address/new_state" class='updateInformations'>Insert new state</a>
-        <a href="" class='updateInformations'>Insert new city</a>
+        <a href="?page=city" class='updateInformations'>Insert new city</a>
         <form action="" method="post">
             <label for="state">Select state:</label>
             <select name="state" id="state" onchange="showSelected()">

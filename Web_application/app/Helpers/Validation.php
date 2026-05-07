@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use App\Models\State;
 use Carbon\Carbon;
+use App\Models\City;
 
 class Validation{
     //validate form depending on post method
@@ -144,6 +145,38 @@ private static function validateEmail(string $value):bool{
 public static function validateAddressFormInput():array|bool{
       //intitialize error array
         $errors=[];
+        return (empty($errors)?true:$errors);
+}
+
+//helper function for validate city input
+public static function validateCityFormInput():array|bool{
+      //intitialize error array
+        $errors=[];
+         if($_SERVER["REQUEST_METHOD"]==="POST"){
+            if(isset($_POST["postNumber"]) && isset($_POST["citName"])){
+                  $postNum=self::clean_input($_POST["postNumber"]);
+                $citName=self::clean_input($_POST["name"]);
+
+                  if((int)strlen($postNum)==0){
+                $errors["empty"]="Postal number is empty. Please enter some value.";
+              }
+               if((int)strlen($citName)==0){
+                $errors["empty"]="City name is empty. Please enter some value.";
+              }
+
+              if(!is_numeric($postNum)){
+                $errors["notInteger"]="Postal number not a number.";
+              }
+              if((int)City::checkInsertedCity($postNum)===0){
+                 $errors["alreadyExists"]="City already exists in our database.";
+              }
+         }
+            }else{
+                $errors["empty"]="Invalid values.";
+            }
+          
+
+            
         return (empty($errors)?true:$errors);
 }
 

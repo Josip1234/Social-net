@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\AddressController;
+use App\Controllers\CityController;
 use App\Controllers\HomeController;
 use App\Controllers\StateController;
 use App\Controllers\UserController;
@@ -20,6 +21,7 @@ $controller=new HomeController();
 $userController = new UserController();
 $addressController = new AddressController();
 $stateController=new StateController();
+$cityController = new CityController();
 
 $page=$_GET['page']??'index';
 
@@ -67,6 +69,9 @@ switch($page){
         break;
     case 'insertNewState':
         $stateController->insertNewState();
+        break;
+    case 'city':
+        $cityController->city();
         break;
     default:
         $controller->index();

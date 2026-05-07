@@ -2,6 +2,8 @@
 namespace App\Models;
 
 use Core\Database;
+use Core\Auth;
+use App\Helpers\Validation;
 
 class City{
     //function for searching city name 
@@ -31,4 +33,27 @@ class City{
     ]);
     return $stmt->fetchAll();
    }
+   //function for inserting new city in database
+    public static function insertNewCity(array $data){
+            
+             $db = Database::getInstance();
+        $sql = "INSERT INTO city(postNumber,name,stateId)
+values (:postNumber,:name,:stateId)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([
+            ':postNumber'=>$data["postNumber"],
+            ':name'=>$data["name"],
+            ':stateId'=>$data["stateId"]
+        ]);
+    }
+    
+        public static function checkInsertedCity(string $postNumber):bool{
+        $db=Database::getInstance();
+        $isInserted=false;
+        $sql="SELECT count(c.postNumber) as number from city c where c.postNumber=:postNumber";
+        $stmt=$db->prepare($sql);
+        $stmt->execute([':postNumber'=>$postNumber]);
+        $isInserted=($stmt->fetchColumn()>0)?$isInserted=true:$isInserted=false;
+        return $isInserted;
+    } 
 }
