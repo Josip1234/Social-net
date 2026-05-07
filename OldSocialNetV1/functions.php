@@ -81,13 +81,16 @@ function loggedUsersOnly(){
 
 function returnUrls(int $userId):array{
     $urls=[];
+    //urls for non admins
      $urls["logout"]='<a href="logout.php" target="_self">Logout</a>';
      $urls["profile"]='<a href="profile.php" target="_self">User profile</a>'; 
+     $urls["delete"]='<a href="terminirajprofil.php" target="_self">Delete profile</a>';
     global $dbc;
 
    $sql="SELECT u.uloga from uloge u where user_id='$userId'";
    $stmt=mysqli_query($dbc,$sql);
    $query=mysqli_fetch_assoc($stmt);
+   //urls for admins
    if($query["uloga"]==="Administrator"){
         $urls["currentFeedbacks"]='<a href="trenutnifeedback.php" target="_self">Current feedbacks</a>';
         $urls["userRoles"]='<a href="dodjeli_uloge.php" target="_self">Assign user roles</a>';    

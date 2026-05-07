@@ -40,6 +40,8 @@ $sql="select r.fname,r.lname,r.sex,r.dateOfBirth,r.cityOfBirth,r.countryOfBirth,
 inner join uloge u on r.id=u.user_id
 where pr.email='".$_SESSION['username']."';";
 $res=mysqli_query($dbc,$sql);
+
+if((int)mysqli_num_rows($res)>0){
 while($ro=mysqli_fetch_array($res)){
     $img='<img src="data:'.$ro['imageType'].';base64,'.base64_encode( $ro['imageData'] ).'"width="50%" height="50%" ';
     $alt="alt=".$ro["imageId"]."/>";
@@ -56,6 +58,8 @@ $cityOfBirth=$ro["cityOfBirth"];
 $stateOfBirth=$ro["countryOfBirth"];
 $email=$ro["email"];
 $ul=$ro["uloga"];
+$button='<input type="submit" value="Update">';
+
 
 //previously saved user data will be used to compare values
 $_SESSION["firstName1"]=$firstName;
@@ -68,6 +72,20 @@ $_SESSION["email1"]=$email;
 $_SESSION["uloga1"]=$ul;
 
 };
+}else{
+      $img='<img src="data:'."".';base64,'.base64_encode( "" ).'"width="50%" height="50%" ';
+    $alt="alt=".""."/>";
+    $pit=$img.$alt;
+    echo $pit;
+    $firstName="";
+    $lastName="";
+    $checked=(rand(1,2)===1)?'m':'z';
+    $cityOfBirth="";
+    $stateOfBirth="";
+    $email="";
+    $ul="";
+    $button="";
+}
 
 ?>
 
@@ -90,7 +108,7 @@ $_SESSION["uloga1"]=$ul;
     <label for="uloga">Role:</label> <br>
     <input type="text" name="uloga" id="uloga" value="<?= $ul; ?>" readonly>
     <br>
-    <input type="submit" value="Update">
+    <?= (isset($button))?$button:[]; ?>
 
 </form>
 
