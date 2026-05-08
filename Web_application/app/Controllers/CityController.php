@@ -10,9 +10,9 @@ use App\Helpers\Validation;
 class CityController extends Controller{
     public function city(){
         Auth::requireLogin();
-     
+        $state=State::selectAllStatesFromDatabase();
         if($_SERVER["REQUEST_METHOD"]==="GET"){
-           $state=State::selectAllStatesFromDatabase();
+           
         $this->view("address/city",[
             "states"=>$state
         ]);
@@ -21,7 +21,10 @@ class CityController extends Controller{
                
                 City::insertNewCity($_POST);
                    $_SESSION["msg"]="Successfully inserted new city.";
-                header("Location: index.php?page=city");
+            
+                 $this->view("address/city",[
+                    "states"=>$state
+            ]);
             }
             $stateId=isset($_POST["state"])?$_POST["state"]:0;
             $validated=Validation::validateCityFormInput();
