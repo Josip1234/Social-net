@@ -1,0 +1,615 @@
+-- za logiranje korisnika baze podataka u tablici state
+DELIMITER $$
+create trigger UserLogAfterInsertOnState after insert on state
+for each row 
+begin 
+call saveLog('insert','state');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger UserLogAfterUpdateOnState after update on state
+for each row 
+begin 
+call saveLog('update','state');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger UserLogAfterDeleteOnState after delete on state
+for each row 
+begin 
+call saveLog('delete','state');
+end $$
+DELIMITER ;
+
+-- triggers for logging city tables
+DELIMITER $$
+create trigger UserLogAfterInsertOnCity after insert on city
+for each row 
+begin 
+call saveLog('insert','city');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger UserLogAfterUpdateOnCity after update on city
+for each row 
+begin 
+call saveLog('update','city');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger UserLogAfterDeleteOnCity after delete on city
+for each row 
+begin 
+call saveLog('delete','city');
+end $$
+DELIMITER ;
+
+
+DELIMITER $$
+create trigger insertUserIntoDatabaseLogger after insert on databaseUser
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000' 
+set message_text='User is not admin.Operation not allowed.';
+	else
+call insertUsersIntoDbLoggerIfNotExists(new.userId);
+end if;
+end $$
+DELIMITER ;
+
+-- triggers for table address
+DELIMITER $$
+create trigger insertAdrIntoDatabaseLogger after insert on address
+for each row 
+begin 
+call saveLog('insert','adr');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger updateAdrIntoDatabaseLogger after update on address
+for each row 
+begin 
+call saveLog('update','adr');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger deleteAdrIntoDatabaseLogger after delete on address
+for each row 
+begin 
+call saveLog('delete','adr');
+end $$
+DELIMITER ;
+
+-- triggers for log user profile
+-- except for the log this trigger will be used to auto insert data into profile details after insert
+-- into profile new user 
+-- also will activate auto insert into image
+DELIMITER $$
+create trigger userProfileLog after insert on profile
+for each row 
+begin 
+declare accTypeId int unsigned;
+select acTypeId into accTypeId from accounttype where acTypeName='Regular';
+if accTypeId is not null then
+call saveProfileLog('insert','profile',concat(new.firstName,' ',new.lastName),null);
+call autoInsertIntoProfileDet(new.userId,accTypeId, now(), 'Active');
+else 
+SIGNAL sqlstate '45000'
+set message_text = 'There are no account type under this name. Please check data in the table account type.';
+end if;
+end $$
+DELIMITER ;
+
+
+
+DELIMITER $$
+create trigger userUpdateProfileLog after update on profile
+for each row 
+begin 
+call saveProfileLog('update','profile',concat(new.firstName,' ',new.lastName),concat(old.firstName,' ',old.lastName));
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger userDeleteProfileLog after delete on profile
+for each row 
+begin 
+call saveProfileLog('delete','profile',concat(old.firstName,' ',old.lastName),null);
+end $$
+DELIMITER ;
+
+-- triggers for profile details table
+DELIMITER $$
+create trigger addedProfileDetailsLog after insert on profiledetails
+for each row 
+begin 
+call saveLog('insert','pd');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger updatedProfileDetailsLog after update on profiledetails
+for each row 
+begin 
+call saveLog('update','pd');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger deletedProfileDetailsLog after delete on profiledetails
+for each row 
+begin 
+call saveLog('delete','pd');
+end $$
+DELIMITER ;
+
+-- triggers for limiting use of account type table will be triggered before insert, update and delete
+DELIMITER $$
+create trigger limitAccountTypeTableBeforeInsert before insert on accounttype
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
+call limitUseOfCudOperations('insert');
+end if;
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger limitAccountTypeTableBeforeUpdate before update on accounttype
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
+call limitUseOfCudOperations('update');
+end if;
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger limitAccountTypeTableBeforeDelete before delete on accounttype
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
+call limitUseOfCudOperations('delete');
+end if;
+end $$
+DELIMITER ;
+-- triggers for logging account type table
+DELIMITER $$
+create trigger insertTypeLog after insert on accounttype
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
+call saveLog('insert','at');
+end if;
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger updateTypeLog after update on accounttype
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
+call saveLog('update','at');
+end if;
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger deleteTypeLog after delete on accounttype
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000'
+set message_text='User is not admin. Operation not allowed.';
+else
+call saveLog('delete','at');
+end if;
+end $$
+DELIMITER ;
+
+-- trigger for databaseUsers logging
+DELIMITER $$
+create trigger dbuserInsertLog before insert on databaseUser
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000' 
+set message_text='User is not admin.Operation not allowed.';
+	else
+call saveLog('insert','dbus');
+end if;
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger dbuserUpdateLog after update on databaseUser
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000' 
+set message_text='User is not admin.Operation not allowed.';
+	else
+call saveLog('update','dbus');
+end if;
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger dbuserDeleteLog after delete on databaseUser
+for each row 
+begin 
+if user()='regular' then
+SIGNAL sqlstate '45000' 
+set message_text='User is not admin.Operation not allowed.';
+	else
+call saveLog('delete','dbus');
+end if;
+end $$
+DELIMITER ;
+-- triggers for comments
+DELIMITER $$
+create trigger CommentLogAfterInsert after insert on comments
+for each row 
+begin 
+call saveLog('insert','cmt');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger CommentLogAfterUpdate after update on comments
+for each row 
+begin 
+call saveLog('update','cmt');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger CommentLogAfterDelete after delete on comments
+for each row 
+begin 
+call saveLog('delete','cmt');
+end $$
+DELIMITER ;
+
+-- triggers for table images
+DELIMITER $$
+create trigger ImageLogAfterInsert after insert on image
+for each row 
+begin 
+call saveLog('insert','img');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageLogAfterUpdate after update on image
+for each row 
+begin 
+call saveLog('update','img');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageLogAfterDelete after delete on image
+for each row 
+begin 
+call saveLog('delete','img');
+end $$
+DELIMITER ;
+-- triggers for image gallery
+DELIMITER $$
+create trigger ImageGalleryLogAfterInsert after insert on image_gallery
+for each row 
+begin 
+call saveLog('insert','imgal');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageGalleryLogAfterUpdate after update on image_gallery
+for each row 
+begin 
+call saveLog('update','imgal');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageGalleryLogAfterDelete after delete on image_gallery
+for each row 
+begin 
+call saveLog('delete','imgal');
+end $$
+DELIMITER ;
+-- triggers for image details
+DELIMITER $$
+create trigger ImageDetailsLogAfterInsert after insert on imagedetails
+for each row 
+begin 
+call saveLog('insert','imgdet');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageDetailsLogAfterUpdate after update on imagedetails
+for each row 
+begin 
+call saveLog('update','imgdet');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger ImageDetailsLogAfterDelete after delete on imagedetails
+for each row 
+begin 
+call saveLog('delete','imgdet');
+end $$
+DELIMITER ;
+-- triggers for limiting regular user for making crud operations on imageType table
+DELIMITER $$
+create trigger limitUserOfInsertingDataToimageType before insert on imageType
+for each row 
+begin 
+call limitUseOfCudOperations('insert');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger limitUserOfUpdatingDataToimageType before update on imageType
+for each row 
+begin 
+call limitUseOfCudOperations('update');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger limitUserOfDeletingDataToimageType before delete on imageType
+for each row 
+begin 
+call limitUseOfCudOperations('delete');
+end $$
+DELIMITER ;
+-- triggers for logging image type
+DELIMITER $$
+create trigger logimageTypeAfterInsert after insert on imageType
+for each row 
+begin 
+call saveLog('insert','imgtyp');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logimageTypeAfterUpdate after update on imageType
+for each row 
+begin 
+call saveLog('update','imgtyp');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logimageTypeAfterDelete after delete on imageType
+for each row 
+begin 
+call saveLog('delete','imgtyp');
+end $$
+DELIMITER ;
+-- trigger for img img gallery
+DELIMITER $$
+create trigger imageInGalleryLogAfterInsert after insert on img_img_gal
+for each row 
+begin 
+call saveLog('insert','iig');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger imageInGalleryLogAfterUpdate after update on img_img_gal
+for each row 
+begin 
+call saveLog('update','iig');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger imageInGalleryLogAfterDelete after delete on img_img_gal
+for each row 
+begin 
+call saveLog('delete','iig');
+end $$
+DELIMITER ;
+
+-- triggers for table procomsub
+DELIMITER $$
+create trigger proComSubLogAfterInsert after insert on procomsub
+for each row 
+begin 
+call saveLog('insert','pcs');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger proComSubLogAfterUpdate after update on procomsub
+for each row 
+begin 
+call saveLog('update','pcs');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger proComSubLogAfterDelete after delete on procomsub
+for each row 
+begin 
+call saveLog('delete','pcs');
+end $$
+DELIMITER ;
+
+-- triggers for logging database loger
+DELIMITER $$
+create trigger databaseLogAfterInsert after insert on database_logger
+for each row 
+begin 
+call saveLog('insert','dblog');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger databaseLogAfterUpdate after update on database_logger
+for each row 
+begin 
+call saveLog('update','dblog');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger databaseLogAfterDelete after delete on database_logger
+for each row 
+begin 
+call saveLog('delete','dblog');
+end $$
+DELIMITER ;
+-- triggers for logger content will have only update and delete
+-- will have only select even from admin 
+-- will make trigger for update but forbid operations for update
+/*
+DELIMITER $$
+create trigger logContentAfterinsert after insert on logger_content
+for each row 
+begin 
+call saveLog2('insert','lc');
+end $$
+DELIMITER ;
+*/
+-- as default
+DELIMITER $$
+create trigger logContentBeforeUpdate before update on logger_content
+for each row 
+begin 
+SIGNAL sqlstate '45000' 
+set message_text='Update operation for update log content in logger content table is not allowed.';
+end $$
+DELIMITER ;
+/*
+DELIMITER $$
+create trigger logContentAfterDelete after delete on logger_content
+for each row 
+begin 
+call saveLog2('delete','lc');
+end $$
+DELIMITER ;
+*/
+-- triggers for profile logger
+DELIMITER $$
+create trigger logContentAfterinsert after insert on profile_logger
+for each row 
+begin 
+call saveLog2('insert','pl');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterUpdate after insert on profile_logger
+for each row 
+begin 
+call saveLog2('update','pl');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterDelete after delete on profile_logger
+for each row 
+begin 
+call saveLog2('delete','pl');
+end $$
+DELIMITER ;
+
+-- triggers for subtopics
+DELIMITER $$
+create trigger logContentAfterInsertSt after insert on subtopics
+for each row 
+begin 
+call saveLog2('insert','st');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterUpdateSt after update on subtopics
+for each row 
+begin 
+call saveLog2('update','st');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterDeleteSt after delete on subtopics
+for each row 
+begin 
+call saveLog2('delete','st');
+end $$
+DELIMITER ;
+-- triggers for topics
+DELIMITER $$
+create trigger logContentAfterInsertTop after insert on topics
+for each row 
+begin 
+call saveLog2('insert','top');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterUpdateTop after update on topics
+for each row 
+begin 
+call saveLog2('update','top');
+end $$
+DELIMITER ;
+
+DELIMITER $$
+create trigger logContentAfterDeleteTop after delete on topics
+for each row 
+begin 
+call saveLog2('delete','top');
+end $$
+DELIMITER ;
+
+/* 
+
+14:50:09	create trigger UserLogAfterInsertOnState after insert on state for each row  begin  
+call saveLog('insert','state'); end	Error Code: 1419.
+ You do not have the SUPER privilege and binary logging is enabled 
+ (you *might* want to use the less safe log_bin_trust_function_creators variable)	0.00095 sec
+
+Hi if anybody came here to find a solution and if you are using Linux
+
+systemctl stop mysqld
+Add log_bin_trust_function_creators = 1 to my.cnf under /etc/mysql
+systemctl start mysqld
+
+// if there are some problems 
+/etc/init.d/mysql stop
+service mysql stop
+killall -KILL mysql mysqld_safe mysqld
+/etc/init.d/mysql start
+service mysql start
+
+
+*/
