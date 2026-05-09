@@ -85,6 +85,7 @@ function returnUrls(int $userId):array{
      $urls["logout"]='<a href="logout.php" target="_self">Logout</a>';
      $urls["profile"]='<a href="profile.php" target="_self">User profile</a>'; 
      $urls["delete"]='<a href="terminirajprofil.php" target="_self">Delete profile</a>';
+      $urls["updatep"]='<a href="updateprofilne.php" target="_self">Update profile picture</a>'; 
     global $dbc;
 
    $sql="SELECT u.uloga from uloge u where user_id='$userId'";
@@ -179,4 +180,13 @@ function unsetProfileSessions():void{
     unset($_SESSION["countryOfBirth1"]);
     unset($_SESSION["email1"]);
     unset($_SESSION["uloga1"]);
+}
+
+//function will check if user already have profile picture 
+//if user have profile picture redirect user to profile update
+//to prevent insert picture because we have updated 
+//profilna table email must be unique and not empty
+function checkProfilePicture(string $email):bool{
+    $exists=true;
+    return $exists;
 }

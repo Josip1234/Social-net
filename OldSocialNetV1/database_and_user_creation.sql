@@ -70,3 +70,5 @@ imageId varchar(50),
 imageType varchar(25),
 imageData longblob,
 constraint im_reg_email_fk foreign key (useremail) references registration(email) on delete cascade on update cascade);
+alter table profilna modify column email varchar(50) unique;
+alter table profilna modify column email varchar(50) not null unique;

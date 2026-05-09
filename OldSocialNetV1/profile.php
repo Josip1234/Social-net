@@ -15,6 +15,8 @@
 <?php require_once "navigacija.php"; 
 require_once "dbconn.php";
 
+//this variable is for random checkbox if there is no value
+//checked in checkbox
 $checked="";
 loggedUsersOnly();
 ?>
@@ -23,6 +25,7 @@ loggedUsersOnly();
 </div>
 <div class="pravila">
 <section><h2>Your profile</h2>
+
 <?php 
 if(isset($_SESSION["success"])){
     if(!empty($_SESSION["success"])){
