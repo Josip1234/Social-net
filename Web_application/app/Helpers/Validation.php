@@ -207,17 +207,19 @@ public static function validateStateInput():array{
         $errors=[];
         if($_SERVER["REQUEST_METHOD"]==="POST"){
                $name=self::clean_input($_POST["name"]);
-              
-            if(strlen($name)===0 || empty($name) || $name=''){
-                $errors["empty"]="Input name is empty. Please enter some value.";
-            }
-                 
-            if(strlen($name)>100){
-             $errors["max"]="Maximum input length is 100 characters.";
-             }elseif(strlen($name)<3){
+              $nmCpy=$name;
+
+            if(strlen($nmCpy)<3){
              $errors["min"]="Minimum input length is 3 characters.";
              }
-             
+
+               if(strlen($nmCpy)>100){
+             $errors["max"]="Maximum input length is 100 characters.";
+             }
+         
+            if(strlen($nmCpy)===0 || empty($nmCpy) || $nmCpy=''){
+                $errors["empty"]="Input name is empty. Please enter some value.";
+            }  
           
                $alreadyInserted=State::checkInsertedState($name);
             if($alreadyInserted===true){
