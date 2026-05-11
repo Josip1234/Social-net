@@ -145,6 +145,27 @@ private static function validateEmail(string $value):bool{
 public static function validateAddressFormInput():array|bool{
       //intitialize error array
         $errors=[];
+        if($_SERVER["REQUEST_METHOD"]==="POST"){
+            $street=self::clean_input($_POST["address"]); //street name only
+            $city=self::clean_input($_POST["city"]); //postal number
+            
+            if(empty($street) || empty($city)){
+                $errors["empty"]="Street or city are empty fields.";
+            }
+
+            if(strlen($street)>255){
+                $errors["len"]="Street exceedes total value length.";
+            }
+            if(strlen($street)<3){
+                $errors["len"]="Minimum input for street is 3 characters.";
+            }
+
+            if(!is_numeric($city)){
+                $errors["num"]="Postal number must be numeric number.";
+            }
+
+
+        }
         return (empty($errors)?true:$errors);
 }
 
@@ -181,24 +202,33 @@ public static function validateCityFormInput():array|bool{
 }
 
 //function for validate state form
-public static function validateStateInput():array|bool{
+public static function validateStateInput():array{
     //intitialize error array
         $errors=[];
         if($_SERVER["REQUEST_METHOD"]==="POST"){
                $name=self::clean_input($_POST["name"]);
-            if((int)strlen($_POST["name"])==0){
+              
+            if(strlen($name)===0 || empty($name) || $name=''){
                 $errors["empty"]="Input name is empty. Please enter some value.";
-            }else{
-                 $alreadyInserted=State::checkInsertedState($_POST["name"]);
-                 if(strlen($name)>100){
-                    $errors["max"]="Maximum input length is 100 characters.";
-                 }elseif(strlen($name)<3){
-                    $errors["min"]="Minimum input length is 3 character.";
-                 }elseif($alreadyInserted===true){
-                    $errors["exists"]="This state already exists in our database.";
-                 }
             }
+                 
+            if(strlen($name)>100){
+             $errors["max"]="Maximum input length is 100 characters.";
+             }elseif(strlen($name)<3){
+             $errors["min"]="Minimum input length is 3 characters.";
+             }
+             
+          
+               $alreadyInserted=State::checkInsertedState($name);
+            if($alreadyInserted===true){
+             $errors["exists"]="This state already exists in our database.";
+             }
+                
+         
+         
+            
+            
         }
-        return (empty($errors)?true:$errors);
+        return $errors;
 }
 }

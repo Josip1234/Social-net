@@ -20,6 +20,7 @@
                  <?php if(isset($errors["empty"])): ?>
             <span class="error"> <?= $errors["empty"]; ?></span>
             <?php endif; ?>
+            
             <input type="submit" value="Insert new state">
             <button type="reset">Reset entry</button>
             </form>
