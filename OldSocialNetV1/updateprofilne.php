@@ -41,14 +41,29 @@ $imageId=str_replace([" ","-",":"],"",date("Y-m-d H:i:s"));
 if(!empty($_FILES['userImage2']['tmp_name'])){
 
 $imgData =addslashes(file_get_contents($_FILES['userImage2']['tmp_name']));
-$imageProperties = getimageSize($_FILES['userImage2']['tmp_name']);
+$imageProperties = getimageSize($_FILES['userImage2']['tmp_name']); 
+
+	//need this to store data in image history
+	$_SESSION["file"]["imgData"]=$imgData;
+	$_SESSION["file"]["imgProp"]=$imageProperties;
+
+
 $sql ="UPDATE profilna SET email='$username',imageType='{$imageProperties['mime']}',imageData='{$imgData}',imageId='$imageId' WHERE email='$username'";
 mysqli_query($dbc,$sql);
 
 
 if($sql){
 	mysqli_close($dbc);
-	header("Location: profile.php");
+	echo "Update successfull";
+	echo "Do you want to save your previous profile picture?";
+
+	echo "<form action='".htmlspecialchars('save_history.php')."' method='post'>
+	<input type='checkbox' name='odgovor' id='yes' value='yes'>Yes 
+	<br>
+	<input type='checkbox' name='odgovor' id='no' value='no'>No 
+	<input type='submit' value='Submit'>
+</form>";
+	//header("Location: profile.php");
 }
 
 }
@@ -64,9 +79,9 @@ while($ro=mysqli_fetch_array($res)){
 	echo "<label>User image:</label><br/>";
 	echo '<img src="data:'.$ro['imageType'].';base64,'.base64_encode( $ro['imageData'] ).'"/> ';
     
-	$id=$ro['imageId'];
-	$uimgtp=$ro['imageType'];
-	$uimgdt=$ro['imageData'];
+	$_SESSION["imageId"]=$ro['imageId'];
+	$_SESSION["imageType"]=$ro['imageType'];
+	$_SESSION["imageData"]=$ro['imageData'];
 	
 	
 	

@@ -182,6 +182,12 @@ function unsetProfileSessions():void{
     unset($_SESSION["uloga1"]);
 }
 
+function unsetImageSessions():void{
+      unset($_SESSION["imageId"]);
+    unset($_SESSION["imageType"]);
+    unset($_SESSION["imageData"]);
+}
+
 //function will check if user already have profile picture 
 //if user have profile picture redirect user to profile update
 //to prevent insert picture because we have updated 
