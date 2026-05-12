@@ -5,6 +5,8 @@
      <div class="message">
           <p class="success"><?= $_SESSION['msg']; ?></p>
      </div>
+
+
      <?php endif; unset($_SESSION['msg']);?>
          <?php if(isset($_POST["addCity"]) && ($_POST["addCity"]==1)): ?>
               <table>

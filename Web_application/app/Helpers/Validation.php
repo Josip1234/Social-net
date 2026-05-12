@@ -170,13 +170,17 @@ public static function validateAddressFormInput():array|bool{
 }
 
 //helper function for validate city input
-public static function validateCityFormInput():array|bool{
+public static function validateCityFormInput():array{
       //intitialize error array
         $errors=[];
-         if($_SERVER["REQUEST_METHOD"]==="POST"){
-            if(isset($_POST["postNumber"]) && isset($_POST["citName"])){
+        
+           
                   $postNum=self::clean_input($_POST["postNumber"]);
                 $citName=self::clean_input($_POST["name"]);
+
+
+                
+
 
                   if((int)strlen($postNum)==0){
                 $errors["empty"]="Postal number is empty. Please enter some value.";
@@ -188,17 +192,15 @@ public static function validateCityFormInput():array|bool{
               if(!is_numeric($postNum)){
                 $errors["notInteger"]="Postal number not a number.";
               }
-              if((int)City::checkInsertedCity($postNum)===0){
+              if((int)City::checkInsertedCity($postNum)===1){
                  $errors["alreadyExists"]="City already exists in our database.";
               }
-         }
-            }else{
-                $errors["empty"]="Invalid values.";
-            }
+         
+            
           
 
             
-        return (empty($errors)?true:$errors);
+        return $errors;
 }
 
 //function for validate state form
