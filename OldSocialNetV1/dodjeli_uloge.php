@@ -6,9 +6,11 @@
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script src="socialnet.js"></script>
+<script src="calendar.js"></script>
 </head>
 
-<body>
+<?php include "functions.php"; echo printBodyOnMouseOver(); ?>
 
 <div class="con">
 <nav>
@@ -20,6 +22,7 @@ loggedUsersOnly();
 
 </nav>
 </div>
+<?php echo printCalendar(); ?>
 <div class="pravila">
 <section>
 <?php
@@ -110,6 +113,8 @@ mysqli_close($dbc);
 
 ?>
 </div>
-
+<?php 
+echo printFooter();
+?>
 </body>
 </html>

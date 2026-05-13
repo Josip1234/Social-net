@@ -1,4 +1,4 @@
-<?php include "functions.php";  ?>
+
   <a href="feedback.php" target="_self">Feedbacks</a>
 
 <a href="index.php" target="_self">Homepage</a>

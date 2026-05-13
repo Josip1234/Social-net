@@ -5,9 +5,11 @@
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script src="socialnet.js"></script>
+<script src="calendar.js"></script>
 </head>
 
-<body>
+<?php include "functions.php"; echo printBodyOnMouseOver(); ?>
 
 <div class="con">
 <nav>
@@ -18,6 +20,7 @@ require_once "dbconn.php";
 
 </nav>
 </div>
+<?php echo printCalendar(); ?>
 <div class="pravila">
 <section><h2>Profile deletion</h2>
 
@@ -51,6 +54,8 @@ if($odgovor=='yes'){
 </div>
 
 
-
+<?php 
+echo printFooter();
+?>
 </body>
 </html>

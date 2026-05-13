@@ -196,3 +196,23 @@ function checkProfilePicture(string $email):bool{
     $exists=true;
     return $exists;
 }
+//function for printing footer in php page
+function printFooter():string{
+   $footer= "<footer>
+    <p id='datum'></p>
+    </footer>";
+    return $footer;
+}
+//function for printing body onmouseover tag
+function printBodyOnMouseOver():string{
+    $body="<body onMouseOver='prikazi_datum(),dohvati_kalendar3()'>";
+    return $body;
+}
+//function for printing calendar section
+function printCalendar():string{
+    $calendar="<section id=\"cal\">
+    <h2>Calendar for March 2017</h2>
+    <p id='calendar'></p>
+    </section>";
+    return $calendar;
+}

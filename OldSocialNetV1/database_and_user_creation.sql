@@ -72,3 +72,15 @@ imageData longblob,
 constraint im_reg_email_fk foreign key (useremail) references registration(email) on delete cascade on update cascade);
 alter table profilna modify column email varchar(50) unique;
 alter table profilna modify column email varchar(50) not null unique;
+create table teme(
+id int primary key auto_increment,
+email varchar(50) not null,
+broj_teme varchar(255) unique,
+naziv_teme varchar(255) unique,
+constraint temail_fk foreign key (email) references registration(email) on delete cascade on update cascade);
+create table komentari(
+id int primary key auto_increment,
+broj_teme varchar(255) not null,
+datum_i_vrijeme_komentara datetime,
+komentar varchar(255),
+constraint broj_teme_fk foreign key (broj_teme) references teme(broj_teme) on delete cascade on update cascade);

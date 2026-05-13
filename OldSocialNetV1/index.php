@@ -5,15 +5,18 @@
 <title>Social net old first version</title>
 <link rel="stylesheet" href="css/stil.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="socialnet.js"></script>
+<script src="calendar.js"></script>
 </head>
 
-<body>
+<?php include "functions.php"; echo printBodyOnMouseOver(); ?>
     <div class="con">
         <nav>
           <?php include "navigacija.php"; ?>
         </nav>
 
     </div>
+    <?php echo printCalendar(); ?>
     <div class="pravila">
         <section>
             <h2>Privacy rules</h2>
@@ -21,5 +24,8 @@
         </section>
 
     </div>
+    <?php 
+echo printFooter();
+?>
 </body>
 </html>

@@ -7,9 +7,11 @@
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script src="socialnet.js"></script>
+<script src="calendar.js"></script>
 </head>
 
-<body>
+<?php include "functions.php"; echo printBodyOnMouseOver(); ?>
     <div class="con">
         <nav>
           <?php include "navigacija.php"; ?>
@@ -17,6 +19,7 @@
         </nav>
 
     </div>
+    <?php echo printCalendar(); ?>
     <div class="pravila">
        
         <?php
@@ -98,5 +101,8 @@ echo '<img src="data:'.$imageType.';base64,'.base64_encode( $imageData ).'"/> ';
   </form>
  
     </div>
+    <?php 
+echo printFooter();
+?>
 </body>
 </html>

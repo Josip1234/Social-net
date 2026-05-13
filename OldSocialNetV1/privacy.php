@@ -5,9 +5,11 @@
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet-privacy</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script src="socialnet.js"></script>
+<script src="calendar.js"></script>
 </head>
 
-<body>
+<?php include "functions.php"; echo printBodyOnMouseOver(); ?>
 
 <div class="con">
 <nav>
@@ -16,6 +18,7 @@
 
 </nav>
 </div>
+<?php echo printCalendar(); ?>
 <div class="pravila">
 <section>
 <h2>Basic rules of use this site</h2>
@@ -34,6 +37,8 @@ If you collect more than 50 negative points, you will be banned for 1 day. </li>
 </div>
 
 
-
+<?php 
+echo printFooter();
+?>
 </body>
 </html>

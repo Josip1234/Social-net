@@ -5,9 +5,11 @@
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script src="socialnet.js"></script>
+<script src="calendar.js"></script>
 </head>
 
-<body>
+<?php include "functions.php"; echo printBodyOnMouseOver(); ?>
 
 <div class="con">
 <nav>
@@ -18,6 +20,7 @@ require_once "dbconn.php";
 
 </nav>
 </div>
+<?php echo printCalendar(); ?>
 <div class="pravila">
 <section><h2>Register here</h2>
 <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -152,6 +155,8 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
 </div>
 
 
-
+<?php 
+echo printFooter();
+?>
 </body>
 </html>
