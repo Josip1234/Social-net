@@ -83,4 +83,6 @@ id int primary key auto_increment,
 broj_teme varchar(255) not null,
 datum_i_vrijeme_komentara datetime,
 komentar varchar(255),
-constraint broj_teme_fk foreign key (broj_teme) references teme(broj_teme) on delete cascade on update cascade);
+constraint broj_teme_fk foreign key (broj_teme) references teme(broj_teme) on delete cascade on update cascade); 
+alter table obavljeno add column auditor_email varchar(50) not null;
+alter table obavljeno add constraint aud_em_fk foreign key (auditor_email) references registration(email) on delete cascade on update cascade;

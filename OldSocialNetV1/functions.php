@@ -208,6 +208,11 @@ function printBodyOnMouseOver():string{
     $body="<body onMouseOver='prikazi_datum(),dohvati_kalendar3()'>";
     return $body;
 }
+//function for printing onmouseover and body onload tag
+function printBodyOnMouseOverAndOnLoad():string{
+     $body="<body onMouseOver='prikazi_datum(),dohvati_kalendar3()', onLoad='slike()'>";
+    return $body;
+}
 //function for printing calendar section
 function printCalendar():string{
     $calendar="<section id=\"cal\">
@@ -215,4 +220,33 @@ function printCalendar():string{
     <p id='calendar'></p>
     </section>";
     return $calendar;
+}
+//function for js file includes
+function jsIncludes():string{
+    $js="
+    <script src='socialnet.js'></script>
+<script src='calendar.js'></script>
+<script src='randomslike.js'></script>";
+    return $js;
+}
+
+
+//function for printing rand picture section
+function printPictures():string{
+    $pictures="<section id='randslike'>
+<h2>Random slike</h2>
+<p id='s'></p>
+</section>";
+    return $pictures;
+}
+
+
+
+//function for printing rand videos section
+function printVideos():string{
+    $videos="<section id='radnomvideozapisi'>
+<h2>Random videozapisi</h2>
+
+</section>";
+    return $videos;
 }

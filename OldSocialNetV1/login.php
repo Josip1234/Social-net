@@ -5,18 +5,21 @@
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
-<script src="socialnet.js"></script>
-<script src="calendar.js"></script>
+<?php include "functions.php"; echo jsIncludes(); ?>
 </head>
 
-<?php include "functions.php"; echo printBodyOnMouseOver(); ?>
+<?php  echo printBodyOnMouseOverAndOnLoad(); ?>
 
 <div class="con">
 <nav>
 <?php include "navigacija.php"; ?>
 </nav>
 </div>
-<?php echo printCalendar(); ?>
+<?php echo printCalendar();
+echo printPictures();
+echo printVideos();
+
+?>
 <div class="pravila">
 <section><h2>Login here</h2>
 <form action="login.php" method="post">

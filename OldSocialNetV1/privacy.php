@@ -5,11 +5,10 @@
 <meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet-privacy</title>
 <link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
-<script src="socialnet.js"></script>
-<script src="calendar.js"></script>
+<?php include "functions.php"; echo jsIncludes(); ?>
 </head>
 
-<?php include "functions.php"; echo printBodyOnMouseOver(); ?>
+<?php  echo printBodyOnMouseOverAndOnLoad(); ?>
 
 <div class="con">
 <nav>
@@ -18,7 +17,11 @@
 
 </nav>
 </div>
-<?php echo printCalendar(); ?>
+<?php echo printCalendar();
+echo printPictures();
+echo printVideos();
+
+?>
 <div class="pravila">
 <section>
 <h2>Basic rules of use this site</h2>
