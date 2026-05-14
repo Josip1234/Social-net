@@ -24,15 +24,46 @@ class CityController extends Controller{
                 $errors=Validation::validateCityFormInput();
                 if(empty($errors)){
                     City::insertNewCity($_POST);
+                       //need state id to get list of cities
+                    $stateId=$_SESSION["stateId"];
+                     //get list of cities by state id
+                    $cities=City::getCityRecordById($stateId);
+                    //need addCity post variable to get form for inserting data
+                    $_POST["addCity"]=1;
+                
+                    
+                  $_SESSION["msg"]="Successfully inserted new city.";
+                      //unset state id session no longer needed
+                  unset($_SESSION["stateId"]);
+                     $this->view("address/city",[
+                        'errors'=>$errors,
+                        'cities'=>$cities,
+                        $_POST["addCity"]
+                     ]);
                 }else{
-                     var_dump($errors);
+                    //need state id to get list of cities
+                    $stateId=$_SESSION["stateId"];
+                     //get list of cities by state id
+                    $cities=City::getCityRecordById($stateId);
+                    //need addCity post variable to get form for inserting data
+                    $_POST["addCity"]=1;
+    
+                    //need to put all posted data with wrong errors also. in future updates.
+                     $this->view("address/city",[
+                        'errors'=>$errors,
+                        'cities'=>$cities,
+                        $_POST["addCity"]
+                     ]);
                 }
 
             }else{
             $state=State::selectAllStatesFromDatabase();
             
             $stateId=isset($_POST["state"])?$_POST["state"]:0;
-            
+               //remember state id when state has been selected 
+               //needed to get list of cities when returning to form 
+               //where state is already selected.
+               $_SESSION["stateId"]=$stateId;
                 $cities=City::getCityRecordById($stateId);
                 $this->view("address/city",[
                 "cities"=>$cities,

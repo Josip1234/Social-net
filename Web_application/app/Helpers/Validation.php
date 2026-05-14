@@ -183,10 +183,10 @@ public static function validateCityFormInput():array{
 
 
                   if((int)strlen($postNum)==0){
-                $errors["empty"]="Postal number is empty. Please enter some value.";
+                $errors["empty"]["post"]="Postal number is empty. Please enter some value.";
               }
                if((int)strlen($citName)==0){
-                $errors["empty"]="City name is empty. Please enter some value.";
+                $errors["empty"]["city"]="City name is empty. Please enter some value.";
               }
 
               if(!is_numeric($postNum)){

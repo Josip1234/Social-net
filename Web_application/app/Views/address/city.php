@@ -45,8 +45,26 @@
                <?php if(isset($_POST["addCity"]) && ($_POST["addCity"]==1)): ?>
                   <label for="postNumber">Insert new postNumber</label>
                   <input type="number" name="postNumber" id="postNumber" min='1'>
+
+                       <?php if(isset($errors["empty"]["post"])): ?>
+                        <span class="error"> <?= $errors["empty"]["post"]; ?></span>
+                      <?php endif; ?>
+                           <?php if(isset($errors["notInteger"])): ?>
+                        <span class="error"> <?= $errors["notInteger"]; ?></span>
+                      <?php endif; ?>
+
                   <label for="name">Insert new city name</label>
                   <input type="text" name="name" id="name">
+
+
+                       <?php if(isset($errors["alreadyExists"])): ?>
+                            <span class="error"> <?= $errors["alreadyExists"]; ?></span>
+                        <?php endif; ?>
+                             <?php if(isset($errors["empty"]["city"])): ?>
+                        <span class="error"> <?= $errors["empty"]["city"]; ?></span>
+                      <?php endif; ?>
+
+
                       <input type="hidden" name="dbCity" value="1">
                       <input type="hidden" name="stateId" value="<?= $stateId; ?>">
                     <?php endif;  ?>
