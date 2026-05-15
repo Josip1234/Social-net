@@ -17,11 +17,17 @@ class UserController extends Controller{
         public function index(){
             Auth::requireLogin();
          
-          
-            $profil=User::profileData($_SESSION['user']['id']);
-            $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');
-            
-          
+            $userWithoutAddress=User::selectNumAddress($_SESSION["user"]["id"]);
+           
+        
+            if($userWithoutAddress>0){
+                  $profil=User::profileData($_SESSION['user']['id']);
+                  $userImage="";
+            }else{
+                 $profil=User::profileData($_SESSION['user']['id']);
+                 $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');
+            }
+             
 
             
              $this->view('users/profile',[

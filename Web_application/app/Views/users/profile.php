@@ -24,6 +24,8 @@
 
  echo "<a class='updateInformations' href='?page=users/update&id={$profil["userId"]}'>Update basic information</a>"; ?>
             </span>
+         </form>
+         <?php if(!empty($profileImage)): ?> 
             <label>Profile image:</label>
                  <?php  $imgUrl= 'assets/images/'.$profil["userId"].'/'.$profileImage["alt"]; 
                     $imgAlt=$profileImage["alt"];
@@ -33,7 +35,7 @@
             <span id="updateProfileImage">
                  <?php echo "<a class='updateInformations' href='?page=users/profile_img_update&id={$profil["userId"]}&profileMarkImage=p'>Update profile image</a>"; ?>
             </span>
-
+            <?php endif; ?>
              <label for="acTypeId">Account type:</label>
             <input type="text" name="acTypeId" id="acTypeId" value="<?= $profil["acTypeName"]; ?>" readonly>
 

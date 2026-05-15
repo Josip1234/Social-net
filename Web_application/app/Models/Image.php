@@ -16,6 +16,7 @@ class Image{
             ':userId'=>$userId,
             ':profileMarkImage'=>$profileMarkImage
         ]);
+   
         return $stmt->fetch();
      }
      //function for handle image upload

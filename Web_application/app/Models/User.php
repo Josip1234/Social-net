@@ -122,7 +122,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
       }
 
       //function to return data from user
-      public static function profileData(int $userId):array{
+      public static function profileData(int $userId):array|bool{
          $db=Database::getInstance();
          $sql="select p.userId,p.firstName,p.lastName,p.email,p.sex,p.dateOfBirth,i.imageName,i.url,i.profileMarkImage,pd.acTypeId,aty.acTypeName,pd.accountStatus,pd.registrationDate
               ,ad.street,cit.postNumber,cit.name as CitName,st.name as StName from profile p right join image i on p.userId=i.userId
@@ -135,7 +135,8 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
               where p.userId=:userId";
           $stmt=$db->prepare($sql);
           $stmt->execute([":userId"=>$userId]);
-          return $stmt->fetch();
+               //if there is failure for fetching data return empty field otherwise fetch data
+          return ($stmt->fetch()===false)?[]:$stmt->fetch();
       }
       //function for updating basic user information
       public static function updateProfileTable(array $profile){
