@@ -2,7 +2,8 @@
 //has been set 
 window.onload=function(){
     document.getElementById("state").selectedIndex=localStorage.getItem("selected");
-    document.getElementById("city").selectedIndex=localStorage.getItem("selectedCity");
+   // document.getElementById("city").selectedIndex=localStorage.getItem("selectedCity");
+    
 }
 
 //show form hide checbox and label checkbox

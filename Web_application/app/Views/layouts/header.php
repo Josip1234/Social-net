@@ -26,6 +26,7 @@ function active(string $page,string $current):string{
 <?php else: ?>
 <!-- Logout - all logged in users -->
  <a href="index.php?page=logout">Logout</a>
+ 
  <a href="index.php?page=users/profile" class="<?= active('users/profile',$activePage) ?>">Profil korisnika</a>
  <?php endif; ?>
         </nav>

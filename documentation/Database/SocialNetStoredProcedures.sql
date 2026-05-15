@@ -321,4 +321,11 @@ insert into image(userId,imageName,url,profileMarkImage) values (userId,imageNam
 end $$;
 DELIMITER ;
 
+-- stored procedure for inserting start address for registered user
+DELIMITER $$
+create procedure insertStartAddress(in userId int unsigned)
+BEGIN 
+END $$;
+DELIMITER ;
+
 

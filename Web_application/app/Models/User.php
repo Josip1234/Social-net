@@ -181,4 +181,15 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         $sql="SELECT p.userId FROM profile p order by p.userId asc";
         return $db->query($sql)->fetchAll();
     }
+    //function to select if user have address or does not have address
+    public static function selectNumAddress(int $userId):int{
+      $db=Database::getInstance();
+      $sql="SELECT count(p.userId) as uNumber FROM profile p where p.addressId is null and p.userId=:userId";
+      $stmt=$db->prepare($sql);
+      $stmt->execute([
+        ':userId'=>$userId
+      ]);
+      $res=$stmt->fetchColumn();
+      return $res["uNumber"];
+    }
 }

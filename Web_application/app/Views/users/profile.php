@@ -2,7 +2,7 @@
 
   
     <div class="form-box">
-           
+<!-- There is a problem with registered user no address  -->
          <h2>User profile</h2>
          <form action="" method="post">
             <label for="fname">First name:</label>

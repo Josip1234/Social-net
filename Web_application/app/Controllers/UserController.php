@@ -16,10 +16,13 @@ class UserController extends Controller{
         //activate helpers for checking and creating user image folders if they are not existing
         public function index(){
             Auth::requireLogin();
-         
+            $proAddress=User::selectNumAddress($_SESSION['user']['id']);
+            if($proAddress>0){
+                $this->view('address/update');
+            }
             $profil=User::profileData($_SESSION['user']['id']);
             $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');
-     
+            
              $this->view('users/profile',[
                 'profil'=>$profil,
                 'profileImage'=>$userImage

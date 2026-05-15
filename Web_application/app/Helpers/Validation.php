@@ -8,6 +8,8 @@ use App\Models\City;
 class Validation{
     //validate form depending on post method
     //return array or bool value true
+    //need to add validation for user email if does exists or does not exists
+    //to better handle mistakes
     public static function validateForm():array|bool{
         //intitialize error array
         $errors=[];

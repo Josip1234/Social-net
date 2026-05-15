@@ -19,6 +19,7 @@ class HomeController extends Controller{
     private const REGULAR="Regular";
     //this function will rerutn index view
     public function index():void{
+        
         //setcookie("selected","",1);
                 //get list of user ids
             $userIds=User::getAllUserIds();
@@ -212,6 +213,7 @@ class HomeController extends Controller{
     //function for user logout
     public function logout():void{
         setcookie("selected","",1);
+        setcookie("selectedCity","",1);
         //get last inserted record from logged in user
         $lastInsertedIdPl=ProfileLogger::getLastIdFromProfileLogger($_SESSION["user"]["id"]);
         //update profile logger table from last user id
