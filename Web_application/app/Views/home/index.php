@@ -1,5 +1,13 @@
 <main>
     <div id="container">
+              <?php if(isset($_SESSION['msg'])): ?>
+               <div class="form-box">
+     <div class="message">
+          <p class="error"><?= $_SESSION['msg']; ?></p>
+     </div>
+
+          </div>
+     <?php endif; unset($_SESSION['msg']);?>
      <h1>Dobrodošao na moju stranicu</h1>
     <p>Random generirani sadržaj 🚀</p>
 

@@ -190,6 +190,6 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         ':userId'=>$userId
       ]);
       $res=$stmt->fetchColumn();
-      return $res["uNumber"];
+      return $res;
     }
 }

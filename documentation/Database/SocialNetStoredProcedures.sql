@@ -325,6 +325,7 @@ DELIMITER ;
 DELIMITER $$
 create procedure insertStartAddress(in userId int unsigned)
 BEGIN 
+declare addressId int unsigned;
 END $$;
 DELIMITER ;
 

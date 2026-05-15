@@ -11,6 +11,10 @@ class AddressController extends Controller{
         $states=State::selectAllStatesFromDatabase();
         $userId=$_SESSION['user']['id'];
         $address=Address::getAddressFromCurrentUser($userId);
+        if(!empty($address)){
+                 $_COOKIE["selected"]=$address["stateId"];
+        }
+   
        
         if(isset($_COOKIE["selected"]) && ($_COOKIE["selected"]!="-")){
             $cities=City::getCityRecordById($_COOKIE["selected"]);
@@ -31,7 +35,8 @@ class AddressController extends Controller{
         }
         
         if($foundAddressInState===1){
-            $cities=City::getCityRecordById($value["stateId"]);
+            $cities=City::getCityRecordById($address["stateId"]);
+            $_COOKIE["selected"]=$address["stateId"];
         }
 
         $this->view("address/update_form",[
