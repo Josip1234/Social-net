@@ -226,6 +226,7 @@ function jsIncludes():string{
     $js="
     <script src='socialnet.js'></script>
 <script src='calendar.js'></script>
+<script src='dropdownmenu.js'></script>
 <script src='randomslike.js'></script>";
     return $js;
 }
@@ -249,4 +250,41 @@ function printVideos():string{
 
 </section>";
     return $videos;
+}
+//function for printing dropdown menu
+function dropdownMenu():string{
+    $dropdown="";
+    $dropdown.="<ul id='f1'>";
+    $dropdown.="<li>";
+    $dropdown.="<a href='#'";
+    $val="m1";
+    $dropdown.="onMouseOver=";
+    $dropdown.='"openmenu(\'';
+    $dropdown.=$val;
+    $dropdown.='\')"';
+
+    $dropdown.=" onMouseOut=";
+    $dropdown.='"menuclosetime(';
+    $dropdown.=')"';
+    $dropdown.=">Options</a>";
+
+        
+    $dropdown.="<div id='m1'";
+
+       $dropdown.=" onMouseOver=";
+    $dropdown.='"menucanceltime(\'';
+    $dropdown.=$val;
+    $dropdown.='\')"';
+
+    $dropdown.=" onMouseOut=";
+    $dropdown.='"menuclosetime(';
+    $dropdown.=')"';
+    $dropdown.=">";
+    $dropdown.="<a href='' target='_self'>Some option</a>";
+
+    $dropdown.="</div>";
+
+    $dropdown.="</li>";
+$dropdown.="</ul><div style='clear:both'></div>";
+return $dropdown;
 }

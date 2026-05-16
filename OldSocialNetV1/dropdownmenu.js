@@ -11,11 +11,11 @@ function menuclose(){
 	if(val) val.style.visibility='hidden';
 }
 function menuclosetime(){
-	ctime=window.setftime(mclose,ftime);
+	 ctime=window.setTimeout(menuclose,ftime);
 }
 function menucanceltime(){
 	if(ctime){
-		window.clearftime(ctime);
+		window.clearTimeout(ctime);
 		ctime=null;
 	}
 }

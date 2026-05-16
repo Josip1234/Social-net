@@ -26,7 +26,9 @@ if(!isset($_GET["email"])){
 
 </nav>
 </div>
-<?php echo printCalendar();
+<?php 
+echo dropdownMenu();
+echo printCalendar();
 echo printPictures();
 echo printVideos();
 

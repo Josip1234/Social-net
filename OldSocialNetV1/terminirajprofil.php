@@ -19,7 +19,9 @@ require_once "dbconn.php";
 
 </nav>
 </div>
-<?php echo printCalendar();
+<?php 
+echo dropdownMenu();
+echo printCalendar();
 echo printPictures();
 echo printVideos();
 
