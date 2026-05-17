@@ -193,4 +193,16 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
       $res=$stmt->fetchColumn();
       return $res;
     }
+    //function to select if user have image or does not have image
+    public static function selectNumImage(int $userId):int{
+      $db=Database::getInstance();
+      $sql="SELECT count(p.userId) as uNumber FROM profile p inner join image i where p.userId=i.userId and 
+      p.userId=:userId";
+      $stmt=$db->prepare($sql);
+      $stmt->execute([
+        ':userId'=>$userId
+      ]);
+      $res=$stmt->fetchColumn();
+      return $res;
+    }
 }

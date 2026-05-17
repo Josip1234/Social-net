@@ -18,16 +18,21 @@ class UserController extends Controller{
             Auth::requireLogin();
          
             $userWithoutAddress=User::selectNumAddress($_SESSION["user"]["id"]);
-           
+            $userWithoutImage=User::selectNumImage($_SESSION["user"]["id"]);
         
             if($userWithoutAddress>0){
-                  $profil=User::profileData($_SESSION['user']['id']);
-                  $userImage="";
+                 //$profil=User::profileData($_SESSION['user']['id']);
+                 $profil="";
             }else{
                  $profil=User::profileData($_SESSION['user']['id']);
                  $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');
             }
              
+            if($userWithoutImage===0){
+                 $userImage="";
+            }else{
+                  $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');
+            }
 
             
              $this->view('users/profile',[

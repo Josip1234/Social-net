@@ -2,7 +2,9 @@
 
   
     <div class="form-box">
+   
 <!-- There is a problem with registered user no address  -->
+        <?php if(!isset($profil) || $profil!=""): ?>
          <h2>User profile</h2>
          <form action="" method="post">
             <label for="fname">First name:</label>
@@ -18,11 +20,16 @@
             <input type="date" name="dbirth" id="dbirth" value="<?= $profil["dateOfBirth"]; ?>" max="999-12-31" readonly>
             <span id="updateBasicInfo">
                  <?php
+                      endif;
+                          use Carbon\Carbon;
+                         use Core\Auth;
 
-                                                                use Carbon\Carbon;
-                                                                use Core\Auth;
-
- echo "<a class='updateInformations' href='?page=users/update&id={$profil["userId"]}'>Update basic information</a>"; ?>
+               if(!isset($profil) || $profil!=""){
+ echo "<a class='updateInformations' href='?page=users/update&id={$profil["userId"]}'>Update basic information</a>"; 
+               }; 
+               if(!isset($profil) || $profil!=""):
+ ?>
+ 
             </span>
          </form>
          <?php if(!empty($profileImage)): ?> 
@@ -62,8 +69,11 @@
                  
                  <?php echo "<a class='updateInformations' href='?page=address/update&id={$profil["userId"]}'>Update address</a>"; ?>
             </span>
+           
          </form>
-      
+          <?php else: ?>
+               <p>Please, insert your profile image and insert your address to gain access to profile details.</p>
+               <?php endif; ?>
     </div>
 
 </main>
