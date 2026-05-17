@@ -18,6 +18,7 @@
 require_once "dbconn.php";
 loggedUsersOnly();
 
+
 if(!isset($_GET["email"])){
    header('Location: registration.php');
 }
@@ -39,6 +40,9 @@ echo printVideos();
 	
 
 <?php
+if(checkIfThereIsAlreadyProfilePictureInDatabase($_SESSION["username"])===true){
+   echo "Profile image already exists for this user!";
+}else{
 if(count($_FILES) > 0) {
 if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 $email=$_POST["email"];
@@ -53,6 +57,8 @@ if($sql){
 	header('Location:index.php');
 }
 }}
+}
+if(checkIfThereIsAlreadyProfilePictureInDatabase($_SESSION["username"])!=true):
 ?>
 <form name="frmImage" enctype="multipart/form-data" action="profilna.php" method="post" class="frmImageUpload">
 <input type="hidden" name="email" value="<?= $_GET["email"]; ?>">
@@ -60,6 +66,7 @@ if($sql){
 <input name="userImage" type="file" class="inputFile" />
 <input type="submit" value="Submit" class="btnSubmit" />
 </form>
+<?php endif; ?>
 </div>
 
 

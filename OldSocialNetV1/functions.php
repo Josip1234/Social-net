@@ -253,6 +253,7 @@ function printVideos():string{
 }
 //function for printing dropdown menu
 function dropdownMenu():string{
+    $email=(isset($_SESSION["username"]))?$_SESSION["username"]:"";
     $dropdown="";
     $dropdown.="<ul id='f1'>";
     $dropdown.="<li>";
@@ -280,11 +281,21 @@ function dropdownMenu():string{
     $dropdown.='"menuclosetime(';
     $dropdown.=')"';
     $dropdown.=">";
-    $dropdown.="<a href='' target='_self'>Some option</a>";
+    $dropdown.="<a href='profilna.php?email=".$email."' target='_self'>Insert profile picture</a>";
 
     $dropdown.="</div>";
 
     $dropdown.="</li>";
 $dropdown.="</ul><div style='clear:both'></div>";
 return $dropdown;
+}
+//function to check if there is already profile picture in database
+function checkIfThereIsAlreadyProfilePictureInDatabase(string $email):bool{
+    global $dbc;
+  $alreadyExists=false;
+  $sql="SELECT count(*) as number FROM profilna p where email='$email'";
+  $res=mysqli_query($dbc,$sql);
+  $r=mysqli_fetch_assoc($res);
+  $alreadyExists=($r["number"]>0)?true:false;
+  return $alreadyExists;
 }
