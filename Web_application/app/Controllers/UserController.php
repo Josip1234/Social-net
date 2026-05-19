@@ -37,7 +37,9 @@ class UserController extends Controller{
             
              $this->view('users/profile',[
                 'profil'=>$profil,
-                'profileImage'=>$userImage
+                'profileImage'=>$userImage,
+                'userImage'=>$userWithoutImage,
+                'usrAddr'=>$userWithoutAddress,
              ]);
         }
         public function edit(){
@@ -68,6 +70,14 @@ class UserController extends Controller{
              
         }
         public function updateProfileImage(){
+                //if user does not have profile image
+                if(isset($_GET["option"])){
+                        //if option is insert then user can insert profile image in database
+                        //before that, view with a form will be shown
+                        if($_GET["option"]==="insert"){
+                                  $this->view('users/profile_img_update');
+                        }
+                }else{
                  $_SESSION["fullUrl"]=FilesHelper::displayFullUrl();
                 if(isset($_SESSION["imageUploadError"])){
                         unset($_SESSION["imageUploadError"]);
@@ -80,6 +90,7 @@ class UserController extends Controller{
                    'directory'=>$directory,
                    'profileImage'=>$userImage,
                 ]);;
+                };
         }
         //current profile will be last inserted by user
         public function updateImg(){
@@ -123,5 +134,30 @@ class UserController extends Controller{
                         'id'=>$profileDetailsId,
                         'role'=>$currentRole
                 ]);
+        }
+        public function insertNewImage(){
+                
+                $errors=[];
+                
+                $imageName=Image::uploadImage(FilesHelper::returnCurrentUrl($_SESSION["user"]["id"]));
+              
+                $image=$_POST;
+               
+                 $url=isset($_SESSION["url"])?$_SESSION["url"]:"";
+                    if(isset($_SESSION["imageUploadError"])){
+
+                        $url=$_SESSION["fullUrl"];
+                        unset($_SESSION["fullUrl"]);
+                        //return to image update
+                       header('Location: '. $url);
+                }else{
+                   $errors=Image::insertNewImageRecord($image,$imageName,$url);
+                   $id=Image::getLatestId($_SESSION["user"]["id"]);
+
+                      if(empty($errors)){
+                         unset($_SESSION["url"]);
+                         header('Location:index.php?page=users/profile');
+                       }
+                }
         }
 }

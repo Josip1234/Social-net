@@ -1,5 +1,6 @@
 <main>
-    
+    <?php  if(!isset($_GET["option"])): ?>
+   
     <div class="form-box">
             <h2>Directory images: <?= $directory; ?></h2>
             <h3>Current profile image:</h3>
@@ -14,4 +15,14 @@
                 <button type="submit">Update current image</button>
             </form>
     </div>
+    <?php else: ?>
+        <div class="form-box">
+                <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"].'?page=users/img_insert'); ?>" method="post" enctype="multipart/form-data">
+                <input type="file" name="image" id="image">
+                <input type="hidden" name="userId" value="<?= $_SESSION["user"]["id"]; ?>">
+                <input type="hidden" name="profileMarkImage" value="<?= 'p'; ?>">
+                <button type="submit">Insert new profile image</button>
+            </form>
+        </div>
+    <?php endif; ?>
 </main>

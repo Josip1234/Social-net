@@ -73,6 +73,9 @@ switch($page){
     case 'city':
         $cityController->city();
         break;
+    case 'users/img_insert':
+        $userController->insertNewImage();
+        break;
     default:
         $controller->index();
 }
