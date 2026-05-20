@@ -80,12 +80,14 @@ function loggedUsersOnly(){
 }
 
 function returnUrls(int $userId):array{
+   
     $urls=[];
     //urls for non admins
      $urls["logout"]='<a href="logout.php" target="_self">Logout</a>';
      $urls["profile"]='<a href="profile.php" target="_self">User profile</a>'; 
      $urls["delete"]='<a href="terminirajprofil.php" target="_self">Delete profile</a>';
       $urls["updatep"]='<a href="updateprofilne.php" target="_self">Update profile picture</a>'; 
+      $urls["forum"]='<a href="forum.php" target="_self">Forum</a>';
     global $dbc;
 
    $sql="SELECT u.uloga from uloge u where user_id='$userId'";
@@ -223,11 +225,14 @@ function printCalendar():string{
 }
 //function for js file includes
 function jsIncludes():string{
+    //ajax will be included only for forum
+     $scriptName=basename($_SERVER["PHP_SELF"]);
     $js="
     <script src='socialnet.js'></script>
 <script src='calendar.js'></script>
 <script src='dropdownmenu.js'></script>
 <script src='randomslike.js'></script>";
+if($scriptName==="forum.php") $js.="<script src='ajax.js'></script>";
     return $js;
 }
 
