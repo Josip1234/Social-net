@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Helpers\Validation;
 use App\Models\Address;
 use App\Models\State;
 use Core\Controller;
@@ -45,4 +46,48 @@ class AddressController extends Controller{
             "address"=>$address
         ]);
     }
+    public function insertNewAddress(){
+         $states=State::selectAllStatesFromDatabase();
+          if(isset($_COOKIE["selected"]) && ($_COOKIE["selected"]!="-")){
+            $cities=City::getCityRecordById($_COOKIE["selected"]);
+        }
+        else{
+            
+            $cities=[];
+        }
+        $this->view("address/new_address",[
+            "states"=>$states,
+            "cities"=>$cities
+        ]);
+    }
+    //prilikom inserta adrese potrebno je napraviti trigger i proceduru 
+    //koja će automatski ažurirati profil staviti najnoviji id od adrese
+    public function storeAddress(){
+        $errors=[];
+        $errors=Validation::validateAddressFormInput();
+        if($errors===true){
+                Address::insertNewAddress($_POST);
+                $_SESSION['msg']="Successfully inserted new address.";
+                header("Location: index.php?page=users/profile");
+        }else{
+
+          $states=State::selectAllStatesFromDatabase();
+          if(isset($_COOKIE["selected"]) && ($_COOKIE["selected"]!="-")){
+            $cities=City::getCityRecordById($_COOKIE["selected"]);
+        }
+        else{
+            
+            $cities=[];
+        }
+
+
+           $this->view("address/new_address",[
+                        'errors'=>$errors,
+                        $_POST, 
+                           "states"=>$states,
+                         "cities"=>$cities
+                     ]);
+        }
+    }
+    
 }

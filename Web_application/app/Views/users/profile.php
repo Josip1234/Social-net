@@ -2,7 +2,11 @@
 
   
     <div class="form-box">
-   
+                  <?php if(isset($_SESSION['msg'])): ?>
+     <div class="message">
+          <p class="success"><?= $_SESSION['msg']; ?></p>
+     </div>
+     <?php endif; unset($_SESSION['msg']);?>
 <!-- There is a problem with registered user no address  -->
         <?php if(!isset($profil) || $profil!=""): ?>
          <h2>User profile</h2>
@@ -72,12 +76,12 @@
            
          </form>
           <?php else: ?>
-               <p>Please, insert your profile image and insert your address to gain access to profile details.</p>
-               <?php if($userImage===0): ?>
+               <p>Please, insert your profile image or your address to gain access to profile details.</p>
+               <?php if((int)$userImage===0): ?>
                <p>You can insert your profile image <a href="?page=users/profile_img_update&option=insert">at this url</a></p>
                <?php endif; ?>
                <?php if($usrAddr>0): ?>
-                <p>You can insert your new address <a href="?page=address/update">at this url</a></p>
+                <p>You can insert your new address <a href="?page=address/insert">at this url</a></p>
                <?php endif; ?>
                <?php endif; ?>
     </div>

@@ -76,6 +76,12 @@ switch($page){
     case 'users/img_insert':
         $userController->insertNewImage();
         break;
+    case 'address/insert':
+         $addressController->insertNewAddress();
+        break;
+    case 'storeAddress':
+        $addressController->storeAddress();
+        break;
     default:
         $controller->index();
 }

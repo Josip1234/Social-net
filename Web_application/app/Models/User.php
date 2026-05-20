@@ -136,7 +136,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
           $stmt=$db->prepare($sql);
           $stmt->execute([":userId"=>$userId]);
                //if there is failure for fetching data return empty field otherwise fetch data
-          return ($stmt->fetch()===false)?[]:$stmt->fetch();
+          return $stmt->fetch();
       }
       //function for updating basic user information
       public static function updateProfileTable(array $profile){
@@ -204,5 +204,15 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
       ]);
       $res=$stmt->fetchColumn();
       return $res;
+    }
+    //function to update user address in table profile
+    public static function updateUserAddress(int $addressId, int $userId):void{
+      $db=Database::getInstance();
+      $sql="UPDATE profile set addressId=:addressId where userId=:userId";
+      $stmt=$db->prepare($sql);
+      $stmt->execute([
+          ':addressId'=>$addressId,
+          ':userId'=>$userId
+      ]);
     }
 }

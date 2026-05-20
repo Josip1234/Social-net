@@ -32,8 +32,9 @@ class UserController extends Controller{
                  $userImage="";
             }else{
                   $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');
+                 
             }
-
+              
             
              $this->view('users/profile',[
                 'profil'=>$profil,
