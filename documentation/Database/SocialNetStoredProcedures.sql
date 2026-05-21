@@ -329,4 +329,19 @@ declare addressId int unsigned;
 END $$;
 DELIMITER ;
 
+-- stored procedure for updating profile address if it is null
+DELIMITER $$
+CREATE PROCEDURE update_profile_address(in addressId int)
+BEGIN
+declare uIdWhereNull int;
+declare adIdWhereNull int;
+-- id where to insert
+select p.userId into uIdWhereNull from profile p where p.addressId is NULL;
+-- confirm if address is nukk
+select p.addressId into adIdWhereNull from profile p where p.addressId is NULL;
+if adIdWhereNull is NULL then
+update profile set profile.addressId=addressId where profile.userId=uIdWhereNull;
+end if;
+END $$;
+DELIMITER ;
 

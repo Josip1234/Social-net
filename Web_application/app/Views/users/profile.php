@@ -8,7 +8,7 @@
      </div>
      <?php endif; unset($_SESSION['msg']);?>
 <!-- There is a problem with registered user no address  -->
-        <?php if(!isset($profil) || $profil!=""): ?>
+        <?php if( !empty($profil)): ?>
          <h2>User profile</h2>
          <form action="" method="post">
             <label for="fname">First name:</label>
@@ -28,10 +28,10 @@
                           use Carbon\Carbon;
                          use Core\Auth;
 
-               if(!isset($profil) || $profil!=""){
+               if(!empty($profil)){
  echo "<a class='updateInformations' href='?page=users/update&id={$profil["userId"]}'>Update basic information</a>"; 
                }; 
-               if(!isset($profil) || $profil!=""):
+               if(!empty($profil)):
  ?>
  
             </span>
@@ -77,7 +77,7 @@
          </form>
           <?php else: ?>
                <p>Please, insert your profile image or your address to gain access to profile details.</p>
-               <?php if((int)$userImage===0): ?>
+               <?php if(empty($userImage)): ?>
                <p>You can insert your profile image <a href="?page=users/profile_img_update&option=insert">at this url</a></p>
                <?php endif; ?>
                <?php if($usrAddr>0): ?>

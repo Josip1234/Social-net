@@ -25,13 +25,22 @@ class UserController extends Controller{
                  $profil="";
             }else{
                  $profil=User::profileData($_SESSION['user']['id']);
-                 $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');
+                 if($profil==false){
+                    $profil=[];
+                    $userImage=[];
+                  
+                 }else{
+                    $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');    
+                 }
+                 
+               
             }
              
-            if($userWithoutImage===0){
+            if($userWithoutImage===0 || $userWithoutImage==false){
                  $userImage="";
             }else{
                   $userImage=Image::selectUserImage($_SESSION["user"]["id"],'p');
+                  
                  
             }
               

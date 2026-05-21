@@ -68,6 +68,8 @@ create trigger insertAdrIntoDatabaseLogger after insert on address
 for each row 
 begin 
 call saveLog('insert','adr');
+-- auto update address in profile table after address has been inserted into address table
+call update_profile_address(new.addressId);
 end $$
 DELIMITER ;
 

@@ -9,3 +9,4 @@ drop procedure if exists limitUseOfCudOperationsOnImageTypeTable;
 drop procedure if exists limitUseOfCudOperations;
 drop procedure if exists insertUsersIntoLoggers;
 drop procedure if exists autoInsertUserIntoImage;
+drop procedure if exists update_profile_address;
