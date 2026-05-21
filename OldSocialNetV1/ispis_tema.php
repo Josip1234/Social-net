@@ -31,5 +31,6 @@
 	
 	
 	?>
+		<div id="txt"></div>
 </body>
 </html>

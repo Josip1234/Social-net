@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width-device-width,initial-scale=1">
 <title>Socialnet</title>
-<link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
-<?php include "functions.php"; echo jsIncludes(); ?>
+<?php include "functions.php"; echo cssIncludes(); ?>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php  echo jsIncludes(); ?>
 </head>
 
 <?php  echo printBodyOnMouseOverAndOnLoad(); ?>

@@ -8,7 +8,7 @@
 <?php  echo jsIncludes(); ?>
 </head>
 
-<?php  echo printBodyOnMouseOverAndOnLoad(); ?>
+<?php  echo printBodyOnMouseOverAndOnLoadForGallery() ?>
     <div class="con">
         <nav>
           <?php include "navigacija.php"; ?>
@@ -23,21 +23,13 @@ echo printVideos();
 
 ?>
     <div class="pravila">
-      <section>
-<h2>Ovdje počinje forum</h2>
-<div id="tema">
-    <?php  include("ispis_tema.php") ?>
-	<h2>Ovdje idu teme</h2>
+
+    <section><h2>Picture Gallery</h2>
+<div id="slika">
+
+	
 </div>
-<div id="podtema">
-<h2>Forum</h2>
-<div id="profil">
-    <h3>Lijevo treba biti slika profila i ime</h3>
-	<div id="odgovori">
-		<h4>Desno treba biti odgovor</h4>
-	</div>
-</div>
-</div>
+
 </section>
 
     </div>

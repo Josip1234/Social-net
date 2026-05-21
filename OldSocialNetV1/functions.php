@@ -88,6 +88,7 @@ function returnUrls(int $userId):array{
      $urls["delete"]='<a href="terminirajprofil.php" target="_self">Delete profile</a>';
       $urls["updatep"]='<a href="updateprofilne.php" target="_self">Update profile picture</a>'; 
       $urls["forum"]='<a href="forum.php" target="_self">Forum</a>';
+      $urls["gallery"]='<a href="gallery.php" target="_self">Picture gallery</a>';
     global $dbc;
 
    $sql="SELECT u.uloga from uloge u where user_id='$userId'";
@@ -215,6 +216,12 @@ function printBodyOnMouseOverAndOnLoad():string{
      $body="<body onMouseOver='prikazi_datum(),dohvati_kalendar3()', onLoad='slike()'>";
     return $body;
 }
+//function for printing onmouseover and body onload for picture gallery
+function printBodyOnMouseOverAndOnLoadForGallery():string{
+    $body="<body onMouseOver=\"prikazi_datum(),dohvati_kalendar()\" onLoad=\"getSLike(),slike()\">";
+    return $body;
+
+}
 //function for printing calendar section
 function printCalendar():string{
     $calendar="<section id=\"cal\">
@@ -233,9 +240,26 @@ function jsIncludes():string{
 <script src='dropdownmenu.js'></script>
 <script src='randomslike.js'></script>";
 if($scriptName==="forum.php") $js.="<script src='ajax.js'></script>";
+elseif($scriptName==="gallery.php") $js.="<script src='galerija.js'></script>";
+elseif($scriptName==="valuta.php"){
+    $js="";
+    $js.="<script src='valut.js'></script>";
+}
+elseif ($scriptName==="odgovori.php") {
+    $js="";
+    $js.="<script src='ajax.js'></script>";
+}
     return $js;
 }
-
+function cssIncludes():string{
+       $scriptName=basename($_SERVER["PHP_SELF"]);
+    $css="<link rel='stylesheet' href='css/stil.css'>";
+    if($scriptName==="valuta.php"){
+        $css="";
+        $css.="<link rel='stylesheet' href='css/val.css'>";
+    } 
+    return $css;
+}
 
 //function for printing rand picture section
 function printPictures():string{
@@ -287,7 +311,8 @@ function dropdownMenu():string{
     $dropdown.=')"';
     $dropdown.=">";
     $dropdown.="<a href='profilna.php?email=".$email."' target='_self'>Insert profile picture</a>";
-
+        $dropdown.="<a href='valuta.php' target='_self'>Valuta</a>";
+         $dropdown.="<a href='odgovori.php' target='_self'>Odgovor</a>";
     $dropdown.="</div>";
 
     $dropdown.="</li>";

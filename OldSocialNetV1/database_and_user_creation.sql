@@ -86,3 +86,5 @@ komentar varchar(255),
 constraint broj_teme_fk foreign key (broj_teme) references teme(broj_teme) on delete cascade on update cascade); 
 alter table obavljeno add column auditor_email varchar(50) not null;
 alter table obavljeno add constraint aud_em_fk foreign key (auditor_email) references registration(email) on delete cascade on update cascade;
+alter table komentari add column email varchar(50) not null;
+alter table komentari add constraint email_kom_fk foreign key (email) references registration(email) on delete cascade on update cascade;

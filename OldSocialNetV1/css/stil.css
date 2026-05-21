@@ -31,6 +31,12 @@ nav ,a:hover,a:active{
 	font-size:20px;
 	margin-top: -60%;
 }
+.pravila section #slika {
+	padding-top: 42px;
+	padding-right: 42px;
+	padding-bottom: 42px;
+	padding-left: 42px;
+}
 nav{
 	border: 2px solid red;
     border-radius: 30px;

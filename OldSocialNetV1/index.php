@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title>Social net old first version</title>
-<link rel="stylesheet" href="css/stil.css">
+<?php include "functions.php"; echo cssIncludes(); ?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<?php include "functions.php"; echo jsIncludes(); ?>
+<?php  echo jsIncludes(); ?>
 </head>
 
 <?php  echo printBodyOnMouseOverAndOnLoad(); ?>
