@@ -35,6 +35,9 @@ class CityController extends Controller{
                   $_SESSION["msg"]="Successfully inserted new city.";
                       //unset state id session no longer needed
                   unset($_SESSION["stateId"]);
+                  //unset cookies
+                  setcookie("selected","",1);
+                 setcookie("selectedCity","",1);
                      $this->view("address/city",[
                         'errors'=>$errors,
                         'cities'=>$cities,

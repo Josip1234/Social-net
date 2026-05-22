@@ -2,10 +2,12 @@
       <div class="form-box">
           <a href="?page=address/new_state" class='updateInformations'>Insert new state</a>
         <a href="?page=city" class='updateInformations'>Insert new city</a>
-  
-        <form action="" method="post">
-            <label for="state">Select or change selection of state:</label>
-            <select name="state" id="state" onchange="showSelected()">
+        <a href="?page=address/insert" class='updateInformations'>Insert new address</a>
+       
+           <?php if(isset($_GET["select"])):?>
+             <form action="<?=  htmlspecialchars($_SERVER["PHP_SELF"].'?page=address/update&selected=1');?>" method="post">
+                       <label for="state">Select or change state:</label>
+            <select name="state" id="state">
                 <option value="-">--Select state--</option>
                 <?php 
                 foreach ($states as $state): 
@@ -18,11 +20,21 @@
   
                 ?>
             </select>
-            <label for="city">Select or change selection city:</label>
+            <button type="submit">Select state</button>
+             <button type="reset">Reset entry</button>
+             </form>
+            <?php endif; ?>
+           
+             <?php if(isset($_GET["selected"])):?>
+                 
+             <form action="<?=  htmlspecialchars($_SERVER["PHP_SELF"].'?page=address/update&city=1');?>" method="post">
+             
+             
+                <label for="city">Select or change selection city:</label>
             <select name="city" id="city" >
                 <option value="-">--Select city--</option>
                 <?php 
-                if(isset($_COOKIE["selected"])):
+              
                    
                 foreach ($cities as $city):
                     $selectedC=($city["postNumber"]===$address["postNumber"])?'selected':"";
@@ -33,14 +45,44 @@
                 
                 endforeach;
            
-                endif;
+              
                 ?>
             </select>
-            <label for="address">Insert or update new address:</label>
-            <input type="text" name="address" id="address" value="<?= (!empty($address))?$address["street"]:""; ?>">
-            <button type="submit">Save</button>
-            <button type="reset">Reset entry</button>
-        </form>
+                
+                 <button type="submit">Select city</button>
+             <button type="reset">Reset entry</button>
+
+
+                                 </form>
+             <?php endif; ?>
+
+        
+              <?php if(isset($_GET["city"])):?>
+                    <form action="<?=  htmlspecialchars($_SERVER["PHP_SELF"].'?page=address/update&add=1');?>" method="post">
+                                                <label for="address">Select current address:</label>
+            <select name="address" id="address" >
+              
+                <?php 
+              
+                   
+                foreach ($add as $ad):
+                          $selectedAd=($ad["addressId"]===$address["addressId"])?'selected':"";
+                          $id=$ad["addressId"]; 
+                          $val=$ad["street"];
+                          
+                ?>
+                     <option value="<?= $id ?>" <?= $selectedAd ?>><?= $val ?></option>
+                <?php 
+                
+                endforeach;
+           
+              
+                ?>
+            </select>
+                    <button type="submit">Update profile address</button>
+             <button type="reset">Reset entry</button>
+                    </form>
+             <?php endif;?>
       
       </div>
 </main>

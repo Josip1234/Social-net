@@ -11,7 +11,11 @@ function active(string $page,string $current):string{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social-net</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/js.js"></script>
+    <?php if (active('address/update',$activePage)): ?>
+        <script src="assets/js/update_address.js"></script>
+    <?php else: ?>
+         <script src="assets/js/js.js"></script>
+    <?php endif; ?>
 </head>
 <body>
     <header>
@@ -27,7 +31,8 @@ function active(string $page,string $current):string{
 <!-- Logout - all logged in users -->
  <a href="index.php?page=logout">Logout</a>
  
- <a href="index.php?page=users/profile" class="<?= active('users/profile',$activePage) ?>">Profil korisnika</a>
+ <a href="index.php?page=users/profile" class="<?= active('users/profile',$activePage);    setcookie("selected","",1);
+        setcookie("selectedCity","",1); ?>">Profil korisnika</a>
  <?php endif; ?>
         </nav>
         

@@ -82,6 +82,9 @@ switch($page){
     case 'storeAddress':
         $addressController->storeAddress();
         break;
+    case 'updateAddress':
+        $addressController->editAddress();
+        break;
     default:
         $controller->index();
 }

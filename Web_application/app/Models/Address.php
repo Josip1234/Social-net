@@ -7,10 +7,10 @@ use Core\Database;
 class Address
 {
     //function to get adresses depending on city post number
-    public function getAddresses(int $postNumber): array
+    public static function getAddresses(int $postNumber): array
     {
         $db = Database::getInstance();
-        $sql = "SELECT a.street,a.postNumber FROM address a where postNumber=:postNumber";
+        $sql = "SELECT a.addressId,a.street,a.postNumber FROM address a where postNumber=:postNumber";
         $stmt = $db->prepare($sql);
         $stmt->execute([
             ":postNumber" => $postNumber,
@@ -44,5 +44,17 @@ values (:street,:postNumber)";
             ':postNumber' => $data["city"],
             ':street' => $data["address"]
         ]);
+    }
+    //function for updating address
+    public static function updateAddress(array $data,int $userId,string $postNumber){
+       $db=Database::getInstance();
+       $sql="UPDATE profile set addressId=:addressId where userId=:userId and postNumber=:postNumber";
+       $stmt=$db->prepare($sql);
+       $stmt->execute([
+            ':addressId'=>$data["address_id"],
+            ':userId'=>$userId,
+            ':postNumber'=>$postNumber
+       ]);
+
     }
 }

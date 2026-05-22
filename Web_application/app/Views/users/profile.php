@@ -71,7 +71,7 @@
 
                    <span id="updateAddress">
                  
-                 <?php echo "<a class='updateInformations' href='?page=address/update&id={$profil["userId"]}'>Update address</a>"; ?>
+                 <?php echo "<a class='updateInformations' href='?page=address/update&id={$profil["userId"]}&select=state'>Update address</a>"; ?>
             </span>
            
          </form>

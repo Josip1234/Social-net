@@ -9,42 +9,45 @@ use App\Models\City;
 
 class AddressController extends Controller{
     public function updateAddress(){
-        $states=State::selectAllStatesFromDatabase();
-        $userId=$_SESSION['user']['id'];
-        $address=Address::getAddressFromCurrentUser($userId);
-        if(!empty($address)){
-                 $_COOKIE["selected"]=$address["stateId"];
-        }
-   
-       
-        if(isset($_COOKIE["selected"]) && ($_COOKIE["selected"]!="-")){
-            $cities=City::getCityRecordById($_COOKIE["selected"]);
-        }
-        else{
+            $userId=$_SESSION['user']['id'];
+      $address=Address::getAddressFromCurrentUser($userId);
+
+        if(isset($_GET["selected"])){
+            if((int)$_GET["selected"]===1){
+                $state=(int)($_POST["state"]);
             
-            $cities=[];
-        }
-   
-        //if there is address in state
-        //get list of cities
-        $foundAddressInState=false;
-        foreach ($states as $value) {
-            if($value["stateId"]==$address["stateId"]){
-                $foundAddressInState=true;
-                break;
+                $cities=City::getCityRecordById($state);
+                  
+
+                  $this->view("address/update_form",[
+                     'cities'=>$cities,
+                    'address'=>$address
+        ]);
             }
-        }
-        
-        if($foundAddressInState===1){
-            $cities=City::getCityRecordById($address["stateId"]);
-            $_COOKIE["selected"]=$address["stateId"];
-        }
+            
+        }elseif(isset($_GET["city"])){
+            if((int)$_GET["city"]===1){
+                 $add=Address::getAddresses($_POST["city"]);
+                
+                $this->view("address/update_form",[
+                    'add'=>$add,
+                    'address'=>$address
+        ]);
+            }
+        }else{
+
+   
+
+          $states=State::selectAllStatesFromDatabase();
+    
+      
+
 
         $this->view("address/update_form",[
-            "states"=>$states,
-            "cities"=>$cities,
-            "address"=>$address
+            'states'=>$states,
+            'address'=>$address
         ]);
+        }
     }
     public function insertNewAddress(){
          $states=State::selectAllStatesFromDatabase();
@@ -88,6 +91,9 @@ class AddressController extends Controller{
                          "cities"=>$cities
                      ]);
         }
+    }
+    public function editAddress(){
+        
     }
     
 }
