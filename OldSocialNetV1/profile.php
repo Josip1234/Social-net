@@ -29,7 +29,7 @@ echo dropdownMenu();
 echo printCalendar();
 echo printPictures();
 echo printVideos();
-
+echo printCurrencyRate();
 ?>
 <div class="pravila">
 <section><h2>Your profile</h2>

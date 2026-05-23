@@ -27,7 +27,7 @@ echo dropdownMenu();
 echo printCalendar();
 echo printPictures();
 echo printVideos();
-
+echo printCurrencyRate();
 ?>
 <div class="pravila">
    

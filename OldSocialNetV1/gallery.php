@@ -20,7 +20,7 @@
     echo printCalendar();
 echo printPictures();
 echo printVideos();
-
+echo printCurrencyRate();
 ?>
     <div class="pravila">
 
@@ -35,6 +35,7 @@ echo printVideos();
     </div>
     <?php 
 echo printFooter();
+echo printGalleryNav();
 ?>
 </body>
 </html>

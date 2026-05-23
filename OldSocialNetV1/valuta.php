@@ -9,6 +9,8 @@
 </head>
 <body>
 <div id="kontenjer">
+	<h2>Credit bank</h2>
+
 <section id="liste">
 	<table>
 		<th>Valuta</th>
@@ -48,8 +50,8 @@
 	<option id="USD">USD</option>
 </select>
 <p id="txt"></p>
-<p id="tecaj"></p>
-<p id="res"></p>
+<!--<p id="tecaj"></p>
+<p id="res"></p>-->
 </div>
 </div>
 </body>

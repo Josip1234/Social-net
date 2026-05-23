@@ -1,5 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
+iframe[seamless]{border: none}
+
 body{
     background-color: orange;
 	border: groove;
@@ -142,4 +144,11 @@ footer{
 	padding:6px;
 	width:200px;
 	height:200px;
+}
+#valut{
+	margin-top: 2%;
+	height:  16%;
+	width:  16%;
+	
+	overflow: hidden;
 }

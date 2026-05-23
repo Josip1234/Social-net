@@ -243,8 +243,10 @@ if($scriptName==="forum.php") $js.="<script src='ajax.js'></script>";
 elseif($scriptName==="gallery.php") $js.="<script src='galerija.js'></script>";
 elseif($scriptName==="valuta.php"){
     $js="";
-    $js.="<script src='valut.js'></script>";
-}
+    //$js.="<script src='valut.js'></script>";
+    //$js.="<script src='valutv2.js'></script>";
+    $js.="<script src='valutv3.js'></script>";
+} 
 elseif ($scriptName==="odgovori.php") {
     $js="";
     $js.="<script src='ajax.js'></script>";
@@ -270,7 +272,13 @@ function printPictures():string{
     return $pictures;
 }
 
-
+//function for printing currency rate section
+function printCurrencyRate():string{
+    $currency="<section id='valut'>
+	<iframe src='valuta.php' seamless></iframe>
+</section>";
+    return $currency;
+}
 
 //function for printing rand videos section
 function printVideos():string{
@@ -328,4 +336,19 @@ function checkIfThereIsAlreadyProfilePictureInDatabase(string $email):bool{
   $r=mysqli_fetch_assoc($res);
   $alreadyExists=($r["number"]>0)?true:false;
   return $alreadyExists;
+}
+//function to print gallery navigation items
+function printGalleryNav():string{
+    $urls=[];
+    $urls[]="<a href='animals.html'>Animal Picture Gallery</a>";
+    $urls[]="<a href='people.html'>People Picture Gallery</a>";
+    $urls[]="<a href='photoshopped.html'>Photoshopped Gallery</a>";
+    $urls[]="<a href='cars.html'>Car gallery</a>";
+
+   $nav="<nav>";
+       foreach ($urls as $value) {
+           $nav.=$value;
+       }
+   $nav.="</nav>";
+   return $nav;
 }

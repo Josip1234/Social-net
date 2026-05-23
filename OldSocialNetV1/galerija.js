@@ -1,4 +1,12 @@
-function getSLike(){var linkovi=["images/ba.jpg","images/chuckolino.jpg","images/mountain_tree_nature_winter_snow_sky_snowy_mountains-7836.jpg","images/WIN_20170103_10_27_47_Pro.jpg","images/WIN_20170426_13_38_04_Pro.jpg","images/6909249-black-hd-background.jpg"];
+
+function getSLike(){var linkovi=["images/ba.jpg",
+	"images/chuckolino.jpg",
+	"images/mountain_tree_nature_winter_snow_sky_snowy_mountains-7836.jpg","images/WIN_20170103_10_27_47_Pro.jpg","images/WIN_20170426_13_38_04_Pro.jpg","images/6909249-black-hd-background.jpg",
+	"images/18301979_1384627031575290_7206383306287674490_n.jpg","images/WIN_20170426_13_22_29_Pro.jpg","images/WIN_20170426_13_24_27_Pro.jpg",
+	"images/WIN_20170426_13_39_20_Pro.jpg",
+	"images/memes/chuck norris memes/chuckolino.jpg"
+
+];
 
 var vel=linkovi.length-1;
 var otvori_odlomak="<p>";
