@@ -11,6 +11,14 @@ function slike(){
 	"images/memes/san andreas memes/18119221_681126588746545_1681876964906422058_n.jpg",
 	"images/memes/san andreas memes/18221644_106221769952415_8011258884316001155_n.jpg",
 	"images/memes/san andreas memes/18301979_1384627031575290_7206383306287674490_n.jpg",
+	"images/roštiljada/18622764_10210968533302832_2111868119_n.jpg",
+	"images/roštiljada/18622823_10210968532542813_743119040_n.jpg",
+	"images/roštiljada/18623156_10210968534742868_1904510961_n.jpg",
+	"images/roštiljada/18624892_10210968533742843_1924789894_n.jpg",
+	"images/roštiljada/18643757_10210968531542788_1977272717_n.jpg",
+	"images/roštiljada/18644337_10210968533142828_1969009775_n.jpg",
+	"images/dbpct/86a.jpg",
+	"images/dbpct/2016-09-18 16.16.23.jpeg"
 	];
 
 var b=Math.floor(Math.random()*slik.length);
