@@ -34,7 +34,15 @@ class AddressController extends Controller{
                     'address'=>$address
         ]);
             }
-        }else{
+        }elseif(isset($_GET["add"])){
+            if((int)$_GET["add"]===1){
+                Address::updateAddress($_POST,$_SESSION["user"]["id"]);
+                $_SESSION["msg"]="Successfully updated address";
+                header("Location: index.php?page=address/update");
+            }
+        }
+        
+        else{
 
    
 

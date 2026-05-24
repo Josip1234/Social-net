@@ -46,14 +46,13 @@ values (:street,:postNumber)";
         ]);
     }
     //function for updating address
-    public static function updateAddress(array $data,int $userId,string $postNumber){
+    public static function updateAddress(array $data,int $userId){
        $db=Database::getInstance();
-       $sql="UPDATE profile set addressId=:addressId where userId=:userId and postNumber=:postNumber";
+       $sql="UPDATE profile set addressId=:addressId where userId=:userId";
        $stmt=$db->prepare($sql);
        $stmt->execute([
             ':addressId'=>$data["address_id"],
-            ':userId'=>$userId,
-            ':postNumber'=>$postNumber
+            ':userId'=>$userId
        ]);
 
     }

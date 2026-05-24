@@ -1,8 +1,14 @@
 <main>
       <div class="form-box">
-          <a href="?page=address/new_state" class='updateInformations'>Insert new state</a>
-        <a href="?page=city" class='updateInformations'>Insert new city</a>
-        <a href="?page=address/insert" class='updateInformations'>Insert new address</a>
+          <a href="?page=address/new_state" class='updateInformations' target="_blank">Insert new state</a>
+        <a href="?page=city" class='updateInformations' target="_blank">Insert new city</a>
+        <a href="?page=address/insert" class='updateInformations' target="_blank">Insert new address</a>
+
+          <?php if(isset($_SESSION['msg'])): ?>
+     <div class="message">
+          <p class="success"><?= $_SESSION['msg']; ?></p>
+     </div>
+     <?php endif; unset($_SESSION['msg']);?>
        
            <?php if(isset($_GET["select"])):?>
              <form action="<?=  htmlspecialchars($_SERVER["PHP_SELF"].'?page=address/update&selected=1');?>" method="post">
@@ -59,8 +65,8 @@
         
               <?php if(isset($_GET["city"])):?>
                     <form action="<?=  htmlspecialchars($_SERVER["PHP_SELF"].'?page=address/update&add=1');?>" method="post">
-                                                <label for="address">Select current address:</label>
-            <select name="address" id="address" >
+                                                <label for="address">Change current address:</label>
+            <select name="address_id" id="address_id" >
               
                 <?php 
               
@@ -79,6 +85,7 @@
               
                 ?>
             </select>
+           
                     <button type="submit">Update profile address</button>
              <button type="reset">Reset entry</button>
                     </form>
