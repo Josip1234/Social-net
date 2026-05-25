@@ -11,6 +11,10 @@ function active(string $page,string $current):string{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social-net</title>
     <link rel="stylesheet" href="assets/css/style.css">
+     <?php if($_SESSION["user"]["accounttype"] === 1): ?>
+    <link rel="stylesheet" href="assets/css/dropdown.css">
+      <script src="assets/js/dropdown.js"></script>
+       <?php endif; ?>
     <?php if (active('address/update',$activePage)): ?>
         <script src="assets/js/update_address.js"></script>
     <?php else: ?>
@@ -32,8 +36,23 @@ function active(string $page,string $current):string{
  <a href="index.php?page=logout">Logout</a>
  
  <a href="index.php?page=users/profile" class="<?= active('users/profile',$activePage);    setcookie("selected","",1);
-        setcookie("selectedCity","",1); ?>">Profil korisnika</a>
- <?php endif; ?>
+        setcookie("selectedCity","",1); ?>">User profile</a>
+<!-- for admins -->
+ <?php if($_SESSION["user"]["accounttype"] === 1): ?>
+ <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">User management</button>
+  <div id="myDropdown" class="dropdown-content">
+    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+    <a href="#about">About</a>
+    <a href="#base">Base</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+    <a href="#custom">Custom</a>
+    <a href="#support">Support</a>
+    <a href="#tools">Tools</a>
+  </div>
+</div>
+ <?php endif; endif; ?>
         </nav>
         
 
