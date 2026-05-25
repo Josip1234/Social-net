@@ -18,7 +18,22 @@ function slike(){
 	"images/roštiljada/18643757_10210968531542788_1977272717_n.jpg",
 	"images/roštiljada/18644337_10210968533142828_1969009775_n.jpg",
 	"images/dbpct/86a.jpg",
-	"images/dbpct/2016-09-18 16.16.23.jpeg"
+	"images/dbpct/2016-09-18 16.16.23.jpeg",
+    "images/dbpct/11079677_10200253636939652_387281542_n.jpg",
+	"images/dbpct/13112942_1764463570490980_818236879060971937_o.jpg",
+	"images/dbpct/14659446_1016601081782863_7269140249064767488_n.jpg",
+	"images/dbpct/16938603_1357861467608594_4503428314469121511_n.jpg",
+	"images/dbpct/16939233_1357999100928164_5426498406180099947_n.jpg",
+	"images/dbpct/16939333_123926584800391_2819842639021048634_n.jpg",
+	"images/dbpct/17155176_1806036566387346_8870211222756424419_n.png",
+	"images/dbpct/aktualnolight_elementi922slika3.jpg",
+	"images/dbpct/FB_IMG_14948811687788262.jpg",
+	"images/dbpct/FB_IMG_14981461726460784.jpg",
+	"images/dbpct/FB_IMG_14981463342233258.jpg",
+	"images/dbpct/FB_IMG_14981463418114436.jpg",
+	"images/dbpct/FB_IMG_14981464357377926.jpg",
+	"images/dbpct/FB_IMG_14981464607475376.jpg",
+	"images/dbpct/FB_IMG_14981464716936861.jpg"
 	];
 
 var b=Math.floor(Math.random()*slik.length);
