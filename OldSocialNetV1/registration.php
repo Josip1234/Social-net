@@ -127,7 +127,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
         $nextIdSql="select max(id)+1 as id from registration";
         $stmt=mysqli_query($dbc,$nextIdSql);
         $resId=$stmt->fetch_assoc();
-        $id=$resId["id"];
+        $id=($resId["id"]===null || $resId["id"]===false)?1:$resId["id"];
 
         $query="INSERT INTO registration (fname,lname,sex,dateOfBirth,cityOfBirth,countryOfBirth,pass,email)
         values ('$fname','$lname','$sex','$dateOfBirth','$cityOfBirth','$countryOfBirth','" . password_hash($pass, PASSWORD_DEFAULT) . "','$email')";

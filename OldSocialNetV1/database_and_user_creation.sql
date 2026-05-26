@@ -23,6 +23,7 @@ cityOfBirth varchar(50) not null,
 countryOfBirth varchar(50) not null,
 pass varchar(50) not null,
 profilepicture longblob not null);
+
 alter table kvaliteta modify column firstname varchar(50) not null;
 alter table kvaliteta modify column lastname varchar(50) not null;
 alter table kvaliteta modify column suggestion text not null;
@@ -35,21 +36,22 @@ alter table registration drop column email;
 alter table registration add column email varchar(50) unique not null;
 alter table registration modify column profilepicture longblob null;
 alter table registration drop column profilepicture;
+
 create table profilna(
 id int auto_increment primary key,
 imageId tinyint(4) not null,
 imageType varchar(25) not null,
 imageData longblob not null);
 alter table profilna modify column imageId tinyint(4) not null unique;
-use test;
+-- use test;
 alter table profilna add column email varchar(50);
-alter table profilna add constraint email_fk foreign key (email) references registration(email);
+alter table profilna add constraint p_email_fk foreign key (email) references registration(email);
 create table uloge(
 id int primary key auto_increment,
 user_id int not null,
 uloga enum('Administrator','Korisnik','Banovani korisnik'),
 constraint user_id_fk foreign key (user_id) references registration(id) on delete cascade on update cascade);
-drop table uloge;
+ -- drop table uloge;
 
 alter table profilna add constraint email_fk foreign key (email) references registration(email) on delete cascade on update cascade;
 alter table profilna drop column imageId;
@@ -71,7 +73,7 @@ imageType varchar(25),
 imageData longblob,
 constraint im_reg_email_fk foreign key (useremail) references registration(email) on delete cascade on update cascade);
 alter table profilna modify column email varchar(50) unique;
-alter table profilna modify column email varchar(50) not null unique;
+-- alter table profilna modify column email varchar(50) not null unique;
 create table teme(
 id int primary key auto_increment,
 email varchar(50) not null,
