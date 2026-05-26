@@ -7,7 +7,9 @@ function prikazi_datum(){
 }
 
 function selected(val){
-	   if (val == "") {
+	     if (val == 0) {
+        
+		setColorWhite();
         document.getElementById("sv").innerHTML = "";
         return;
     } else { 
@@ -21,9 +23,18 @@ function selected(val){
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("sv").innerHTML = this.responseText;
+                setColorGreen();
             }
         };
         xmlhttp.open("GET","socijalnamreza.php?q="+val,true);
         xmlhttp.send();
     }
+}
+function setColorGreen(){
+	document.getElementById("sel").style.backgroundColor="green";
+	document.getElementById("op").style.color="green";
+}
+function setColorWhite(){
+	document.getElementById("sel").style.backgroundColor="white";
+	document.getElementById("op").style.color="white";
 }

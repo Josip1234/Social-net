@@ -33,10 +33,16 @@ function slike(){
 	"images/dbpct/FB_IMG_14981463418114436.jpg",
 	"images/dbpct/FB_IMG_14981464357377926.jpg",
 	"images/dbpct/FB_IMG_14981464607475376.jpg",
-	"images/dbpct/FB_IMG_14981464716936861.jpg"
+	"images/dbpct/FB_IMG_14981464716936861.jpg",
+	"images/dbpct/gn-as-70702-004.jpg",
+	"images/dbpct/hqdefault (1).jpg",
+	"images/dbpct/hqdefault (2).jpg",
+	"images/dbpct/hqdefault.jpg"
 	];
 
 var b=Math.floor(Math.random()*slik.length);
 document.getElementById('s').innerHTML="<img src='"+slik[b]+"' alt='"+b+"'>";
+document.getElementsByTagName('<body>').style.backgroundImage="url(slik[b])";				
+
 
 }

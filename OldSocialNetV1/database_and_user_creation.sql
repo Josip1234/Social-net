@@ -88,3 +88,12 @@ alter table obavljeno add column auditor_email varchar(50) not null;
 alter table obavljeno add constraint aud_em_fk foreign key (auditor_email) references registration(email) on delete cascade on update cascade;
 alter table komentari add column email varchar(50) not null;
 alter table komentari add constraint email_kom_fk foreign key (email) references registration(email) on delete cascade on update cascade;
+
+create table galerija(
+id int primary key auto_increment,
+email varchar(50) not null,
+date_of_upload date not null,
+type_of_gallery varchar(100) not null,
+imageType varchar(25),
+imageData longblob,
+constraint korisnik_fk foreign key (email) references registration (email) on update cascade on delete cascade);
