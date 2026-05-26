@@ -85,6 +85,9 @@ switch($page){
     case 'updateAddress':
         $addressController->editAddress();
         break;
+    case 'profile_log':
+        $userController->profile_log_index();
+        break;
     default:
         $controller->index();
 }

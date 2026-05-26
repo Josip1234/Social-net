@@ -43,7 +43,7 @@ function active(string $page,string $current):string{
   <button onclick="myFunction()" class="dropbtn">User management</button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <a href="#about">About</a>
+    <a href="?page=profile_log">Profile logs</a>
     <a href="#base">Base</a>
     <a href="#blog">Blog</a>
     <a href="#contact">Contact</a>

@@ -10,3 +10,18 @@
               
 select * from profiledetails;
 select proDetId from profiledetails where userId=2;
+
+select LAST_DAY('2020-12-01');
+select day(LAST_DAY('2020-12-01'));
+
+SELECT DAYOFYEAR(
+    LAST_DAY(DATE_ADD(NOW(), INTERVAL 12-MONTH(NOW()) MONTH))
+) AS NumberOfDaysInCurrentYear;
+
+SELECT pf.plId as id,concat(p.firstName,' ',p.lastName) as username,pf.message,
+pf.additionDate,pf.updateDate,p.dateOfBirth, at.acTypeName, round(datediff(now(),p.dateOfBirth)/
+(SELECT DAYOFYEAR(
+    LAST_DAY(DATE_ADD(NOW(), INTERVAL 12-MONTH(NOW()) MONTH))
+)
+),0) as Age FROM profile_logger pf join profile p on pf.userId=p.userId
+join profiledetails pd on p.userId=pd.userId join accounttype at on pd.acTypeId=at.acTypeId;

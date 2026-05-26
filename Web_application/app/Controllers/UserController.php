@@ -170,4 +170,7 @@ class UserController extends Controller{
                        }
                 }
         }
+        public function profile_log_index(){
+                $this->view("admin/user_log");
+        }
 }
