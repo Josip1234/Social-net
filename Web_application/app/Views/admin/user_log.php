@@ -1,5 +1,40 @@
 <main>
     <div id="container">
-            
+        <div class="form-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Username</th>
+                            <th>Message</th>
+                            <th>Addition date</th>
+                            <th>Update date</th>
+                            <th>Date of birth</th>
+                            <th>Account type</th>
+                            <th>Age</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+
+use Carbon\Carbon;
+
+ foreach($users as $user): ?>
+
+                        <tr>
+                            <td><?= $user["id"]; ?></td>
+                              <td><?= $user["username"]; ?></td>
+                               <td><?= $user["message"]; ?></td>
+                                 <td><?= \Carbon\Carbon::parse($user["additionDate"])->format("d.m.Y H:i:s");  ?></td>
+                                 <td><?=($user["updateDate"]==NULL)?"No date":\Carbon\Carbon::parse($user["updateDate"])->format("d.m.Y H:i:s");  ?></td>
+                                 <td><?= \Carbon\Carbon::parse($user["dateOfBirth"])->format("d.m.Y");  ?></td>
+                                 <td><?=  $user["acTypeName"]; ?></td>
+                                    <td><?=  $user["Age"]; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                </table>
+                
+        </div>
 </div>
 </main>

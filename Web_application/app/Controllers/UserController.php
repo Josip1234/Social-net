@@ -171,6 +171,10 @@ class UserController extends Controller{
                 }
         }
         public function profile_log_index(){
-                $this->view("admin/user_log");
+                $logList=User::getProfileLogWithoutPagination();
+         
+                $this->view("admin/user_log",
+                ["users"=>$logList]);
+               
         }
 }
