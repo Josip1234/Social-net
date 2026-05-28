@@ -1,12 +1,24 @@
 @charset "utf-8";
 /* CSS Document */
+
+#but1{display:none}
+#but2{
+	display: none;
+}
+
+#but3{
+	display: none;
+}
+
 iframe[seamless]{border: none}
 
 body{
     background-color: orange;
 	border: groove;
 	border-radius: 30px;
-	background-repeat: repeat-x,repeat-y;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
 }
 nav a:link,a:visited{
 	border: 2px solid red;
@@ -161,4 +173,7 @@ footer{
 	width:  16%;
 	
 	overflow: hidden;
+}
+#categslik{
+	display: none;
 }

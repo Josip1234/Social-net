@@ -74,13 +74,20 @@ function provjeri_dali_postoji_u_bazi(string $username, string $password){
 
 
 function loggedUsersOnly(){
+     $scriptName=basename($_SERVER["PHP_SELF"]);
     if(!isset($_SESSION["username"])){
 	header('Location: login.php');
-}
+    }else{
+        if($scriptName==="trenutnifeedback.php"){
+            if($_SESSION["role"]!="Administrator"){
+                header("Location: profile.php");
+            }
+        }
+    }
 }
 
 function returnUrls(int $userId):array{
-   
+    $scriptName=basename($_SERVER["PHP_SELF"]);
     $urls=[];
     //urls for non admins
      $urls["logout"]='<a href="logout.php" target="_self">Logout</a>';
@@ -89,6 +96,7 @@ function returnUrls(int $userId):array{
       $urls["updatep"]='<a href="updateprofilne.php" target="_self">Update profile picture</a>'; 
       $urls["forum"]='<a href="forum.php" target="_self">Forum</a>';
       $urls["gallery"]='<a href="gallery.php" target="_self">Picture gallery</a>';
+      if($scriptName==="gallery.php") $urls["addGal"]='<a href="addtogallery.php" target="_blank">Add to gallery</a>';
     global $dbc;
 
    $sql="SELECT u.uloga from uloge u where user_id='$userId'";
@@ -351,4 +359,39 @@ function printGalleryNav():string{
        }
    $nav.="</nav>";
    return $nav;
+}
+
+function query($limit){
+	return "SELECT type_of_gallery,imageType,imageData FROM galerija LIMIT $limit";
+}
+function queryWithoutLimit(){
+	return "SELECT type_of_gallery,imageType,imageData FROM galerija";
+}
+function queryCategory($limit,$category){
+	return "SELECT type_of_gallery,imageType,imageData FROM galerija  WHERE type_of_gallery = '$category' LIMIT $limit";
+}
+function queryCategoryWithNoLimit($category){
+	return "SELECT type_of_gallery,imageType,imageData FROM galerija  WHERE type_of_gallery='$category'";
+}
+function queryItems(){
+	return "SELECT imageId FROM galerija";
+}
+
+function selectRange($limit,$category,$first,$second){
+	return "SELECT imageId,type_of_gallery,imageType,imageData  FROM galerija  WHERE type_of_gallery='$category' && imageId >=$first && imageId<=$second LIMIT $limit";
+}
+function getNumberOfItemsInDatabase(){
+	global $dbc;
+	$items=0;
+	$query=queryItems();
+	$a=mysqli_query($dbc,$query);
+	
+	while($row=mysqli_fetch_array($a)){
+	    $items+=1;
+		
+		
+	}
+		
+	mysqli_close($dbc);
+	return $items;
 }

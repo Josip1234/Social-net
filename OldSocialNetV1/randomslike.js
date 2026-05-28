@@ -37,12 +37,24 @@ function slike(){
 	"images/dbpct/gn-as-70702-004.jpg",
 	"images/dbpct/hqdefault (1).jpg",
 	"images/dbpct/hqdefault (2).jpg",
-	"images/dbpct/hqdefault.jpg"
+	"images/dbpct/hqdefault.jpg",
+    "images/dbpct/images22fLanaKlingorMP1VV.jpg",
+    "images/dbpct/images22fLanaKlingorMP3VV.jpg",
+    "images/dbpct/images22fLanaKlingorMP5VV.jpg",
+    "images/dbpct/images22fLanaKlingorMP7VV.jpg",
+    "images/dbpct/images22fLanaKlingorMP10VV.jpg",
+    "images/dbpct/images22fLanaKlingorMP11VV.jpg",
+    "images/dbpct/images22fLanaKlingorMP12VV.jpg",
+    "images/dbpct/images22fLanaKlingorMP13VV.jpg",
+    "images/dbpct/images22flanaklll.jpg"
 	];
 
 var b=Math.floor(Math.random()*slik.length);
 document.getElementById('s').innerHTML="<img src='"+slik[b]+"' alt='"+b+"'>";
-document.getElementsByTagName('<body>').style.backgroundImage="url(slik[b])";				
+//document.getElementsByTagName('body').style.backgroundImage=url(/images/6909249-black-hd-background.jpg);		
+var c=Math.floor(Math.random()*slik.length);	
+  document.body.style.backgroundImage = "url('"+slik[c]+"')";
+ //document.getElementsByClassName("pravila").style.backgroundImage = "url('"+slik[b]+"')";
 
 
 }

@@ -30,6 +30,15 @@ echo printCurrencyRate();
 	
 </div>
 
+<div id="categslik"></div>
+<label>Page:</label><br>
+
+<input type="button" id="but" value="Print images" onClick="displaycategories(6,'rest',2,3)">
+
+
+<p id="next"></p>
+<p id="val"></p>
+
 </section>
 
     </div>
