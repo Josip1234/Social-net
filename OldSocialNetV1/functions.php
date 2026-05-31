@@ -352,6 +352,7 @@ function printGalleryNav():string{
     $urls[]="<a href='people.html'>People Picture Gallery</a>";
     $urls[]="<a href='photoshopped.html'>Photoshopped Gallery</a>";
     $urls[]="<a href='cars.html'>Car gallery</a>";
+     $urls[]="<a href='printingpicturegallery.php'>Other galleries</a>";
 
    $nav="<nav>";
        foreach ($urls as $value) {

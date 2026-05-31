@@ -46,14 +46,16 @@ function slike(){
     "images/dbpct/images22fLanaKlingorMP11VV.jpg",
     "images/dbpct/images22fLanaKlingorMP12VV.jpg",
     "images/dbpct/images22fLanaKlingorMP13VV.jpg",
-    "images/dbpct/images22flanaklll.jpg"
+    "images/dbpct/images22flanaklll.jpg",
+	"images/dbpct/img_3956ss.jpg",
+	"images/dbpct/img_3964ss.jpg"
 	];
 
 var b=Math.floor(Math.random()*slik.length);
 document.getElementById('s').innerHTML="<img src='"+slik[b]+"' alt='"+b+"'>";
 //document.getElementsByTagName('body').style.backgroundImage=url(/images/6909249-black-hd-background.jpg);		
 var c=Math.floor(Math.random()*slik.length);	
-  document.body.style.backgroundImage = "url('"+slik[c]+"')";
+ // document.body.style.backgroundImage = "url('"+slik[c]+"')";
  //document.getElementsByClassName("pravila").style.backgroundImage = "url('"+slik[b]+"')";
 
 

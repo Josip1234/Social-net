@@ -1,3 +1,12 @@
+
+function showRand(){
+	document.getElementById('secrand').style.display="inline";
+	document.getElementById('butt').style.display="none";
+}
+
+
+
+
 function prikazi_datum(){
 
 	var dat = new Date();
@@ -64,4 +73,8 @@ function displaycategories(limit,category,first,second){
 	document.getElementById("val").innerHTML=num1+" "+num2;
 	
 	
+}
+
+function displaycategories2(){
+    
 }
