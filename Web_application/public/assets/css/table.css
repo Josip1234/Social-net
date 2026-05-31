@@ -20,3 +20,12 @@ th {
   background-color: orange;
   color: white;
 }
+td.previous{
+   border-right-style: none;
+}
+td.next{
+  border-left-style: none;
+}
+.activePage{
+  text-align: center;
+}

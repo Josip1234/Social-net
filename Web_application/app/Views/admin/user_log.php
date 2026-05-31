@@ -33,6 +33,13 @@ use Carbon\Carbon;
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="previous"><a href="?page=profile_log?page=-1">Previous</a></td>
+                        <td colspan="4" class="next previous"><a href="?page=profile_log?page=1">1</a></td>
+                        <td class="next"><a href="?page=profile_log?page=1">Next</a></td>
+                    </tr>
+                </tfoot>
                 </table>
                 
         </div>
