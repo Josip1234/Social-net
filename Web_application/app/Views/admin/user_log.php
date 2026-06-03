@@ -33,15 +33,22 @@ use Carbon\Carbon;
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
-                <tfoot>
+              
+               <!-- <tfoot>
                     <tr>
                         <td colspan="3" class="previous"><a href="?page=profile_log?page=-1">Previous</a></td>
                         <td colspan="4" class="next previous"><a href="?page=profile_log?page=1">1</a></td>
                         <td class="next"><a href="?page=profile_log?page=1">Next</a></td>
                     </tr>
-                </tfoot>
+                </tfoot>-->
                 </table>
-                
+                  <div class="paginator">
+                    <a href="#" class="disabled">&laquo; Previous</a>
+                    <a href="" class="activepage">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                    <a href="" class="disabled">&raquo; Next</a>
+                </div>
         </div>
 </div>
 </main>

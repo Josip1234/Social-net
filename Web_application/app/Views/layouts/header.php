@@ -19,6 +19,7 @@ function active(string $page,string $current):string{
         <script src="assets/js/update_address.js"></script>
     <?php elseif (active('profile_log',$activePage)): ?>
          <link rel="stylesheet" href="assets/css/table.css">
+         <link rel="stylesheet" href="assets/css/pagination.css">
     <?php else: ?>
          <script src="assets/js/js.js"></script>
     <?php endif; ?>
