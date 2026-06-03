@@ -99,3 +99,10 @@ type_of_gallery varchar(100) not null,
 imageType varchar(25),
 imageData longblob,
 constraint korisnik_fk foreign key (email) references registration (email) on update cascade on delete cascade);
+
+CREATE TABLE kategorije(
+id int primary key auto_increment,
+type_of_gallery varchar(255) unique key);
+
+alter table galerija add column kategorije_id int null;
+alter table galerija add constraint kategorija_c_fk foreign key (kategorije_id) references kategorije(id) on update cascade on delete cascade;

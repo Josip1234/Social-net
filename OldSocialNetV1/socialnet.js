@@ -78,3 +78,11 @@ function displaycategories(limit,category,first,second){
 function displaycategories2(){
     
 }
+
+function hd(){
+	document.getElementById("valut").style.display="none";
+}
+function sho(){
+	document.getElementById('sh').style.display="inline";
+
+}

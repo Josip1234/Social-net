@@ -47,12 +47,13 @@ if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 
 $imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
 $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
+$type=isset($_POST["type"])?$_POST["type"]:"";
 
 $sql="INSERT INTO `galerija` (email, date_of_upload, type_of_gallery, imageType ,imageData) VALUES ('$user', '$date', '$type', '{$imageProperties['mime']}', '{$imgData}')";
         
 mysqli_query($dbc,$sql);
 
-mysqli_close($dbc);
+
 }};
         };
         ?>
@@ -74,6 +75,22 @@ mysqli_close($dbc);
 <input name="userImage" type="file" class="inputFile" />
 <input type="submit" value="Submit" class="btnSubmit" />
 </form>
+<input type="button" value="Add new category" onClick="sho()"/>
+<form id="sh" action="addtogallery.php" method="POST"><input type="text" name="type_of_gallery" required/><input type="submit" value="send"/></form>
+<?php
+  if($_SERVER["REQUEST_METHOD"]==="POST"){
+	$type_of_gallery=isset($_POST["type_of_gallery"])?mysqli_real_escape_string($dbc,trim(strip_tags($_POST['type_of_gallery']))):"";
+	if($type_of_gallery!=''){
+	$sql2="INSERT INTO `kategorije` (`type_of_gallery`) VALUES ('$type_of_gallery')";
+    $a=mysqli_query($dbc,$sql2);
+	echo $type_of_gallery;
+	if(!$a){
+		echo "Error";
+	}
+	mysqli_close($dbc);
+    }
+	}
+	?>
     </div>
     <?php 
 echo printFooter();

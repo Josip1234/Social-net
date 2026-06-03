@@ -25,85 +25,87 @@ var desc5=["Zagreb 's Majorettes","Zagreb 's Majorettes","Face","Face2","Showing
 
 function select(id){
 	var a="";
-	a+="<section><h2>Beautifull female models</h2>";
+	/*a+="<h2>Beautifull female models</h2>";*/
 	if(id=="Female models"){
 		for(var i=0;i<8;i++){
-		a+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+pictures[i]+"'><img src='"+pictures[i]+"' alt='"+desc[i]+"' width='300' height='200'></a><div class='desc'><b>Figure"+i+".</b>"+desc[i]+"</div></div></div>";
+		a+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+pictures[i]+"'><img src='"+pictures[i]+"' alt='"+desc[i]+"' width='30%' height='20%'></a><div class='desc'><b>Figure"+i+".</b>"+desc[i]+"</div></div></div>";
 		
 		}
 		a+="<div id='clearfix'></div>";
 		a+="<input type='button' id='2' value='2' onClick='nova(this.value)'>";
-		document.getElementById("1").innerHTML=a+"</section>";
+		document.getElementById("1").innerHTML=a;
 	}else if(id=="Female Actress"){
 		var b="";
-		b+="<section><h2>Female actress</h2>";
+		/*b+="<h2>Female actress</h2>";*/
 		for(var j=0;j<actress.length;j++){
-		b+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+actress[j]+"'><img src='"+actress[j]+"' alt='"+desc2[j]+"' width='300' height='200'></a><div class='desc'><b>Figure"+j+".</b>"+desc2[j]+"</div></div></div>";
+		b+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+actress[j]+"'><img src='"+actress[j]+"' alt='"+desc2[j]+"' width='30%' height='20%'></a><div class='desc'><b>Figure"+j+".</b>"+desc2[j]+"</div></div></div>";
 		
 		}
 		b+="<div id='clearfix'></div>";
-		document.getElementById("1").innerHTML=b+"</section>";
+		document.getElementById("1").innerHTML=b;
 	}else if(id=="Female Singers"){
 		var c="";
-		c+="<section><h2>Female Singers</h2>";
+		c+="<h2>Female Singers</h2>";
 		for(var o=0;o<pjevacice.length;o++){
-			c+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+pjevacice[o]+"'><img src='"+pjevacice[o]+"' width='300' height='200'></a><div class='desc'><b>Figure"+o+"</b>"+desc3[o]+"</div></div></div>";
+			c+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+pjevacice[o]+"'><img src='"+pjevacice[o]+"' width='30%' height='20%'></a><div class='desc'><b>Figure"+o+"</b>"+desc3[o]+"</div></div></div>";
 		}
 		c+="<div id='clearfix'></div>";
-		document.getElementById("1").innerHTML=c+"</section>";
+		document.getElementById("1").innerHTML=c;
 	}else if(id=="Animated people"){
 		var d="";
-		d+="<section><h2>Animated people</h2>";
+		/*d+="<h2>Animated people</h2>";*/
 		for(var p=0;p<animated.length;p++){
-			d+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+animated[p]+"'><img src='"+animated[p]+"' width='300' height='200'></a><div class='desc'><b>Figure"+p+"</b>"+desc4[p]+"</div></div></div>";
+			d+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+animated[p]+"'><img src='"+animated[p]+"' width='30%' height='20%'></a><div class='desc'><b>Figure"+p+"</b>"+desc4[p]+"</div></div></div>";
 		}
 		d+="<div id='clearfix'></div>";
-		document.getElementById("1").innerHTML=d+"</section>";
+		document.getElementById("1").innerHTML=d;
 		
 	}else if(id=="Female Dancers"){
 		var m="";
-		m+="<section><h2>Female Dancers</h2>";
+		/*m+="<h2>Female Dancers</h2>";*/
 		for(var ma=0;ma<8;ma++){
-			m+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+dancers[ma]+"'><img src='"+dancers[ma]+"' width='300' height='200'></a><div class='desc'><b>Figure"+ma+"</b>"+desc5[ma]+"</div></div></div>";
+			m+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+dancers[ma]+"'><img src='"+dancers[ma]+"' width='30%' height='20%'></a><div class='desc'><b>Figure"+ma+"</b>"+desc5[ma]+"</div></div></div>";
 		}
 		m+="<div id='clearfix'></div>";
 		m+="<input type='button' id='2' value='2' onClick='novam(this.value)'>";
-		document.getElementById("1").innerHTML=m+"</section>";
+		document.getElementById("1").innerHTML=m;
 	}
 }
 function nova(stranica){
 	var zadnji_element=8;
 	var a="";
-	a+="<section><h2>Beautifull female models</h2>";
+	/*a+="<h2>Beautifull female models</h2>";*/
 	for(var i=zadnji_element;i<16;i++){
-		a+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+pictures[i]+"'><img src='"+pictures[i]+"' alt='"+desc[i]+"' width='300' height='200'></a><div class='desc'><b>Figure"+i+".</b>"+desc[i]+"</div></div></div>";
+		a+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+pictures[i]+"'><img src='"+pictures[i]+"' alt='"+desc[i]+"' width='30%' height='30%'></a><div class='desc'><b>Figure"+i+".</b>"+desc[i]+"</div></div></div>";
 		
 		}
 		a+="<div id='clearfix'></div>";
 	a+="<input type='button' id='3' value='3' onClick='nova3(this.value)'>";
-	document.getElementById("1").innerHTML=a+"</section>";
+	document.getElementById("1").innerHTML=a;
 }
 function nova3(stranica){
 	var zadnji_element=16;
 	var a="";
-	a+="<section><h2>Beautifull female models</h2>";
+	/*a+="<h2>Beautifull female models</h2>";*/
 	for(var i=zadnji_element;i<pictures.length;i++){
-		a+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+pictures[i]+"'><img src='"+pictures[i]+"' alt='"+desc[i]+"' width='300' height='200'></a><div class='desc'><b>Figure"+i+".</b>"+desc[i]+"</div></div></div>";
+		a+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+pictures[i]+"'><img src='"+pictures[i]+"' alt='"+desc[i]+"' width='30%' height='30%'></a><div class='desc'><b>Figure"+i+".</b>"+desc[i]+"</div></div></div>";
 		
 		}
 		a+="<div id='clearfix'></div>";
 	
-	document.getElementById("1").innerHTML=a+"</section>";
+	document.getElementById("1").innerHTML=a;
+
 }
 
 function novam(stranica){
 	var zadnji_element=8;
 	var m="";
-	m+="<section><h2>Female Dancers</h2>";
+	/*m+="<h2>Female Dancers</h2>";*/
 	for(var i=zadnji_element;i<dancers.length;i++){
-		m+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+dancers[i]+"'><img src='"+dancers[i]+"' alt='"+desc5[i]+"' width='300' height='200'></a><div class='desc'><b>Figure"+i+".</b>"+desc5[i]+"</div></div></div>";
+		m+="<div class='responsive'><div class='gallery'><a target='_blank' href='"+dancers[i]+"'><img src='"+dancers[i]+"' alt='"+desc5[i]+"' width='30%' height='20%'></a><div class='desc'><b>Figure"+i+".</b>"+desc5[i]+"</div></div></div>";
 		
 		}
 		m+="<div id='clearfix'></div>";
-	document.getElementById("1").innerHTML=m+"</section>";
+	document.getElementById("1").innerHTML=m;
+	
 }

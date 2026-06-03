@@ -48,7 +48,12 @@ function slike(){
     "images/dbpct/images22fLanaKlingorMP13VV.jpg",
     "images/dbpct/images22flanaklll.jpg",
 	"images/dbpct/img_3956ss.jpg",
-	"images/dbpct/img_3964ss.jpg"
+	"images/dbpct/img_3964ss.jpg",
+	"images/dbpct/IMG_20170129_141958.jpg",
+	"images/dbpct/IMG_20170228_132647.jpg",
+	"images/dbpct/IMG_20170331_142917.jpg",
+	"images/dbpct/IMG_20170426_134020.jpg",
+	"images/dbpct/IMG_20170501_075537.jpg"
 	];
 
 var b=Math.floor(Math.random()*slik.length);
