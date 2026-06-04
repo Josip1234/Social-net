@@ -6,6 +6,7 @@ use App\Helpers\Validation;
 use App\Models\AccountType;
 use App\Models\Image;
 use App\Models\ProfileDetail;
+use App\Models\ProfileLogger;
 use Core\Controller;
 use Core\Auth;
 use App\Models\User;
@@ -171,10 +172,16 @@ class UserController extends Controller{
                 }
         }
         public function profile_log_index(){
-                $logList=User::getProfileLogWithoutPagination();
-         
+                $limit=5;
+                $page=isset($_GET["pag"])?$_GET["pag"]:0;
+                $totalRow=ProfileLogger::countRowsForProfileLog();
+                  $logList=ProfileLogger::getProfileLogWithPagination($limit,$page);
+                $totalPages=ceil(($totalRow/$limit));
+              
                 $this->view("admin/user_log",
-                ["users"=>$logList]);
+                ["users"=>$logList,
+                "total_pages"=>$totalPages,
+                "page"=>$page]);
                
         }
 }

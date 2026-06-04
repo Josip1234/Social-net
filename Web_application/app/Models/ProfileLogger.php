@@ -35,4 +35,51 @@ class ProfileLogger{
       ]);
 
       }
+
+      //function to get profile data log without pagination 
+public static function getProfileLogWithoutPagination():array{
+   $db=Database::getInstance();
+   $sql="SELECT pf.plId as id,concat(p.firstName,' ',p.lastName) as username,pf.message,
+pf.additionDate,pf.updateDate,p.dateOfBirth, at.acTypeName, round(datediff(now(),p.dateOfBirth)/(SELECT DAYOFYEAR(
+LAST_DAY(DATE_ADD(NOW(), INTERVAL 12-MONTH(NOW()) MONTH)))),0) as Age 
+FROM profile_logger pf join profile p on pf.userId=p.userId
+join profiledetails pd on p.userId=pd.userId join accounttype at on pd.acTypeId=at.acTypeId order by id";
+$stmt=$db->prepare($sql);
+$stmt->execute();
+return $stmt->fetchAll();
+}
+
+
+      //function to get profile data log with pagination 
+public static function getProfileLogWithPagination(int $limit,int $page):array{
+    //225 records three missing 228 should be at current rate
+    $off=($page-1)*$limit;
+   $db=Database::getInstance();
+   $sql="SELECT pf.plId as id,concat(p.firstName,' ',p.lastName) as username,pf.message,
+pf.additionDate,pf.updateDate,p.dateOfBirth, at.acTypeName, round(datediff(now(),p.dateOfBirth)/(SELECT DAYOFYEAR(
+LAST_DAY(DATE_ADD(NOW(), INTERVAL 12-MONTH(NOW()) MONTH)))),0) as Age 
+FROM profile_logger pf join profile p on pf.userId=p.userId
+join profiledetails pd on p.userId=pd.userId join accounttype at on pd.acTypeId=at.acTypeId order by id
+LIMIT :lim OFFSET :off";
+$stmt=$db->prepare($sql);
+
+  $stmt->execute([
+          ':lim'=>$limit,
+          ':off'=>$off,
+      ]);
+
+return $stmt->fetchAll();
+}
+//function to check how much rows we have in our data for profile log
+public static function countRowsForProfileLog():int{
+    $db=Database::getInstance();
+    $sql="SELECT count(*) as total
+FROM profile_logger pf join profile p on pf.userId=p.userId
+join profiledetails pd on p.userId=pd.userId join accounttype at on pd.acTypeId=at.acTypeId";
+$stmt=$db->prepare($sql);
+$stmt->execute();
+return $stmt->fetchColumn();
+}
+
+
 }
