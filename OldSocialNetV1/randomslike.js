@@ -53,7 +53,12 @@ function slike(){
 	"images/dbpct/IMG_20170228_132647.jpg",
 	"images/dbpct/IMG_20170331_142917.jpg",
 	"images/dbpct/IMG_20170426_134020.jpg",
-	"images/dbpct/IMG_20170501_075537.jpg"
+	"images/dbpct/IMG_20170501_075537.jpg",
+	"images/dbpct/IMG_20170523_203403.jpg",
+	"images/dbpct/IMG_20170523_203412.jpg",
+	"images/dbpct/IMG_20170523_203419.jpg",
+	"images/dbpct/IMG_20170523_203746.jpg",
+	"images/dbpct/IMG_20170523_203752.jpg"
 	];
 
 var b=Math.floor(Math.random()*slik.length);

@@ -15,7 +15,7 @@
 <script src="randomslike.js" ></script>
 </head>
 
-<body onMouseOver="prikazi_datum(),dohvati_kalendar()" onLoad="getSLike(),slike()">
+<body onMouseOver="prikazi_datum(),dohvati_kalendar()" onLoad="slike()">
   <div class="con">
 <nav>
 
@@ -57,26 +57,26 @@
 
 </section>
 <section id="valut">
-	<iframe src="Pretvorba valuta/valuta.html" seamless></iframe>
+	<iframe src="valuta.php" seamless></iframe>
 </section>	
 
 
 <div class="pravila">
 <section><h2>Picture Gallery</h2>
 
-   <div id="forma">
-   <form id="forma" method="post" action="printingpicturegalley.php">
-    <label>Number of pictures you want to print:</label><br>
-    <input type="number" name="limit"><br>
-    <label>Width of image in %:</label><br>
-    <input type="number" name="width" required><br>
-    <label>Height of image in %:</label><br>
-    <input type="number" name="height" required><br>
-    <label>Print pictures by categories:</label><br>
-    <input type="text" name="category"><br>
+  
+   <form id="forma" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="limit">Number of pictures you want to print:</label><br>
+    <input type="number" name="limit" id="limit"><br>
+    <label for="width">Width of image in %:</label><br>
+    <input type="number" name="width" id="width" required><br>
+    <label for="height">Height of image in %:</label><br>
+    <input type="number" name="height" id="height" required><br>
+    <label for="category">Print pictures by categories:</label><br>
+    <input type="text" id="category" name="category"><br>
 	<input type="submit" value="choose">
 </form>
-	</div>
+	
 
 
 </section>

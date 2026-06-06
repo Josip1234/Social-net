@@ -97,6 +97,7 @@ function returnUrls(int $userId):array{
       $urls["forum"]='<a href="forum.php" target="_self">Forum</a>';
       $urls["gallery"]='<a href="gallery.php" target="_self">Picture gallery</a>';
       if($scriptName==="gallery.php") $urls["addGal"]='<a href="addtogallery.php" target="_blank">Add to gallery</a>';
+      if($scriptName==="trenutnifeedback.php") $urls["cfdb"]='<a href="nenapravljeneaktivnosti.php">Activities undone</a>';
     global $dbc;
 
    $sql="SELECT u.uloga from uloge u where user_id='$userId'";
