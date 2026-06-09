@@ -179,11 +179,25 @@ class UserController extends Controller{
                 $totalRow=ProfileLogger::countRowsForProfileLog();
                   $logList=ProfileLogger::getProfileLogWithPagination($limit,$page);
                 $totalPages=ceil(($totalRow/$limit));
+
+                $paginationStart=max(1, $page - floor($limit/2));
+                $paginationEnd=$paginationStart+$limit-1;
+
+                if($paginationEnd > $totalPages){
+                    $paginationEnd = $totalPages;
+                    $paginationStart=max(1,$paginationEnd-$limit+1);
+                }
+                
+
+
               
                 $this->view("admin/user_log",
                 ["users"=>$logList,
                 "total_pages"=>$totalPages,
-                "page"=>$page]);
+                "page"=>$page,
+                "pagStart"=>$paginationStart,
+                "pagEnd"=>$paginationEnd
+                ]);
                
         }
 }
