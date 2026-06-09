@@ -97,7 +97,10 @@ function returnUrls(int $userId):array{
       $urls["forum"]='<a href="forum.php" target="_self">Forum</a>';
       $urls["gallery"]='<a href="gallery.php" target="_self">Picture gallery</a>';
       if($scriptName==="gallery.php") $urls["addGal"]='<a href="addtogallery.php" target="_blank">Add to gallery</a>';
-      if($scriptName==="trenutnifeedback.php") $urls["cfdb"]='<a href="nenapravljeneaktivnosti.php">Activities undone</a>';
+      if($scriptName==="trenutnifeedback.php"){
+            $urls["cfdb"]='<a href="nenapravljeneaktivnosti.php">Activities undone</a>';
+            $urls["acdn"]='<a class="da" href="napravljeneaktivnosti.php">Activities done</a>';
+      } 
     global $dbc;
 
    $sql="SELECT u.uloga from uloge u where user_id='$userId'";
@@ -364,19 +367,20 @@ function printGalleryNav():string{
 }
 
 function query($limit){
-	return "SELECT type_of_gallery,imageType,imageData FROM galerija LIMIT $limit";
+	return "SELECT id,type_of_gallery,imageType,imageData FROM galerija LIMIT $limit";
 }
 function queryWithoutLimit(){
-	return "SELECT type_of_gallery,imageType,imageData FROM galerija";
+	return "SELECT id,type_of_gallery,imageType,imageData FROM galerija";
 }
 function queryCategory($limit,$category){
-	return "SELECT type_of_gallery,imageType,imageData FROM galerija  WHERE type_of_gallery = '$category' LIMIT $limit";
+	return "SELECT id,type_of_gallery,imageType,imageData FROM galerija  WHERE type_of_gallery = '$category' LIMIT $limit";
 }
 function queryCategoryWithNoLimit($category){
-	return "SELECT type_of_gallery,imageType,imageData FROM galerija  WHERE type_of_gallery='$category'";
+	return "SELECT id,type_of_gallery,imageType,imageData FROM galerija  WHERE type_of_gallery='$category'";
 }
 function queryItems(){
-	return "SELECT imageId FROM galerija";
+	//return "SELECT imageId FROM galerija";
+    return "select id from galerija";
 }
 
 function selectRange($limit,$category,$first,$second){

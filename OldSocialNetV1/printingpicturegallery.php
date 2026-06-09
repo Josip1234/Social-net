@@ -63,9 +63,9 @@
 
 <div class="pravila">
 <section><h2>Picture Gallery</h2>
-
+<p><b>Sum of pictures in galleries:</b><?php  $a=getNumberOfItemsInDatabase(); echo $a; ?></p>
   
-   <form id="forma" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+   <form  method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <label for="limit">Number of pictures you want to print:</label><br>
     <input type="number" name="limit" id="limit"><br>
     <label for="width">Width of image in %:</label><br>
@@ -74,6 +74,8 @@
     <input type="number" name="height" id="height" required><br>
     <label for="category">Print pictures by categories:</label><br>
     <input type="text" id="category" name="category"><br>
+	  <label>Print all pictures?</label>
+    <input type="checkbox" name="printall">
 	<input type="submit" value="choose">
 </form>
 	
@@ -86,13 +88,13 @@
 <?php
 	if($_SERVER['REQUEST_METHOD']=="POST"){
 	include("dbconn.php");
-	include("functions.php");
+	
 		$pokusaj=0;
-		$limit=$_GET['limit'];
-	$category=$_GET['category'];
+		$limit=(isset($_GET['limit']))?$_GET['limit']:0;
+	$category=(isset($_GET["category"]))?$_GET['category']:"";
 		
-		$first=$_GET['first'];
-		$second=$_GET['second'];
+		$first=(isset($_GET['first']))?$_GET['first']:"";
+		$second=(isset($_GET["second"]))?$_GET['second']:"";
 		
 	$limit=$_POST['limit'];
 	$width=$_POST['width'];
@@ -101,6 +103,11 @@
 	$width=40;
 	$height=40;
 	$category=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['category'])));
+
+	$printall=(isset($_POST['printall']))?$_POST['printall']:"";
+	if($printall!=''){
+		$query=queryWithoutLimit();
+	}else{
 	
 	
     if($limit!="" && $category==""){
@@ -112,13 +119,14 @@
 	}else{
 		$query=queryCategoryWithNoLimit($category);
 	}
+	}
 		
 	//	$query=selectRange($limit,$category,$first,$second);
 	$a=mysqli_query($dbc,$query);
 	
 	echo "<p>";
 	while($row=mysqli_fetch_array($a)){
-	    $id=$row['imageId'];
+	    $id=$row['id'];
 		
 		/*echo $row['imageId']." ".$row['type_of_gallery'];*/
 		

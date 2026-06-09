@@ -60,7 +60,7 @@ mysqli_query($dbc,$sql);
         <form name="frmImage" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="frmImageUpload">
 <label for="type">Upload Image File:</label><br/>
 <select name="type" id="type">
-	<option value="rest">Rest</option>
+	<!--<option value="rest">Rest</option>
 	<option value="animal">Animal</option>
 	<option value="femalemodels">Female Models</option>
 	<option value="femaleactress">Female Actress</option>
@@ -69,7 +69,17 @@ mysqli_query($dbc,$sql);
 	<option value="femaledancers">Female Dancers</option>
 	<option value="photoshopped">Photoshopped stuff</option>
 	<option value="supercars">Supercars</option>
-	<option value="sportcars">Sportcars</option>
+	<option value="sportcars">Sportcars</option>--> 
+	<?php 
+	
+		$query="SELECT kategorije.type_of_gallery FROM kategorije";
+	$a=mysqli_query($dbc,$query);
+	while($b=mysqli_fetch_array($a)){
+		echo "<option value='".$b['type_of_gallery']."'>".$b['type_of_gallery']."</option>";
+	}
+	
+	
+	?>
 	
 </select>
 <input name="userImage" type="file" class="inputFile" />
