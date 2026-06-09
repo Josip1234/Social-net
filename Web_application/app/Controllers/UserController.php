@@ -172,6 +172,8 @@ class UserController extends Controller{
                 }
         }
         public function profile_log_index(){
+                //this is a fix to prevent empty list and pagination available for next previous 
+                if(!isset($_GET["pag"])) header('Location: index.php?page=profile_log&pag=1');
                 $limit=5;
                 $page=isset($_GET["pag"])?$_GET["pag"]:0;
                 $totalRow=ProfileLogger::countRowsForProfileLog();
