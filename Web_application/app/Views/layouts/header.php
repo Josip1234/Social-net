@@ -55,6 +55,7 @@ function active(string $page,string $current):string{
     <a href="#tools">Tools</a>
   </div>
 </div>
+   
  <?php endif; endif; ?>
         </nav>
         

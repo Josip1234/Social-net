@@ -1,6 +1,16 @@
 <main>
     <div id="container">
         <div class="form-box">
+            
+        <div id="search-box">
+            <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"].'?page=profile_log'); ?>" method="post">
+                <label for="username">Search by username:</label>
+                <input type="text" name="username" id="username">
+                <input type="hidden" name="search" value="1">
+                 <button type="submit">Search</button>
+            </form>
+        </div>
+  
             <table>
                 <thead>
                     <tr>
@@ -42,6 +52,7 @@
                     </tr>
                 </tfoot>-->
             </table>
+            <?php if($total_pages>0): ?>
             <div class="paginator">
                 <a href="?page=profile_log&pag=<?= 1 ?>">First</a>
                 <?php if ($page != 1): $previous = $page - 1; ?>
@@ -71,6 +82,7 @@
                 <?php endif; ?>
                 <a href="<?= "?page=profile_log&pag=" . $total_pages . "" ?>"> Last</a>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </main>

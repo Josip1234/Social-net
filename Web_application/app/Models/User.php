@@ -217,16 +217,6 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
     }
     //this query will be used to retrieve profile log data will retrieve all first 
     //later we will add limit and offset for pagination
-    /*
-    
-    SELECT pf.plId as id,concat(p.firstName,' ',p.lastName) as username,pf.message,
-pf.additionDate,pf.updateDate,p.dateOfBirth, at.acTypeName, round(datediff(now(),p.dateOfBirth)/
-(SELECT DAYOFYEAR(
-    LAST_DAY(DATE_ADD(NOW(), INTERVAL 12-MONTH(NOW()) MONTH))
-)
-),0) as Age FROM profile_logger pf join profile p on pf.userId=p.userId
-join profiledetails pd on p.userId=pd.userId join accounttype at on pd.acTypeId=at.acTypeId;
-    
-    */
+
 
 }

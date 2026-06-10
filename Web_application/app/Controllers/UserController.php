@@ -172,8 +172,30 @@ class UserController extends Controller{
                 }
         }
         public function profile_log_index(){
+                   if(isset($_POST["search"])){
+                if(!empty($_POST["search"]) && $_POST["search"]==1){
+                    if(!empty($_POST["username"])){
+                        $search=(isset($_POST["search"]))?$_POST["search"]:"";
+                        $logList=ProfileLogger::searchByUsernameWithoutPagination($_POST["username"]);
+                    
+                
+                  $totalPages=0;
+                  $page=0;
+                  $paginationStart=0;
+                  $paginationEnd=0;
+                $this->view("admin/user_log",
+                ["users"=>$logList,
+                "total_pages"=>$totalPages,
+                "page"=>$page,
+                "pagStart"=>$paginationStart,
+                "pagEnd"=>$paginationEnd,
+                "search"=>$search
+                ]);
+            }}}else{
+                $search="";
                 //this is a fix to prevent empty list and pagination available for next previous 
                 if(!isset($_GET["pag"])) header('Location: index.php?page=profile_log&pag=1');
+                
                 $limit=5;
                 $page=isset($_GET["pag"])?$_GET["pag"]:0;
                 $totalRow=ProfileLogger::countRowsForProfileLog();
@@ -187,17 +209,15 @@ class UserController extends Controller{
                     $paginationEnd = $totalPages;
                     $paginationStart=max(1,$paginationEnd-$limit+1);
                 }
-                
-
-
-              
+            
                 $this->view("admin/user_log",
                 ["users"=>$logList,
                 "total_pages"=>$totalPages,
                 "page"=>$page,
                 "pagStart"=>$paginationStart,
-                "pagEnd"=>$paginationEnd
+                "pagEnd"=>$paginationEnd,
+                "search"=>$search
                 ]);
-               
+            }
         }
 }

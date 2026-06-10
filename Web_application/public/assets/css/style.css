@@ -71,6 +71,11 @@ nav a:hover {
     background-color: #e42828;
     padding: 5px;
 }
+div#search-box{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+}
 
 /* css for body */
 body {
