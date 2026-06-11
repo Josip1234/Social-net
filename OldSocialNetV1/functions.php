@@ -333,6 +333,11 @@ function dropdownMenu():string{
     $dropdown.="<a href='profilna.php?email=".$email."' target='_self'>Insert profile picture</a>";
         $dropdown.="<a href='valuta.php' target='_self'>Valuta</a>";
          $dropdown.="<a href='odgovori.php' target='_self'>Odgovor</a>";
+         if(isset($_SESSION["role"])){
+          if($_SESSION["role"]==="Administrator"){
+                 $dropdown.="<a href='classes/Tema.php'>Tema</a>";
+          }
+         }
     $dropdown.="</div>";
 
     $dropdown.="</li>";

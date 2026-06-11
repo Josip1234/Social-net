@@ -27,7 +27,7 @@ echo printCurrencyRate();
                 <h2>Lista napravljenih aktivnosti</h2>
                 <p><?php 
 	include("listofactivities.php");
-	echo ispisNapravljenih();
+	ispisNapravljenih();
 	?></p>
         </section>
 
