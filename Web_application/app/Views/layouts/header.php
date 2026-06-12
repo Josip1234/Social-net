@@ -1,6 +1,17 @@
 <?php 
 
+if(!active('profile_log_search',$activePage)){
+ 
+if(isset($_SESSION["searched"])){
+    unset($_SESSION["searched"]);
+}
+ 
+
+}
+
+
 function active(string $page,string $current):string{
+    
     return $page === $current ? 'activelink':'';
 }
 ?>
@@ -17,7 +28,7 @@ function active(string $page,string $current):string{
        <?php endif; ?>
     <?php if (active('address/update',$activePage)): ?>
         <script src="assets/js/update_address.js"></script>
-    <?php elseif (active('profile_log',$activePage)): ?>
+    <?php elseif (active('profile_log',$activePage) || active('profile_log_search',$activePage)): ?>
          <link rel="stylesheet" href="assets/css/table.css">
          <link rel="stylesheet" href="assets/css/pagination.css">
     <?php else: ?>

@@ -88,6 +88,9 @@ switch($page){
     case 'profile_log':
         $userController->profile_log_index();
         break;
+    case 'profile_log_search':
+          $userController->profile_log_index_search();
+        break;
     default:
         $controller->index();
 }

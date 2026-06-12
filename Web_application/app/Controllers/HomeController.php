@@ -212,6 +212,10 @@ class HomeController extends Controller{
     }
     //function for user logout
     public function logout():void{
+        if(isset($_SESSION["searched"])){
+            unset($_SESSION["searched"]);
+        }
+     
         setcookie("selected","",1);
         setcookie("selectedCity","",1);
         //get last inserted record from logged in user
