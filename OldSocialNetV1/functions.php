@@ -336,6 +336,7 @@ function dropdownMenu():string{
          if(isset($_SESSION["role"])){
           if($_SESSION["role"]==="Administrator"){
                  $dropdown.="<a href='classes/Tema.php'>Tema</a>";
+                 $dropdown.="<a href='classes/konfiguracija.php'>Konfiguracija</a>";
           }
          }
     $dropdown.="</div>";
