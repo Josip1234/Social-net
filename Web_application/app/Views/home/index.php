@@ -1,5 +1,6 @@
 <main>
     <div id="container">
+          <div class="form-box">
               <?php if(isset($_SESSION['msg'])): ?>
                <div class="form-box">
      <div class="message">
@@ -20,6 +21,6 @@
           <p class="success"><?= $_SESSION['update']; ?></p>
      </div>
      <?php endif; unset($_SESSION['update']);?>
-
+          </div>
 </div>
 </main>

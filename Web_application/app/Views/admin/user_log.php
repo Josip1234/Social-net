@@ -22,6 +22,7 @@
                         <th>Date of birth</th>
                         <th>Account type</th>
                         <th>Age</th>
+                        <th>Time logged in (H:m:s)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,7 @@
                             <td><?= \Carbon\Carbon::parse($user["dateOfBirth"])->format("d.m.Y");  ?></td>
                             <td><?= $user["acTypeName"]; ?></td>
                             <td><?= $user["Age"]; ?></td>
+                            <td><?=($user["updateDate"] == NULL) ? "No calculation possible.":\Carbon\Carbon::parse(strtotime($user["updateDate"])-strtotime($user["additionDate"]))->format("H:i:s"); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
