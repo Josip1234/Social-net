@@ -234,6 +234,13 @@ function printBodyOnMouseOverAndOnLoadForGallery():string{
     return $body;
 
 }
+//function for printing onmouseover and body onload for forum
+function printBodyOnMouseOverAndOnLoadForForum():string{
+    $body="<body onMouseOver=\"prikazi_datum(),dohvati_kalendar()\" onLoad=\"slike(),hideDivs()\">";
+    return $body;
+
+}
+
 //function for printing calendar section
 function printCalendar():string{
     $calendar="<section id=\"cal\">
@@ -251,7 +258,13 @@ function jsIncludes():string{
 <script src='calendar.js'></script>
 <script src='dropdownmenu.js'></script>
 <script src='randomslike.js'></script>";
-if($scriptName==="forum.php") $js.="<script src='ajax.js'></script>";
+if($scriptName==="forum.php"){
+        $js.="<script src='ajax.js'></script>";
+    
+} 
+elseif($scriptName==="forumv2.php"){
+        $js.="<script src='forforum.js'></script>";
+}
 elseif($scriptName==="gallery.php") $js.="<script src='galerija.js'></script>";
 elseif($scriptName==="valuta.php"){
     $js="";
@@ -337,6 +350,7 @@ function dropdownMenu():string{
           if($_SESSION["role"]==="Administrator"){
                  $dropdown.="<a href='classes/Tema.php'>Tema</a>";
                  $dropdown.="<a href='classes/konfiguracija.php'>Konfiguracija</a>";
+                 $dropdown.="<a href='forumv2.php'>Forum verzija 2</a>";
           }
          }
     $dropdown.="</div>";

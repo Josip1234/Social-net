@@ -1,14 +1,6 @@
 <?php
-include "../functions.php";
-class Forum{
-    private string $korisnik;
-    public function setKorisnik(string $korisnik){
-        $this->korisnik=$korisnik;
-    }
-    public function getKorisnik(){
-        return $this->korisnik;
-    }
-}
+//include "../functions.php";
+
 class Tema{
     public int $id;
     public string $nazivKorisnika;
@@ -21,6 +13,12 @@ class Tema{
         $this->nazivKorisnika=$nazivKorisnika;
         $this->brojTeme=rand();
         $this->nazivTeme=$nazivTeme;
+    }
+        public function ispisiTrenutneTeme(){
+                echo "<li><a href='#' onClick='displaySubtopics()'> ".$this->getKorisnik()." Naziv teme: ".$this->nazivTeme."</a></li>";
+    }
+    public function ispisiTemu(){
+        echo "<li><a href='#' onClick='displaySubtopics()'> ".$this->nazivTeme."</a></li>";
     }
     public function ispis(){
         echo $this->id."\n";
@@ -52,6 +50,9 @@ class Tema{
     public function getNazivTeme(){
         return $this->nazivTeme;
     }
+    	public function setBroj(int $broj){
+       $this->brojTeme=$broj;
+    }
   
 
 }
@@ -76,6 +77,11 @@ class Podtema extends Tema{
         echo " Naziv podteme:".$this->nazivPodteme.".";
 
     }
+     public function ispis2(){
+         
+        echo $this->nazivPodteme."\n";
+
+    }
 
 }
 /*
@@ -88,7 +94,20 @@ echo "<br>";
 $podtema=new Podtema("Nogomet - vijesti");
 $tema->setTema("Sport");
 $podtema->ispis();
-*/
+
 $tema = new Tema(0,"Josip Bošnjak","Sport");
 $podtema=new Podtema("Nogomet - vijesti");
 $podtema->ispis(); 
+*/
+class Forum{
+    private string $korisnik;
+    public function setKorisnik(string $korisnik){
+        $this->korisnik=$korisnik;
+    }
+    public function getKorisnik(){
+        return $this->korisnik;
+    }
+
+    
+
+}

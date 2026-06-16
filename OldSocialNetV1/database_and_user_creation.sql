@@ -105,4 +105,14 @@ id int primary key auto_increment,
 type_of_gallery varchar(255) unique key);
 
 alter table galerija add column kategorije_id int null;
-alter table galerija add constraint kategorija_c_fk foreign key (kategorije_id) references kategorije(id) on update cascade on delete cascade;
+alter table galerija add constraint kategorija_c_fk foreign key (kategorije_id) references kategorije(id) on update cascade on delete cascade; 
+
+create table podteme(
+id int primary key auto_increment,
+korisnik varchar(255) not null,
+brojpodteme varchar(255) not null,
+nazivpodteme varchar(255) not null unique,
+nazivteme varchar(255) not null,
+constraint fk_korisnik foreign key (korisnik) references registration(email) on update cascade on delete cascade,
+constraint fk_tema foreign key(nazivteme) references teme(naziv_teme) on update cascade on delete cascade);
+
