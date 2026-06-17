@@ -28,7 +28,7 @@ function active(string $page,string $current):string{
        <?php endif; ?>
     <?php if (active('address/update',$activePage)): ?>
         <script src="assets/js/update_address.js"></script>
-    <?php elseif (active('profile_log',$activePage) || active('profile_log_search',$activePage)): ?>
+    <?php elseif (active('profile_log',$activePage) || active('profile_log_search',$activePage) || active('admin/database_logger',$activePage)): ?>
          <link rel="stylesheet" href="assets/css/table.css">
          <link rel="stylesheet" href="assets/css/pagination.css">
     <?php else: ?>
@@ -58,7 +58,7 @@ function active(string $page,string $current):string{
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
     <a href="?page=profile_log&pag=1">Profile logs</a>
-    <a href="#base">Base</a>
+    <a href="?page=admin/database_logger">Database logger</a>
     <a href="#blog">Blog</a>
     <a href="#contact">Contact</a>
     <a href="#custom">Custom</a>

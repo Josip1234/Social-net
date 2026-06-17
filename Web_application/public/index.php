@@ -2,6 +2,7 @@
 
 use App\Controllers\AddressController;
 use App\Controllers\CityController;
+use App\Controllers\DatabaseController;
 use App\Controllers\HomeController;
 use App\Controllers\StateController;
 use App\Controllers\UserController;
@@ -22,6 +23,7 @@ $userController = new UserController();
 $addressController = new AddressController();
 $stateController=new StateController();
 $cityController = new CityController();
+$databaseLoggerController = new DatabaseController();
 
 $page=$_GET['page']??'index';
 
@@ -90,6 +92,9 @@ switch($page){
         break;
     case 'profile_log_search':
           $userController->profile_log_index_search();
+        break;
+    case 'admin/database_logger':
+        $databaseLoggerController->getDatabaseLogger();
         break;
     default:
         $controller->index();

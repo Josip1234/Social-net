@@ -25,3 +25,6 @@ pf.additionDate,pf.updateDate,p.dateOfBirth, at.acTypeName, round(datediff(now()
 )
 ),0) as Age FROM profile_logger pf join profile p on pf.userId=p.userId
 join profiledetails pd on p.userId=pd.userId join accounttype at on pd.acTypeId=at.acTypeId;
+
+select lc.idLogCon,lc.loggerDescription,lc.userAdded,lc.userUpdated,lc.userDeleted,lc.dateDeleted,lc.dateUpdated,lc.dateAdded,at.acTypeName from logger_content lc inner join database_logger dl on lc.dbLogId=dl.dbLogId
+inner join databaseuser du on dl.userId=du.userId inner join accounttype at on du.acTypeId=at.acTypeId;
