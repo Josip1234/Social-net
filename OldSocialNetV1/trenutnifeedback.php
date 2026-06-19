@@ -58,6 +58,7 @@ while($row=mysqli_fetch_array($q)){
 	<button type='submit'>Send</button>
 	</form>"."</td>";
 	echo "</tr>";
+	/* <input type="submit" value="Select" onClick="selected("<?php $sel ?>")"> */
 };
 echo "</tbody></table>";
 }else{

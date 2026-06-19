@@ -64,6 +64,17 @@ function slike(){
 	"images/dbpct/IMG_20170523_204355.jpg",
 	"images/dbpct/IMG_20170523_204403.jpg",
 	"images/dbpct/IMG_20170523_204555.jpg",
+	"images/dbpct/IMG_20170523_204559.jpg",
+	"images/dbpct/IMG_20170523_210655.jpg",
+	"images/dbpct/IMG_20170529_084809.jpg",
+	"images/dbpct/IMG_20170529_084815.jpg",
+	"images/dbpct/IMG_20170529_084921.jpg",
+	"images/dbpct/IMG_20170529_085201.jpg",
+	"images/dbpct/IMG_20170529_162256.jpg",
+	"images/dbpct/IMG_20170603_152423.jpg",
+	"images/dbpct/IMG_201705135_105822.jpg",
+	"images/dbpct/logo_sv_jana_mazor-e1430861054428.jpg",
+
 	];
 
 var b=Math.floor(Math.random()*slik.length);

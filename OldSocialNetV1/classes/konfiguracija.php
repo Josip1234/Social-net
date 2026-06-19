@@ -82,6 +82,11 @@ class Podtema extends Tema{
         echo $this->nazivPodteme."\n";
 
     }
+    public function destroy(){
+        $this->id=0;
+        $this->brojPodteme="";
+        $this->nazivPodteme="";
+    }
 
 }
 /*
