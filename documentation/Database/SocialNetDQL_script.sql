@@ -33,3 +33,14 @@ select lc.idLogCon,lc.loggerDescription,lc.userAdded,lc.userUpdated,lc.userDelet
 inner join databaseuser du on dl.userId=du.userId inner join accounttype at on du.acTypeId=at.acTypeId order by lc.idLogCon asc;
 
 select count(lc.idLogCon) as total from logger_content lc;
+
+select count(lc.idLogCon) as total from logger_content lc inner join database_logger dl on lc.dbLogId=dl.dbLogId
+inner join databaseuser du on dl.userId=du.userId inner join accounttype at on du.acTypeId=at.acTypeId
+where at.acTypeName like "%Admin%";
+
+select act.acTypeName as dataTypeRec from accounttype act;
+
+select lc.idLogCon,lc.loggerDescription,lc.userAdded,lc.userUpdated,lc.userDeleted,lc.dateDeleted,lc.dateUpdated,lc.dateAdded,at.acTypeName from logger_content lc inner join database_logger dl on lc.dbLogId=dl.dbLogId
+inner join databaseuser du on dl.userId=du.userId inner join accounttype at on du.acTypeId=at.acTypeId where at.acTypeName like '%Admin%' order by lc.idLogCon asc LIMIT 5 OFFSET 5;
+
+

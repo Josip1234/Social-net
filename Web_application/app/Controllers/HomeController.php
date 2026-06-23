@@ -215,6 +215,9 @@ class HomeController extends Controller{
         if(isset($_SESSION["searched"])){
             unset($_SESSION["searched"]);
         }
+        if(isset($_SESSION["searched_at"])){
+             unset($_SESSION["searched_at"]);
+        }
      
         setcookie("selected","",1);
         setcookie("selectedCity","",1);

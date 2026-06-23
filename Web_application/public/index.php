@@ -96,6 +96,9 @@ switch($page){
     case 'admin/database_logger':
         $databaseLoggerController->getDatabaseLogger();
         break;
+    case 'admin/database_logger_search':
+        $databaseLoggerController->getDatabaseLoggerSearch();
+        break;
     default:
         $controller->index();
 }
