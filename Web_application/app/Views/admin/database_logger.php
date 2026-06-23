@@ -3,8 +3,8 @@
         <div class="form-box">
                   <div id="search-box">
             <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"].'?page=admin/database_logger_search&pag=1'); ?>" method="post">
-                <label for="account_type">Search by account type:</label>
-                <select name="account_type" id="account_type">
+                <label for="actype">Search by account type:</label>
+                <select name="actype" id="actype">
                     <?php foreach($aType  as $type): ?>
                      <option value="<?= $type["dataTypeRec"]; ?>"><?= $type["dataTypeRec"]; ?></option>
                     <?php endforeach; ?>

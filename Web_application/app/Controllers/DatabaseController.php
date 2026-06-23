@@ -9,7 +9,12 @@ use Core\Controller;
 class DatabaseController extends Controller
 {
     public function getDatabaseLogger()
-    {
+    { 
+
+    if(isset($_SESSION["searched_at"])){
+        unset($_SESSION["searched_at"]);
+    }
+         
         $search = "";
         if (!isset($_GET["pag"])) header('Location: index.php?page=admin/database_logger&pag=1');
         $limit = 5;
@@ -44,17 +49,17 @@ class DatabaseController extends Controller
     public function getDatabaseLoggerSearch()
     {
      
-        $searchedValue = (isset($_POST["account_type"]) ? $_POST["account_type"] : "");
+        $searchedValue = (isset($_POST["actype"]) ? $_POST["actype"] : "");
         
-        //(!isset($_SESSION["searched_at"])) ? $_SESSION["searched_at"] = $searchedValue : $searchedValue = $_SESSION["searched_at"];
-        if(!isset($_SESSION["searched_at"])){
+        (!isset($_SESSION["searched_at"])) ? $_SESSION["searched_at"] = $searchedValue : $searchedValue = $_SESSION["searched_at"];
+        /*if(!isset($_SESSION["searched_at"])){
             $_SESSION["searched_at"] = $searchedValue;
         }elseif($_SESSION["searched_at"]!=$_POST["account_type"]){
             $_SESSION["searched_at"] = $_POST["account_type"];
         }
         else{
             $searchedValue = $_SESSION["searched_at"];
-        }
+        }*/
        
         $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
         $limit = 5;
