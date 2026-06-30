@@ -243,4 +243,7 @@ class UserController extends Controller
                         ]
                 );
         }
+        public function manage_users(){
+                $this->view("admin/user_management");
+        }
 }

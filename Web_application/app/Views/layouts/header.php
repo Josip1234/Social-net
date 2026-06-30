@@ -60,7 +60,7 @@ function active(string $page,string $current):string{
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
     <a href="?page=profile_log&pag=1">Profile logs</a>
     <a href="?page=admin/database_logger">Database logger</a>
-    <a href="#blog">Blog</a>
+    <a href="?page=admin/user_management">User management</a>
     <a href="#contact">Contact</a>
     <a href="#custom">Custom</a>
     <a href="#support">Support</a>

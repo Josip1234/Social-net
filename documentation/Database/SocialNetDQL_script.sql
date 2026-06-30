@@ -43,4 +43,7 @@ select act.acTypeName as dataTypeRec from accounttype act;
 select lc.idLogCon,lc.loggerDescription,lc.userAdded,lc.userUpdated,lc.userDeleted,lc.dateDeleted,lc.dateUpdated,lc.dateAdded,at.acTypeName from logger_content lc inner join database_logger dl on lc.dbLogId=dl.dbLogId
 inner join databaseuser du on dl.userId=du.userId inner join accounttype at on du.acTypeId=at.acTypeId where at.acTypeName like '%Admin%' order by lc.idLogCon asc LIMIT 5 OFFSET 5;
 
-
+SELECT p.userId,concat(p.firstName," ",p.lastName) as user, p.email, p.dateOfBirth,pd.accountStatus, at.acTypeName 
+, du.userName as databaseUser FROM profile p
+inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
+inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != 2;
