@@ -29,7 +29,7 @@ function active(string $page,string $current):string{
     <?php if (active('address/update',$activePage)): ?>
         <script src="assets/js/update_address.js"></script>
     <?php elseif (active('profile_log',$activePage) || active('profile_log_search',$activePage) || active('admin/database_logger',$activePage)
-        || active("admin/database_logger_search",$activePage)): ?>
+        || active("admin/database_logger_search",$activePage) || active("admin/user_management",$activePage)) : ?>
          <link rel="stylesheet" href="assets/css/table.css">
          <link rel="stylesheet" href="assets/css/pagination.css">
     <?php else: ?>

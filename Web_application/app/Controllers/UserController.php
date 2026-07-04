@@ -244,6 +244,11 @@ class UserController extends Controller
                 );
         }
         public function manage_users(){
-                $this->view("admin/user_management");
+                $userId=$_SESSION['user']['id'];
+                $uData=User::getUserData($userId);
+                                
+                $this->view("admin/user_management",[
+                        'users'=>$uData
+                ]);
         }
 }
