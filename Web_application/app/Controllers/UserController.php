@@ -83,6 +83,7 @@ class UserController extends Controller
         }
         public function updateProfileImage()
         {
+                Auth::requireLogin();
                 //if user does not have profile image
                 if (isset($_GET["option"])) {
                         //if option is insert then user can insert profile image in database
@@ -108,7 +109,7 @@ class UserController extends Controller
         //current profile will be last inserted by user
         public function updateImg()
         {
-
+                Auth::requireLogin();
                 $errors = [];
                 $imgName = Image::uploadImage(FilesHelper::returnCurrentUrl($_SESSION["user"]["id"]));
                 $image = $_POST;
@@ -151,7 +152,7 @@ class UserController extends Controller
         }
         public function insertNewImage()
         {
-
+                Auth::requireLogin();
                 $errors = [];
 
                 $imageName = Image::uploadImage(FilesHelper::returnCurrentUrl($_SESSION["user"]["id"]));
@@ -177,7 +178,8 @@ class UserController extends Controller
         }
         public function profile_log_index()
         {
-
+                Auth::requireLogin();
+                Auth::requireAdmin();
                 $search = "";
                 //this is a fix to prevent empty list and pagination available for next previous 
                 if (!isset($_GET["pag"])) header('Location: index.php?page=profile_log&pag=1');
@@ -210,6 +212,8 @@ class UserController extends Controller
         }
         public function profile_log_index_search()
         {    
+                Auth::requireLogin();
+                Auth::requireAdmin();
                 $searchedValue = (isset($_POST["username"]) ? $_POST["username"] : "");
                 (!isset($_SESSION["searched"])) ? $_SESSION["searched"] = $searchedValue : $searchedValue = $_SESSION["searched"];
 
@@ -244,6 +248,8 @@ class UserController extends Controller
                 );
         }
         public function manage_users(){
+                Auth::requireLogin();
+                Auth::requireAdmin();
                 $userId=$_SESSION['user']['id'];
                 $uData=User::getUserData($userId);
                                 

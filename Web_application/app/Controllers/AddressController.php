@@ -6,9 +6,11 @@ use App\Models\Address;
 use App\Models\State;
 use Core\Controller;
 use App\Models\City;
+use Core\Auth;
 
 class AddressController extends Controller{
     public function updateAddress(){
+           Auth::requireLogin();
             $userId=$_SESSION['user']['id'];
       $address=Address::getAddressFromCurrentUser($userId);
 
@@ -58,6 +60,7 @@ class AddressController extends Controller{
         }
     }
     public function insertNewAddress(){
+        Auth::requireLogin();
          $states=State::selectAllStatesFromDatabase();
           if(isset($_COOKIE["selected"]) && ($_COOKIE["selected"]!="-")){
             $cities=City::getCityRecordById($_COOKIE["selected"]);
@@ -74,6 +77,7 @@ class AddressController extends Controller{
     //prilikom inserta adrese potrebno je napraviti trigger i proceduru 
     //koja će automatski ažurirati profil staviti najnoviji id od adrese
     public function storeAddress(){
+        Auth::requireLogin();
         $errors=[];
         $errors=Validation::validateAddressFormInput();
         if($errors===true){

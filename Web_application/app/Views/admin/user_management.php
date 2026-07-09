@@ -12,6 +12,7 @@
                         <th>Account status</th>
                         <th>Account type</th>
                         <th>Type of database user</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,9 +27,12 @@
                             <td><?= $user["user"]; ?></td>
                             <td><?= $user["email"]; ?></td>
                             <td><?= \Carbon\Carbon::parse($user["dateOfBirth"])->format("d.m.Y");  ?></td>
-                            <td><?= $user["accountStatus"]; ?></td>
-                            <td><?= $user["acTypeName"]; ?></td>
+                            <td><?= $user["accountStatus"]; ?>
+                            </td>
+                            <td><?= $user["acTypeName"]; ?>
+                            </td>
                             <td><?= $user["databaseUser"]; ?></td>
+                            <td><a href="">Update user accounts</a></td>
 
                         <?php endforeach;  ?>
 

@@ -4,13 +4,15 @@ namespace App\Controllers;
 
 use App\Models\AccountType;
 use App\Models\DatabaseLogger;
+use Core\Auth;
 use Core\Controller;
 
 class DatabaseController extends Controller
 {
     public function getDatabaseLogger()
     { 
-
+      Auth::requireLogin();
+      Auth::requireAdmin();
     if(isset($_SESSION["searched_at"])){
         unset($_SESSION["searched_at"]);
     }
@@ -48,7 +50,8 @@ class DatabaseController extends Controller
     }
     public function getDatabaseLoggerSearch()
     {
-     
+        Auth::requireLogin();
+        Auth::requireAdmin();
         $searchedValue = (isset($_POST["actype"]) ? $_POST["actype"] : "");
         
         (!isset($_SESSION["searched_at"])) ? $_SESSION["searched_at"] = $searchedValue : $searchedValue = $_SESSION["searched_at"];
