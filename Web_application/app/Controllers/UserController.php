@@ -257,4 +257,25 @@ class UserController extends Controller
                         'users'=>$uData
                 ]);
         }
+        public function edit_status(){
+                Auth::requireLogin();
+                Auth::requireAdmin();
+                $userId=(isset($_GET["id"]))?$_GET["id"]:0;
+                $listOfAccountTypes=AccountType::getAllRecordsFromAccountTypeTable();
+                if($userId!=0){
+                   $userName=User::getUserNameNoEmailById($userId);
+                   $accountStatus=ProfileDetail::selectAccountStatus($userId);
+                   $acTypeId=ProfileDetail::getAccountTypeId($userId);
+                }else{
+                   $userName=[];
+                   $accountStatus=[];
+                   $acTypeId=[];
+                }
+                $this->view("admin/change_account_status",[
+                        "username"=>$userName,
+                        "acStatus"=>$accountStatus,
+                        "acTypes"=>$listOfAccountTypes,
+                        "acTypeId"=>$acTypeId
+                ]);
+        }
 }

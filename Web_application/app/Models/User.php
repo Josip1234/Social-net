@@ -121,6 +121,20 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
         return $stmt->fetchColumn();
       }
 
+
+        //function to return username by id (not email)
+      public static function getUserNameNoEmailById(int $userId):string{
+        $db=Database::getInstance();
+        $sql="SELECT concat(p.firstName,' ',p.lastName) as username FROM profile p where userId=:userId";
+        $stmt=$db->prepare($sql);
+        $stmt->execute([
+          ':userId'=>$userId
+        ]);
+        return $stmt->fetchColumn();
+      }
+
+   
+
       //function to return data from user
       public static function profileData(int $userId):array|bool{
          $db=Database::getInstance();

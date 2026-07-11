@@ -32,7 +32,7 @@
                             <td><?= $user["acTypeName"]; ?>
                             </td>
                             <td><?= $user["databaseUser"]; ?></td>
-                            <td><a href="">Update user accounts</a></td>
+                            <td><a href="<?= '?page=admin/account_status&id='.$user["userId"]; ?>">Update user accounts</a></td>
 
                         <?php endforeach;  ?>
 

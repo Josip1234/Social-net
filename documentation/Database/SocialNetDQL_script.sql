@@ -46,4 +46,6 @@ inner join databaseuser du on dl.userId=du.userId inner join accounttype at on d
 SELECT p.userId,concat(p.firstName," ",p.lastName) as user, p.email, p.dateOfBirth,pd.accountStatus, at.acTypeName 
 , du.userName as databaseUser FROM profile p
 inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
-inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != 2;
+inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != 2; 
+
+select p.userId from profile p;

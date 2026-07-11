@@ -60,4 +60,15 @@ class ProfileDetail{
       ]);
       return $stmt->fetchColumn();
     }
+
+             //function to select account status by id
+      public static function selectAccountStatus(int $userId):string{
+        $db=Database::getInstance();
+        $sql="SELECT accountStatus FROM profiledetails pd where pd.userId=:userId";
+        $stmt=$db->prepare($sql);
+        $stmt->execute([
+          ':userId'=>$userId
+        ]);
+        return $stmt->fetchColumn();
+      }
 }
