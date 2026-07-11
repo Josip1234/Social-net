@@ -5,19 +5,28 @@ require_once "classes/Lists.php";
 require_once "classes/Division.php";
 require_once "classes/Body.php";
 require_once "classes/Footer.php";
+require_once "classes/Links.php";
 
 use Classes\Division;
 use Classes\Footer;
 use Classes\Header;
 use Classes\Lists;
+use Classes\Links;
+
 
 $header = new Header("hr","","Socialnet",basename(__DIR__."/".__FILE__,".php"),[]);
 $footer=new Footer();
 $divClasses=array();
 $listItems=array();
+$urlItems=array("#","#");
+$urlScripts=array("Registration","Login");
+$urls=new Links($urlItems,$urlScripts,"__blank");
+$urls=$urls->returnUrls();
 
-$listItems[]="<a href=\"#\" target=\"_blank\">Registration</a>";
-$listItems[]="<a href=\"#\" target=\"_blank\"></a>Login";
+foreach ($urls as $val) {
+    
+    $listItems[]=$val;
+}
 
 $divClasses[]="con";
 
