@@ -1,5 +1,6 @@
 <?php
 namespace Index;
+require_once "classes/Nav.php";
 require_once "classes/Header.php";
 require_once "classes/Lists.php";
 require_once "classes/Division.php";
@@ -12,7 +13,7 @@ use Classes\Footer;
 use Classes\Header;
 use Classes\Lists;
 use Classes\Links;
-
+use Classes\Nav;
 
 $header = new Header("hr","","Socialnet",basename(__DIR__."/".__FILE__,".php"),[]);
 $footer=new Footer();
@@ -37,9 +38,10 @@ $scripts="js/social.js,style/style.css";
 $setScripts=false;
 $setScripts=$header->setIncludeScripts($scripts);
 
+$nav = new Nav($lists->createUnorderedList());
 if($setScripts==1){
     $header->generateHtmlHeader(); 
-    $footer->closeBodyAndHtml($division,$lists);
+    $footer->closeBodyAndHtml($division,$lists,$nav);
 }
 
 
