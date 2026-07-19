@@ -237,4 +237,44 @@ public static function validateStateInput():array{
         }
         return $errors;
 }
+public static function validateAccountStatusInput(array $data):bool{
+   
+    $validated=false;
+
+  
+        if(empty($data["userId"]) || empty($data["username"]) || empty($data["accountStatus"]) || empty($data["accountType"])){
+            $validated=false;
+        }else{
+        switch ($data["accountStatus"]) {
+            case 'Active':
+                $validated=true;
+                break;
+            case 'Banned':
+                $validated=true;
+                break;
+            case 'Inactive':
+                $validated=true;
+                break;
+            default:
+                $validated=false;
+                break;
+        }
+        if($validated==true){
+            switch ($data["accountType"]) {
+            case '1':
+                $validated=true;
+                break;
+            case '2':
+                $validated=true;
+                break;
+            default:
+                $validated=false;
+                break;
+        }
+        }
+    
+        }
+    
+    return (int)$validated;
+}
 }

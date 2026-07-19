@@ -278,4 +278,18 @@ class UserController extends Controller
                         "acTypeId"=>$acTypeId
                 ]);
         }
+        public function update_account_status(){
+             Auth::requireLogin();
+             Auth::requireAdmin();
+         
+             if($_SERVER["REQUEST_METHOD"]=="POST"){
+               
+                if((int)Validation::validateAccountStatusInput($_POST)==1){
+                        echo "Account id for update: ".$_POST["userId"]."<br>";
+                        echo "User name for update: ".$_POST["username"]."<br>";
+                        echo "New account status: ".$_POST["accountStatus"]."<br>";
+                        echo "New account type: ".$_POST["accountType"]."<br>";
+                }
+             } 
+        }
 }
