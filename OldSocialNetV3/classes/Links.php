@@ -1,11 +1,12 @@
 <?php
 namespace Classes;
 class Links{
-
+  //made a mistake values are php scripts, php scripts var represents names of urls
+  //need to fix this in the future versions of application
     public function __construct(private array $value,private array $phpScripts, private string $target)
     {
         $this->value=(count($value)==0)?[]:$value;
-        $this->value=(count($phpScripts)==0)?[]:$phpScripts;
+        $this->phpScripts=(count($phpScripts)==0)?[]:$phpScripts;
         $this->target=(empty($target) || $target=="")?"_self":$target;
         
     }

@@ -19,9 +19,9 @@ $header = new Header("hr","","Socialnet",basename(__DIR__."/".__FILE__,".php"),[
 $footer=new Footer();
 $divClasses=array();
 $listItems=array();
-$urlItems=array("#","#");
-$urlScripts=array("Registration","Login");
-$urls=new Links($urlItems,$urlScripts,"__blank");
+$urlItems=array("Registration","Login","Privacy, Terms, Conditions");
+$urlScripts=array("registration.php","login.php","ptc/privacy.php");
+$urls=new Links($urlScripts,$urlItems,"__blank");
 $urls=$urls->returnUrls();
 
 foreach ($urls as $val) {
