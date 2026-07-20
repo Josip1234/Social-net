@@ -14,9 +14,9 @@ class Lists{
     const OPEN_TERM_DESCRIBE="<dd>";
     const CLOSE_TERM_DESCRIBE="</dd>";
 
-    public function __construct(public string $listType, public array $items)
+    public function __construct(public array $items)
     {
-        $this->listType=$listType;
+       
         $this->items=(count($items)==0)?[]:$items;
     }
 
@@ -29,6 +29,17 @@ class Lists{
             $list.=self::CLOSE_LIST_ITEM;
          };
          $list.=self::CLOSE_UNORDERED_LIST;
+         return $list;
+    }
+    public function createOrderedList():string{
+         $list="";
+         $list.=self::OPEN_ORDERED_LIST;
+         foreach ($this->items as $value) {
+            $list.=self::OPEN_LIST_ITEM;
+            $list.=$value;
+            $list.=self::CLOSE_LIST_ITEM;
+         };
+         $list.=self::CLOSE_ORDERED_LIST;
          return $list;
     }
 }

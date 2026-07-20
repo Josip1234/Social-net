@@ -32,7 +32,7 @@ foreach ($urls as $val) {
 $divClasses[]="con";
 
 $division=new Division($divClasses);
-$lists=new Lists("UNORDERED LIST",$listItems);
+$lists=new Lists($listItems);
 
 $scripts="js/social.js,style/style.css";
 $setScripts=false;
