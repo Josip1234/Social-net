@@ -242,7 +242,7 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
 public static function getUserData(int $userId):array{
   $db=Database::getInstance();
   $sql="SELECT p.userId,concat(p.firstName,' ',p.lastName) as user, p.email, p.dateOfBirth,pd.accountStatus, at.acTypeName, du.userName as databaseUser FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
-inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != :userId";
+inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != :userId order by p.userId asc";
 $stmt=$db->prepare($sql);
 $stmt->execute([
       ':userId'=>$userId

@@ -71,4 +71,16 @@ class ProfileDetail{
         ]);
         return $stmt->fetchColumn();
       }
+      //function to update profile details account type and account status
+      public static function updateAccountStatusAndAccountType(string $accountStatus, int $acId, int $userId){
+           $db=Database::getInstance();
+           $sql="UPDATE profiledetails set pdUpdateDate=:pdUpdateDate, accountStatus=:accountStatus, acTypeId=:acId where userId=:userId";
+           $stmt=$db->prepare($sql);
+         return $stmt->execute([
+          ':pdUpdateDate'=>date("Y-m-d H:i:s"),
+          ':accountStatus'=>$accountStatus,
+          ':acId'=>$acId,
+          ':userId'=>$userId
+      ]);
+      }
 }

@@ -1,7 +1,12 @@
 <main>
     <div id="container">
         <div class="form-box">
-
+            <?php if (isset($_SESSION['msg'])): ?>
+                <div class="message">
+                    <p class="success"><?= $_SESSION['msg']; ?></p>
+                </div>
+            <?php endif;
+            unset($_SESSION['msg']); ?>
             <table>
                 <thead>
                     <tr>
@@ -32,7 +37,7 @@
                             <td><?= $user["acTypeName"]; ?>
                             </td>
                             <td><?= $user["databaseUser"]; ?></td>
-                            <td><a href="<?= '?page=admin/account_status&id='.$user["userId"]; ?>">Update user accounts</a></td>
+                            <td><a href="<?= '?page=admin/account_status&id=' . $user["userId"]; ?>">Update user accounts</a></td>
 
                         <?php endforeach;  ?>
 

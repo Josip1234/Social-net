@@ -211,7 +211,7 @@ class UserController extends Controller
                 );
         }
         public function profile_log_index_search()
-        {    
+        {
                 Auth::requireLogin();
                 Auth::requireAdmin();
                 $searchedValue = (isset($_POST["username"]) ? $_POST["username"] : "");
@@ -222,7 +222,7 @@ class UserController extends Controller
 
                 $users = ProfileLogger::searchByUsernameWithPagination($searchedValue, $limit, $page);
                 $totalRow = ProfileLogger::countRowsForProfileLogSearch($searchedValue);
-                
+
 
                 $totalPages = ceil(($totalRow / $limit));
 
@@ -247,49 +247,60 @@ class UserController extends Controller
                         ]
                 );
         }
-        public function manage_users(){
+        public function manage_users()
+        {
                 Auth::requireLogin();
                 Auth::requireAdmin();
-                $userId=$_SESSION['user']['id'];
-                $uData=User::getUserData($userId);
+                $userId = $_SESSION['user']['id'];
+                $uData = User::getUserData($userId);
+
+                $this->view("admin/user_management", [
+                        'users' => $uData
+                ]);
+        }
+        public function edit_status()
+        {
+                Auth::requireLogin();
+                Auth::requireAdmin();
+                $userId = (isset($_GET["id"])) ? $_GET["id"] : 0;
+                $listOfAccountTypes = AccountType::getAllRecordsFromAccountTypeTable();
+                if ($userId != 0) {
+                        $userName = User::getUserNameNoEmailById($userId);
+                        $accountStatus = ProfileDetail::selectAccountStatus($userId);
+                        $acTypeId = ProfileDetail::getAccountTypeId($userId);
+                } else {
+                        $userName = [];
+                        $accountStatus = [];
+                        $acTypeId = [];
+                }
+                $this->view("admin/change_account_status", [
+                        "username" => $userName,
+                        "acStatus" => $accountStatus,
+                        "acTypes" => $listOfAccountTypes,
+                        "acTypeId" => $acTypeId
+                ]);
+        }
+        public function update_account_status()
+        {
+                Auth::requireLogin();
+                Auth::requireAdmin();
+
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+                        if (Validation::validateAccountStatusInput($_POST) == true) {
+                                $accountStatus = $_POST["accountStatus"];
+                                $acId = $_POST["accountType"];
+                                $userId = $_POST["userId"];
+                                ProfileDetail::updateAccountStatusAndAccountType($accountStatus, $acId, $userId);
+                                $_SESSION["msg"] = "Successfully updated status of " . $_POST["username"] . " user";
+                                header('Location:index.php?page=admin/user_management');
                                 
-                $this->view("admin/user_management",[
-                        'users'=>$uData
-                ]);
-        }
-        public function edit_status(){
-                Auth::requireLogin();
-                Auth::requireAdmin();
-                $userId=(isset($_GET["id"]))?$_GET["id"]:0;
-                $listOfAccountTypes=AccountType::getAllRecordsFromAccountTypeTable();
-                if($userId!=0){
-                   $userName=User::getUserNameNoEmailById($userId);
-                   $accountStatus=ProfileDetail::selectAccountStatus($userId);
-                   $acTypeId=ProfileDetail::getAccountTypeId($userId);
-                }else{
-                   $userName=[];
-                   $accountStatus=[];
-                   $acTypeId=[];
+                        }else{
+                             header('Location:index.php?page=admin/account_status&id='.$_POST["userId"].'');
+                             exit;
+                        }
                 }
-                $this->view("admin/change_account_status",[
-                        "username"=>$userName,
-                        "acStatus"=>$accountStatus,
-                        "acTypes"=>$listOfAccountTypes,
-                        "acTypeId"=>$acTypeId
-                ]);
-        }
-        public function update_account_status(){
-             Auth::requireLogin();
-             Auth::requireAdmin();
-         
-             if($_SERVER["REQUEST_METHOD"]=="POST"){
-               
-                if((int)Validation::validateAccountStatusInput($_POST)==1){
-                        echo "Account id for update: ".$_POST["userId"]."<br>";
-                        echo "User name for update: ".$_POST["username"]."<br>";
-                        echo "New account status: ".$_POST["accountStatus"]."<br>";
-                        echo "New account type: ".$_POST["accountType"]."<br>";
-                }
-             } 
+          
+                
         }
 }

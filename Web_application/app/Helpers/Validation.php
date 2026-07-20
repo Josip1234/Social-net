@@ -1,280 +1,283 @@
-<?php 
+<?php
+
 namespace App\Helpers;
 
 use App\Models\State;
 use Carbon\Carbon;
 use App\Models\City;
 
-class Validation{
+class Validation
+{
     //validate form depending on post method
     //return array or bool value true
     //need to add validation for user email if does exists or does not exists
     //to better handle mistakes
-    public static function validateForm():array|bool{
+    public static function validateForm(): array|bool
+    {
         //intitialize error array
-        $errors=[];
+        $errors = [];
         //if request method is post
-        if($_SERVER["REQUEST_METHOD"]==="POST"){
-                //if post variable regValidation is set and different than null
-                //and if value of hidden field equals validate
-                //that means registration form has been sent
-                if(isset($_POST["regValidation"]) && $_POST["regValidation"]==="validate" || isset($_POST["updValidation"]) && $_POST["updValidation"]==="validate"){
-                        $fname=self::clean_input($_POST["fname"]);
-                        $lname=self::clean_input($_POST["lname"]);
-                        $email=self::clean_input($_POST["email"]);
-                        $sex=$_POST["sex"];
-                        $dbirth=$_POST["dbirth"];
-                        //if address exists recive post variable from address
-                        //and if input value is yes
-                        if(isset($_POST["regValidation"])){
-                                $password=self::clean_input($_POST["hp"]);
-                        }
-                        
-                        //if first name is empty add error to array
-                        //or if length of the string is equal to 0
-                        if(empty($fname) || strlen($fname)===0){
-                            $errors["fn"]="First name is empty.";
-                        }
-                        //if name is numeric or has numbers in string value add error to array
-                        if(is_numeric($fname) || (self::hasNumbersInString($fname))){
-                            $errors["fnn"]="First name cannot have numbers.";
-                        }
-                        if(empty($lname) || strlen($lname)===0){
-                            $errors["ln"]="Last name is empty.";
-                        }
-                          if(is_numeric($lname) || (self::hasNumbersInString($lname))){
-                            $errors["lnn"]="Last name cannot have numbers.";
-                        }
-                        if(empty($email)){
-                            $errors["em"]="Email is empty.";
-                        }
-                        if((int)self::validateEmail($email)===0){
-                            $errors["ism"]="Invalid email.";
-                        }
-                         if(empty($sex)){
-                            $errors["sx"]="Sex has not been chosen.";
-                        }
-                      
-                        if(empty($dbirth)){
-                            $errors["db"]="Date of birth has not been chosen.";
-                        }
-                        //if date of birth is equal to today call error
-                        //if difference between date of birth and today date is equal to zero 
-                        //call an error
-                        $date1=Carbon::parse($dbirth);
-                        $date2=Carbon::now();
-                        $dateDiffInDays=$date1->diffInDays($date2);
-                        //if date difference is less that zero it is future date
-                        if($dateDiffInDays===0 || $dateDiffInDays<0){
-                            $errors["dtb"]="Date of birth cannot be today or future date.";
-                        }
-                        //validate year only persons who have 18+ can be registered
-                        $yearOfBirth=(int)Carbon::parse($dbirth)->format("Y");
-                        $currentYear=(int)Carbon::now()->format("Y");
-                        $difference=$currentYear-$yearOfBirth;
-                        
-                        if($difference<18){
-                            $errors["yva"]="Only persons which have 18 years and greather can be registered to the social network.";
-                        }
-                         if(isset($_POST["regValidation"])){
-                        if(empty($password)){
-                            $errors["ps"]="Password is empty.";
-                        }
-                         
-                        if(strlen($password)<8){
-                            $errors["pl"]="Password have less than 8 characters. Please, add more characters.";
-                        }
-                         }
-                        
-                       
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            //if post variable regValidation is set and different than null
+            //and if value of hidden field equals validate
+            //that means registration form has been sent
+            if (isset($_POST["regValidation"]) && $_POST["regValidation"] === "validate" || isset($_POST["updValidation"]) && $_POST["updValidation"] === "validate") {
+                $fname = self::clean_input($_POST["fname"]);
+                $lname = self::clean_input($_POST["lname"]);
+                $email = self::clean_input($_POST["email"]);
+                $sex = $_POST["sex"];
+                $dbirth = $_POST["dbirth"];
+                //if address exists recive post variable from address
+                //and if input value is yes
+                if (isset($_POST["regValidation"])) {
+                    $password = self::clean_input($_POST["hp"]);
                 }
+
+                //if first name is empty add error to array
+                //or if length of the string is equal to 0
+                if (empty($fname) || strlen($fname) === 0) {
+                    $errors["fn"] = "First name is empty.";
+                }
+                //if name is numeric or has numbers in string value add error to array
+                if (is_numeric($fname) || (self::hasNumbersInString($fname))) {
+                    $errors["fnn"] = "First name cannot have numbers.";
+                }
+                if (empty($lname) || strlen($lname) === 0) {
+                    $errors["ln"] = "Last name is empty.";
+                }
+                if (is_numeric($lname) || (self::hasNumbersInString($lname))) {
+                    $errors["lnn"] = "Last name cannot have numbers.";
+                }
+                if (empty($email)) {
+                    $errors["em"] = "Email is empty.";
+                }
+                if ((int)self::validateEmail($email) === 0) {
+                    $errors["ism"] = "Invalid email.";
+                }
+                if (empty($sex)) {
+                    $errors["sx"] = "Sex has not been chosen.";
+                }
+
+                if (empty($dbirth)) {
+                    $errors["db"] = "Date of birth has not been chosen.";
+                }
+                //if date of birth is equal to today call error
+                //if difference between date of birth and today date is equal to zero 
+                //call an error
+                $date1 = Carbon::parse($dbirth);
+                $date2 = Carbon::now();
+                $dateDiffInDays = $date1->diffInDays($date2);
+                //if date difference is less that zero it is future date
+                if ($dateDiffInDays === 0 || $dateDiffInDays < 0) {
+                    $errors["dtb"] = "Date of birth cannot be today or future date.";
+                }
+                //validate year only persons who have 18+ can be registered
+                $yearOfBirth = (int)Carbon::parse($dbirth)->format("Y");
+                $currentYear = (int)Carbon::now()->format("Y");
+                $difference = $currentYear - $yearOfBirth;
+
+                if ($difference < 18) {
+                    $errors["yva"] = "Only persons which have 18 years and greather can be registered to the social network.";
+                }
+                if (isset($_POST["regValidation"])) {
+                    if (empty($password)) {
+                        $errors["ps"] = "Password is empty.";
+                    }
+
+                    if (strlen($password) < 8) {
+                        $errors["pl"] = "Password have less than 8 characters. Please, add more characters.";
+                    }
+                }
+            }
         }
         //if array size of errors is not 0 return error array 
         //otherwise return false
-        if(count($errors)>0){
+        if (count($errors) > 0) {
             return $errors;
-        }else{
-                return true;
-        }
-    
-    }
-//clean input form data 
-//this counts for 1 string
-private static function clean_input($data) {
-    //strip whitespace from beggining and end of the string
-  $data = trim($data);
-  //unquote quoted string
-  $data = stripslashes($data);
-  //converts special characters to html entities, prevents sal injection
-  $data = htmlspecialchars($data);
-  return $data;
-}
-//function which will return true if string contains number
-private static function hasNumbersInString(string $value):bool{
-    $containsNumber=false;
-    for($i=0;$i<strlen($value);$i++){
-        if(is_numeric($value[$i])){
-            $containsNumber=true;
-            break;
+        } else {
+            return true;
         }
     }
-    return $containsNumber;
-}
-//function for email validation
-//it will be simple validation, if string contains @ only
-//this validation will be updated
-private static function validateEmail(string $value):bool{
-    $isEmail=true;
-    //email must contain @ and must have at least 1 .
-    $monkeyCharCount=0;
-    for($i=0;$i<strlen($value);$i++){
-            if($value[$i]==='@'){
+    //clean input form data 
+    //this counts for 1 string
+    private static function clean_input($data)
+    {
+        //strip whitespace from beggining and end of the string
+        $data = trim($data);
+        //unquote quoted string
+        $data = stripslashes($data);
+        //converts special characters to html entities, prevents sal injection
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    //function which will return true if string contains number
+    private static function hasNumbersInString(string $value): bool
+    {
+        $containsNumber = false;
+        for ($i = 0; $i < strlen($value); $i++) {
+            if (is_numeric($value[$i])) {
+                $containsNumber = true;
+                break;
+            }
+        }
+        return $containsNumber;
+    }
+    //function for email validation
+    //it will be simple validation, if string contains @ only
+    //this validation will be updated
+    private static function validateEmail(string $value): bool
+    {
+        $isEmail = true;
+        //email must contain @ and must have at least 1 .
+        $monkeyCharCount = 0;
+        for ($i = 0; $i < strlen($value); $i++) {
+            if ($value[$i] === '@') {
                 $monkeyCharCount++;
             }
+        }
+        if ($monkeyCharCount > 1) {
+            $isEmail = false;
+        } else if ($monkeyCharCount == 0) {
+            $isEmail = false;
+        }
+
+        return $isEmail;
     }
-       if($monkeyCharCount>1){
-                $isEmail=false;
-                
-            }else if($monkeyCharCount==0){
-                $isEmail=false;
-            }
-  
-    return $isEmail;
-}
 
 
-//helper function for validate address form 
-public static function validateAddressFormInput():array|bool{
-      //intitialize error array
-        $errors=[];
-        if($_SERVER["REQUEST_METHOD"]==="POST"){
-            $street=self::clean_input($_POST["address"]); //street name only
-            $city=self::clean_input($_POST["city"]); //postal number
-            
-            if(empty($street) || empty($city)){
-                $errors["empty"]="Street or city are empty fields.";
+    //helper function for validate address form 
+    public static function validateAddressFormInput(): array|bool
+    {
+        //intitialize error array
+        $errors = [];
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $street = self::clean_input($_POST["address"]); //street name only
+            $city = self::clean_input($_POST["city"]); //postal number
+
+            if (empty($street) || empty($city)) {
+                $errors["empty"] = "Street or city are empty fields.";
             }
 
-            if(strlen($street)>255){
-                $errors["len"]="Street exceedes total value length.";
+            if (strlen($street) > 255) {
+                $errors["len"] = "Street exceedes total value length.";
             }
-            if(strlen($street)<3){
-                $errors["len"]="Minimum input for street is 3 characters.";
-            }
-
-            if(!is_numeric($city)){
-                $errors["num"]="Postal number must be numeric number.";
+            if (strlen($street) < 3) {
+                $errors["len"] = "Minimum input for street is 3 characters.";
             }
 
-
+            if (!is_numeric($city)) {
+                $errors["num"] = "Postal number must be numeric number.";
+            }
         }
-        return (empty($errors)?true:$errors);
-}
+        return (empty($errors) ? true : $errors);
+    }
 
-//helper function for validate city input
-public static function validateCityFormInput():array{
-      //intitialize error array
-        $errors=[];
-        
-           
-                  $postNum=self::clean_input($_POST["postNumber"]);
-                $citName=self::clean_input($_POST["name"]);
+    //helper function for validate city input
+    public static function validateCityFormInput(): array
+    {
+        //intitialize error array
+        $errors = [];
 
 
-                
+        $postNum = self::clean_input($_POST["postNumber"]);
+        $citName = self::clean_input($_POST["name"]);
 
 
-                  if((int)strlen($postNum)==0){
-                $errors["empty"]["post"]="Postal number is empty. Please enter some value.";
-              }
-               if((int)strlen($citName)==0){
-                $errors["empty"]["city"]="City name is empty. Please enter some value.";
-              }
 
-              if(!is_numeric($postNum)){
-                $errors["notInteger"]="Postal number not a number.";
-              }
-              if((int)City::checkInsertedCity($postNum)===1){
-                 $errors["alreadyExists"]="City already exists in our database.";
-              }
-         
-            
-          
 
-            
+
+        if ((int)strlen($postNum) == 0) {
+            $errors["empty"]["post"] = "Postal number is empty. Please enter some value.";
+        }
+        if ((int)strlen($citName) == 0) {
+            $errors["empty"]["city"] = "City name is empty. Please enter some value.";
+        }
+
+        if (!is_numeric($postNum)) {
+            $errors["notInteger"] = "Postal number not a number.";
+        }
+        if ((int)City::checkInsertedCity($postNum) === 1) {
+            $errors["alreadyExists"] = "City already exists in our database.";
+        }
+
+
+
+
+
         return $errors;
-}
+    }
 
-//function for validate state form
-public static function validateStateInput():array{
-    //intitialize error array
-        $errors=[];
-        if($_SERVER["REQUEST_METHOD"]==="POST"){
-               $name=self::clean_input($_POST["name"]);
-              $nmCpy=$name;
+    //function for validate state form
+    public static function validateStateInput(): array
+    {
+        //intitialize error array
+        $errors = [];
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $name = self::clean_input($_POST["name"]);
+            $nmCpy = $name;
 
-            if(strlen($nmCpy)<3){
-             $errors["min"]="Minimum input length is 3 characters.";
-             }
+            if (strlen($nmCpy) < 3) {
+                $errors["min"] = "Minimum input length is 3 characters.";
+            }
 
-               if(strlen($nmCpy)>100){
-             $errors["max"]="Maximum input length is 100 characters.";
-             }
-         
-            if(strlen($nmCpy)===0 || empty($nmCpy) || $nmCpy=''){
-                $errors["empty"]="Input name is empty. Please enter some value.";
-            }  
-          
-               $alreadyInserted=State::checkInsertedState($name);
-            if($alreadyInserted===true){
-             $errors["exists"]="This state already exists in our database.";
-             }
-                
-         
-         
-            
-            
+            if (strlen($nmCpy) > 100) {
+                $errors["max"] = "Maximum input length is 100 characters.";
+            }
+
+            if (strlen($nmCpy) === 0 || empty($nmCpy) || $nmCpy = '') {
+                $errors["empty"] = "Input name is empty. Please enter some value.";
+            }
+
+            $alreadyInserted = State::checkInsertedState($name);
+            if ($alreadyInserted === true) {
+                $errors["exists"] = "This state already exists in our database.";
+            }
         }
         return $errors;
-}
-public static function validateAccountStatusInput(array $data):bool{
-   
-    $validated=false;
+    }
+    public static function validateAccountStatusInput(array $data): bool
+    {
 
-  
-        if(empty($data["userId"]) || empty($data["username"]) || empty($data["accountStatus"]) || empty($data["accountType"])){
-            $validated=false;
-        }else{
+        $validated = false;
+        $userNameValidate = false;
+        $userIdValidate = false;
+        $accStatusValidate = false;
+        $accTypesValidate = false;
+
+        ($data["userId"] == "" || !is_numeric($data["userId"])) ? $userIdValidate = false : $userIdValidate = true;
+        ($data["username"] == "") ? $userNameValidate = false : $userNameValidate = true;
+
         switch ($data["accountStatus"]) {
             case 'Active':
-                $validated=true;
+                $accStatusValidate = true;
                 break;
             case 'Banned':
-                $validated=true;
+                $accStatusValidate = true;
                 break;
             case 'Inactive':
-                $validated=true;
+                $accStatusValidate = true;
                 break;
             default:
-                $validated=false;
+                $accStatusValidate = false;
                 break;
         }
-        if($validated==true){
-            switch ($data["accountType"]) {
+
+        switch ($data["accountType"]) {
             case '1':
-                $validated=true;
+                $accTypesValidate = true;
                 break;
             case '2':
-                $validated=true;
+                $accTypesValidate = true;
                 break;
             default:
-                $validated=false;
+                $accTypesValidate = false;
                 break;
         }
-        }
+
+
+
+        ($userIdValidate == true && $userNameValidate == true && $accStatusValidate == true && $accTypesValidate == true) ? $validated = true : $validated = false;
     
-        }
-    
-    return (int)$validated;
-}
+        return $validated;
+    }
 }
