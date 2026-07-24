@@ -252,10 +252,27 @@ class UserController extends Controller
                 Auth::requireLogin();
                 Auth::requireAdmin();
                 $userId = $_SESSION['user']['id'];
-                $uData = User::getUserData($userId);
+                if (!isset($_GET["pag"])) header('Location: index.php?page=admin/user_management&pag=1');
+                $limit = 5;
+                $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
+                $uData = User::getUserData($userId, $limit, $page);
+                $totalRow = User::selectCountRowsForUserData($userId);
+                $totalPages = ceil(($totalRow / $limit));
+
+                $paginationStart = max(1, $page - floor($limit / 2));
+                $paginationEnd = $paginationStart + $limit - 1;
+
+                if ($paginationEnd > $totalPages) {
+                        $paginationEnd = $totalPages;
+                        $paginationStart = max(1, $paginationEnd - $limit + 1);
+                }
 
                 $this->view("admin/user_management", [
-                        'users' => $uData
+                        'users' => $uData,
+                        "total_pages" => $totalPages,
+                        "page" => $page,
+                        "pagStart" => $paginationStart,
+                        "pagEnd" => $paginationEnd
                 ]);
         }
         public function edit_status()
@@ -294,13 +311,10 @@ class UserController extends Controller
                                 ProfileDetail::updateAccountStatusAndAccountType($accountStatus, $acId, $userId);
                                 $_SESSION["msg"] = "Successfully updated status of " . $_POST["username"] . " user";
                                 header('Location:index.php?page=admin/user_management');
-                                
-                        }else{
-                             header('Location:index.php?page=admin/account_status&id='.$_POST["userId"].'');
-                             exit;
+                        } else {
+                                header('Location:index.php?page=admin/account_status&id=' . $_POST["userId"] . '');
+                                exit;
                         }
                 }
-          
-                
         }
 }

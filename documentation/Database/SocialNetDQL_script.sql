@@ -49,3 +49,7 @@ inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on 
 inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != 2; 
 
 select p.userId from profile p;
+
+SELECT count(p.userId) as numOfUsers FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
+inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != 2 order by p.userId asc;
+

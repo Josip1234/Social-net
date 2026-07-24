@@ -239,15 +239,30 @@ values (:fname,:lname,:email,:sex,:dbirth,:adid,:hp)";
     
     
     */
-public static function getUserData(int $userId):array{
+public static function getUserData(int $userId, int $limit, int $page):array{
+  $off = ($page - 1) * $limit;
   $db=Database::getInstance();
+  //not loggeddin user will not be printed (only admins can see this page so llogin admin cannot delete himself)
   $sql="SELECT p.userId,concat(p.firstName,' ',p.lastName) as user, p.email, p.dateOfBirth,pd.accountStatus, at.acTypeName, du.userName as databaseUser FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
-inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != :userId order by p.userId asc";
+inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != :userId order by p.userId asc LIMIT :lim OFFSET :off";
 $stmt=$db->prepare($sql);
 $stmt->execute([
-      ':userId'=>$userId
+      ':userId'=>$userId,
+      ':lim'=>$limit,
+      ':off'=>$off,
 ]);
 return $stmt->fetchAll();
+}
+
+public static function selectCountRowsForUserData(int $userId):int{
+    $db = Database::getInstance();
+        $sql = "SELECT count(p.userId) as numOfUsers FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
+inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != :userId order by p.userId asc;";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([
+      ':userId'=>$userId
+        ]);
+        return $stmt->fetchColumn();
 }
 
 }
