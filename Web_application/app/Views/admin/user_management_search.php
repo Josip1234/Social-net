@@ -7,13 +7,6 @@
                 </div>
             <?php endif;
             unset($_SESSION['msg']); ?>
-         <div id="search-box">
-            <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"].'?page=admin/user_management_search&pag=1'); ?>" method="post">
-                  <label for="user">Search by username:</label>
-                 <input type="text" name="user" id="user">             
-                 <button type="submit">Search</button>               
-            </form>
-        </div>
             <table>
                 <thead>
                     <tr>

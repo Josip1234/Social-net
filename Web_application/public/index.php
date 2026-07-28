@@ -108,6 +108,9 @@ switch($page){
     case 'admin/update_account_status':
         $userController->update_account_status();
         break;
+    case 'admin/user_management_search':
+         $userController->manage_users_search();
+        break;
     default:
         $controller->index();
 }

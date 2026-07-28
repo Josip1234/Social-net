@@ -317,4 +317,11 @@ class UserController extends Controller
                         }
                 }
         }
+        public function manage_users_search()
+        {
+                Auth::requireLogin();
+                Auth::requireAdmin();
+
+                $this->view("admin/user_management_search");
+        }
 }
