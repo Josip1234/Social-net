@@ -322,6 +322,33 @@ class UserController extends Controller
                 Auth::requireLogin();
                 Auth::requireAdmin();
 
-                $this->view("admin/user_management_search");
+                $userSearched=isset($_POST["user"])?$_POST["user"]:"";
+                if($userSearched=="")header('Location: index.php?page=admin/user_management&pag=1');
+                $userId = $_SESSION['user']['id'];
+                if (!isset($_GET["pag"])) header('Location: index.php?page=admin/user_management_search&pag=1');
+                $limit = 5;
+                $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
+                $uData = User::getUserDataSearch($userId, $limit, $page,$userSearched);
+                $totalRow = User::selectCountRowsForUserDataSearch($userId,$userSearched);
+                $totalPages = ceil(($totalRow / $limit));
+
+                $paginationStart = max(1, $page - floor($limit / 2));
+                $paginationEnd = $paginationStart + $limit - 1;
+
+                if ($paginationEnd > $totalPages) {
+                        $paginationEnd = $totalPages;
+                        $paginationStart = max(1, $paginationEnd - $limit + 1);
+                }
+
+
+
+
+                $this->view("admin/user_management_search", [
+                        'users' => $uData,
+                        "total_pages" => $totalPages,
+                        "page" => $page,
+                        "pagStart" => $paginationStart,
+                        "pagEnd" => $paginationEnd
+                ]);
         }
 }

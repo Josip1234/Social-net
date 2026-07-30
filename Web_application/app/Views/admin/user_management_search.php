@@ -29,7 +29,7 @@
 
                         <tr>
                             <td><?= $user["userId"]; ?></td>
-                            <td><?= $user["user"]; ?></td>
+                            <td><?= $user["userName"]; ?></td>
                             <td><?= $user["email"]; ?></td>
                             <td><?= \Carbon\Carbon::parse($user["dateOfBirth"])->format("d.m.Y");  ?></td>
                             <td><?= $user["accountStatus"]; ?>
@@ -47,9 +47,9 @@
             </table>
             <?php if ($total_pages > 0): ?>
                 <div class="paginator">
-                <a href="?page=admin/user_management&pag=<?= 1 ?>">First</a>
+                <a href="?page=admin/user_management_search&pag=<?= 1 ?>">First</a>
                   <?php if ($page != 1): $previous = $page - 1; ?>
-                        <a href="?page=admin/user_management&pag=<?= $previous ?>">&laquo; Previous</a>
+                        <a href="?page=admin/user_management_search&pag=<?= $previous ?>">&laquo; Previous</a>
                     <?php else: ?>
                         <a href="" class="disabled">&laquo; Previous</a>
                     <?php endif; ?>
@@ -59,20 +59,20 @@
 
                     ?>
                         <?php if ($i == $page): ?>
-                            <a href="?page=admin/user_management&pag=<?= $i ?>" class="activepage"><?= $i ?></a>
+                            <a href="?page=admin/user_management_search&pag=<?= $i ?>" class="activepage"><?= $i ?></a>
                         <?php else: ?>
-                            <a href="?page=admin/user_management&pag=<?= $i ?>"><?= $i ?></a>
+                            <a href="?page=admin/user_management_search&pag=<?= $i ?>"><?= $i ?></a>
                         <?php endif; ?>
                     <?php endfor; ?>
 
                                         <?php if ($page < $total_pages): $next = $page + 1; ?>
 
-                        <a href="?page=admin/user_management&pag=<?= $next ?>"> Next &raquo;</a>
+                        <a href="?page=admin/user_management_search&pag=<?= $next ?>"> Next &raquo;</a>
                     <?php else: ?>
                         <a href="" class="disabled"> Next &raquo;</a>
 
                     <?php endif; ?>
-                    <a href="<?= "?page=admin/user_management&pag=" . $total_pages . "" ?>"> Last</a>
+                    <a href="<?= "?page=admin/user_management_search&pag=" . $total_pages . "" ?>"> Last</a>
         </div>
            <?php endif; ?>
     </div>
