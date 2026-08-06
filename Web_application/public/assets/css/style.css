@@ -159,3 +159,12 @@ input[type=submit]:hover, button[type=reset]:hover, button[type=submit]:hover {
     color:white;
         width: 100%;
 }
+#profilePicture{
+    position: relative;
+    margin-left: 80%;
+    margin-top: -4%;
+}
+.pp{
+    width: 110px;
+    height: auto;
+}

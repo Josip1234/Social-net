@@ -111,6 +111,9 @@ switch($page){
     case 'admin/user_management_search':
          $userController->manage_users_search();
         break;
+    case 'admin/list_of_banned_users':
+        $userController->showListOfBannedUsers();
+        break;
     default:
         $controller->index();
 }

@@ -323,4 +323,19 @@ inner join databaseuser du on at.acTypeId=du.acTypeId having p.userId != :userId
     ]);
     return $stmt->fetchColumn();
   }
+
+
+    public static function getListOfBannedUsers(int $userId): array
+  {
+    $db = Database::getInstance();
+    //not loggeddin user will not be printed (only admins can see this page so llogin admin cannot delete himself)
+    $sql = "SELECT p.userId,concat(p.firstName,' ',p.lastName) as user, p.email, p.dateOfBirth,pd.accountStatus, pd.pdUpdateDate, at.acTypeName, du.userName as databaseUser FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
+inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != :userId and pd.accountStatus = 'Banned' order by p.userId asc";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+      ':userId' => $userId
+    ]);
+    return $stmt->fetchAll();
+  }
+
 }

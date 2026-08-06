@@ -29,7 +29,8 @@ function active(string $page,string $current):string{
     <?php if (active('address/update',$activePage)): ?>
         <script src="assets/js/update_address.js"></script>
     <?php elseif (active('profile_log',$activePage) || active('profile_log_search',$activePage) || active('admin/database_logger',$activePage)
-        || active("admin/database_logger_search",$activePage) || active("admin/user_management",$activePage) || active("admin/user_management_search",$activePage)) : ?>
+        || active("admin/database_logger_search",$activePage) || active("admin/user_management",$activePage) || active("admin/user_management_search",$activePage) 
+        || active('admin/list_of_banned_users',$activePage)) : ?>
          <link rel="stylesheet" href="assets/css/table.css">
          <link rel="stylesheet" href="assets/css/pagination.css">
     <?php else: ?>
@@ -39,6 +40,9 @@ function active(string $page,string $current):string{
 <body>
     <header>
         <h1>Social network</h1>
+        <div id="profilePicture">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/057/068/323/small/single-fresh-red-strawberry-on-table-green-background-food-fruit-sweet-macro-juicy-plant-image-photo.jpg" alt="profilePicture" class="pp">
+        </div>
         <nav>
 <!--urls for all unregistered and not logged in users -->
 <a href="index.php" class="<?= active('index',$activePage) ?>">Home page</a>
@@ -61,7 +65,7 @@ function active(string $page,string $current):string{
     <a href="?page=profile_log&pag=1">Profile logs</a>
     <a href="?page=admin/database_logger">Database logger</a>
     <a href="?page=admin/user_management">User management</a>
-    <a href="#contact">Contact</a>
+    <a href="?page=admin/list_of_banned_users">List of banned users</a>
     <a href="#custom">Custom</a>
     <a href="#support">Support</a>
     <a href="#tools">Tools</a>

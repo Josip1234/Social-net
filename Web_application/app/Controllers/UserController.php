@@ -351,4 +351,13 @@ class UserController extends Controller
                         "pagEnd" => $paginationEnd
                 ]);
         }
+        public function showListOfBannedUsers(){
+                Auth::requireLogin();
+                Auth::requireAdmin();
+                $userId = $_SESSION['user']['id'];
+                $bannedUsers=User::getListOfBannedUsers($userId);
+                $this->view("admin/list_of_banned_users",[
+                        'users'=>$bannedUsers
+                ]);
+        }
 }
