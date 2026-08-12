@@ -55,3 +55,55 @@ ALTER TABLE `registration`
 ALTER TABLE `registration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+CREATE TABLE `obavljeno` (
+  `id` int(11) NOT NULL,
+  `obavljeno` tinyint(1) NOT NULL,
+  `user_id` int(11) NOT NULL
+);
+INSERT INTO `obavljeno` (`id`, `obavljeno`, `user_id`) VALUES
+(1, 1, 4),
+(3, 1, 4),
+(5, 1, 4);
+
+CREATE TABLE `profilna` (
+  `imageId` tinyint(4) NOT NULL,
+  `imageType` varchar(25) NOT NULL,
+  `imageData` longblob NOT NULL
+);
+alter table registration add column `email` varchar(255)  NOT NULL;
+INSERT INTO `registration` ( `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `email`) VALUES
+( 'hrgiho', 'hgoirhgo', 'm', '0005-02-05', 'grgrg', 'rggere', 'gfeeg', 'jbosnjak34@gmail.com'),
+( 'Josip', 'Bošnjak', 'm', '1992-11-05', 'VVinterthur', 'Švicarska', '4854848484fege', 'jbosnjak3@gmail.com'),
+( 'Marko', 'Marković', 'm', '1988-07-08', 'Požega', 'Hrvatska', 'volimhrvatsku', 'mmarkovic@gmail.com');
+
+CREATE TABLE `uloge` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `uloga` enum('Administrator','Korisnik','Banovani korisnik') NOT NULL
+);
+
+--
+-- Indexes for table `obavljeno`
+--
+ALTER TABLE `obavljeno`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `profilna`
+--
+ALTER TABLE `profilna`
+  ADD PRIMARY KEY (`imageId`);
+  
+alter table registration ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `uloge`
+--
+ALTER TABLE `uloge`
+  ADD PRIMARY KEY (`id`);
+  
+  ALTER TABLE `obavljeno`
+  ADD CONSTRAINT `user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `registration` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;

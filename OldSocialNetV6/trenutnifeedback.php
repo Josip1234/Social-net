@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php 
+         session_start();
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet</title>
@@ -9,8 +12,8 @@
 <body>
     <div class="con">
     <nav>
-    <a href="#" target="_blank">Registration</a>
-    <a href="#" target="_blank">Login</a>
+    <a href="index.html" target="_blank">Back to main page</a>
+    <a href="privacy.php" target="_blank">Term of privacy</a>
     </nav>
     </div>
     <div class="pravila">
@@ -21,15 +24,18 @@
         <table>
         <?php
           include('dbconn.php');
-          $query="SELECT firstname,lastname,suggestion FROM kvaliteta";
+          $query="SELECT * FROM kvaliteta";
           $q=mysqli_query($dbc,$query);
           while($row=mysqli_fetch_array($q)){
               echo "<tr>";
-              echo "<td>".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."</td>";
+              echo "<td>".$row['id']."&ensp;".$row['firstname']."&ensp;".$row['lastname']."&ensp;".$row['suggestion']."<br> <form action='test.php' method='post'> Obavljeno?<input type='checkbox' name='formWheelchair' value='Yes'><input type='submit' name='formSubmit' value='Posalji'></form></td>";
+              
               echo"</tr>";
           }
+         
           mysqli_close($dbc);
           ?>
+         
         </table>
         </section>
     </div>
