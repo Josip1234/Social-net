@@ -54,4 +54,7 @@ SELECT count(p.userId) as numOfUsers FROM profile p inner join profiledetails pd
 inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != 2 order by p.userId asc;
 
 SELECT p.userId,concat(p.firstName,' ',p.lastName) as userName, p.email, p.dateOfBirth,pd.accountStatus, at.acTypeName, du.userName as databaseUser FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
-inner join databaseuser du on at.acTypeId=du.acTypeId having p.userId!=2 and userName like '%N%';
+inner join databaseuser du on at.acTypeId=du.acTypeId having p.userId!=2 and userName like '%%';
+
+SELECT count(p.userId) as numOfUsers FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
+inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != 2 and pd.accountStatus = 'Banned';

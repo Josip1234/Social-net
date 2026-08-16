@@ -65,7 +65,7 @@ function active(string $page,string $current):string{
     <a href="?page=profile_log&pag=1">Profile logs</a>
     <a href="?page=admin/database_logger">Database logger</a>
     <a href="?page=admin/user_management">User management</a>
-    <a href="?page=admin/list_of_banned_users">List of banned users</a>
+    <a href="?page=admin/list_of_banned_users&pag=1">List of banned users</a>
     <a href="#custom">Custom</a>
     <a href="#support">Support</a>
     <a href="#tools">Tools</a>
