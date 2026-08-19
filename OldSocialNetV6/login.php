@@ -13,6 +13,8 @@
             <a href="index.html" target="_blank" >Back to main page</a>
             <a href="privacy.php" target="_blank" >Terms of privacy</a>
             <a href="trenutnifeedback.php" target="_blank" >Feedbacks - only for admins</a>
+            <a href="profile.php" target="_blank">Profile of user</a>
+            <a href="logout.php" target="_blank">Logout</a>
         </nav>
     </div>
     <div class="pravila">
@@ -29,28 +31,29 @@
                  <input type="submit" value="Login">
              </form>
              <?php 
-include("dbconn.php");
-$username=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['username'])));
-if($username!=''){
-    $pass=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['pass'])));
-    $res="SELECT email FROM registration WHERE email='$username'";
-    mysqli_query($dbc,$res);
-    if($res){
-        $res2="SELECT id FROM registration WHERE email='$username'";
-        mysqli_query($dbc,$res2);
-        if($res2){
-            $res3="SELECT pass FROM registration WHERE email='$username'";
-            mysqli_query($dbc,$res3);
-            if($res3){
-                session_start();
-                $_SESSION['email']=$_POST['username'];
-                $_SESSION['pass']=$_POST['pass'];
-                $_SESSION['isLogged']=time();
-                header('Location: trenutnifeedback.php');
-            }
-        }
-    }
-}
+
+             include("dbconn.php");
+             $username = $_POST['username'];
+             if($username!=''){
+                 $pass=$_POST['pass'];
+                 if($pass!=''){
+                     $upit="SELECT id,email,pass FROM registration WHERE email='$username' AND pass='$pass'";
+                     $r=mysqli_query($dbc,$upit);
+                     while($res=mysqli_fetch_array($r)){
+                         if(mysqli_num_rows($r)<2){
+                            session_start();
+                            $_SESSION['id']=$res['id'];
+                            $_SESSION['username']=$res['email'];
+                            $_SESSION['pass']=$res['pass'];
+                            $_SESSION['login']=time();
+                            header('Location: profilna.php');
+                    
+                         }
+                     }
+                 }
+             }
+mysqli_close($dbc);
+
              ?>
          </section>
     </div>

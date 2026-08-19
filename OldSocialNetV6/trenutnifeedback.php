@@ -1,9 +1,15 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+	header('Location: login.php');
+}else{
+	$_SESSION['login']=time();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php 
-         session_start();
-    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socialnet</title>
@@ -14,6 +20,10 @@
     <nav>
     <a href="index.html" target="_blank">Back to main page</a>
     <a href="privacy.php" target="_blank">Term of privacy</a>
+    <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
+                <a href="profile.php" target="_blank">Profile of user</a>
+<a href="logout.php" target="_blank">Logout</a>
+
     </nav>
     </div>
     <div class="pravila">

@@ -14,6 +14,9 @@ include("dbconn.php");
 <nav>
     <a href="#" target="_blank">Registration</a>
     <a href="#" target="_blank">Login</a>
+        <a href="profile.php" target="_blank">Profile of user</a>
+    <a href="logout.php" target="_blank">Logout</a>
+
 </nav>
     </div>
     <div class="pravila">
@@ -44,8 +47,8 @@ include("dbconn.php");
            //die("Thanks for adding some suggestions");
            header('Location:index.html');
        }else{
-           //die("Can't add empty informations");
-           die("Error! Information not inserted!");
+           die("Can't add empty informations");
+           //die("Error! Information not inserted!");
        }
             }
         }

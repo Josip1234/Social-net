@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+	header('Location:login.php');
+}else{
+	$_SESSION['login']=time();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +19,9 @@
         <nav>
             <a href="#" target="_blank" >Registration</a>
             <a href="#" target="_blank" >Login</a>
+                        <a href="profile.php" target="_blank">Profile of user</a>
+<a href="logout.php" target="_blank">Logout</a>
+
         </nav>
     </div>
     <div class="pravila">
