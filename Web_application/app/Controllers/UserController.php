@@ -358,7 +358,7 @@ class UserController extends Controller
                 $userId = $_SESSION['user']['id'];
                 $limit = 5;
                 $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
-                $bannedUsers = User::getListOfBannedUsers($userId,$limit,$page);
+                $bannedUsers = User::getListOfBannedUsers($userId, $limit, $page);
                 $totalRow = User::selectCountRowsForListOfBannedUsers($userId);
                 $totalPages = ceil(($totalRow / $limit));
 
@@ -370,6 +370,35 @@ class UserController extends Controller
                         $paginationStart = max(1, $paginationEnd - $limit + 1);
                 }
                 $this->view("admin/list_of_banned_users", [
+                        'users' => $bannedUsers,
+                        "total_pages" => $totalPages,
+                        "page" => $page,
+                        "pagStart" => $paginationStart,
+                        "pagEnd" => $paginationEnd
+                ]);
+        }
+        public function showListOfBannedUsersSearch()
+        {
+                Auth::requireLogin();
+                Auth::requireAdmin();
+                  $userSearched = isset($_POST["user"]) ? $_POST["user"] : "";
+                if ($userSearched == "") header('Location: index.php?page=admin/list_of_banned_users&pag=1');
+                $userId = $_SESSION['user']['id'];
+                $limit = 5;
+                $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
+                 if (!isset($_GET["pag"])) header('Location: index.php?page=admin/banned_users_search&pag=1');
+                $bannedUsers = User::getListOfBannedUsersSearch($userId, $limit, $page,$userSearched);
+                $totalRow = count($bannedUsers);
+                $totalPages = ceil(($totalRow / $limit));
+
+                $paginationStart = max(1, $page - floor($limit / 2));
+                $paginationEnd = $paginationStart + $limit - 1;
+
+                if ($paginationEnd > $totalPages) {
+                        $paginationEnd = $totalPages;
+                        $paginationStart = max(1, $paginationEnd - $limit + 1);
+                }
+                $this->view("admin/list_of_banned_users_search", [
                         'users' => $bannedUsers,
                         "total_pages" => $totalPages,
                         "page" => $page,

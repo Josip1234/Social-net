@@ -30,7 +30,7 @@ function active(string $page,string $current):string{
         <script src="assets/js/update_address.js"></script>
     <?php elseif (active('profile_log',$activePage) || active('profile_log_search',$activePage) || active('admin/database_logger',$activePage)
         || active("admin/database_logger_search",$activePage) || active("admin/user_management",$activePage) || active("admin/user_management_search",$activePage) 
-        || active('admin/list_of_banned_users',$activePage)) : ?>
+        || active('admin/list_of_banned_users',$activePage) || active('admin/banned_users_search',$activePage)) : ?>
          <link rel="stylesheet" href="assets/css/table.css">
          <link rel="stylesheet" href="assets/css/pagination.css">
     <?php else: ?>

@@ -352,4 +352,24 @@ inner join databaseuser du on at.acTypeId=du.acTypeId where p.userId != :userId 
     return $stmt->fetchColumn();
   }
 
+    //number of results will be counted from this query at this case (need number of elements in list in controller)
+    public static function getListOfBannedUsersSearch(int $userId, int $limit, int $page, string $search): array
+  {
+     $pattern = '%' . $search. '%';
+    $off = ($page - 1) * $limit;
+    $db = Database::getInstance();
+    //not loggeddin user will not be printed (only admins can see this page so llogin admin cannot delete himself)
+    $sql = "SELECT p.userId,concat(p.firstName,' ',p.lastName) as user, p.email, p.dateOfBirth,pd.accountStatus, pd.pdUpdateDate, at.acTypeName, du.userName as databaseUser FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
+inner join databaseuser du on at.acTypeId=du.acTypeId having p.userId != :userId and pd.accountStatus = 'Banned' and user like :pattern order by p.userId asc LIMIT :lim OFFSET :off";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+      ':pattern' => $pattern,
+      ':userId' => $userId,
+      ':lim' => $limit,
+      ':off' => $off
+    ]);
+    return $stmt->fetchAll();
+  }
+  
+
 }
