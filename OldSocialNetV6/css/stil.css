@@ -1,6 +1,8 @@
 @charset "utf-8";
 body {
     background-color: orange;
+    border: groove;
+    border-radius: 30px;
 }
 
 nav a:link,
@@ -52,7 +54,10 @@ nav {
 }
 
 section {
-    background-image: url(../images/mountain_tree_nature_winter_snow_sky_snowy_mountains-7836.jpg);
+    background-image: url(../images/background.jpg);
+    color: #FFFFFF;
+    font: bold;
+
 }
 
 section form input {

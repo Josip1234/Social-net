@@ -12,10 +12,11 @@ include("dbconn.php");
 <body>
     <div class="con">
 <nav>
-    <a href="#" target="_blank">Registration</a>
-    <a href="#" target="_blank">Login</a>
-        <a href="profile.php" target="_blank">Profile of user</a>
-    <a href="logout.php" target="_blank">Logout</a>
+   <a href="#" target="_self">Registration</a>
+    <a href="#" target="_self">Login</a>
+    <a href="profile.php" target="_self">Profile of user</a>
+    <a href="logout.php" target="_self">Logout</a>
+        <a href="dodjeli_uloge.php">Set user roles</a>
 
 </nav>
     </div>

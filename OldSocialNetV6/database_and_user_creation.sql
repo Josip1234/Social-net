@@ -128,3 +128,19 @@ INSERT INTO `kvaliteta` VALUES(18, 'Josip', 'Bošnjak', 'Napravljen unos feedbac
 INSERT INTO `kvaliteta` VALUES(19, 'Josip', 'Bošnjak', 'Sada treba napraviti registracijsku formu. Treba napraviti i stranicu koja omogućuje adminu da  uređuje feedbackove. Feedbackove može vidjeti samo admin.');
 alter table profilna add column email varchar(255) not null;
 alter table profilna add constraint emailp_fk foreign key (email) references registration(email) on delete cascade on update cascade;
+alter table profilna add unique key email_uk (email);
+alter table registration add unique key remail_uk (email);
+INSERT INTO `uloge` (`id`, `email`, `uloga`) VALUES
+(2, 'jbosnjak3@gmail.com', 'Administrator');
+alter table registration add column uloga enum('Korisnik','Administrator','Banovani korisnik');
+CREATE TABLE `imagehistory` (
+  `id` int(11) NOT NULL,
+  `useremail` varchar(255)  DEFAULT NULL,
+  `imageId` tinyint(4) NOT NULL,
+  `imageType` varchar(25)  NOT NULL,
+  `imageData` longblob NOT NULL
+);
+alter table imagehistory add primary key (id);
+alter table imagehistory modify id int not null auto_increment;
+ALTER TABLE `imagehistory`
+  ADD CONSTRAINT `useremrgtb` FOREIGN KEY (`useremail`) REFERENCES `registration` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;

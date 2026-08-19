@@ -1,9 +1,14 @@
 <?php
+include("dbconn.php");
 session_start();
 if(!isset($_SESSION['username'])){
-	header('Location: login.php');
+	header('Location: profile.php');
 }else{
-	$_SESSION['login']=time();
+	if($_SESSION['role']!="Administrator"){
+        header('Location:profile.php');
+    }else{
+        $_SESSION['login']=time();
+    }
 }
 
 ?>
@@ -18,12 +23,14 @@ if(!isset($_SESSION['username'])){
 <body>
     <div class="con">
     <nav>
-    <a href="index.html" target="_blank">Back to main page</a>
-    <a href="privacy.php" target="_blank">Term of privacy</a>
-    <a href="trenutnifeedback.php" target="_blank">Feedbacks-only for admins</a>
-                <a href="profile.php" target="_blank">Profile of user</a>
-<a href="logout.php" target="_blank">Logout</a>
-
+    <a href="index.html" target="_self">Back to main page</a>
+    <a href="privacy.php" target="_self">Term of privacy</a>
+    <a href="trenutnifeedback.php" target="_self">Feedbacks-only for admins</a>
+    <a href="profile.php" target="_self">Profile of user</a>
+    <a href="logout.php" target="_self">Logout</a>
+    <a href="dodjeli_uloge.php" target="_self">Set user roles</a>
+                <a href="feedback.php" target="_self">Add feedback</a>
+    
     </nav>
     </div>
     <div class="pravila">
@@ -33,7 +40,7 @@ if(!isset($_SESSION['username'])){
         </h2>
         <table>
         <?php
-          include('dbconn.php');
+          
           $query="SELECT * FROM kvaliteta";
           $q=mysqli_query($dbc,$query);
           while($row=mysqli_fetch_array($q)){

@@ -10,12 +10,13 @@
     <div class="con">
         <nav>
    
-        <a href="index.html" target="_blank">Back to main page</a>
-        <a href="#" target="_blank">Login</a>
-        <a href="privacy.php" target="_blank">Term of privacy</a>
-                    <a href="profile.php" target="_blank">Profile of user</a>
-<a href="logout.php" target="_blank">Logout</a>
-
+        <a href="index.html" target="_self">Back to main page</a>
+        <a href="#" target="_self">Login</a>
+        <a href="privacy.php" target="_self">Term of privacy</a>
+        <a href="profile.php" target="_self">Profile of user</a>
+        <a href="logout.php" target="_self">Logout</a>
+               <a href="dodjeli_uloge.php" target="_self">Set user roles</a>
+                <a href="feedback.php" target="_self">Add feedback</a>
         </nav>
     </div>
     <div class="pravila">
@@ -45,6 +46,7 @@
             </form>
             <?php 
 include("dbconn.php");
+$default_role="Korisnik";
 $firstname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['fname'])));
 if($firstname!=''){
     $lastname=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['lname'])));
@@ -61,8 +63,9 @@ if($firstname!=''){
                         if($pass!=''){
                                 $email=mysqli_real_escape_string($dbc,trim(strip_tags($_POST['email'])));
                                 if($email!=''){
-                                    $query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email')";
+                                    $query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email,uloga) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email','$default_role')";
                                     mysqli_query($dbc,$query);
+                                    
                                     mysqli_close($dbc);
                                     if($query){
                                         header('Location:login.php');
