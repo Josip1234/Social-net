@@ -406,4 +406,29 @@ class UserController extends Controller
                         "pagEnd" => $paginationEnd
                 ]);
         }
+        public function showListOfActiveUsers(){
+                      Auth::requireLogin();
+                Auth::requireAdmin();
+              
+                $limit = 5;
+                $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
+                $activeUsers = User::getListOfActiveUsers($limit, $page);
+                $totalRow = count($activeUsers);
+                $totalPages = ceil(($totalRow / $limit));
+
+                $paginationStart = max(1, $page - floor($limit / 2));
+                $paginationEnd = $paginationStart + $limit - 1;
+
+                if ($paginationEnd > $totalPages) {
+                        $paginationEnd = $totalPages;
+                        $paginationStart = max(1, $paginationEnd - $limit + 1);
+                }
+                $this->view("admin/list_of_active_users",[
+                        'users' => $activeUsers,
+                        "total_pages" => $totalPages,
+                        "page" => $page,
+                        "pagStart" => $paginationStart,
+                        "pagEnd" => $paginationEnd
+                ]);
+        }
 }
