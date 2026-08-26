@@ -381,13 +381,13 @@ class UserController extends Controller
         {
                 Auth::requireLogin();
                 Auth::requireAdmin();
-                  $userSearched = isset($_POST["user"]) ? $_POST["user"] : "";
+                $userSearched = isset($_POST["user"]) ? $_POST["user"] : "";
                 if ($userSearched == "") header('Location: index.php?page=admin/list_of_banned_users&pag=1');
                 $userId = $_SESSION['user']['id'];
                 $limit = 5;
                 $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
-                 if (!isset($_GET["pag"])) header('Location: index.php?page=admin/banned_users_search&pag=1');
-                $bannedUsers = User::getListOfBannedUsersSearch($userId, $limit, $page,$userSearched);
+                if (!isset($_GET["pag"])) header('Location: index.php?page=admin/banned_users_search&pag=1');
+                $bannedUsers = User::getListOfBannedUsersSearch($userId, $limit, $page, $userSearched);
                 $totalRow = count($bannedUsers);
                 $totalPages = ceil(($totalRow / $limit));
 
@@ -406,10 +406,11 @@ class UserController extends Controller
                         "pagEnd" => $paginationEnd
                 ]);
         }
-        public function showListOfActiveUsers(){
-                      Auth::requireLogin();
+        public function showListOfActiveUsers()
+        {
+                Auth::requireLogin();
                 Auth::requireAdmin();
-              
+
                 $limit = 5;
                 $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
                 $activeUsers = User::getListOfActiveUsers($limit, $page);
@@ -423,7 +424,34 @@ class UserController extends Controller
                         $paginationEnd = $totalPages;
                         $paginationStart = max(1, $paginationEnd - $limit + 1);
                 }
-                $this->view("admin/list_of_active_users",[
+                $this->view("admin/list_of_active_users", [
+                        'users' => $activeUsers,
+                        "total_pages" => $totalPages,
+                        "page" => $page,
+                        "pagStart" => $paginationStart,
+                        "pagEnd" => $paginationEnd
+                ]);
+        }
+        public function showListOfActiveUsersSearch()
+        {
+                Auth::requireLogin();
+                Auth::requireAdmin();
+                $userSearched = isset($_POST["user"]) ? $_POST["user"] : "";
+                if ($userSearched == "") header('Location: index.php?page=admin/list_of_active_users&pag=1');
+                $limit = 5;
+                $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
+                $activeUsers = User::getListOfActiveUsersSearch($limit, $page, $userSearched);
+                $totalRow = count($activeUsers);
+                $totalPages = ceil(($totalRow / $limit));
+
+                $paginationStart = max(1, $page - floor($limit / 2));
+                $paginationEnd = $paginationStart + $limit - 1;
+
+                if ($paginationEnd > $totalPages) {
+                        $paginationEnd = $totalPages;
+                        $paginationStart = max(1, $paginationEnd - $limit + 1);
+                }
+                $this->view("admin/list_of_active_users_search", [
                         'users' => $activeUsers,
                         "total_pages" => $totalPages,
                         "page" => $page,
