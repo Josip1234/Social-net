@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width-device-width,initial-scale=1">
+<title>Socialnet-privacy</title>
+<link href="css/stil.css" rel="stylesheet" type="text/css" media="all">
+<script language="JavaScript" src="js/drustvenijs.js" type="application/javascript"></script>
+<script language="JavaScript" src="js/calendar.js" type="application/javascript"></script>
+<script src="js/dropdownmenu.js" type="application/javascript"></script>
+<script src="js/randomslike.js" type="application/javascript"></script>
+</head>
+
+<body onMouseOver="prikazi_datum(),dohvati_kalendar()", onLoad="slike()">
+
+<div class="con">
+<nav>
+
+<a href="registration.php" target="_self">Registation</a>
+<a href="login.php" target="_self">Login</a>
+<a href="privacy.php" target="_self">Terms of privacy</a>
+<a href="trenutnifeedback.php" target="_self">Feedbacks-only for admins</a>
+<a href="profile.php" target="_self">Profile of user</a>
+<a href="logout.php" target="_self">Logout</a>
+<a href="dodjelauloga.php" target="_self">Set user roles</a>
+<a href="feedback.php" target="_self">Add feedback</a>
+<a href="forum.php" target="_self">Forum</a>
+</nav>
+</div>
+<ul id="f1">
+<li><a href="#" onMouseOver="openmenu('m1')" onMouseOut="menuclosetime()">Opcije profila</a>
+<div id="m1" onMouseOver="menucanceltime()" onMouseOut="menuclosetime()">
+<a href="terminirajprofil.php" target="_self">Delete profile</a>
+<a href="profilna.php" target="_self">Add profile picture</a>
+<a href="updateprofilne.php" target="_self">Update profile picture</a>
+<a href="Galerija.html" target="_self">Picture gallery</a>
+<a href="addtogallery.php" target="_self">Add to gallery</a>
+
+</div>
+</li>
+</ul>
+<div style="clear:both"></div>
+<section id="cal">
+<h2>Calendar for March 2017</h2>
+<p id="calendar"></p>
+
+</section>
+<section id="randslike">
+<h2>Random slike</h2>
+<p id="s"></p>
+
+</section>
+<section id="valut">
+	<iframe src="Pretvorba valuta/valuta.html" seamless></iframe>
+</section>	
+
+<div class="pravila">
+<section>
+<h2>Basic rules of use this site</h2>
+<ol>
+<li>When you are register and login into the site, you are agreeing to give us your sensitive data like username, email, password.</li>
+<li>We are not responsible if you give some other person your password, and if that results that that person is misusing our site , you will still be banned for our site, your serial will be blacklisted and you wont be able to register again.</li>
+<li>Serial presents email. If you make new registration from new device or email, and you still misusing our site, you will be prosecuted by law.</li>
+<li>Any criminal activity, drug dealing, or some other things will get you punished. </li>
+<li>Dont insult others and behave yourself good on this site. If you break the rule, you will get some negative points. 
+If you collect more than 50 negative points, you will be banned for 1 day. </li>
+<li>For every other 50 points, you will be banned for 2 days, other 4 days, etc.</li>
+<li>Your data will have a daily backup. If you want some backuped files to have on your computer, just give us some feedback. Use <a href="feedback.php" target="_blank">feedback</a> form, to get us request, you will get your data through email.</li>
+<li>You can in your feedback also, sent us some suggestions to improve our page like design, to add some additional content, etc..</li>
+</ol>
+</section>
+</div>
+
+
+<footer>
+<p id="datum"></p>
+</footer>
+</body>
+</html>
