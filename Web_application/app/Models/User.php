@@ -403,4 +403,16 @@ inner join databaseuser du on at.acTypeId=du.acTypeId having  pd.accountStatus =
     ]);
     return $stmt->fetchAll();
   }
+  public static function getListOfInactiveUsers(int $limit, int $page):array{
+      $off = ($page - 1) * $limit;
+    $db = Database::getInstance();
+    $sql="SELECT p.userId,concat(p.firstName,' ',p.lastName) as user, p.email, p.dateOfBirth,pd.accountStatus, pd.pdUpdateDate as inactiveDate, at.acTypeName, du.userName as databaseUser FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
+inner join databaseuser du on at.acTypeId=du.acTypeId where pd.accountStatus = 'Inactive' order by p.userId asc LIMIT :lim OFFSET :off";
+   $stmt = $db->prepare($sql);
+    $stmt->execute([
+      ':lim' => $limit,
+      ':off' => $off
+    ]);
+      return $stmt->fetchAll();
+  }
 }
