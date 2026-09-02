@@ -1,13 +1,6 @@
 <main>
     <div id="container">
         <div class="form-box">
-         <div id="search-box">
-            <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"].'?page=admin/list_of_inactive_users_search&pag=1'); ?>" method="post">
-                  <label for="user">Search by username:</label>
-                 <input type="text" name="user" id="user">             
-                 <button type="submit">Search</button>               
-            </form>
-        </div>
             <table>
                 <thead>
                     <tr>

@@ -459,24 +459,52 @@ class UserController extends Controller
                         "pagEnd" => $paginationEnd
                 ]);
         }
-        public function showListOfInactiveUsers(){
-                     Auth::requireLogin();
+        public function showListOfInactiveUsers()
+        {
+                Auth::requireLogin();
                 Auth::requireAdmin();
-                   $limit = 5;
+                $limit = 5;
                 $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
                 $inactiveUsers = User::getListOfInactiveUsers($limit, $page);
-                    $totalRow = count($inactiveUsers);
+                $totalRow = count($inactiveUsers);
                 $totalPages = ceil(($totalRow / $limit));
 
-                   $paginationStart = max(1, $page - floor($limit / 2));
+                $paginationStart = max(1, $page - floor($limit / 2));
                 $paginationEnd = $paginationStart + $limit - 1;
 
-                   if ($paginationEnd > $totalPages) {
+                if ($paginationEnd > $totalPages) {
                         $paginationEnd = $totalPages;
                         $paginationStart = max(1, $paginationEnd - $limit + 1);
                 }
 
-                $this->view("admin/list_of_inactive_users",[
+                $this->view("admin/list_of_inactive_users", [
+                        'users' => $inactiveUsers,
+                        "total_pages" => $totalPages,
+                        "page" => $page,
+                        "pagStart" => $paginationStart,
+                        "pagEnd" => $paginationEnd
+                ]);
+        }
+        public function showListOfInactiveUsersSearch()
+        {
+                Auth::requireLogin();
+                Auth::requireAdmin();
+                $userSearched = isset($_POST["user"]) ? $_POST["user"] : "";
+                if ($userSearched == "") header('Location: index.php?page=admin/list_of_inactive_users&pag=1');
+                $limit = 5;
+                $page = isset($_GET["pag"]) ? $_GET["pag"] : 0;
+                $inactiveUsers = User::getListOfInactiveUsersSearch($limit, $page, $userSearched);
+                $totalRow = count($inactiveUsers);
+                $totalPages = ceil(($totalRow / $limit));
+
+                $paginationStart = max(1, $page - floor($limit / 2));
+                $paginationEnd = $paginationStart + $limit - 1;
+
+                if ($paginationEnd > $totalPages) {
+                        $paginationEnd = $totalPages;
+                        $paginationStart = max(1, $paginationEnd - $limit + 1);
+                }
+                $this->view("admin/list_of_inactive_users_search",[
                         'users' => $inactiveUsers,
                         "total_pages" => $totalPages,
                         "page" => $page,

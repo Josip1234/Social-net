@@ -415,4 +415,18 @@ inner join databaseuser du on at.acTypeId=du.acTypeId where pd.accountStatus = '
     ]);
       return $stmt->fetchAll();
   }
+   public static function getListOfInactiveUsersSearch(int $limit, int $page, string $search):array{
+     $pattern = '%' . $search. '%';
+      $off = ($page - 1) * $limit;
+    $db = Database::getInstance();
+    $sql="SELECT p.userId,concat(p.firstName,' ',p.lastName) as user, p.email, p.dateOfBirth,pd.accountStatus, pd.pdUpdateDate as inactiveDate, at.acTypeName, du.userName as databaseUser FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
+inner join databaseuser du on at.acTypeId=du.acTypeId having pd.accountStatus = 'Inactive' and user like :pattern order by p.userId asc LIMIT :lim OFFSET :off";
+   $stmt = $db->prepare($sql);
+    $stmt->execute([
+      ':pattern' => $pattern,
+      ':lim' => $limit,
+      ':off' => $off
+    ]);
+      return $stmt->fetchAll();
+  }
 }

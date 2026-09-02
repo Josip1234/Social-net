@@ -126,6 +126,9 @@ switch($page){
     case 'admin/list_of_inactive_users':
           $userController->showListOfInactiveUsers();
         break;
+     case 'admin/list_of_inactive_users_search':
+          $userController->showListOfInactiveUsersSearch();
+        break;
     default:
         $controller->index();
 }
