@@ -3,7 +3,7 @@
 $host="localhost";
 $user="adminscn";
 $pass="admin";
-$db="scn";
+$db="scn6";
 
 $dbc= mysqli_connect($host,$user,$pass,$db);
 //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);

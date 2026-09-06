@@ -27,8 +27,8 @@
 <label>Last name:</label><br/>
 <input type="text" name="lname" autocomplete="off" maxlength="50" size="17" required/><br/>
 <label id="r">Sex:</label><br/>
-<input type="radio"  id="radb" name="spol" value="muski" required>M 
-<input type="radio"   id="radb" name="spol" value="zenski" required>Z 
+<input type="radio"  id="radb" name="spol" value="m" required>M 
+<input type="radio"   id="radb" name="spol" value="z" required>Z 
 
 <br/>
 <label>Date of birth:</label><br/>
@@ -65,11 +65,13 @@ if($firstname!=''){
                                     $query="INSERT INTO registration(fname,lname,sex,dateofbirth,cityofbirth,countryofbirth,pass,email,uloga) VALUES ('$firstname','$lastname','$sex','$datum_rodjenja','$city','$country','$pass','$email','$default_role')";
                                     mysqli_query($dbc,$query);
                                     
-                                    mysqli_close($dbc);
+                                   
                                     if($query){
+                                         mysqli_close($dbc);
                                         header('Location:login.php');
                                     }else{
                                         die('Error! Cannot add informations!');
+                                         mysqli_close($dbc);
                                     }
                                 }
                           
