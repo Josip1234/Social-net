@@ -429,4 +429,14 @@ inner join databaseuser du on at.acTypeId=du.acTypeId having pd.accountStatus = 
     ]);
       return $stmt->fetchAll();
   }
+   //get profile image from database 
+  public static function getProfileImage(int $userId):array{
+    $db=Database::getInstance();  
+    $sql="SELECT concat('assets/images/',i.userId,'/',i.imageName) as url,  i.url as alt FROM image i where i.userId=:userId and i.profileMarkImage='p'";
+    $stmt=$db->prepare($sql);
+    $stmt->execute([
+       ':userId'=>$userId
+    ]);
+    return $stmt->fetchAll();
+  }
 }

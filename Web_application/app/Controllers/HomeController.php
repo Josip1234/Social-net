@@ -19,12 +19,22 @@ class HomeController extends Controller{
     private const REGULAR="Regular";
     //this function will rerutn index view
     public function index():void{
-        
+         
         //setcookie("selected","",1);
                 //get list of user ids
             $userIds=User::getAllUserIds();
             //create folders
             FilesHelper::createFoldersForRegisteredUsers($userIds);
+        //init profile image as string
+        $profilePicture="";
+        //if user is logged in  
+        if((int)Auth::checkLogin()===1){
+            //select profile picture from user else leave default image
+             $profilePicture=User::getProfileImage($_SESSION['user']['id']);
+             $_SESSION['user']['url']=$profilePicture[0]['url'];
+             $_SESSION['user']['alt']=$profilePicture[0]['alt'];
+        }
+
         $this->view('home/index');
     }
     //return login page

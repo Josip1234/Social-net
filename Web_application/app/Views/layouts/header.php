@@ -42,7 +42,11 @@ function active(string $page,string $current):string{
     <header>
         <h1>Social network</h1>
         <div id="profilePicture">
+             <?php if(!isset($_SESSION['user']['url']) || !isset($_SESSION['user']['alt'])): ?>
             <img src="https://static.vecteezy.com/system/resources/thumbnails/057/068/323/small/single-fresh-red-strawberry-on-table-green-background-food-fruit-sweet-macro-juicy-plant-image-photo.jpg" alt="profilePicture" class="pp">
+            <?php else: ?>
+            <img src="<?= $_SESSION['user']['url'] ?>" alt="<?= $_SESSION['user']['alt'] ?>" class="pp">
+            <?php endif; ?>
         </div>
         <nav>
 <!--urls for all unregistered and not logged in users -->
@@ -69,7 +73,6 @@ function active(string $page,string $current):string{
     <a href="?page=admin/list_of_banned_users&pag=1">List of banned users</a>
     <a href="?page=admin/list_of_active_users&pag=1">List of active users</a>
     <a href="?page=admin/list_of_inactive_users&pag=1">List of inactive users</a>
-    <a href="#tools">Tools</a>
   </div>
 </div>
    

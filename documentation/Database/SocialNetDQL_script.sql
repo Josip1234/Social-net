@@ -64,3 +64,5 @@ inner join databaseuser du on at.acTypeId=du.acTypeId having p.userId != 2 and p
 
 SELECT p.userId,concat(p.firstName,' ',p.lastName) as user, p.email, p.dateOfBirth,pd.accountStatus, pd.pdUpdateDate as inactiveDate, at.acTypeName, du.userName as databaseUser FROM profile p inner join profiledetails pd on pd.userId=p.userId inner join accounttype at on pd.acTypeId=at.acTypeId
 inner join databaseuser du on at.acTypeId=du.acTypeId where pd.accountStatus = 'Inactive' order by p.userId asc;
+
+SELECT concat('/assets/images/',i.userId,'/',i.imageName) as url,  i.url as alt FROM image i where i.userId=2 and i.profileMarkImage='p';

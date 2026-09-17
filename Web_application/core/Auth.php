@@ -25,6 +25,17 @@ class Auth{
             exit;
         }
     }
+        //this is function for checking if user is logged in
+    //if user is not logged in, it returns bool false user is not logged in
+    public static function checkLogin():bool{
+        $loggedIn=false;
+        if(!isset($_SESSION['user'])){
+           $loggedIn=false;
+        }else{
+            $loggedIn=true;
+        }
+        return $loggedIn;
+    }
     //this function returns userid if exists
    // ?? -It returns its first operand if it exists and is not NULL; otherwise it returns its second operand.
     //So it's actually just isset() in a handy operator.
