@@ -21,8 +21,11 @@ function active(string $page,string $current):string{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social-net</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-     <?php if($_SESSION["user"]["accounttype"] === 1): ?>
+    <link rel="stylesheet" href="assets/css/style.css"> 
+     <?php if (active('forum',$activePage)): ?>
+          <script src="assets/js/dropdown.js"></script>
+    <?php endif; ?>
+     <?php if($_SESSION["user"]["accounttype"] === 1 || active('forum/forum',$activePage)): ?>
     <link rel="stylesheet" href="assets/css/dropdown.css">
       <script src="assets/js/dropdown.js"></script>
        <?php endif; ?>
@@ -57,7 +60,6 @@ function active(string $page,string $current):string{
 <a href="index.php?page=login" class="<?= active('login',$activePage) ?>">Login</a>
 <?php else: ?>
 <!-- Logout - all logged in users -->
- <a href="index.php?page=logout">Logout</a>
  
  <a href="index.php?page=users/profile" class="<?= active('users/profile',$activePage);    setcookie("selected","",1);
         setcookie("selectedCity","",1); ?>">User profile</a>
@@ -75,8 +77,20 @@ function active(string $page,string $current):string{
     <a href="?page=admin/list_of_inactive_users&pag=1">List of inactive users</a>
   </div>
 </div>
-   
- <?php endif; endif; ?>
+<?php endif; ?>
+    <a href="index.php?page=forum/forum">Forum</a>
+    <?php if (active('forum/forum',$activePage)): ?>
+        
+         <div class="dropdown">
+  <button onclick="showForumDropdown()" class="dropbtn">Forum options</button>
+  <div id="myDropdown2" class="dropdown-content">
+    <input type="text" placeholder="Search.." id="myInput2" onkeyup="filter_forum_options()">
+    <a href="?page=add_topic.php">Add new topic</a>
+  </div>
+</div>
+    <?php endif; ?>
+    <a href="index.php?page=logout">Logout</a>
+ <?php  endif; ?>
         </nav>
         
 

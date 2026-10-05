@@ -16,7 +16,7 @@
    
 }
 
-#myInput {
+#myInput, #myInput2 {
   box-sizing: border-box;
   background-image: url('../icons/search-icon-png-9982-orange-background.png');
   background-position: 14px 12px;
@@ -30,12 +30,12 @@
    
 
 }
-#myInput::placeholder{
+#myInput::placeholder,#myInput2::placeholder{
 color:white;
 
 }
 
-#myInput:focus {outline: 3px solid #ddd;
+#myInput:focus,#myInput2:focus {outline: 3px solid #ddd;
 background-color:red;
 background-image: url('../icons/search-icon-png-9982-red-background.png');
 background-position: 14px 12px;

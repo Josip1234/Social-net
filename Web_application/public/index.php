@@ -3,6 +3,7 @@
 use App\Controllers\AddressController;
 use App\Controllers\CityController;
 use App\Controllers\DatabaseController;
+use App\Controllers\ForumController;
 use App\Controllers\HomeController;
 use App\Controllers\StateController;
 use App\Controllers\UserController;
@@ -24,6 +25,7 @@ $addressController = new AddressController();
 $stateController=new StateController();
 $cityController = new CityController();
 $databaseLoggerController = new DatabaseController();
+$forumController=new ForumController();
 
 $page=$_GET['page']??'index';
 
@@ -128,6 +130,9 @@ switch($page){
         break;
      case 'admin/list_of_inactive_users_search':
           $userController->showListOfInactiveUsersSearch();
+        break;
+     case 'forum/forum':
+        $forumController->home();
         break;
     default:
         $controller->index();
