@@ -439,4 +439,34 @@ inner join databaseuser du on at.acTypeId=du.acTypeId having pd.accountStatus = 
     ]);
     return $stmt->fetchAll();
   }
+  //check user type of logged in user
+  public static function checkUserType(string $email):string{
+    $bannedUser=false;
+    $accountStatus=false;
+    $inactiveUser=false;
+    $db=Database::getInstance();
+    $sql="SELECT p.userId,p.email,pd.accountStatus from profile p inner join profiledetails pd on pd.userId = p.userId where p.email=:email";
+    $stmt=$db->prepare($sql);
+    $stmt->execute([
+      ':email'=>$email
+    ]);
+    $data=$stmt->fetchColumn(2);
+    if($data==="Banned") $bannedUser="Banned";
+    if($data==="Inactive") $inactiveUser="Inactive";
+    $accountStatus=($bannedUser=="Banned")?$bannedUser:$inactiveUser;
+   
+    return $accountStatus;
+  }
+
+    //function for update account status
+  public static function updateAccountStatus(string $newStatus, int $userId)
+  {
+    $db = Database::getInstance();
+    $sql = "UPDATE profiledetails set accountStatus=:acStatus where userId=:userId";
+    $stmt = $db->prepare($sql);
+    return $stmt->execute([
+      ':acStatus' => $newStatus,
+      ':userId' => $userId
+    ]);
+  }
 }

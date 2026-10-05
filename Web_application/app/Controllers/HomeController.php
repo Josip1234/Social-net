@@ -110,11 +110,12 @@ class HomeController extends Controller{
             }
 
          if($_SERVER["REQUEST_METHOD"] ==="POST"){
-          
+
+           
             //we need user from database
             $user=User::findByUsername($_POST["username"]);
         
-          
+            
        
     
             $errors='Incorrect data.';
@@ -142,6 +143,12 @@ class HomeController extends Controller{
                 ]);
                 return;
             }
+
+            $bannedUser=User::checkUserType($user["email"]);
+           
+            if($bannedUser!="Banned"){
+               
+         
             //save successfull login 
             $msg="User with email ".User::getUserNameById($user["userId"])." has been logged in";
             ProfileLogger::log($user["userId"],$msg);
@@ -152,9 +159,26 @@ class HomeController extends Controller{
                 'username'=>$user['username'],
                 'accounttype'=>$acType
             ];
+             $inactiveUser=User::checkUserType($user["email"]);
+             if($inactiveUser=="Inactive"){
+                $status="Active";
+                //update account status now
+                User::updateAccountStatus($status,$_SESSION['user']['id']);
+                 $msg="User: ".User::getUserNameById($user["userId"])." account status has been changed to active.";
+                ProfileLogger::log($user["userId"],$msg);
+              }
             header("Location: index.php");
             exit;
             
+        }
+         }  
+         if($user!=null){
+         $msg="User with email ".User::getUserNameById($user["userId"])." has tried to log in. This is banned user.";
+        ProfileLogger::log($user["userId"],$msg);
+        $_SESSION["error"]="This user is banned. Please, choose another user email.";
+         }
+        if(isset($_SESSION["user"])){
+             unset($_SESSION["user"]);
         }
         $this->view('home/login');
     }

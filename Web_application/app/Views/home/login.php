@@ -2,7 +2,10 @@
 <div class="form-box">
     <h2>Login</h2>
     <?php
-      
+        if(isset($_SESSION["error"])){
+            echo  "<p class='error'>".$_SESSION["error"]." </p>";
+            unset($_SESSION["error"]);
+        }
         if(!empty($error)):
         ?>
         <p class="error"><?= $error; ?></p>

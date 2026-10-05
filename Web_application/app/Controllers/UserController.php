@@ -309,7 +309,8 @@ class UserController extends Controller
                                 $acId = $_POST["accountType"];
                                 $userId = $_POST["userId"];
                                 ProfileDetail::updateAccountStatusAndAccountType($accountStatus, $acId, $userId);
-                                $_SESSION["msg"] = "Successfully updated status of " . $_POST["username"] . " user";
+                                $_SESSION["msg"] = "Successfully updated status of " . $_POST["username"] . " user to ".strtolower($accountStatus)." user"; 
+                                ProfileLogger::log($userId,$_SESSION["msg"].".Admin who updated account status: ".$_SESSION["user"]["username"]);
                                 header('Location:index.php?page=admin/user_management');
                         } else {
                                 header('Location:index.php?page=admin/account_status&id=' . $_POST["userId"] . '');

@@ -66,3 +66,5 @@ SELECT p.userId,concat(p.firstName,' ',p.lastName) as user, p.email, p.dateOfBir
 inner join databaseuser du on at.acTypeId=du.acTypeId where pd.accountStatus = 'Inactive' order by p.userId asc;
 
 SELECT concat('/assets/images/',i.userId,'/',i.imageName) as url,  i.url as alt FROM image i where i.userId=2 and i.profileMarkImage='p';
+
+select p.userId,p.email,pd.accountStatus from profile p inner join profiledetails pd on pd.userId = p.userId where p.email='asshole@nazi.com';
