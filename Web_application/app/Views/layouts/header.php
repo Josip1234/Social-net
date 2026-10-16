@@ -22,8 +22,10 @@ function active(string $page,string $current):string{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social-net</title>
     <link rel="stylesheet" href="assets/css/style.css"> 
-     <?php if (active('forum',$activePage)): ?>
+     <?php if (active('forum/forum',$activePage)): ?>
           <script src="assets/js/dropdown.js"></script>
+        <link rel="stylesheet" href="assets/css/topic_list.css">
+         <link rel="stylesheet" href="assets/css/pagination.css">
     <?php endif; ?>
      <?php if($_SESSION["user"]["accounttype"] === 1 || active('forum/forum',$activePage)): ?>
     <link rel="stylesheet" href="assets/css/dropdown.css">
@@ -40,6 +42,7 @@ function active(string $page,string $current):string{
     <?php else: ?>
          <script src="assets/js/js.js"></script>
     <?php endif; ?>
+
 </head>
 <body>
     <header>
