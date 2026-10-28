@@ -134,6 +134,12 @@ switch($page){
      case 'forum/forum':
         $forumController->home();
         break;
+    case 'forum/add_topic':
+        $forumController->add_topic();
+        break;
+    case 'topic/insertNewTopic':
+        $forumController->insert_topic();
+        break;
     default:
         $controller->index();
 }

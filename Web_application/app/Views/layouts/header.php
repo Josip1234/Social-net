@@ -27,6 +27,12 @@ function active(string $page,string $current):string{
         <link rel="stylesheet" href="assets/css/topic_list.css">
          <link rel="stylesheet" href="assets/css/pagination.css">
     <?php endif; ?>
+       <?php if (active('forum/add_topic',$activePage)): ?>
+          <script src="assets/js/dropdown.js"></script>
+        <link rel="stylesheet" href="assets/css/topic_list.css">
+         <link rel="stylesheet" href="assets/css/pagination.css">
+         <link rel="stylesheet" href="assets/css/table.css">
+    <?php endif; ?>
      <?php if($_SESSION["user"]["accounttype"] === 1 || active('forum/forum',$activePage)): ?>
     <link rel="stylesheet" href="assets/css/dropdown.css">
       <script src="assets/js/dropdown.js"></script>
@@ -88,7 +94,7 @@ function active(string $page,string $current):string{
   <button onclick="showForumDropdown()" class="dropbtn">Forum options</button>
   <div id="myDropdown2" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput2" onkeyup="filter_forum_options()">
-    <a href="?page=add_topic.php">Add new topic</a>
+    <a href="?page=forum/add_topic">Add new topic</a>
   </div>
 </div>
     <?php endif; ?>

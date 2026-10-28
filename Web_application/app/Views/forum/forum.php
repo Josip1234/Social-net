@@ -1,6 +1,11 @@
 <main>
     <div id="container"> 
         <div class="form-box">
+                  <?php if(isset($_SESSION['msg'])): ?>
+     <div class="message">
+          <p class="success"><?= $_SESSION['msg']; ?></p>
+     </div>
+     <?php endif; unset($_SESSION['msg']);?>
             <ul class="ul">
                 <li><a href="#">Topic 1</a></li>
                 <li><a href="#">Topic 2</a></li>

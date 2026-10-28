@@ -280,4 +280,37 @@ class Validation
     
         return $validated;
     }
+    public static function validateForumInput(array $data):array{
+             //intitialize error array
+        $errors = [];
+         $topicContent=$_POST["topicContent"];
+         $notEmpty=false;
+         $numeric=false;
+         //inserting a new topic requires string and numbers or characters if there is only number that should not pass.
+         //need at least three characters in input value to accept it as a topic content
+         $numberOfCharacters=false;
+
+         if(strlen($topicContent)===0){
+            $notEmpty=true;
+         }
+         if(is_numeric($topicContent)){
+            $numeric=true;
+         }
+         if(strlen($topicContent)<3){
+            $numberOfCharacters=true;
+         }
+         //need to check if topic content is already added we do not need another duplicate entry will do it when we start
+         //to make model we need only to add query to fetch data content as input value it will be topic content 
+         //and it will search for number of values in database if number of values is 0 then validation has been passed
+         if($notEmpty===true){
+             $errors["topicContent"]="Topic content field must not be empty. Please, insert a value.";
+         }
+         if($numeric===true){
+            $errors["numeric"]="Topic name should have some characters at least. Only numeric values are not accepted.";
+         }
+         if($numberOfCharacters===true){
+            $errors["charNumbers"]="Topic should have at least three characters.";
+         }
+         return $errors;
+    }
 }
