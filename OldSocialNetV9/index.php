@@ -11,7 +11,7 @@
     <div class="con">
         <nav>
             <ul>
-                <li><a href="#" target="_blank" rel="noopener noreferrer">Registration</a></li>
+                <li><a href="registration.php" target="_blank" rel="noopener noreferrer">Registration</a></li>
                 <li><a href="#" target="_blank" rel="noopener noreferrer">Login</a></li>
             </ul>
         </nav>
