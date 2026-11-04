@@ -2,6 +2,8 @@
 namespace App\Controllers;
 
 use App\Helpers\Validation;
+use App\Models\ProfileLogger;
+use App\Models\Topic;
 use Core\Controller;
 
 class ForumController extends Controller{
@@ -24,6 +26,9 @@ class ForumController extends Controller{
         $errors=Validation::validateForumInput($data);
       
         if((int)count($errors)===0){
+  
+            ProfileLogger::log($_SESSION['user']['id'],"Successfully added new topic.");
+            Topic::insertTopic($data);
             $_SESSION['msg']="Successfully added new topic.";
     
             header("Location: index.php?page=forum/forum");
