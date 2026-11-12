@@ -30,6 +30,20 @@ CREATE TABLE `registration` (
   `countryofbirth` varchar(50) NOT NULL,
   `pass` varchar(50) NOT NULL,
   `profilepicture` varchar(255) NOT NULL
-) 
+) ;
 
+CREATE TABLE `kvaliteta` (
+  `id` int primary key auto_increment not null,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(150) NOT NULL,
+  `suggestion` varchar(255) NOT NULL
+);
+
+INSERT INTO `kvaliteta` ( `firstname`, `lastname`, `suggestion`) VALUES
+( '', '', ''),
+('Josip', 'Bošnjak', 'Bok. Moje ime je Josip. Ovo je moj prvi upis u bazu podataka. Trebalo bi poboljšati dizajn stranice i trebalo bi se poboljšati da ne piše na stranici undefined variables. To piše jer su varijable trebale biti deklarirane na početku. Lijep pozdrav.'),
+( 'Ivan', 'Ivić', 'Veličina polja za feedback mi se ne sviđa. Trebalo bi to promijeniti.'),
+( 'Ryno', 'gt4', 'Hello i do not understand lot of this stuff on this website. Can you add some translation on english please? I would appreciate it.'),
+( 'Josip', 'Bošnjak', 'Napravljen unos feedbacka za stranicu. Popraviti bug koji dodaje prazno mjesto u tablicu. Napraviti neki captcha za odgodu novog unosa.'),
+( 'Josip', 'Bošnjak', 'Sada treba napraviti registracijsku formu. Treba napraviti i stranicu koja omogućuje adminu da  uređuje feedbackove. Feedbackove može vidjeti samo admin.');
 
