@@ -262,6 +262,8 @@ class HomeController extends Controller{
         //message for logout
           $msg="User with email ".User::getUserNameById($_SESSION["user"]["id"])." has been logged out.";
         ProfileLogger::log($_SESSION["user"]["id"],$msg);
+        //if there is a log when adding new topic, there is a error if topic has been added 
+        //that row will be updated with a logout value. need to fix that to update row when user is logged out.
         session_destroy();
         header("Location: index.php?page=login");
         exit;

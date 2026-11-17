@@ -8,8 +8,11 @@ use Core\Controller;
 
 class ForumController extends Controller{
     public function home(){
-
-        $this->view('forum/forum');
+        $topicList=Topic::printTopics();
+       
+        $this->view('forum/forum',[
+            "topics"=>$topicList
+        ]);
     }
     public function add_topic(){
         $this->view('forum/add_topic');

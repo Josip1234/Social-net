@@ -7,9 +7,9 @@
      </div>
      <?php endif; unset($_SESSION['msg']);?>
             <ul class="ul">
-                <li><a href="#">Topic 1</a></li>
-                <li><a href="#">Topic 2</a></li>
-                <li><a href="#">Topic 3</a></li>
+                <?php foreach ($topics as $value):?>
+                <li><a href="?topicNumber=<?= $value["topicNumber"] ?>"><?= $value["topicName"] ?></a></li>
+                <?php endforeach; ?>
             </ul>
             <div class="paginator"> 
                 <a href="#first">First</a>

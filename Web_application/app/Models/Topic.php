@@ -20,4 +20,13 @@ values (:userId,:topicContent,:topicDateAdded,:topicLike,:topicDislike,:topicDat
             ':topicDateUpdated'=>date("Y-m-d H:i:s",strtotime($data["topicDateUpdated"]))
         ]);
     }
+    //function for printing topics from database
+    public static function printTopics():array{
+        $db=Database::getInstance();
+        $topics=array();
+        $sql="SELECT concat(p.firstName,' ',p.lastName) as user, tp.topicId as topicNumber,tp.topicContent as topicName, tp.topicDateAdded as dateAdded, tp.topicLike as likeNumbers,tp.topicDislike as dislikeNumbers,tp.topicDateUpdated as dateUpdated FROM topics tp inner join profile p on tp.userId=p.userId"; 
+        $stmt=$db->prepare($sql);
+        $topics=$db->query($sql)->fetchAll();
+        return $topics;
+    }
 }
