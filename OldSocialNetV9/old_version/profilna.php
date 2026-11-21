@@ -1,3 +1,13 @@
+<?php 
+session_start();
+if(!isset($_SESSION['username'])){
+	header('Location:login.php');
+}else{
+	$_SESSION['login']=time();
+}
+
+
+?>
 <!doctype html>
 <html>
 <head>
@@ -14,7 +24,9 @@
 
 <a href="#" target="_blank">Registation</a>
 <a href="#" target="_blank">Login</a>
-
+<a href="profile.php" target="_blank" rel="noopener noreferrer">Profile of user</a>
+<a href="logout.php" target="_blank" rel="noopener noreferrer">Logout</a>
+<a href="dodjeli_uloge.php" target="_blank" rel="noopener noreferrer">User roles</a>
 </nav>
 </div>
 <div class="pravila">
@@ -24,11 +36,11 @@ include('dbconn.php');
 
 if(count($_FILES) > 0) {
 if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
-
+$username=$_SESSION['username'];
 $imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
 $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
-$sql = "INSERT INTO profilna(imageType ,imageData)
-VALUES('{$imageProperties['mime']}', '{$imgData}')";
+$sql = "INSERT INTO profilna(imageType ,imageData, email)
+VALUES('{$imageProperties['mime']}', '{$imgData}','$username')";
 mysqli_query($dbc,$sql);
 mysqli_close($dbc);
 

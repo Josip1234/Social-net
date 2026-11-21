@@ -47,3 +47,24 @@ INSERT INTO `kvaliteta` ( `firstname`, `lastname`, `suggestion`) VALUES
 ( 'Josip', 'Bošnjak', 'Napravljen unos feedbacka za stranicu. Popraviti bug koji dodaje prazno mjesto u tablicu. Napraviti neki captcha za odgodu novog unosa.'),
 ( 'Josip', 'Bošnjak', 'Sada treba napraviti registracijsku formu. Treba napraviti i stranicu koja omogućuje adminu da  uređuje feedbackove. Feedbackove može vidjeti samo admin.');
 
+
+CREATE TABLE `uloge` (
+  `id` int(11) NOT NULL primary key auto_increment,
+  `user_id` int(11) NOT NULL,
+  `uloga` enum('Administrator','Korisnik','Banovani korisnik','') NOT NULL
+) ;
+
+CREATE TABLE `profilna` (
+  `id` int(11) NOT NULL primary key auto_increment,
+  `imageId` tinyint(4) NOT NULL,
+  `imageType` varchar(25) NOT NULL,
+  `imageData` longblob NOT NULL
+);
+alter table registration add column `email` varchar(255) NOT NULL unique;
+
+INSERT INTO `registration` (`id`, `fname`, `lname`, `sex`, `dateofbirth`, `cityofbirth`, `countryofbirth`, `pass`, `profilepicture`, `email`) VALUES
+(1, 'Josip', 'Bošnjak', 'm', '1992-11-05', 'WIntherthur', 'Švicarska', 'test1234', 0x732d6c31363030202836292e77656270, 'jbosnjak3@gmail.com'),
+(2, 'Ivan', 'Ivić', 'm', '1984-08-11', 'Bern', 'Švicarska', 'mojdomješvicarska', 0x46425f494d475f313733363230303235313431332e6a7067, 'iivic@gmail.com'),
+(3, 'Petra', 'Martić', 'z', '1965-12-28', 'Zagren', 'Hrvatska', 'volimtenis', 0x57494e5f32303137303130335f31305f32375f34375f50726f2e6a7067, 'pmartic@hotmail.com'),
+(4, 'Marko', 'Markić', 'm', '1985-05-06', 'Požega', 'Hrvatska', 'volimhrvatsku', '', 'mmarkic15@gmail.com'),
+(5, 'Kojaideja', 'Majketi', 'z', '1998-08-08', 'Sarajevo', 'Bosna i Hercegovina', 'štatibi', '', 'kojaideja@gmail.com');
