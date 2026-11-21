@@ -25,3 +25,17 @@
 .ul li a:hover{
     color:orange;
 }
+.likes{
+  font-weight: lighter;
+  text-align: right;
+   font-size: large;
+}
+.dislikes{
+  font-weight: lighter;
+  text-align: right;
+   font-size: large;
+}
+.topicContent{
+  font-weight: bold;
+  font-size: xx-large;
+}

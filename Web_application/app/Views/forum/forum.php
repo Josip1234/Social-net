@@ -8,7 +8,13 @@
      <?php endif; unset($_SESSION['msg']);?>
             <ul class="ul">
                 <?php foreach ($topics as $value):?>
-                <li><a href="?topicNumber=<?= $value["topicNumber"] ?>"><?= $value["topicName"] ?></a></li>
+                <li><a href="?topicNumber=<?= $value["topicNumber"] ?>" class="topicContent"><?= $value["topicName"] ?></a>
+                <span id="like" class="likes">Likes: <?= $value["likeNumbers"] ?></span>
+                <span id="dislike" class="dislikes">Dislikes: <?= $value["dislikeNumbers"] ?></span>
+                <button type="submit" id="submitLike">Like</button>
+                <button type="submit" id="submitDislike">Dislike</button>
+                <button type="reset" id="resetLike">Revert</button>
+            </li>
                 <?php endforeach; ?>
             </ul>
             <div class="paginator"> 

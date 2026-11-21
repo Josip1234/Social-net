@@ -256,9 +256,10 @@ class HomeController extends Controller{
         setcookie("selected","",1);
         setcookie("selectedCity","",1);
         //get last inserted record from logged in user
-        $lastInsertedIdPl=ProfileLogger::getLastIdFromProfileLogger($_SESSION["user"]["id"]);
+       //$lastInsertedIdPl=ProfileLogger::getLastIdFromProfileLogger($_SESSION["user"]["id"]);
         //update profile logger table from last user id
-        ProfileLogger::updateProfileLogger($lastInsertedIdPl);
+        //ProfileLogger::updateProfileLogger($lastInsertedIdPl);
+        //update date will not be used for calculations of time logged in anymore.
         //message for logout
           $msg="User with email ".User::getUserNameById($_SESSION["user"]["id"])." has been logged out.";
         ProfileLogger::log($_SESSION["user"]["id"],$msg);

@@ -11,11 +11,11 @@
                         <th>Username</th>
                         <th>Message</th>
                         <th>Addition date</th>
-                        <th>Update date</th>
+                        <!-- <th>Update date</th> -->
                         <th>Date of birth</th>
                         <th>Account type</th>
                         <th>Age</th>
-                        <th>Time logged in  (H:m:s)</th>
+                       <!--  <th>Time logged in  (H:m:s)</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -30,11 +30,13 @@
                             <td><?= $user["username"]; ?></td>
                             <td><?= $user["message"]; ?></td>
                             <td><?= \Carbon\Carbon::parse($user["additionDate"])->format("d.m.Y H:i:s");  ?></td>
-                            <td><?= ($user["updateDate"] == NULL) ? "No date" : \Carbon\Carbon::parse($user["updateDate"])->format("d.m.Y H:i:s");  ?></td>
+                            <?php //($user["updateDate"] == NULL) ? "No date" : \Carbon\Carbon::parse($user["updateDate"])->format("d.m.Y H:i:s"); 
+                             ?>
                             <td><?= \Carbon\Carbon::parse($user["dateOfBirth"])->format("d.m.Y");  ?></td>
                             <td><?= $user["acTypeName"]; ?></td>
                             <td><?= $user["Age"]; ?></td>
-                            <td><?= ($user["updateDate"] == NULL) ? "No calculation possible." : \Carbon\Carbon::parse(strtotime($user["updateDate"]) - strtotime($user["additionDate"]))->format("H:i:s"); ?></td>
+                            <?php // ($user["updateDate"] == NULL) ? "No calculation possible." : \Carbon\Carbon::parse(strtotime($user["updateDate"]) - strtotime($user["additionDate"]))->format("H:i:s"); 
+                            ?>
 
                         </tr>
                     <?php endforeach; ?>
